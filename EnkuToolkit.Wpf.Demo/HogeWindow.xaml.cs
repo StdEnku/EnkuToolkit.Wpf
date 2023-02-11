@@ -17,7 +17,7 @@ using EnkuToolkit.Wpf.Controls;
 /// <summary>
 /// HogeWindow.xaml の相互作用ロジック
 /// </summary>
-public partial class HogeWindow : StateSaveWindow
+public partial class HogeWindow : EmptyWindow
 {
     public HogeWindow()
     {
