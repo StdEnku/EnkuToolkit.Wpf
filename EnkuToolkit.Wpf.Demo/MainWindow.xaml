@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
         xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <et:MovableContentControl Grid.Row="0" RotateAngle="{Binding ElementName=sl, Path=Value}" RotateCenterY="225" RotateCenterX="400">
+            <Viewbox>
+                <Label Content="Hoge" />
+            </Viewbox>
+        </et:MovableContentControl>
+
+        <Slider Name="sl" Grid.Row="1" Margin="10" Minimum="0" Maximum="360" />
     </Grid>
 </Window>
