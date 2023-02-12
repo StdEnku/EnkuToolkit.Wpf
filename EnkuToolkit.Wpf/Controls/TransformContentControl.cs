@@ -4,13 +4,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-public class MovableContentControl : ContentControl
+/// <summary>
+/// 変形用プロパティを持つContentControl
+/// </summary>
+public class TransformContentControl : ContentControl
 {
     private ScaleTransform _scaleTransform = new();
     private RotateTransform _rotateTransform = new();
     private TranslateTransform _translateTransform = new();
 
-    public MovableContentControl()
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public TransformContentControl()
     {
         var transformGroup = new TransformGroup();
         transformGroup.Children.Add(this._scaleTransform);
@@ -27,7 +33,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(TranslateX),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onTranslateXPropertyChanged)
         );
 
@@ -42,7 +48,7 @@ public class MovableContentControl : ContentControl
 
     private static void onTranslateXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._translateTransform.X = (double)e.NewValue;
     }
     #endregion
@@ -55,7 +61,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(TranslateY),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onTranslateYPropertyChanged)
         );
 
@@ -70,7 +76,7 @@ public class MovableContentControl : ContentControl
 
     private static void onTranslateYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._translateTransform.Y = (double)e.NewValue;
     }
     #endregion
@@ -83,7 +89,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateCenterX),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onRotateCenterXPropertyChanged)
         );
 
@@ -98,7 +104,7 @@ public class MovableContentControl : ContentControl
 
     private static void onRotateCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._rotateTransform.CenterX = (double)e.NewValue;
     }
     #endregion
@@ -111,7 +117,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateCenterY),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onRotateCenterYPropertyChanged)
         );
 
@@ -126,7 +132,7 @@ public class MovableContentControl : ContentControl
 
     private static void onRotateCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._rotateTransform.CenterY = (double)e.NewValue;
     }
     #endregion
@@ -139,7 +145,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateAngle),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onRotateAnglePropertyChanged)
         );
 
@@ -154,7 +160,7 @@ public class MovableContentControl : ContentControl
 
     private static void onRotateAnglePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._rotateTransform.Angle = (double)e.NewValue;
     }
     #endregion
@@ -167,7 +173,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleCenterX),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onScaleCenterXPropertyChanged)
         );
 
@@ -182,7 +188,7 @@ public class MovableContentControl : ContentControl
 
     private static void onScaleCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._scaleTransform.CenterX = (double)e.NewValue;
     }
     #endregion
@@ -195,7 +201,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleCenterY),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onScaleCenterYPropertyChanged)
         );
 
@@ -210,7 +216,7 @@ public class MovableContentControl : ContentControl
 
     private static void onScaleCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._scaleTransform.CenterY = (double)e.NewValue;
     }
     #endregion
@@ -223,7 +229,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleX),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onScaleXPropertyChanged)
         );
 
@@ -238,7 +244,7 @@ public class MovableContentControl : ContentControl
 
     private static void onScaleXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._scaleTransform.ScaleX = (double)e.NewValue;
     }
     #endregion
@@ -251,7 +257,7 @@ public class MovableContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleY),
             typeof(double),
-            typeof(MovableContentControl),
+            typeof(TransformContentControl),
             new PropertyMetadata(default(double), onScaleYPropertyChanged)
         );
 
@@ -266,7 +272,7 @@ public class MovableContentControl : ContentControl
 
     private static void onScaleYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (MovableContentControl)d;
+        var movableContentControl = (TransformContentControl)d;
         movableContentControl._scaleTransform.ScaleX = (double)e.NewValue;
     }
     #endregion
