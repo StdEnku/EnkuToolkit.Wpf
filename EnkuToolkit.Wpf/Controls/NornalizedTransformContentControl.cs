@@ -5,25 +5,39 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 /// <summary>
+/// 各変形用プロパティを0~1までの値で操作できるようにした
 /// 変形用プロパティを持つContentControl
 /// </summary>
-public class TransformContentControl : ContentControl
+public class NormalizedTransformContentControl : ContentControl
 {
     private readonly ScaleTransform _scaleTransform = new();
     private readonly RotateTransform _rotateTransform = new();
     private readonly TranslateTransform _translateTransform = new();
+    private const double MAX_ANGLE = 360;
+    private const double DEFAULT_CENTER = 0.5;
     private const double DEFAULT_SIZE = 1;
 
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public TransformContentControl()
+    public NormalizedTransformContentControl()
     {
         var transformGroup = new TransformGroup();
         transformGroup.Children.Add(this._scaleTransform);
         transformGroup.Children.Add(this._translateTransform);
         transformGroup.Children.Add(this._rotateTransform);
         this.RenderTransform = transformGroup;
+        this.SizeChanged += onSizeChanged;
+    }
+
+    private void onSizeChanged(object sender, RoutedEventArgs e)
+    {
+        this._translateTransform.X = this.TranslateX * this.ActualWidth;
+        this._translateTransform.Y = this.TranslateY * this.ActualHeight;
+        this._rotateTransform.CenterX = this.RotateCenterX * this.ActualWidth;
+        this._rotateTransform.CenterY = this.RotateCenterY * this.ActualHeight;
+        this._scaleTransform.CenterX = this.ScaleCenterX * this.ActualWidth;
+        this._scaleTransform.CenterY = this.ScaleCenterY * this.ActualHeight;
     }
 
     #region X方向への移動用依存関係プロパティ
@@ -34,7 +48,7 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(TranslateX),
             typeof(double),
-            typeof(TransformContentControl),
+            typeof(NormalizedTransformContentControl),
             new PropertyMetadata(default(double), onTranslateXPropertyChanged)
         );
 
@@ -49,8 +63,8 @@ public class TransformContentControl : ContentControl
 
     private static void onTranslateXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._translateTransform.X = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._translateTransform.X = (double)e.NewValue * ntcc.ActualWidth;
     }
     #endregion
 
@@ -62,7 +76,7 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(TranslateY),
             typeof(double),
-            typeof(TransformContentControl),
+            typeof(NormalizedTransformContentControl),
             new PropertyMetadata(default(double), onTranslateYPropertyChanged)
         );
 
@@ -77,8 +91,8 @@ public class TransformContentControl : ContentControl
 
     private static void onTranslateYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._translateTransform.Y = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._translateTransform.Y = (double)e.NewValue * ntcc.ActualHeight;
     }
     #endregion
 
@@ -90,8 +104,8 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateCenterX),
             typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onRotateCenterXPropertyChanged)
+            typeof(NormalizedTransformContentControl),
+            new PropertyMetadata(DEFAULT_CENTER, onRotateCenterXPropertyChanged)
         );
 
     /// <summary>
@@ -105,8 +119,8 @@ public class TransformContentControl : ContentControl
 
     private static void onRotateCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._rotateTransform.CenterX = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._rotateTransform.CenterX = (double)e.NewValue * ntcc.ActualWidth;
     }
     #endregion
 
@@ -118,8 +132,8 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateCenterY),
             typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onRotateCenterYPropertyChanged)
+            typeof(NormalizedTransformContentControl),
+            new PropertyMetadata(DEFAULT_CENTER, onRotateCenterYPropertyChanged)
         );
 
     /// <summary>
@@ -133,8 +147,8 @@ public class TransformContentControl : ContentControl
 
     private static void onRotateCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._rotateTransform.CenterY = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._rotateTransform.CenterY = (double)e.NewValue * ntcc.ActualHeight;
     }
     #endregion
 
@@ -146,7 +160,7 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(RotateAngle),
             typeof(double),
-            typeof(TransformContentControl),
+            typeof(NormalizedTransformContentControl),
             new PropertyMetadata(default(double), onRotateAnglePropertyChanged)
         );
 
@@ -161,8 +175,8 @@ public class TransformContentControl : ContentControl
 
     private static void onRotateAnglePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._rotateTransform.Angle = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._rotateTransform.Angle = (double)e.NewValue * MAX_ANGLE;
     }
     #endregion
 
@@ -174,8 +188,8 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleCenterX),
             typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onScaleCenterXPropertyChanged)
+            typeof(NormalizedTransformContentControl),
+            new PropertyMetadata(DEFAULT_CENTER, onScaleCenterXPropertyChanged)
         );
 
     /// <summary>
@@ -189,8 +203,8 @@ public class TransformContentControl : ContentControl
 
     private static void onScaleCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.CenterX = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._scaleTransform.CenterX = (double)e.NewValue * ntcc.ActualWidth;
     }
     #endregion
 
@@ -202,8 +216,8 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleCenterY),
             typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onScaleCenterYPropertyChanged)
+            typeof(NormalizedTransformContentControl),
+            new PropertyMetadata(DEFAULT_CENTER, onScaleCenterYPropertyChanged)
         );
 
     /// <summary>
@@ -217,8 +231,8 @@ public class TransformContentControl : ContentControl
 
     private static void onScaleCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.CenterY = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._scaleTransform.CenterY = (double)e.NewValue * ntcc.ActualHeight;
     }
     #endregion
 
@@ -230,7 +244,7 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleX),
             typeof(double),
-            typeof(TransformContentControl),
+            typeof(NormalizedTransformContentControl),
             new PropertyMetadata(DEFAULT_SIZE, onScaleXPropertyChanged)
         );
 
@@ -245,8 +259,8 @@ public class TransformContentControl : ContentControl
 
     private static void onScaleXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.ScaleX = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._scaleTransform.ScaleX = (double)e.NewValue;
     }
     #endregion
 
@@ -258,7 +272,7 @@ public class TransformContentControl : ContentControl
         = DependencyProperty.Register(
             nameof(ScaleY),
             typeof(double),
-            typeof(TransformContentControl),
+            typeof(NormalizedTransformContentControl),
             new PropertyMetadata(DEFAULT_SIZE, onScaleYPropertyChanged)
         );
 
@@ -273,8 +287,8 @@ public class TransformContentControl : ContentControl
 
     private static void onScaleYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.ScaleY = (double)e.NewValue;
+        var ntcc = (NormalizedTransformContentControl)d;
+        ntcc._scaleTransform.ScaleY = (double)e.NewValue;
     }
     #endregion
 }

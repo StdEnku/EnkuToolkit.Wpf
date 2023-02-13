@@ -9,17 +9,54 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="Slider">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Maximum" Value="1" />
+                <Setter Property="Minimum" Value="0" />
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <et:TransformContentControl Grid.Row="0" RotateAngle="{Binding ElementName=sl, Path=Value}" RotateCenterY="225" RotateCenterX="400">
-            <Viewbox>
-                <Label Content="Hoge" />
-            </Viewbox>
-        </et:TransformContentControl>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" ClipToBounds="True" Background="Blue">
+            <et:NormalizedTransformContentControl 
+            TranslateX="{Binding ElementName=TranslateX, Path=Value}"
+            TranslateY="{Binding ElementName=TranslateY, Path=Value}"
+            RotateAngle="{Binding ElementName=RotateAngle, Path=Value}"
+            ScaleX="{Binding ElementName=ScaleX, Path=Value}"
+            ScaleY="{Binding ElementName=ScaleY, Path=Value}">
+                <Viewbox>
+                    <Label Content="Hoge" Background="Red" />
+                </Viewbox>
+            </et:NormalizedTransformContentControl>
+        </Grid>
+        
 
-        <Slider Name="sl" Grid.Row="1" Margin="10" Minimum="0" Maximum="360" />
+        <Label Content="TranslateX" Grid.Row="1" Grid.Column="0" />
+        <Slider Name="TranslateX" Grid.Row="1" Grid.Column="1" />
+
+        <Label Content="TranslateY" Grid.Row="2" Grid.Column="0" />
+        <Slider Name="TranslateY" Grid.Row="2" Grid.Column="1" />
+
+        <Label Content="RotateAngle" Grid.Row="3" Grid.Column="0" />
+        <Slider Name="RotateAngle" Grid.Row="3" Grid.Column="1" />
+
+        <Label Content="ScaleX" Grid.Row="4" Grid.Column="0" />
+        <Slider Name="ScaleX" Grid.Row="4" Grid.Column="1" Value="1" />
+
+        <Label Content="ScaleY" Grid.Row="5" Grid.Column="0" />
+        <Slider Name="ScaleY" Grid.Row="5" Grid.Column="1" Value="1" />
     </Grid>
 </Window>
