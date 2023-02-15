@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnkuToolkit.Wpf", "EnkuToolkit.Wpf\EnkuToolkit.Wpf.csproj", "{779BCCBA-36C4-4156-A062-2CFE808C3233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnkuToolkit.Wpf", "EnkuToolkit.Wpf\EnkuToolkit.Wpf.csproj", "{779BCCBA-36C4-4156-A062-2CFE808C3233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnkuToolkit.UiIndependent", "EnkuToolkit.UiIndependent\EnkuToolkit.UiIndependent.csproj", "{B07BCA2A-7937-4692-ADB0-DD618BA4C9EB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnkuToolkit.Wpf.Demo", "EnkuToolkit.Wpf.Demo\EnkuToolkit.Wpf.Demo.csproj", "{3CD4C886-A2FC-4F97-B5DC-1E75293DE3B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnkuToolkit.Wpf.Demo", "EnkuToolkit.Wpf.Demo\EnkuToolkit.Wpf.Demo.csproj", "{3CD4C886-A2FC-4F97-B5DC-1E75293DE3B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{779BCCBA-36C4-4156-A062-2CFE808C3233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779BCCBA-36C4-4156-A062-2CFE808C3233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779BCCBA-36C4-4156-A062-2CFE808C3233}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B07BCA2A-7937-4692-ADB0-DD618BA4C9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B07BCA2A-7937-4692-ADB0-DD618BA4C9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B07BCA2A-7937-4692-ADB0-DD618BA4C9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B07BCA2A-7937-4692-ADB0-DD618BA4C9EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CD4C886-A2FC-4F97-B5DC-1E75293DE3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CD4C886-A2FC-4F97-B5DC-1E75293DE3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD4C886-A2FC-4F97-B5DC-1E75293DE3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU

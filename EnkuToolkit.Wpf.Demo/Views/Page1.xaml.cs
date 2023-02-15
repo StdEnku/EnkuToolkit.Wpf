@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.Wpf.Demo;
+﻿namespace EnkuToolkit.Wpf.Demo.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +13,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EnkuToolkit.Wpf.Controls;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// Page1.xaml の相互作用ロジック
 /// </summary>
-public partial class MainWindow : StateSaveWindow
+public partial class Page1 : Page
 {
-    public MainWindow()
+    public Page1()
     {
         InitializeComponent();
     }
