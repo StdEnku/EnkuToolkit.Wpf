@@ -22,7 +22,6 @@ public partial class Page1ViewModel : ObservableObject
     [RelayCommand]
     private void Clicked()
     {
-        var uri = new Uri("pack://application:,,,/Views/Page2.xaml", UriKind.Absolute);
-        this._navigationService.Navigate(uri);
+        this._navigationService.Navigate("Views/Page2.xaml");
     }
 }

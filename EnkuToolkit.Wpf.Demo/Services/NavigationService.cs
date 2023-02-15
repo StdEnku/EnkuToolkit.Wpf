@@ -14,8 +14,11 @@ public class NavigationService : INavigationService
         }
     }
 
-    public bool Navigate(Uri uri, object? extraData = null)
+    public bool Navigate(string uriStr, object? extraData = null)
     {
+        var baseUri = new Uri("pack://application:,,,/");
+        var uri = new Uri(baseUri, uriStr);
+
         if (extraData is null)
         {
             return this.MainFrame.Navigate(uri);

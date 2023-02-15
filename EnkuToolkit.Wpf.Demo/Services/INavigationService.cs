@@ -4,7 +4,7 @@ using System;
 
 public interface INavigationService
 {
-    bool Navigate(Uri uri, object? extraData = null);
+    bool Navigate(string uriStr, object? extraData = null);
 
     void GoForward();
 
