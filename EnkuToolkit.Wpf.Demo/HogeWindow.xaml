@@ -1,0 +1,22 @@
+﻿<et:CustomTitlebarWindow x:Class="EnkuToolkit.Wpf.Demo.HogeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
+        xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo"
+        mc:Ignorable="d"
+        Title="HogeWindow" Height="450" Width="800"
+        CaptionHeight="{Binding ElementName=sld, Path=Value}">
+
+    <DockPanel LastChildFill="True">
+        <Rectangle Fill="red" DockPanel.Dock="Top" Height="{Binding ElementName=sld, Path=Value}" />
+
+        <Slider Name="sld" Minimum="0" Maximum="100" Margin="10" DockPanel.Dock="Bottom" Value="0" />
+
+        <Viewbox DockPanel.Dock="Top">
+            <Label Content="Hoge" />
+        </Viewbox>
+    </DockPanel>
+    
+</et:CustomTitlebarWindow>

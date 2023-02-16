@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Shell;
 
 /// <summary>
-/// タイトルバーの無いウィンドウ
+/// タイトルバーをカスタマイズ可能なウィンドウ
 /// </summary>
-public class EmptyWindow : Window
+public class CustomTitlebarWindow : Window
 {
     /// <summary>
     /// タイトルバーとして使用する領域の高さを指定するための依存関係プロパティ
@@ -16,7 +16,7 @@ public class EmptyWindow : Window
         = DependencyProperty.Register(
             nameof(CaptionHeight),
             typeof(double),
-            typeof(EmptyWindow),
+            typeof(CustomTitlebarWindow),
             new PropertyMetadata(default(double), onCaptionHeightPropertyChanged)
         );
 
@@ -31,12 +31,9 @@ public class EmptyWindow : Window
 
     private static void onCaptionHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is EmptyWindow emptyWindow)
+        if (d is CustomTitlebarWindow window)
         {
-            var newCaptionHeight = (double)e.NewValue;
-            var oldWindowChrome = WindowChrome.GetWindowChrome(emptyWindow);
-            var newWindowChrome = GetWindowChrom(newCaptionHeight, oldWindowChrome.ResizeBorderThickness);
-            WindowChrome.SetWindowChrome(emptyWindow, newWindowChrome);
+            window._windowChrome.CaptionHeight = (double)e.NewValue;
         }
     }
 
@@ -47,7 +44,7 @@ public class EmptyWindow : Window
         = DependencyProperty.Register(
             nameof(ResizeBorderThickness),
             typeof(Thickness),
-            typeof(EmptyWindow),
+            typeof(CustomTitlebarWindow),
             new PropertyMetadata(new Thickness(10, 0, 10, 10), onResizeBorderThicknessPropertyChanged)
         );
 
@@ -62,15 +59,15 @@ public class EmptyWindow : Window
 
     private static void onResizeBorderThicknessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is EmptyWindow emptyWindow)
+        if (d is CustomTitlebarWindow window)
         {
-            var newResizeBorderThickness = (Thickness)e.NewValue;
-            var oldWindowChrome = WindowChrome.GetWindowChrome(emptyWindow);
-            var newWindowChrome = GetWindowChrom(oldWindowChrome.CaptionHeight, newResizeBorderThickness);
-            WindowChrome.SetWindowChrome(emptyWindow, newWindowChrome);
+            window._windowChrome.ResizeBorderThickness = (Thickness)e.NewValue;
         }
     }
 
+    /// <summary>
+    /// 画面を最大化した時端が埋もれる問題を解決するための処理
+    /// </summary>
     protected override void OnStateChanged(EventArgs e)
     {
         if (this.Content is FrameworkElement content)
@@ -80,23 +77,20 @@ public class EmptyWindow : Window
         }
     }
 
-    private static WindowChrome GetWindowChrom(double captionHeight, Thickness resizeBorderThickness)
-    {
-        return new WindowChrome()
-        {
-            UseAeroCaptionButtons = false,
-            NonClientFrameEdges = NonClientFrameEdges.Bottom,
-            CaptionHeight = captionHeight,
-            ResizeBorderThickness = resizeBorderThickness,
-        };
-    }
-
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public EmptyWindow() : base()
+    public CustomTitlebarWindow() : base()
     {
-        var winowChrome = GetWindowChrom(this.CaptionHeight, this.ResizeBorderThickness);
-        WindowChrome.SetWindowChrome(this, winowChrome);
+        this._windowChrome = new()
+        {
+            UseAeroCaptionButtons = false,
+            NonClientFrameEdges = NonClientFrameEdges.Bottom,
+            CaptionHeight = this.CaptionHeight,
+            ResizeBorderThickness = this.ResizeBorderThickness,
+        };
+        WindowChrome.SetWindowChrome(this, this._windowChrome);
     }
+
+    private WindowChrome _windowChrome;
 }
