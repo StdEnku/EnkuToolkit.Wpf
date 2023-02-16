@@ -18,7 +18,7 @@ using EnkuToolkit.Wpf.Controls;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : StateSaveWindow
+public partial class MainWindow : AnimatedNavigationWindow
 {
     public MainWindow()
     {

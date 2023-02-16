@@ -1,28 +1,43 @@
 ﻿namespace EnkuToolkit.Wpf.Controls;
 
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using System.Windows.Navigation;
-using System.Windows.Media.Animation;
+using System.Windows;
 using System;
+using System.Windows.Navigation;
 using Constants;
+using static Properties.Settings;
 
 /// <summary>
-/// アニメーション付きの画面遷移が行えるFrame
+/// 前回終了時の位置やサイズを記憶する機能を持つ
+/// アニメーション付きの画面遷移が行えるNavigationWindow
 /// </summary>
-public class AnimatedFrame : Frame
+public class AnimatedNavigationWindow : NavigationWindow
 {
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public AnimatedFrame()
+    public AnimatedNavigationWindow()
     {
-        this.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         this.Navigating += this.onNavigating;
         this.LoadCompleted += this.onLoadCompleted;
+
+        if (this.IsStateSave)
+        {
+            this.Height = Default.WindowHeight;
+            this.Width = Default.WindowWidth;
+            this.Left = Default.WindowLeft;
+            this.Top = Default.WindowTop;
+            this.WindowState = Default.IsMaximizeState ? WindowState.Maximized : WindowState.Normal;
+        }
     }
+
+    /// <summary>
+    /// 直近の終了時の位置とサイズとWindowStateを記憶すかどうか指定するためのプロパティ
+    /// </summary>
+    public bool IsStateSave { get; set; } = true;
 
     /// <summary>
     /// テンプレート内のOldImageで使用するX方向のDpiプロパティ
@@ -65,8 +80,9 @@ public class AnimatedFrame : Frame
         this._currentNavigationMode = e.NavigationMode;
 
         var oldImage = this.OldImageFromTemplate;
-        var oldBitmap = new RenderTargetBitmap((int)this.ActualWidth,
-                                               (int)this.ActualHeight,
+        var currentTransform = this.CurrentTransformFromTemplate;
+        var oldBitmap = new RenderTargetBitmap((int)currentTransform.ActualWidth,
+                                               (int)currentTransform.ActualHeight,
                                                this.DpiX, this.DpiY, PixelFormats.Pbgra32);
 
         oldBitmap.Render(this);
@@ -88,14 +104,14 @@ public class AnimatedFrame : Frame
                        this._currentNavigationMode == NavigationMode.New ? this.ForwardAnim :
                        null;
         }
-        else if(this.BuiltinAnimType == BuiltinAnimTypes.Slidein)
+        else if (this.BuiltinAnimType == BuiltinAnimTypes.Slidein)
         {
             nextAnim = this._currentNavigationMode == NavigationMode.Back ? (Storyboard)rootPanel.TryFindResource("SlideinToLeft") :
                        this._currentNavigationMode == NavigationMode.Forward ? (Storyboard)rootPanel.TryFindResource("SlideinToRight") :
                        this._currentNavigationMode == NavigationMode.New ? (Storyboard)rootPanel.TryFindResource("SlideinToRight") :
                        null;
         }
-        else if(this.BuiltinAnimType == BuiltinAnimTypes.ModernSlidein)
+        else if (this.BuiltinAnimType == BuiltinAnimTypes.ModernSlidein)
         {
             nextAnim = this._currentNavigationMode == NavigationMode.Back ? (Storyboard)rootPanel.TryFindResource("ModernSlideinToLeft") :
                        this._currentNavigationMode == NavigationMode.Forward ? (Storyboard)rootPanel.TryFindResource("ModernSlideinToRight") :
@@ -120,13 +136,40 @@ public class AnimatedFrame : Frame
         this._currentNavigationMode = null;
     }
 
+    /// <summary>
+    /// Closedイベント発生時の処理
+    /// </summary>
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+
+        if (this.IsStateSave)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                Default.WindowHeight = this.Height;
+                Default.WindowWidth = this.Width;
+                Default.WindowLeft = this.Left;
+                Default.WindowTop = this.Top;
+                Default.IsMaximizeState = false;
+            }
+            else
+            {
+                Default.IsMaximizeState = true;
+            }
+
+            Default.Save();
+        }  
+    }
+
     private Image OldImageFromTemplate => (Image)this.Template.FindName("OldImage", this);
     private Grid RootPanelFromTemplate => (Grid)this.Template.FindName("RootPanel", this);
+    private NormalizedTransformContentControl CurrentTransformFromTemplate => (NormalizedTransformContentControl)this.Template.FindName("CurrentTransform", this);
 
     private NavigationMode? _currentNavigationMode;
 
-    static AnimatedFrame()
+    static AnimatedNavigationWindow()
     {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(AnimatedFrame), new FrameworkPropertyMetadata(typeof(AnimatedFrame)));
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(AnimatedNavigationWindow), new FrameworkPropertyMetadata(typeof(AnimatedNavigationWindow)));
     }
 }

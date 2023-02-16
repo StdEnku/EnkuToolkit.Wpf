@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="controls:AnimatedNavigationWindow">
+        <Setter Property="Background" Value="White" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:AnimatedNavigationWindow">
+                    <Grid Name="RootPanel" ClipToBounds="True" Background="{TemplateBinding Background}">
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Animations/Slidein.xaml" />
+                                    <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Animations/ModernSlidein.xaml" />
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <controls:NormalizedTransformContentControl x:Name="CurrentTransform" Panel.ZIndex="1">
+                            <ContentPresenter />
+                        </controls:NormalizedTransformContentControl>
+
+                        <controls:NormalizedTransformContentControl x:Name="OldTransform" Panel.ZIndex="0">
+                            <Image x:Name="OldImage" Visibility="Hidden" />
+                        </controls:NormalizedTransformContentControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

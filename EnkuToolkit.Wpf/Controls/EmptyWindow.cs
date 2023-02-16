@@ -7,7 +7,7 @@ using System.Windows.Shell;
 /// <summary>
 /// タイトルバーの無いウィンドウ
 /// </summary>
-public class EmptyWindow : StateSaveWindow
+public class EmptyWindow : Window
 {
     /// <summary>
     /// タイトルバーとして使用する領域の高さを指定するための依存関係プロパティ

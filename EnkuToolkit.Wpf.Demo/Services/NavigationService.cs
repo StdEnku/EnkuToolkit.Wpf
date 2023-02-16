@@ -1,18 +1,11 @@
 ﻿namespace EnkuToolkit.Wpf.Demo.Services;
 
-using System.Windows.Controls;
 using System;
+using System.Windows.Navigation;
 
 public class NavigationService : INavigationService
 {
-    private Frame MainFrame
-    {
-        get
-        {
-            var window = (MainWindow)App.Current.MainWindow;
-            return window.MainFrmae;
-        }
-    }
+    private NavigationWindow MainNavigationWindow => (NavigationWindow)App.Current.MainWindow;
 
     public bool Navigate(string uriStr, object? extraData = null)
     {
@@ -21,21 +14,21 @@ public class NavigationService : INavigationService
 
         if (extraData is null)
         {
-            return this.MainFrame.Navigate(uri);
+            return this.MainNavigationWindow.Navigate(uri);
         }
         else
         {
-            return this.MainFrame.Navigate(uri, extraData);
+            return this.MainNavigationWindow.Navigate(uri, extraData);
         }
     }
 
     public void GoForward()
     {
-        this.MainFrame.GoForward();
+        this.MainNavigationWindow.GoForward();
     }
 
     public void GoBack()
     {
-        this.MainFrame.GoBack();
+        this.MainNavigationWindow.GoBack();
     }
 }
