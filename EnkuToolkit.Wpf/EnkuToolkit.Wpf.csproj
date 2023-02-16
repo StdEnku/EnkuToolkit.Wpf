@@ -21,4 +21,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EnkuToolkit.UiIndependent\EnkuToolkit.UiIndependent.csproj" />
+  </ItemGroup>
+
 </Project>
