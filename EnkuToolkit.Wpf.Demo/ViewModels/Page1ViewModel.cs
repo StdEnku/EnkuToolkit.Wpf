@@ -2,7 +2,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EnkuToolkit.Wpf.Demo.Services;
+using EnkuToolkit.UiIndependent.Services;
 using EnkuViewModelLocator.Wpf;
 using System;
 

@@ -1,6 +1,5 @@
 ﻿namespace EnkuToolkit.Wpf.Demo;
 
-using EnkuToolkit.Wpf.Demo.Services;
 using EnkuViewModelLocator.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,6 +10,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using EnkuToolkit.Wpf.Services;
+using EnkuToolkit.UiIndependent.Services;
 
 /// <summary>
 /// Interaction logic for App.xaml
