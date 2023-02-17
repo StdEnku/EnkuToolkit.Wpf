@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--
+        アニメーションを追加したらすべてここでマージしておいてください。
+    -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Animations/Slidein.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Animations/ModernSlidein.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
