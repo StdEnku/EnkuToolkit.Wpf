@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows;
+using System.Diagnostics;
 using static Properties.Settings;
 
 /// <summary>
@@ -45,45 +46,45 @@ public class WindowStateSaveBehavior
 
     private static void onTargetInitialized(object? sender, EventArgs e)
     {
-        if (sender is Window window)
+        var window = sender as Window;
+        if (window is null) throw new InvalidOperationException("The only type to which WindowStateSaveBehavior can be applied is Window.");
+
+        var isStateSave = GetIsStateSave(window);
+        if (isStateSave)
         {
-            var isStateSave = GetIsStateSave(window);
-            if (isStateSave)
-            {
-                window.Height = Default.WindowHeight;
-                window.Width = Default.WindowWidth;
-                window.Left = Default.WindowLeft;
-                window.Top = Default.WindowTop;
-                window.WindowState = Default.IsMaximizeState ? WindowState.Maximized : WindowState.Normal;
-            }
+            window.Height = Default.WindowHeight;
+            window.Width = Default.WindowWidth;
+            window.Left = Default.WindowLeft;
+            window.Top = Default.WindowTop;
+            window.WindowState = Default.IsMaximizeState ? WindowState.Maximized : WindowState.Normal;
         }
     }
 
     private static void onTargetClosed(object? sender, EventArgs e)
     {
-        if (sender is Window window)
-        {
-            var isStateSave = GetIsStateSave(window);
-            if (isStateSave)
-            {
-                if (window.WindowState == WindowState.Normal)
-                {
-                    Default.WindowHeight = window.Height;
-                    Default.WindowWidth = window.Width;
-                    Default.WindowLeft = window.Left;
-                    Default.WindowTop = window.Top;
-                    Default.IsMaximizeState = false;
-                }
-                else
-                {
-                    Default.IsMaximizeState = true;
-                }
+        var window = sender as Window;
+        Debug.Assert(window is not null);
 
-                Default.Save();
+        var isStateSave = GetIsStateSave(window);
+        if (isStateSave)
+        {
+            if (window.WindowState == WindowState.Normal)
+            {
+                Default.WindowHeight = window.Height;
+                Default.WindowWidth = window.Width;
+                Default.WindowLeft = window.Left;
+                Default.WindowTop = window.Top;
+                Default.IsMaximizeState = false;
+            }
+            else
+            {
+                Default.IsMaximizeState = true;
             }
 
-            window.Initialized -= onTargetInitialized;
-            window.Closed -= onTargetClosed;
+            Default.Save();
         }
+
+        window.Initialized -= onTargetInitialized;
+        window.Closed -= onTargetClosed;
     }
 }
