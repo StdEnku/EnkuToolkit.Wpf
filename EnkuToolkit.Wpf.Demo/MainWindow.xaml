@@ -5,23 +5,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
-    xmlns:etb="https://github.com/StdEnku/EnkuToolkit/Wpf/Behaviors"
     xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo"
     Source="Views/Page1.xaml"
     BuiltinAnimType="ModernSlidein"
     mc:Ignorable="d"
-    etb:WindowStateSaveBehavior.IsStateSave="True"
-    Title="MainWindow">
+    et:WindowStateSaveBehavior.IsStateSave="True"
+    Title="DemoApp">
 
     <et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
-        <Border Background="Red" Height="50">
+        <Border Background="Indigo" Height="50">
             <UniformGrid Columns="2">
+                <UniformGrid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="30" />
+                    </Style>
+
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Indigo" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="30" />
+                        <Setter Property="Width" Value="50" />
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                    </Style>
+                </UniformGrid.Resources>
+                
                 <Label Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Title}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="_" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
-                    <Button Content="□" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
-                    <Button Content="×" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" Click="ShutdownButtonClicked" />
+                    <Button Content="_" Click="MinimizeButtonClicked" />
+                    <Button Content="□" Click="MaximizeButtonClicked" />
+                    <Button Content="×" Click="ShutdownButtonClicked" />
                 </StackPanel>
             </UniformGrid>
         </Border>

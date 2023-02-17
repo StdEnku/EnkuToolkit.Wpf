@@ -11,4 +11,4 @@ using System.Windows.Markup;
 )]
 
 [assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit/Wpf/Controls", "EnkuToolkit.Wpf.Controls")]
-[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit/Wpf/Behaviors", "EnkuToolkit.Wpf.Behaviors")]
+[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit/Wpf/Controls", "EnkuToolkit.Wpf.Behaviors")]
