@@ -1,4 +1,4 @@
-﻿<et:AnimatedNavigationWindow 
+﻿<et:CustomTitlebarAnimatedNavigationWindow
     x:Class="EnkuToolkit.Wpf.Demo.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,4 +13,18 @@
     etb:WindowStateSaveBehavior.IsStateSave="True"
     Title="MainWindow">
 
-</et:AnimatedNavigationWindow>
+    <et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
+        <Border Background="Red" Height="50">
+            <UniformGrid Columns="2">
+                <Label Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Title}" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="_" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="□" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="×" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" Click="ShutdownButtonClicked" />
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+    </et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
+
+</et:CustomTitlebarAnimatedNavigationWindow>

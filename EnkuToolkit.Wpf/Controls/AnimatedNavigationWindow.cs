@@ -69,7 +69,7 @@ public class AnimatedNavigationWindow : NavigationWindow
                                                (int)currentTransform.ActualHeight,
                                                this.DpiX, this.DpiY, PixelFormats.Pbgra32);
 
-        oldBitmap.Render(this);
+        oldBitmap.Render(currentTransform);
         oldImage.Source = oldBitmap;
     }
 

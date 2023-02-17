@@ -18,10 +18,15 @@ using EnkuToolkit.Wpf.Controls;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : AnimatedNavigationWindow
+public partial class MainWindow : CustomTitlebarAnimatedNavigationWindow
 {
     public MainWindow()
     {
         InitializeComponent();
+    }
+
+    private void ShutdownButtonClicked(object sender, RoutedEventArgs e)
+    {
+        App.Current.Shutdown();
     }
 }
