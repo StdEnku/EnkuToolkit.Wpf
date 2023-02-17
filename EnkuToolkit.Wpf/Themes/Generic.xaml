@@ -6,5 +6,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedFrame.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedNavigationWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomTitlebarWindow.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

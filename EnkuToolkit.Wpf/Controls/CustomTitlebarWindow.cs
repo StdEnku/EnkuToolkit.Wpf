@@ -1,6 +1,7 @@
 ﻿namespace EnkuToolkit.Wpf.Controls;
 
 using System;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Shell;
 
@@ -10,31 +11,31 @@ using System.Windows.Shell;
 public class CustomTitlebarWindow : Window
 {
     /// <summary>
-    /// タイトルバーとして使用する領域の高さを指定するための依存関係プロパティ
+    /// タイトルバーを指定するための依存関係プロパティ
     /// </summary>
-    public static readonly DependencyProperty CaptionHeightProperty
+    public static readonly DependencyProperty TitlebarProperty
         = DependencyProperty.Register(
-            nameof(CaptionHeight),
-            typeof(double),
+            nameof(Titlebar),
+            typeof(FrameworkElement),
             typeof(CustomTitlebarWindow),
-            new PropertyMetadata(default(double), onCaptionHeightPropertyChanged)
+            new PropertyMetadata(null, onTitlebarPropertyChanged)
         );
 
     /// <summary>
-    /// CaptionHeightProperty依存関係プロパティ用のCLRプロパティ
+    /// TitlebarPropertyに対応するCLRプロパティ
     /// </summary>
-    public double CaptionHeight
+    public FrameworkElement Titlebar
     {
-        get => (double)this.GetValue(CaptionHeightProperty);
-        set => this.SetValue(CaptionHeightProperty, value);
+        get => (FrameworkElement)this.GetValue(TitlebarProperty);
+        set => this.SetValue(TitlebarProperty, value);
     }
 
-    private static void onCaptionHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void onTitlebarPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is CustomTitlebarWindow window)
-        {
-            window._windowChrome.CaptionHeight = (double)e.NewValue;
-        }
+        var window = (CustomTitlebarWindow)d;
+        if (!window.IsInitialized) return;
+        var titlebar = (FrameworkElement)e.NewValue;
+        window._windowChrome.CaptionHeight = titlebar.Height;
     }
 
     /// <summary>
@@ -70,11 +71,18 @@ public class CustomTitlebarWindow : Window
     /// </summary>
     protected override void OnStateChanged(EventArgs e)
     {
-        if (this.Content is FrameworkElement content)
-        {
-            var nextMargin = this.WindowState == WindowState.Maximized ? new Thickness(8) : new Thickness(0);
-            content.Margin = nextMargin;
-        }
+        var nextMargin = this.WindowState == WindowState.Maximized ? 
+                         new Thickness(8) : 
+                         new Thickness(0);
+
+        this.Titlebar.Margin = nextMargin;
+    }
+
+    protected override void OnInitialized(EventArgs e)
+    {
+        base.OnInitialized(e);
+        this._windowChrome.CaptionHeight = this.Titlebar?.Height ?? default(double);
+        this.ResizeBorderThickness = this.ResizeBorderThickness;
     }
 
     /// <summary>
@@ -86,10 +94,13 @@ public class CustomTitlebarWindow : Window
         {
             UseAeroCaptionButtons = false,
             NonClientFrameEdges = NonClientFrameEdges.Bottom,
-            CaptionHeight = this.CaptionHeight,
-            ResizeBorderThickness = this.ResizeBorderThickness,
         };
         WindowChrome.SetWindowChrome(this, this._windowChrome);
+    }
+
+    static CustomTitlebarWindow()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomTitlebarWindow), new FrameworkPropertyMetadata(typeof(CustomTitlebarWindow)));
     }
 
     private WindowChrome _windowChrome;

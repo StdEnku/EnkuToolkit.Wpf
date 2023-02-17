@@ -6,17 +6,23 @@
         xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
         xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo"
         mc:Ignorable="d"
-        Title="HogeWindow" Height="450" Width="800"
-        CaptionHeight="{Binding ElementName=sld, Path=Value}">
+        Title="HogeWindow" Height="450" Width="800">
 
-    <DockPanel LastChildFill="True">
-        <Rectangle Fill="red" DockPanel.Dock="Top" Height="{Binding ElementName=sld, Path=Value}" />
+    <et:CustomTitlebarWindow.Titlebar>
+        <Border Background="Red" Height="50">
+            <UniformGrid Columns="2">
+                <Label Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Title}" />
 
-        <Slider Name="sld" Minimum="0" Maximum="100" Margin="10" DockPanel.Dock="Bottom" Value="0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="_" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="□" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="×" Width="50" WindowChrome.IsHitTestVisibleInChrome="True" Click="Button_Click" />
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+    </et:CustomTitlebarWindow.Titlebar>
 
-        <Viewbox DockPanel.Dock="Top">
-            <Label Content="Hoge" />
-        </Viewbox>
-    </DockPanel>
-    
+    <Viewbox>
+        <Label Content="Hoge" />
+    </Viewbox>
 </et:CustomTitlebarWindow>

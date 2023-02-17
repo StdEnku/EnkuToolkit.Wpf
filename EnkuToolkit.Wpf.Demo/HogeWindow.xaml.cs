@@ -25,5 +25,10 @@ namespace EnkuToolkit.Wpf.Demo
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
     }
 }
