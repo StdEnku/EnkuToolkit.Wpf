@@ -8,10 +8,8 @@ using System.Windows;
 using System;
 using System.Windows.Navigation;
 using Constants;
-using static Properties.Settings;
 
 /// <summary>
-/// 前回終了時の位置やサイズを記憶する機能を持つ
 /// アニメーション付きの画面遷移が行えるNavigationWindow
 /// </summary>
 public class AnimatedNavigationWindow : NavigationWindow
@@ -23,21 +21,7 @@ public class AnimatedNavigationWindow : NavigationWindow
     {
         this.Navigating += this.onNavigating;
         this.LoadCompleted += this.onLoadCompleted;
-
-        if (this.IsStateSave)
-        {
-            this.Height = Default.WindowHeight;
-            this.Width = Default.WindowWidth;
-            this.Left = Default.WindowLeft;
-            this.Top = Default.WindowTop;
-            this.WindowState = Default.IsMaximizeState ? WindowState.Maximized : WindowState.Normal;
-        }
     }
-
-    /// <summary>
-    /// 直近の終了時の位置とサイズとWindowStateを記憶すかどうか指定するためのプロパティ
-    /// </summary>
-    public bool IsStateSave { get; set; } = true;
 
     /// <summary>
     /// テンプレート内のOldImageで使用するX方向のDpiプロパティ
@@ -134,32 +118,6 @@ public class AnimatedNavigationWindow : NavigationWindow
         nextAnim.Begin(rootPanel);
 
         this._currentNavigationMode = null;
-    }
-
-    /// <summary>
-    /// Closedイベント発生時の処理
-    /// </summary>
-    protected override void OnClosed(EventArgs e)
-    {
-        base.OnClosed(e);
-
-        if (this.IsStateSave)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                Default.WindowHeight = this.Height;
-                Default.WindowWidth = this.Width;
-                Default.WindowLeft = this.Left;
-                Default.WindowTop = this.Top;
-                Default.IsMaximizeState = false;
-            }
-            else
-            {
-                Default.IsMaximizeState = true;
-            }
-
-            Default.Save();
-        }  
     }
 
     private Image OldImageFromTemplate => (Image)this.Template.FindName("OldImage", this);
