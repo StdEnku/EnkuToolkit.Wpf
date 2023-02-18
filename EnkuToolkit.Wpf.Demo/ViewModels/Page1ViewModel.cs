@@ -22,6 +22,6 @@ public partial class Page1ViewModel : ObservableObject
     [RelayCommand]
     private void Clicked()
     {
-        this._navigationService.Navigate("Views/Page2.xaml");
+        this._navigationService.NavigateRootBase("Views/Page2.xaml");
     }
 }

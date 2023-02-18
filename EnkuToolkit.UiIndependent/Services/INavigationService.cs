@@ -7,12 +7,20 @@
 public interface INavigationService
 {
     /// <summary>
-    /// 画面遷移用メソッド
+    /// プロジェクトのルートをベースとした相対URIで遷移先を指定可能な画面遷移用メソッド
     /// </summary>
-    /// <param name="uriStr">uri</param>
+    /// <param name="uriStr">プロジェクトのルートをベースとした場合の遷移先の相対uri</param>
     /// <param name="extraData">遷移先のページへ渡したいデータ</param>
     /// <returns>ナビゲーションがキャンセルされない場合はtrueそれ以外の場合はfalse</returns>
-    bool Navigate(string uriStr, object? extraData = null);
+    bool NavigateRootBase(string uriStr, object? extraData = null);
+
+    /// <summary>
+    /// URIで遷移先を指定可能な画面遷移用メソッド
+    /// </summary>
+    /// <param name="uriStr">遷移先のuri</param>
+    /// <param name="extraData">遷移先のページへ渡したいデータ</param>
+    /// <returns>ナビゲーションがキャンセルされない場合はtrueそれ以外の場合はfalse</returns>
+    bool Navigate(Uri uri, object? extraData = null);
 
     /// <summary>
     /// ページを進めるためのメソッド
@@ -23,4 +31,19 @@ public interface INavigationService
     /// ページを戻すためのメソッド
     /// </summary>
     void GoBack();
+
+    /// <summary>
+    /// ページの再読み込みを行うためのメソッド
+    /// </summary>
+    void Refresh();
+
+    /// <summary>
+    /// "戻る" 履歴から最新の履歴項目を削除するためのメソッド
+    /// </summary>
+    void RemoveBackEntry();
+
+    /// <summary>
+    /// 現在のナビゲーション要求に対応するコンテンツのダウンロードを中止するためのメソッド
+    /// </summary>
+    void StopLoading();
 }

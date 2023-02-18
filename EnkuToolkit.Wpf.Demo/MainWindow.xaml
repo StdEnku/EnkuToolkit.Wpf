@@ -15,24 +15,19 @@
     <et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
         <Border Background="Indigo" Height="50">
             <UniformGrid Columns="2">
-                <UniformGrid.Resources>
-                    <Style TargetType="Label">
-                        <Setter Property="Foreground" Value="White" />
-                        <Setter Property="FontSize" Value="30" />
-                    </Style>
-
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="Indigo" />
-                        <Setter Property="Foreground" Value="White" />
-                        <Setter Property="FontSize" Value="30" />
-                        <Setter Property="Width" Value="50" />
-                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-                    </Style>
-                </UniformGrid.Resources>
-                
-                <Label Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Title}" />
+                <Label Foreground="White" FontSize="30" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Title}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="30" />
+                            <Setter Property="Width" Value="50" />
+                            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                        </Style>
+                    </StackPanel.Resources>
+                    
                     <Button Content="_" Click="MinimizeButtonClicked" />
                     <Button Content="□" Click="MaximizeButtonClicked" />
                     <Button Content="×" Click="ShutdownButtonClicked" />
