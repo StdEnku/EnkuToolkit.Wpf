@@ -9,10 +9,12 @@ using EnkuViewModelLocator.Wpf;
 public partial class Page2ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
+    private readonly IMessageBoxService _messageBoxService;
 
-    public Page2ViewModel(INavigationService navigationService)
+    public Page2ViewModel(INavigationService navigationService, IMessageBoxService messageBoxService)
     {
         this._navigationService = navigationService;
+        this._messageBoxService = messageBoxService;
     }
 
     [ObservableProperty]
@@ -22,5 +24,11 @@ public partial class Page2ViewModel : ObservableObject
     private void Clicked()
     {
         this._navigationService.GoBack();
+    }
+
+    [RelayCommand]
+    private void ShowMessageBox()
+    {
+        this._messageBoxService.ShowOk("hello message box", "title");
     }
 }

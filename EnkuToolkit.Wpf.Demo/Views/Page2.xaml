@@ -14,12 +14,14 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Viewbox Grid.Row="0">
             <Label Content="{Binding TitleText}" />
         </Viewbox>
 
-        <Button Content="go back" Command="{Binding ClickedCommand}" Margin="10" Grid.Row="1" />
+        <Button Content="Show Msg Box" Command="{Binding ShowMessageBoxCommand}" Margin="10" Grid.Row="1" />
+        <Button Content="go back" Command="{Binding ClickedCommand}" Margin="10" Grid.Row="2" />
     </Grid>
 </Page>

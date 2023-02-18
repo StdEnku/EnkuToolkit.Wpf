@@ -43,6 +43,7 @@ public partial class App : Application, IDiApplication
         }
 
         services.AddTransient<INavigationService, NavigationService>();
+        services.AddTransient<IMessageBoxService, MessageBoxService>();
 
         return services.BuildServiceProvider();
     }
