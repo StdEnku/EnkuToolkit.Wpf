@@ -24,18 +24,22 @@ public class WindowStateSaveBehavior
     /// <summary>
     /// IsStateSaveProperty添付プロパティのセッター
     /// </summary>
-    /// <param name="obj">対象のDependencyObject</param>
+    /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
     /// <param name="value">セットしたい値</param>
-    public static void SetIsStateSave(DependencyObject obj, bool value)
-            => obj.SetValue(IsStateSaveProperty, value);
+    public static void SetIsStateSave(Window targetWindow, bool value)
+    {
+        targetWindow.SetValue(IsStateSaveProperty, value);
+    }
 
     /// <summary>
     /// IsStateSaveProperty添付プロパティのゲッター
     /// </summary>
-    /// <param name="obj">対象のDependencyObject</param>
+    /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
     /// <returns>IsStateSaveProperty添付プロパティの値</returns>
-    public static bool GetIsStateSave(DependencyObject obj)
-        => (bool)obj.GetValue(IsStateSaveProperty);
+    public static bool GetIsStateSave(Window targetWindow)
+    {
+        return (bool)targetWindow.GetValue(IsStateSaveProperty);
+    }
 
     private static void onIsStateSaveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -47,7 +51,7 @@ public class WindowStateSaveBehavior
     private static void onTargetInitialized(object? sender, EventArgs e)
     {
         var window = sender as Window;
-        if (window is null) throw new InvalidOperationException("The only type to which WindowStateSaveBehavior can be applied is Window.");
+        Debug.Assert(window is not null);
 
         var isStateSave = GetIsStateSave(window);
         if (isStateSave)
