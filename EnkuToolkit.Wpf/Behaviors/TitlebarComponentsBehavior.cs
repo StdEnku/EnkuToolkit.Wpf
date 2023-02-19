@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Shell;
 
 /// <summary>
-/// CustomTitlebarWindowまたはCustomTitlebarAnimatedNavigationWindowの
-/// タイトルバー内で使用するボタン等のIInputElementを実装したオブジェクトが
+/// CustomTitlebarWindowやCustomTitlebarAnimatedNavigationWindowなどの
+/// カスタムタイトルバー内で使用するボタン等のIInputElementを実装したオブジェクトが
 /// クリック可能か指定するためのビヘイビア
 /// </summary>
 /// <remarks>
