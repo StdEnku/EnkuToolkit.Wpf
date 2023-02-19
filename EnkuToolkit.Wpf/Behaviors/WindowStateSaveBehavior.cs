@@ -27,9 +27,7 @@ public class WindowStateSaveBehavior
     /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
     /// <param name="value">セットしたい値</param>
     public static void SetIsStateSave(Window targetWindow, bool value)
-    {
-        targetWindow.SetValue(IsStateSaveProperty, value);
-    }
+        => targetWindow.SetValue(IsStateSaveProperty, value);
 
     /// <summary>
     /// IsStateSaveProperty添付プロパティのゲッター
@@ -37,13 +35,12 @@ public class WindowStateSaveBehavior
     /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
     /// <returns>IsStateSaveProperty添付プロパティの値</returns>
     public static bool GetIsStateSave(Window targetWindow)
-    {
-        return (bool)targetWindow.GetValue(IsStateSaveProperty);
-    }
+        => (bool)targetWindow.GetValue(IsStateSaveProperty);
 
     private static void onIsStateSaveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var window = (Window)d;
+        var window = d as Window;
+        Debug.Assert(window is not null);
         window.Initialized += onTargetInitialized;
         window.Closed += onTargetClosed;
     }
