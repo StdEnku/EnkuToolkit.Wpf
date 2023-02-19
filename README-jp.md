@@ -35,7 +35,7 @@ ViewModel側のプロジェクトにEnkuToolkit.UiIndependentをインストー�
 
 # 機能一覧
 
-xaml上で下記に示すすべてのクラスにアクセスするには下記のxml名前空間からアクセスしてください。
+xaml上から本ライブラリのすべてのクラスにアクセスするには下記のxml名前空間からアクセスしてください。
 
 ```xaml
 xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
@@ -43,32 +43,10 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 
 
 
-## カスタムコントロール
-
-| 名前                                                         | 対応バージョン | 備考                                                         |
-| ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
-| [AnimatedFrame](./docs/AnimatedFrame-jp.md)                  | 1.0.0以降      | 画面遷移時にアニメーションを実行可能なFrame。                |
-| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-jp.md) | 1.0.0以降      | 画面遷移時にアニメーションを実行可能なNavigationWindow。     |
-| [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNaviagtionWindow-jp.md) | 1.0.0以降      | タイトルバーをカスタマイズ可能なAnimatedNavigationWindow。   |
-| [CustomTitlebarWindow](./docs/CustomTitlebarWindow-jp.md)    | 1.0.0以降      | タイトルバーをカスタマイズ可能なAnimatedNavigationWindow。   |
-| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-jp.md) | 1.0.0以降      | すべての変形用依存関係プロパティを0~1の間で指定可能なTransformContentControl。 |
-| [TransformContentControl.cs](./docs/TransformContentControl-jp.md) | 1.0.0以降      | 移動、回転、拡大を依存関係プロパティで指定可能なContentControl。 |
-
-
-
-## 添付ビヘイビア
-
-| 名前                                                         | 対応バージョン | 備考                                                         |
-| ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
-| [TitlebarComponentsBehavior](./docs/TitlebarComponentsBehivior-jp.md) | 1.0.0以降      | CustomTitlebarWindowやCustomTitlebarAnimatedNavigationWindowのタイトルバー内のボタンなどに添付してクリック可能にするか指定するためのプロパティを持つ添付ビヘイビア。 |
-| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior-jp.md) | 1.0.0以降      | Windowに添付して終了時に位置、大きさ、WindowStateプロパティを保存して次回起動時に読み込めるようにするか指定するためのプロパティを持つ添付ビヘイビア |
-
-
-
-## ViewServices
-
-| 名前                                                | 対応バージョン | 備考                                                         |
-| --------------------------------------------------- | -------------- | ------------------------------------------------------------ |
-| [MessageBoxService](./docs/MessageBoxService-jp.md) | 1.0.0以降      | MessageBoxをWPFのアセンブリに依存しないViewModelから操作するためのViewService。 |
-| [NavigationService](./docs/NavigationService-jp.md) | 1.0.0以降      | System.Windows.Application.Current.MainWindowプロパティがNavigationWindowの場合使用できる画面遷移用のViewService。 |
+- [アニメーション付きの画面遷移を行う。](./docs/アニメーション付きの画面遷移を行う.md)
+- [Windowのタイトルバーをカスタマイズする。](./docs/Windowのタイトルバーをカスタマイズする.md)
+- [Window起動時に以前の位置、サイズ、WindowStateを読み込む。](./docs/Window起動時に以前の位置、サイズ、WindowStateを読み込む.md)
+- [バインディングで変形操作可能なコントロールを使う。](./docs/バインディングで変形操作可能なコントロールを使う.md)
+- [ViewModelからMessageBoxの操作を行う。](./docs/ViewModelからMessageBoxの操作を行う.md)
+- [ViewModelからNavigationWindowを操作する。](./docs/ViewModelからNavigationWindowを操作する.md)
 

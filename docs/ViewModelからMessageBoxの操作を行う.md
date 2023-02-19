@@ -1,0 +1,1 @@
+# ViewModelからMessageBoxの操作を行う。

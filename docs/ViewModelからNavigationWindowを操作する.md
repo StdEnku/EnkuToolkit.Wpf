@@ -1,0 +1,2 @@
+# ViewModelからNavigationWindowを操作する。
+
