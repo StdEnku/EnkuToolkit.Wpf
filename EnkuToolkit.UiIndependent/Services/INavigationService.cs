@@ -17,7 +17,7 @@ public interface INavigationService
     /// <summary>
     /// URIで遷移先を指定可能な画面遷移用メソッド
     /// </summary>
-    /// <param name="uriStr">遷移先のuri</param>
+    /// <param name="uri">遷移先のuri</param>
     /// <param name="extraData">遷移先のページへ渡したいデータ</param>
     /// <returns>ナビゲーションがキャンセルされない場合はtrueそれ以外の場合はfalse</returns>
     bool Navigate(Uri uri, object? extraData = null);
