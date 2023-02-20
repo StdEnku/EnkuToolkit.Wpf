@@ -180,7 +180,7 @@ MainWindow.xaml
 
 
 
-![result](C:\Users\Syple\Desktop\EnkuToolkit\docs\imgs\AnimatedNavigationWindow1.gif)
+![result1](C:\Users\Syple\Desktop\EnkuToolkit\docs\imgs\AnimatedNavigationWindow1.gif)
 
 
 
@@ -265,4 +265,4 @@ MainWindow.xaml
 
 ```
 
-![result](./imgs/AnimatedNavigationWindow2.gif)
+![result2](./imgs/AnimatedNavigationWindow2.gif)
