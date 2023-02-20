@@ -21,9 +21,10 @@ public class TransformContentControl : ContentControl
     {
         var transformGroup = new TransformGroup();
         transformGroup.Children.Add(this._scaleTransform);
-        transformGroup.Children.Add(this._translateTransform);
         transformGroup.Children.Add(this._rotateTransform);
+        transformGroup.Children.Add(this._translateTransform);
         this.RenderTransform = transformGroup;
+        this.RenderTransformOrigin = new Point(0.5, 0.5);
     }
 
     #region X方向への移動用依存関係プロパティ
@@ -82,62 +83,6 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region 回転の中心点とするx座標を指定するための依存関係プロパティ
-    /// <summary>
-    /// 回転の中心点とするx座標を指定するための依存関係プロパティ
-    /// </summary>
-    public static readonly DependencyProperty RotateCenterXProperty
-        = DependencyProperty.Register(
-            nameof(RotateCenterX),
-            typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onRotateCenterXPropertyChanged)
-        );
-
-    /// <summary>
-    /// RotateCenterXProperty依存関係プロパティに対応するCLRプロパティ
-    /// </summary>
-    public double RotateCenterX
-    {
-        get => (double)this.GetValue(RotateCenterXProperty);
-        set => this.SetValue(RotateCenterXProperty, value);
-    }
-
-    private static void onRotateCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._rotateTransform.CenterX = (double)e.NewValue;
-    }
-    #endregion
-
-    #region 回転の中心点とするY座標を指定するための依存関係プロパティ
-    /// <summary>
-    /// 回転の中心点とするY座標を指定するための依存関係プロパティ
-    /// </summary>
-    public static readonly DependencyProperty RotateCenterYProperty
-        = DependencyProperty.Register(
-            nameof(RotateCenterY),
-            typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onRotateCenterYPropertyChanged)
-        );
-
-    /// <summary>
-    /// RotateCenterYProperty依存関係プロパティに対応するCLRプロパティ
-    /// </summary>
-    public double RotateCenterY
-    {
-        get => (double)this.GetValue(RotateCenterYProperty);
-        set => this.SetValue(RotateCenterYProperty, value);
-    }
-
-    private static void onRotateCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._rotateTransform.CenterY = (double)e.NewValue;
-    }
-    #endregion
-
     #region 回転の角度を指定するための依存関係プロパティ
     /// <summary>
     /// 回転の角度を指定するための依存関係プロパティ
@@ -163,62 +108,6 @@ public class TransformContentControl : ContentControl
     {
         var movableContentControl = (TransformContentControl)d;
         movableContentControl._rotateTransform.Angle = (double)e.NewValue;
-    }
-    #endregion
-
-    #region X方向への拡大での中心点定用依存関係プロパティ
-    /// <summary>
-    /// X方向への拡大での中心点定用依存関係プロパティ
-    /// </summary>
-    public static readonly DependencyProperty ScaleCenterXProperty
-        = DependencyProperty.Register(
-            nameof(ScaleCenterX),
-            typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onScaleCenterXPropertyChanged)
-        );
-
-    /// <summary>
-    /// ScaleCenterXProperty用依存関係プロパティ
-    /// </summary>
-    public double ScaleCenterX
-    {
-        get => (double)this.GetValue(ScaleCenterXProperty);
-        set => this.SetValue(ScaleCenterXProperty, value);
-    }
-
-    private static void onScaleCenterXPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.CenterX = (double)e.NewValue;
-    }
-    #endregion
-
-    #region Y方向への拡大での中心点定用依存関係プロパティ
-    /// <summary>
-    /// Y方向への拡大での中心点定用依存関係プロパティ
-    /// </summary>
-    public static readonly DependencyProperty ScaleCenterYProperty
-        = DependencyProperty.Register(
-            nameof(ScaleCenterY),
-            typeof(double),
-            typeof(TransformContentControl),
-            new PropertyMetadata(default(double), onScaleCenterYPropertyChanged)
-        );
-
-    /// <summary>
-    /// ScaleCenterYProperty用依存関係プロパティ
-    /// </summary>
-    public double ScaleCenterY
-    {
-        get => (double)this.GetValue(ScaleCenterYProperty);
-        set => this.SetValue(ScaleCenterYProperty, value);
-    }
-
-    private static void onScaleCenterYPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var movableContentControl = (TransformContentControl)d;
-        movableContentControl._scaleTransform.CenterY = (double)e.NewValue;
     }
     #endregion
 
