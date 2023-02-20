@@ -69,5 +69,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | View Service名                                      | 備考                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ |
 | [NavigationService](./docs/NavigationService-jp.md) | Application.Current.MainWindowがNavigationWindowの場合、使用可能なViewModelから画面遷移を実行するためのViewService |
-| MessageBoxService                                   | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
+| [MessageBoxService](./docs/MessageBoxService-jp.md) | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
 
