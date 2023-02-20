@@ -16,10 +16,15 @@
     <RepositoryUrl>https://github.com/StdEnku/EnkuToolkit</RepositoryUrl>
     <PackageTags>wpf;custom controls;</PackageTags>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\docs\imgs\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
