@@ -6,7 +6,7 @@ namespace : EnkuToolkit.Wpf.Controls
 
 ## remarks
 
-[TransformContentControl](./TransformContentControl-en.xaml) class that enables the following five transform properties to be manipulated with values ranging from 0 to 1.
+[TransformContentControl](./TransformContentControl-en.md) class that enables the following five transform properties to be manipulated with values ranging from 0 to 1.
 
 The translation distance in TranslateX depends on the ActualWidth of this object, and the translation distance in TranslateY depends on the ActualWidth of this object.
 

@@ -6,7 +6,7 @@
 
 ## 概要
 
-下記五つの変形用プロパティを0~1の値で操作可能にした[TransformContentControl](./TransformContentControl-jp.xaml)クラス。
+下記五つの変形用プロパティを0~1の値で操作可能にした[TransformContentControl](./TransformContentControl-jp.md)クラス。
 
 尚TranslateXでの移動距離は本オブジェクトのActualWidthに依存し、
 
