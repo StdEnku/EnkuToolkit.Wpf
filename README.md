@@ -61,3 +61,12 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | behavior name                                                | remarks                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior-en.md) | Behavior to attach to Window to save the current position, size, and WidnowState properties when exiting and restore the previous state the next time it is launched. |
+
+
+
+## View Services
+
+| View Service Name                                   | remarks                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| [NavigationService](./docs/NavigationService-en.md) | ViewService to perform screen transitions from an available ViewModel when Application.Current.MainWindow is NavigationWindow |
+| MessageBoxService                                   | ViewServce to allow message box operations to be performed from the ViewModel |
