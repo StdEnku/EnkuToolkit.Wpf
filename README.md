@@ -12,10 +12,10 @@ Please install it using VisualStudio's Nuget package manager, etc.
 
 ## Explanation of the two assemblies
 
-| DL   | URL  | assembly name             | remarks                                                      |
-| ---- | ---- | ------------------------- | ------------------------------------------------------------ |
-| -    | -    | EnkuToolkit.Wpf           | An assembly that describes custom controls and other items that depend on WPF. |
-| -    | -    | EnkuToolkit.UiIndependent | An assembly marked with WPF-independent portions intended to be called at the ViewModel layer. |
+| DL                                                           | assembly name                                                | remarks                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf/) | An assembly that describes custom controls and other items that depend on WPF. |
+| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent/) | An assembly marked with WPF-independent portions intended to be called at the ViewModel layer. |
 
 This library consists of the above two assemblies
 
