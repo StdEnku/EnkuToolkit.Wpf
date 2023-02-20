@@ -54,3 +54,10 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | [TransformContentControl](./docs/TransformContentControl-en.md) | ContentControl for easy transformation operations such as moving, transforming, enlarging, etc. |
 | [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-en.md) | TransformContentControl that allows transform properties to be manipulated with values ranging from 0 to 1. |
 
+
+
+## Attached Behaviors
+
+| behavior name                                                | remarks                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior-en.md) | Behavior to attach to Window to save the current position, size, and WidnowState properties when exiting and restore the previous state the next time it is launched. |

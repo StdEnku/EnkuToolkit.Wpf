@@ -54,3 +54,11 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | [TransformContentControl](./docs/TransformContentControl-jp.md) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
 | [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-jp.md) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
 
+
+
+## 添付ビヘイビア
+
+| ビヘイビア名                                                 | 備考                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior-jp.md) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
+
