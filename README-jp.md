@@ -49,4 +49,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | ------------------------------------------------------------ | -------------------------------------------------------- |
 | [AnimatedFrame](./docs/AnimatedFrame-jp.md)                  | 画面遷移時にアニメーションが可能なFrameクラス            |
 | [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-jp.md) | 画面遷移時にアニメーションが可能なNavigationWindowクラス |
+| [CustomTitlebarWindow](./docs/CustomTitlebarWindow-jp.md)    | タイトルバーをカスタマイズ可能なWindowクラス             |
 

@@ -49,4 +49,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [AnimatedFrame](./docs/AnimatedFrame-en.md)                  | Frame class that enables animation during screen transitions |
 | [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-en.md) | NavigationWindow class that enables animation during screen transitions |
+| [CustomTitlebarWindow](./docs/CustomTitlebarWindow-en.md)    | Window class with customizable title bar                     |
 

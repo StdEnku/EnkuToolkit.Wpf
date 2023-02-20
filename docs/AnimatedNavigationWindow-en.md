@@ -8,7 +8,7 @@ namespace : EnkuToolkit.Wpf.Controls
 
 Extension of NavigationWindow class that enables animation during screen transitions
 
-The basic usage is the same as the Frame class that comes standard with WPF.
+The basic usage is the same as the NavigationWindow class that comes standard with WPF.
 
 The following CLR properties have been added, which can be used to specify the animation to be executed during screen transitions
 
