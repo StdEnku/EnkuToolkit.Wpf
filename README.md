@@ -51,4 +51,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-en.md) | NavigationWindow class that enables animation during screen transitions |
 | [CustomTitlebarWindow](./docs/CustomTitlebarWindow-en.md)    | Window class with customizable title bar                     |
 | [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow-en.md) | AnimatedNavigationWindow class with customizable title bar   |
+| [TransformContentControl](./docs/TransformContentControl-en.md) | ContentControl for easy transformation operations such as moving, transforming, enlarging, etc. |
 
