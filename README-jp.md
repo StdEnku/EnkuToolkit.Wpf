@@ -6,7 +6,7 @@
 
 本ライブラリはNuget.orgにてパッケージが公開されているので
 
-VisualStudioを使用してインストールしてください。
+VisualStudioのNugetパッケージマネージャー等を使用してインストールしてください。
 
 
 
@@ -43,10 +43,9 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 
 
 
-- [アニメーション付きの画面遷移を行う。](./docs/アニメーション付きの画面遷移を行う.md)
-- [Windowのタイトルバーをカスタマイズする。](./docs/Windowのタイトルバーをカスタマイズする.md)
-- [Window起動時に以前の位置、サイズ、WindowStateを読み込む。](./docs/Window起動時に以前の位置、サイズ、WindowStateを読み込む.md)
-- [バインディングで変形操作可能なコントロールを使う。](./docs/バインディングで変形操作可能なコントロールを使う.md)
-- [ViewModelからMessageBoxの操作を行う。](./docs/ViewModelからMessageBoxの操作を行う.md)
-- [ViewModelからNavigationWindowを操作する。](./docs/ViewModelからNavigationWindowを操作する.md)
+## カスタムコントロール
+
+| コントロール名                              | 備考                                          |
+| ------------------------------------------- | --------------------------------------------- |
+| [AnimatedFrame](./docs/AnimatedFrame-jp.md) | 画面遷移時にアニメーションが可能なFrameクラス |
 
