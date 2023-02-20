@@ -45,7 +45,8 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 
 ## Custom Controls
 
-| Control name                                | remarks                                                      |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| [AnimatedFrame](./docs/AnimatedFrame-en.md) | Frame class that enables animation during screen transitions |
+| Control name                                                 | remarks                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [AnimatedFrame](./docs/AnimatedFrame-en.md)                  | Frame class that enables animation during screen transitions |
+| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-en.md) | NavigationWindow class that enables animation during screen transitions |
 

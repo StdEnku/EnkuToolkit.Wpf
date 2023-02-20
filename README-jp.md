@@ -45,7 +45,8 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 
 ## カスタムコントロール
 
-| コントロール名                              | 備考                                          |
-| ------------------------------------------- | --------------------------------------------- |
-| [AnimatedFrame](./docs/AnimatedFrame-jp.md) | 画面遷移時にアニメーションが可能なFrameクラス |
+| コントロール名                                               | 備考                                                     |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| [AnimatedFrame](./docs/AnimatedFrame-jp.md)                  | 画面遷移時にアニメーションが可能なFrameクラス            |
+| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-jp.md) | 画面遷移時にアニメーションが可能なNavigationWindowクラス |
 
