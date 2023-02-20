@@ -14,7 +14,6 @@ public class NormalizedTransformContentControl : ContentControl
     private readonly RotateTransform _rotateTransform = new();
     private readonly TranslateTransform _translateTransform = new();
     private const double MAX_ANGLE = 360;
-    private const double DEFAULT_CENTER = 0.5;
     private const double DEFAULT_SIZE = 1;
 
     /// <summary>
