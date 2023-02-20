@@ -5,12 +5,12 @@ using System.Windows;
 using System;
 
 /// <summary>
-/// タイトルバーをカスタマイズ可能なAnimatedNavigationWindow
+/// AnimatedNavigationWindow with customizable title bar
 /// </summary>
 public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
 {
     /// <summary>
-    /// タイトルバーを指定するための依存関係プロパティ
+    /// Dependency properties for specifying the title bar
     /// </summary>
     public static readonly DependencyProperty TitlebarProperty
         = DependencyProperty.Register(
@@ -21,7 +21,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
         );
 
     /// <summary>
-    /// TitlebarPropertyに対応するCLRプロパティ
+    /// CLR property corresponding to TitlebarProperty
     /// </summary>
     public FrameworkElement Titlebar
     {
@@ -38,7 +38,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
     }
 
     /// <summary>
-    /// ウィンドウのサイズ変更に使用する境界線の幅を示す値を取得または設定するための依存関係プロパティ
+    /// Dependency property to get or set a value indicating the width of the border used to resize the window
     /// </summary>
     public static readonly DependencyProperty ResizeBorderThicknessProeprty
         = DependencyProperty.Register(
@@ -49,7 +49,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
         );
 
     /// <summary>
-    /// ResizeBorderThicknessProeprty依存関係プロパティ用のCLRプロパティ
+    /// CLR property for ResizeBorderThicknessProeprty dependency property
     /// </summary>
     public Thickness ResizeBorderThickness
     {
@@ -66,7 +66,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
     }
 
     /// <summary>
-    /// 画面を最大化した時端が埋もれる問題を解決するための処理
+    /// Processing to solve the problem of edges being buried when the screen is maximized
     /// </summary>
     protected override void OnStateChanged(EventArgs e)
     {
@@ -77,11 +77,16 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
         this.Titlebar.Margin = nextMargin;
     }
 
+    /// <summary>
+    /// Method called when the Initialized event occurs
+    /// Internally sets the values of CaptionHeight and ResizeBorderThickness to WindowChrome
+    /// internally sets the values of CaptionHeight and ResizeBorderThickness to WindowChrome from the properties of this class.
+    /// </summary>
     protected override void OnInitialized(EventArgs e)
     {
         base.OnInitialized(e);
         this._windowChrome.CaptionHeight = this.Titlebar?.Height ?? default(double);
-        this.ResizeBorderThickness = this.ResizeBorderThickness;
+        this._windowChrome.ResizeBorderThickness = this.ResizeBorderThickness;
     }
 
     /// <summary>

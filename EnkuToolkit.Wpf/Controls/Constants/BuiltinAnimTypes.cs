@@ -1,17 +1,17 @@
 ﻿namespace EnkuToolkit.Wpf.Controls.Constants;
 
 /// <summary>
-/// ビルトインアニメーションの種類を表すenum
+/// enum for built-in animation type
 /// </summary>
 public enum BuiltinAnimTypes
 {
     /// <summary>
-    /// スライドインアニメーション
+    /// slide-in animation
     /// </summary>
     Slidein,
 
     /// <summary>
-    /// リッチなスライドインアニメーション
+    /// Rich slide-in animations
     /// </summary>
     ModernSlidein,
 }

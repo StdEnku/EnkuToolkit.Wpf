@@ -1,49 +1,49 @@
 ﻿namespace EnkuToolkit.UiIndependent.Services;
 
 /// <summary>
-/// AppクラスのMainWindowがNavigationWindowの場合使用可能な
-/// ViewModelから画面遷移を実行するためのViewService用のインターフェース
+/// Available when MainWindow of App class is NavigationWindow
+/// Interface for ViewService to perform screen transition from ViewModel
 /// </summary>
 public interface INavigationService
 {
     /// <summary>
-    /// プロジェクトのルートをベースとした相対URIで遷移先を指定可能な画面遷移用メソッド
+    /// Methods for screen transitions that allow specifying transition destinations by relative URI based on the project root
     /// </summary>
-    /// <param name="uriStr">プロジェクトのルートをベースとした場合の遷移先の相対uri</param>
-    /// <param name="extraData">遷移先のページへ渡したいデータ</param>
-    /// <returns>ナビゲーションがキャンセルされない場合はtrueそれ以外の場合はfalse</returns>
+    /// <param name="uriStr">Relative uri of the transition destination when based on the root of the project</param>
+    /// <param name="extraData">Data to be passed to the destination page</param>
+    /// <returns>true if navigation is not canceled otherwise false</returns>
     bool NavigateRootBase(string uriStr, object? extraData = null);
 
     /// <summary>
-    /// URIで遷移先を指定可能な画面遷移用メソッド
+    /// Methods for screen transitions that allow specifying the transition destination by URI
     /// </summary>
-    /// <param name="uri">遷移先のuri</param>
-    /// <param name="extraData">遷移先のページへ渡したいデータ</param>
-    /// <returns>ナビゲーションがキャンセルされない場合はtrueそれ以外の場合はfalse</returns>
+    /// <param name="uri">Transition destination uri</param>
+    /// <param name="extraData">Data to be passed to the destination page</param>
+    /// <returns>true if navigation is not canceled otherwise false</returns>
     bool Navigate(Uri uri, object? extraData = null);
 
     /// <summary>
-    /// ページを進めるためのメソッド
+    /// Methods to advance the page
     /// </summary>
     void GoForward();
 
     /// <summary>
-    /// ページを戻すためのメソッド
+    /// Methods to return pages
     /// </summary>
     void GoBack();
 
     /// <summary>
-    /// ページの再読み込みを行うためのメソッド
+    /// Methods for reloading pages
     /// </summary>
     void Refresh();
 
     /// <summary>
-    /// "戻る" 履歴から最新の履歴項目を削除するためのメソッド
+    /// Method to remove the latest history item from the history
     /// </summary>
     void RemoveBackEntry();
 
     /// <summary>
-    /// 現在のナビゲーション要求に対応するコンテンツのダウンロードを中止するためのメソッド
+    /// Method to stop downloading content corresponding to the current navigation request
     /// </summary>
     void StopLoading();
 }

@@ -10,12 +10,12 @@ using System;
 using Constants;
 
 /// <summary>
-/// アニメーション付きの画面遷移が行えるFrame
+/// Frame for animated screen transitions
 /// </summary>
 public class AnimatedFrame : Frame
 {
     /// <summary>
-    /// コンストラクタ
+    /// constructor
     /// </summary>
     public AnimatedFrame()
     {
@@ -25,36 +25,36 @@ public class AnimatedFrame : Frame
     }
 
     /// <summary>
-    /// テンプレート内のOldImageで使用するX方向のDpiプロパティ
+    /// Dpi property in X direction used for OldImage in template
     /// </summary>
     public double DpiX { get; set; } = 96;
 
     /// <summary>
-    /// テンプレート内のOldImageで使用するY方向のDpiプロパティ
+    /// Dpi property in Y direction used for OldImage in template
     /// </summary>
     public double DpiY { get; set; } = 96;
 
     /// <summary>
-    /// 新しいページ表示or表示しているページを進める場合に実行するStoryboardプロパティ
+    /// Storyboard property to execute when displaying a new page or advancing the displayed page
     /// </summary>
     /// <remarks>
-    /// BuiltinAnimTypeプロパティがnull以外の場合は何も実行されません。
+    /// If the BuiltinAnimType property is anything other than null, nothing is executed.
     /// </remarks>
     public Storyboard? ForwardAnim { get; set; }
 
     /// <summary>
-    /// 表示しているページを戻す場合に実行するStoryboardプロパティ
+    /// Storyboard property to execute when returning the displayed page
     /// </summary>
     /// <remarks>
-    /// BuiltinAnimTypeプロパティがnull以外の場合は何も実行されません。
+    /// If the BuiltinAnimType property is anything other than null, nothing is executed.
     /// </remarks>
     public Storyboard? BackwardAnim { get; set; }
 
     /// <summary>
-    /// 画面遷移時に実行するビルトインアニメーションの種類を指定するためのプロパティ
+    /// Property for specifying the type of built-in animation to execute during screen transitions
     /// </summary>
     /// <remarks>
-    /// nullを指定した場合ForwardAnimプロパティとBackwardAnimプロパティで指定したアニメーションが実行されます。
+    /// If null is specified, the animation specified by the ForwardAnim and BackwardAnim properties is executed.
     /// </remarks>
     public BuiltinAnimTypes? BuiltinAnimType { get; set; }
 

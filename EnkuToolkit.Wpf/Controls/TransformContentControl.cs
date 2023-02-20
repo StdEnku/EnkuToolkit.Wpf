@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 /// <summary>
-/// 変形用プロパティを持つContentControl
+/// ContentControl with properties for transformation
 /// </summary>
 public class TransformContentControl : ContentControl
 {
@@ -15,7 +15,7 @@ public class TransformContentControl : ContentControl
     private const double DEFAULT_SIZE = 1;
 
     /// <summary>
-    /// コンストラクタ
+    /// constructor
     /// </summary>
     public TransformContentControl()
     {
@@ -27,9 +27,9 @@ public class TransformContentControl : ContentControl
         this.RenderTransformOrigin = new Point(0.5, 0.5);
     }
 
-    #region X方向への移動用依存関係プロパティ
+    #region Dependency property for movement in X direction
     /// <summary>
-    /// X方向への移動用依存関係プロパティ
+    /// Dependency property for movement in X direction
     /// </summary>
     public static readonly DependencyProperty TranslateXProperty
         = DependencyProperty.Register(
@@ -40,7 +40,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// TranslateXProperty依存関係プロパティに対応するCLRプロパティ
+    /// CLR property corresponding to the TranslateXProperty dependency property
     /// </summary>
     public double TranslateX
     {
@@ -55,9 +55,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Y方向への移動用依存関係プロパティ
+    #region Dependency property for movement in Y direction
     /// <summary>
-    /// Y方向への移動用依存関係プロパティ
+    /// Dependency property for movement in Y direction
     /// </summary>
     public static readonly DependencyProperty TranslateYProperty
         = DependencyProperty.Register(
@@ -68,7 +68,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// TranslateYProperty依存関係プロパティに対応するCLRプロパティ
+    /// CLR property corresponding to the TranslateYProperty dependency property
     /// </summary>
     public double TranslateY
     {
@@ -83,9 +83,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region 回転の角度を指定するための依存関係プロパティ
+    #region Dependency property for specifying the angle of rotation
     /// <summary>
-    /// 回転の角度を指定するための依存関係プロパティ
+    /// Dependency property for specifying the angle of rotation
     /// </summary>
     public static readonly DependencyProperty RotateAngleProperty
         = DependencyProperty.Register(
@@ -96,7 +96,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// RotateAngleProperty依存関係プロパティに対応するCLRプロパティ
+    /// CLR property corresponding to the RotateAngleProperty dependency property
     /// </summary>
     public double RotateAngle
     {
@@ -111,9 +111,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region X方向への拡大率指定用プロパティ
+    #region Property for specifying the magnification rate in the x direction
     /// <summary>
-    /// X方向への拡大率指定用プロパティ
+    /// Property for specifying the magnification rate in the x direction
     /// </summary>
     public static readonly DependencyProperty ScaleXProperty
         = DependencyProperty.Register(
@@ -124,7 +124,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// ScaleXProperty用依存関係プロパティ
+    /// CLR property for ScaleXProperty
     /// </summary>
     public double ScaleX
     {
@@ -139,9 +139,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Y方向への拡大率指定用プロパティ
+    #region Property for specifying the magnification rate in the Y direction
     /// <summary>
-    /// Y方向への拡大率指定用プロパティ
+    /// Property for specifying the magnification rate in the Y direction
     /// </summary>
     public static readonly DependencyProperty ScaleYProperty
         = DependencyProperty.Register(
@@ -152,7 +152,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// ScaleYProperty用依存関係プロパティ
+    /// CLR property for ScaleYProperty
     /// </summary>
     public double ScaleY
     {

@@ -16,6 +16,7 @@
     <PackageTags>wpf;custom controls;</PackageTags>
     <Version>1.0.0</Version>
     <RepositoryType></RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
