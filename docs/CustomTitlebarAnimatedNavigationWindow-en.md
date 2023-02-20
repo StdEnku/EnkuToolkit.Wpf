@@ -6,7 +6,7 @@ namespace : EnkuToolkit.Wpf.Controls
 
 ## 概要
 
-Customizable [AnimatedNavigationWindow](. /AnimatedNavigationWindow-en.md) class
+Customizable [AnimatedNavigationWindow](./AnimatedNavigationWindow-en.md) class
 
 It has a Titlebar property of the FrameworkElement type.
 
