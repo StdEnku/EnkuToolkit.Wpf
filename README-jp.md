@@ -52,4 +52,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | [CustomTitlebarWindow](./docs/CustomTitlebarWindow-jp.md)    | タイトルバーをカスタマイズ可能なWindowクラス                 |
 | [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow-jp.md) | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
 | [TransformContentControl](./docs/TransformContentControl-jp.md) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
+| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-jp.md) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
 

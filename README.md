@@ -52,4 +52,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | [CustomTitlebarWindow](./docs/CustomTitlebarWindow-en.md)    | Window class with customizable title bar                     |
 | [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow-en.md) | AnimatedNavigationWindow class with customizable title bar   |
 | [TransformContentControl](./docs/TransformContentControl-en.md) | ContentControl for easy transformation operations such as moving, transforming, enlarging, etc. |
+| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-en.md) | TransformContentControl that allows transform properties to be manipulated with values ranging from 0 to 1. |
 
