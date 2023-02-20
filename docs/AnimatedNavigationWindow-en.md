@@ -180,7 +180,7 @@ MainWindow.xaml
 
 
 
-![result1](C:\Users\Syple\Desktop\EnkuToolkit\docs\imgs\AnimatedNavigationWindow1.gif)
+![result1](./imgs/AnimatedNavigationWindow1.gif)
 
 
 
