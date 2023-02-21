@@ -2,6 +2,12 @@
 
 
 
+> When the library was first released, there was an English version of the documentation for each feature, but it was very poorly translated into English, and when it was retranslated, the text was unintelligible, so it was removed. However, the original version has been saved in the following branch, so if you would like to read the original version, please start from there.
+>
+> 本書のライブラリ公開当初は各機能のドキュメントに英語版が存在しましたが機械翻訳にかけただけの非常にお粗末なものであり、再翻訳にかけたら意味不明な文章になってしまっていたので削除しました。しかし、当初の状態を下記ブランチに保存しているので以前の状態のものを読みたい方がいらっしゃいましたらそちらからどうぞ。
+
+[StdEnku/EnkuToolkit at with-en-docs (github.com)](https://github.com/StdEnku/EnkuToolkit/tree/with-en-docs)
+
 # インストール
 
 本ライブラリはNuget.orgにてパッケージが公開されているので
