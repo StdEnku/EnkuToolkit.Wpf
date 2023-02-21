@@ -18,7 +18,7 @@ VisualStudioのNugetパッケージマネージャー等を使用してインス
 
 ## 二つのアセンブリの解説
 
-| DL                                                           | assembly name                                                | remarks                                                      |
+| ダウンロード数                                                           | アセンブリ                                              | 備考                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf/) | WPFに依存するカスタムコントロールなどが記されたアセンブリ。  |
 | <img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent/) | ViewModel層で呼び出すことを想定したWPFに依存しない部分が記されたアセンブリ。 |
