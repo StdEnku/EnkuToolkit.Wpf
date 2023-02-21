@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 /// <summary>
-/// ContentControl with properties for transformation
+/// 変形操作をの依存関係プロパティで操作可能なContentControl
 /// </summary>
 public class TransformContentControl : ContentControl
 {
@@ -15,7 +15,7 @@ public class TransformContentControl : ContentControl
     private const double DEFAULT_SIZE = 1;
 
     /// <summary>
-    /// constructor
+    /// コンストラクタ
     /// </summary>
     public TransformContentControl()
     {
@@ -27,9 +27,9 @@ public class TransformContentControl : ContentControl
         this.RenderTransformOrigin = new Point(0.5, 0.5);
     }
 
-    #region Dependency property for movement in X direction
+    #region X方向への移動を行うための依存関係プロパティ
     /// <summary>
-    /// Dependency property for movement in X direction
+    /// X方向への移動を行うための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty TranslateXProperty
         = DependencyProperty.Register(
@@ -40,7 +40,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the TranslateXProperty dependency property
+    /// TranslateXPropertyに対応するCLRプロパティ
     /// </summary>
     public double TranslateX
     {
@@ -55,9 +55,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Dependency property for movement in Y direction
+    #region Y方向への移動を行うための依存関係プロパティ
     /// <summary>
-    /// Dependency property for movement in Y direction
+    /// Y方向への移動を行うための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty TranslateYProperty
         = DependencyProperty.Register(
@@ -68,7 +68,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the TranslateYProperty dependency property
+    /// TranslateYPropertyに対応するCLRプロパティ
     /// </summary>
     public double TranslateY
     {
@@ -83,9 +83,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Dependency property for specifying the angle of rotation
+    #region 回転角を指定するための依存関係プロパティ
     /// <summary>
-    /// Dependency property for specifying the angle of rotation
+    /// 回転角を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty RotateAngleProperty
         = DependencyProperty.Register(
@@ -96,7 +96,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the RotateAngleProperty dependency property
+    /// RotateAnglePropertyに対応するCLRプロパティ
     /// </summary>
     public double RotateAngle
     {
@@ -111,9 +111,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Property for specifying the magnification rate in the x direction
+    #region X方向への拡大倍率を指定するための依存関係プロパティ
     /// <summary>
-    /// Property for specifying the magnification rate in the x direction
+    /// X方向への拡大倍率を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty ScaleXProperty
         = DependencyProperty.Register(
@@ -124,7 +124,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property for ScaleXProperty
+    /// ScaleXPropertyに対応するCLRプロパティ
     /// </summary>
     public double ScaleX
     {
@@ -139,9 +139,9 @@ public class TransformContentControl : ContentControl
     }
     #endregion
 
-    #region Property for specifying the magnification rate in the Y direction
+    #region Y方向への拡大倍率を指定するための依存関係プロパティ
     /// <summary>
-    /// Property for specifying the magnification rate in the Y direction
+    /// Y方向への拡大倍率を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty ScaleYProperty
         = DependencyProperty.Register(
@@ -152,7 +152,7 @@ public class TransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property for ScaleYProperty
+    /// ScaleYPropertyに対応するCLRプロパティ
     /// </summary>
     public double ScaleY
     {
