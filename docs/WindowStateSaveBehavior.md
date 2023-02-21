@@ -29,7 +29,6 @@ MainWindow.xaml
         xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="400" Width="800"
         et:WindowStateSaveBehavior.IsStateSave="True">
 
     <Viewbox>
