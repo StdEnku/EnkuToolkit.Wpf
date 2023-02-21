@@ -6,12 +6,13 @@ using System.Diagnostics;
 using static Properties.Settings;
 
 /// <summary>
-/// Behavior to allow attaching to Window to save previous state
+/// Windowに添付して終了時に位置、サイズ、WindowStateプロパティを記録して、
+/// 次回起動時に読み込めるようにするか指定するためのビヘイビア。
 /// </summary>
 public class WindowStateSaveBehavior
 {
     /// <summary>
-    /// Attachment property to specify whether previous state should be preserved
+    /// 本ビヘイビアの機能を有効化するか指定するための添付プロパティ
     /// </summary>
     public static readonly DependencyProperty IsStateSaveProperty
         = DependencyProperty.RegisterAttached(
@@ -22,18 +23,24 @@ public class WindowStateSaveBehavior
         );
 
     /// <summary>
-    /// IsStateSaveProperty attached property setter
+    /// IsStateSaveProperty添付プロパティのセッター
     /// </summary>
-    /// <param name="targetWindow">Window object to be attached</param>
-    /// <param name="value">Value to be set</param>
+    /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
+    /// <param name="value">
+    /// 本ビヘイビアの機能を有効化したい場合trueを指定、
+    /// 有効化しない場合falseを指定。
+    /// </param>
     public static void SetIsStateSave(Window targetWindow, bool value)
         => targetWindow.SetValue(IsStateSaveProperty, value);
 
     /// <summary>
-    /// Getter for IsStateSaveProperty attached property
+    /// IsStateSaveProperty添付プロパティのゲッター
     /// </summary>
-    /// <param name="targetWindow">Window object to be attached</param>
-    /// <returns>Value of the IsStateSaveProperty attached property</returns>
+    /// <param name="targetWindow">添付対象のWindowオブジェクト</param>
+    /// <returns>
+    /// 本ビヘイビアの機能を有効化したい場合trueを返す、
+    /// 有効化しない場合falseを返す。
+    /// </returns>
     public static bool GetIsStateSave(Window targetWindow)
         => (bool)targetWindow.GetValue(IsStateSaveProperty);
 

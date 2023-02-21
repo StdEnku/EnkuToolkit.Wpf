@@ -1,26 +1,26 @@
-# NormalizedTransformContentControl Class
+# NormalizedTransformContentControl クラス
 
-assembly : EnkuToolkit.Wpf
+アセンブリ : EnkuToolkit.Wpf
 
-namespace : EnkuToolkit.Wpf.Controls
+名前空間 : EnkuToolkit.Wpf.Controls
 
-## remarks
+## 概要
 
-[TransformContentControl](./TransformContentControl-en.md) class that enables the following five transform properties to be manipulated with values ranging from 0 to 1.
+下記五つの変形用プロパティを0~1の値で操作可能にした[TransformContentControl](./TransformContentControl.md)クラス。
 
-The translation distance in TranslateX depends on the ActualWidth of this object, and the translation distance in TranslateY depends on the ActualWidth of this object.
+尚TranslateXでの移動距離は本オブジェクトのActualWidthに依存し、
 
-TranslateY depends on the ActualHeight of this object.
+TranslateYでの移動距離は本オブジェクトのActualHeightに依存します。
 
 
 
-- TranslateX - Property for horizontal movement
-- TranslateY - Property for vertical movement
-- RotateAngle - Property for specifying rotation angle
-- ScaleX - Vertical size magnification
-- ScaleY - Horizontal size magnification
+- TranslateX - 横方向への移動用プロパティ
+- TranslateY - 縦方向への移動用プロパティ
+- RotateAngle - 回転角指定用プロパティ
+- ScaleX - 縦方向のサイズの倍率
+- ScaleY - 横方向のサイズの倍率
 
-## example
+## 使用例
 
 MainWindow.xaml
 

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--
-        After adding animations, please merge all of them here.
+        アニメーションを追加したらここにマージしといてください。
     -->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Animations/Slidein.xaml" />

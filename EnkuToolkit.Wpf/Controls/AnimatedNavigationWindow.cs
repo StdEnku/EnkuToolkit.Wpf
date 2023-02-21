@@ -10,12 +10,12 @@ using System.Windows.Navigation;
 using Constants;
 
 /// <summary>
-/// NavigationWindow for animated screen transitions
+/// 画面遷移時にアニメーションを実行可能なNavigationWindow
 /// </summary>
 public class AnimatedNavigationWindow : NavigationWindow
 {
     /// <summary>
-    /// constructor
+    /// コンストラクタ
     /// </summary>
     public AnimatedNavigationWindow()
     {
@@ -24,36 +24,37 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
 
     /// <summary>
-    /// Dpi property in X direction used for OldImage in template
+    /// 画面遷移時に古いウィンドウをビットマップに変換する時に使うのX方向のDPI
     /// </summary>
     public double DpiX { get; set; } = 96;
 
     /// <summary>
-    /// Dpi property in Y direction used for OldImage in template
+    /// 画面遷移時に古いウィンドウをビットマップに変換する時に使うのY方向のDPI
     /// </summary>
     public double DpiY { get; set; } = 96;
 
     /// <summary>
-    /// Storyboard property to execute when displaying a new page or advancing the displayed page
+    /// GoForwardメソッドかNavigateメソッド実行時に再生するStoryboardを指定するためのプロパティ
     /// </summary>
     /// <remarks>
-    /// If the BuiltinAnimType property is anything other than null, nothing is executed.
+    /// BuiltinAnimTypeプロパティがnull出ないと本プロパティは無視されます。
     /// </remarks>
     public Storyboard? ForwardAnim { get; set; }
 
     /// <summary>
-    /// Storyboard property to execute when returning the displayed page
+    /// GoBackメソッド実行時に再生するStoryboardを指定するためのプロパティ
     /// </summary>
     /// <remarks>
-    /// If the BuiltinAnimType property is anything other than null, nothing is executed.
+    /// BuiltinAnimTypeプロパティがnull出ないと本プロパティは無視されます。
     /// </remarks>
     public Storyboard? BackwardAnim { get; set; }
 
     /// <summary>
-    /// Property for specifying the type of built-in animation to execute during screen transitions
+    /// 本ライブラリに標準搭載されているアニメーションを使用する際に再生するアニメーションの種類を指定するためのプロパティ
     /// </summary>
     /// <remarks>
-    /// If null is specified, the animation specified by the ForwardAnim and BackwardAnim properties is executed.
+    /// nullを指定するとBackwardAnimプロパティとForwardAnimプロパティで指定したアニメーションが再生されます。
+    /// 本プロパティがnullでBackwardAnimプロパティとForwardAnimプロパティがともにnullの場合アニメーションは実行されません。
     /// </remarks>
     public BuiltinAnimTypes? BuiltinAnimType { get; set; }
 

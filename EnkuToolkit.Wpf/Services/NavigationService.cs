@@ -6,19 +6,19 @@ using System;
 using System.Windows;
 
 /// <summary>
-/// Available when the MainWindow of the App class is NavigationWindow
-/// ViewService for executing screen transitions from ViewModel
+/// Application.Current.MainWindowがNavigationWindowの場合使用可能な、
+/// ViewModelから画面遷移を行うためのViewServiceの実装
 /// </summary>
 public class NavigationService : INavigationService
 {
     private NavigationWindow MainNavigationWindow => (NavigationWindow)Application.Current.MainWindow;
 
     /// <summary>
-    /// Methods for screen transitions that allow specifying transition destinations by relative URI based on the project root
+    /// プロジェクトのルートフォルダをベースURIとして遷移先のURIを指定できる画面遷移用メソッド
     /// </summary>
-    /// <param name="uriStr">Relative uri of the transition destination when based on the root of the project</param>
-    /// <param name="extraData">Data to be passed to the destination page</param>
-    /// <returns>true if navigation is not canceled otherwise false</returns>
+    /// <param name="uriStr">遷移先ページへの相対URI</param>
+    /// <param name="extraData">遷移先に渡したいデータ</param>
+    /// <returns>画面遷移がキャンセルされたらfalse、キャンセルされなければtrueを返す</returns>
     public bool NavigateRootBase(string uriStr, object? extraData = null)
     {
         var baseUri = new Uri("pack://application:,,,/");
@@ -35,11 +35,11 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Methods for screen transitions that allow specifying the transition destination by URI
+    /// 遷移先のURIを指定して画面遷移を行うためのメソッド
     /// </summary>
-    /// <param name="uri">Transition destination uri</param>
-    /// <param name="extraData">Data to be passed to the destination page</param>
-    /// <returns>true if navigation is not canceled otherwise false</returns>
+    /// <param name="uri">遷移先ページへURI</param>
+    /// <param name="extraData">遷移先に渡したいデータ</param>
+    /// <returns>画面遷移がキャンセルされたらfalse、キャンセルされなければtrueを返す</returns>
     public bool Navigate(Uri uri, object? extraData = null)
     {
         if (extraData is null)
@@ -53,7 +53,7 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Methods to advance the page
+    /// 履歴を元に表示されているページを進めるためのメソッド
     /// </summary>
     public void GoForward()
     {
@@ -61,7 +61,7 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Methods to return pages
+    /// 履歴を元に表示されているページを戻すためのメソッド
     /// </summary>
     public void GoBack()
     {
@@ -69,7 +69,7 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Methods for reloading pages
+    /// 表示されているページの再読み込みを行うためのメソッド
     /// </summary>
     public void Refresh()
     {
@@ -77,7 +77,7 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Method to remove the latest history item from the history
+    /// 履歴から前回表示されていたページを削除するためのメソッド
     /// </summary>
     public void RemoveBackEntry()
     {
@@ -85,7 +85,7 @@ public class NavigationService : INavigationService
     }
 
     /// <summary>
-    /// Method to stop downloading content corresponding to the current navigation request
+    /// 画面遷移を中断するためのメソッド
     /// </summary>
     public void StopLoading()
     {

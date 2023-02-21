@@ -1,22 +1,22 @@
 ﻿namespace EnkuToolkit.UiIndependent.Services;
 
 /// <summary>
-/// Interface for ViewServce to allow message box operations from ViewModel
+/// ViewModelからMessageBoxを操作可能にするためのViewService用インターフェース
 /// </summary>
 public interface IMessageBoxService
 {
     /// <summary>
-    /// Method for displaying a message box with no choices
+    /// 選択肢のないOKボタンのみのメッセージボックスを表示するためのメソッド
     /// </summary>
-    /// <param name="message">message</param>
-    /// <param name="title">title</param>
+    /// <param name="message">メッセージのテキスト</param>
+    /// <param name="title">タイトルのテキスト</param>
     void ShowOk(string message, string? title = null);
 
     /// <summary>
-    /// Method for displaying a message box with a Yes or No choice
+    /// YesとNoボタンを持つメッセージボックスを表示するためのメソッド
     /// </summary>
-    /// <param name="message">message</param>
-    /// <param name="title">title</param>
-    /// <returns>Returns true if the user selects Yes; returns false if the user selects No</returns>
+    /// <param name="message">メッセージのテキスト</param>
+    /// <param name="title">タイトルのテキスト</param>
+    /// <returns>ユーザーがYesボタンを押したらtrueを返し、Noを押したらfalseを返す</returns>
     bool ShowYesNo(string message, string? title = null);
 }

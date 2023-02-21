@@ -4,26 +4,26 @@ using EnkuToolkit.UiIndependent.Services;
 using System.Windows;
 
 /// <summary>
-/// ViewServce to allow message box operations to be performed from the ViewModel
+/// ViewModelからMessageBoxを操作可能にするためのViewServiceの実装
 /// </summary>
 public class MessageBoxService : IMessageBoxService
 {
     /// <summary>
-    /// Method for displaying a message box with no choices
+    /// 選択肢のないOKボタンのみのメッセージボックスを表示するためのメソッド
     /// </summary>
-    /// <param name="message">Message</param>
-    /// <param name="title">Title</param>
+    /// <param name="message">メッセージのテキスト</param>
+    /// <param name="title">タイトルのテキスト</param>
     public void ShowOk(string message, string? title = null)
     {
         MessageBox.Show(message, title ?? string.Empty);
     }
 
     /// <summary>
-    /// Method for displaying a message box with a Yes or No choice
+    /// YesとNoボタンを持つメッセージボックスを表示するためのメソッド
     /// </summary>
-    /// <param name="message">Message</param>
-    /// <param name="title">Title</param>
-    /// <returns>Returns true if the user selects Yes; returns false if the user selects No</returns>
+    /// <param name="message">メッセージのテキスト</param>
+    /// <param name="title">タイトルのテキスト</param>
+    /// <returns>ユーザーがYesボタンを押したらtrueを返し、Noを押したらfalseを返す</returns>
     public bool ShowYesNo(string message, string? title = null)
     {
         var button = MessageBoxButton.YesNo;
