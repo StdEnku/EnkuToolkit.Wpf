@@ -5,12 +5,12 @@ using System.Windows;
 using System;
 
 /// <summary>
-/// AnimatedNavigationWindow with customizable title bar
+/// タイトルバーをカスタマイズ可能なAnimatedNavigationWindow
 /// </summary>
 public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
 {
     /// <summary>
-    /// Dependency properties for specifying the title bar
+    /// タイトルバーの内容を記すための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty TitlebarProperty
         = DependencyProperty.Register(
@@ -21,7 +21,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
         );
 
     /// <summary>
-    /// CLR property corresponding to TitlebarProperty
+    /// TitlebarPropertyに対応するCLRプロパティ
     /// </summary>
     public FrameworkElement Titlebar
     {
@@ -38,7 +38,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
     }
 
     /// <summary>
-    /// Dependency property to get or set a value indicating the width of the border used to resize the window
+    /// ウィンドウのサイズ変更で使用する端の幅を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty ResizeBorderThicknessProeprty
         = DependencyProperty.Register(
@@ -49,7 +49,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
         );
 
     /// <summary>
-    /// CLR property for ResizeBorderThicknessProeprty dependency property
+    /// ResizeBorderThicknessProeprtyに対応するCLRプロパティ
     /// </summary>
     public Thickness ResizeBorderThickness
     {
@@ -66,7 +66,7 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
     }
 
     /// <summary>
-    /// Processing to solve the problem of edges being buried when the screen is maximized
+    /// ウィンドウを最大化すると画面の端が埋もれてしまう問題への対策
     /// </summary>
     protected override void OnStateChanged(EventArgs e)
     {
@@ -78,9 +78,9 @@ public class CustomTitlebarAnimatedNavigationWindow : AnimatedNavigationWindow
     }
 
     /// <summary>
-    /// Method called when the Initialized event occurs
-    /// Internally sets the values of CaptionHeight and ResizeBorderThickness to WindowChrome
-    /// internally sets the values of CaptionHeight and ResizeBorderThickness to WindowChrome from the properties of this class.
+    /// Initializedイベント時に呼ばれるWindowChromeへの
+    /// CaptionHeightプロパティとResizeBorderThicknessプロパティを
+    /// 本オブジェクトのプロパティから指定するためのメソッド
     /// </summary>
     protected override void OnInitialized(EventArgs e)
     {

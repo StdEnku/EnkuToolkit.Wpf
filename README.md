@@ -1,41 +1,47 @@
 ![logo](./docs/imgs/logo.png)
 
-[日本語版README](./README-jp.md)
-
-# How to Install?
-
-This library is available as a package at Nuget.org.
-
-Please install it using VisualStudio's Nuget package manager, etc.
 
 
+> When the library was first released, there was an English version of the documentation for each feature, but it was very poorly translated into English, and when it was retranslated, the text was unintelligible, so it was removed. However, the original version has been saved in the following branch, so if you would like to read the original version, please start from there.
+>
+> 本書のライブラリ公開当初は各機能のドキュメントに英語版が存在しましたが機械翻訳にかけただけの非常にお粗末なものであり、再翻訳にかけたら意味不明な文章になってしまっていたので削除しました。しかし、当初の状態を下記ブランチに保存しているので以前の状態のものを読みたい方がいらっしゃいましたらそちらからどうぞ。
 
-## Explanation of the two assemblies
+[StdEnku/EnkuToolkit at with-en-docs (github.com)](https://github.com/StdEnku/EnkuToolkit/tree/with-en-docs)
+
+# インストール
+
+本ライブラリはNuget.orgにてパッケージが公開されているので
+
+VisualStudioのNugetパッケージマネージャー等を使用してインストールしてください。
+
+
+
+## 二つのアセンブリの解説
 
 | DL                                                           | assembly name                                                | remarks                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf/) | An assembly that describes custom controls and other items that depend on WPF. |
-| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent/) | An assembly marked with WPF-independent portions intended to be called at the ViewModel layer. |
+| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf/) | WPFに依存するカスタムコントロールなどが記されたアセンブリ。  |
+| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent/) | ViewModel層で呼び出すことを想定したWPFに依存しない部分が記されたアセンブリ。 |
 
-This library consists of the above two assemblies
+本ライブラリは上記二つのアセンブリから構成されており、
 
-EnkuToolkit.Wpf internally depends on EnkuToolkit.UiIndependent, so
+EnkuToolkit.Wpfは内部でEnkuToolkit.UiIndependentに依存しているので、
 
-UiIndependent, so if you want to manage View and ViewModel in a single project, you should use
+ViewとViewModelを一つのプロジェクトで管理する場合は
 
-Wpf should be installed only.
+EnkuToolkit.Wpfのみをインストールしてください。
 
-If the View and ViewModel are in separate projects, install only EnkuToolkit.Wpf in the View side project.
+ViewとViewModelが別のプロジェクトの場合はView側のプロジェクトに
 
-EnkuToolkit.Wpf in the View side project.
+EnkuToolkit.Wpfをインストールして、
 
-UiIndependent in the ViewModel project.
+ViewModel側のプロジェクトにEnkuToolkit.UiIndependentをインストールしてください。
 
 
 
-# List of Features
+# 機能一覧
 
-To access all classes in this library from xaml, please access them from the following xml namespace.
+xaml上から本ライブラリのすべてのクラスにアクセスするには下記のxml名前空間からアクセスしてください。
 
 ```xaml
 xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
@@ -43,30 +49,31 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 
 
 
-## Custom Controls
+## カスタムコントロール
 
-| Control name                                                 | remarks                                                      |
+| コントロール名                                               | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AnimatedFrame](./docs/AnimatedFrame-en.md)                  | Frame class that enables animation during screen transitions |
-| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow-en.md) | NavigationWindow class that enables animation during screen transitions |
-| [CustomTitlebarWindow](./docs/CustomTitlebarWindow-en.md)    | Window class with customizable title bar                     |
-| [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow-en.md) | AnimatedNavigationWindow class with customizable title bar   |
-| [TransformContentControl](./docs/TransformContentControl-en.md) | ContentControl for easy transformation operations such as moving, transforming, enlarging, etc. |
-| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl-en.md) | TransformContentControl that allows transform properties to be manipulated with values ranging from 0 to 1. |
+| [AnimatedFrame](./docs/AnimatedFrame.md)                     | 画面遷移時にアニメーションが可能なFrameクラス                |
+| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow.md) | 画面遷移時にアニメーションが可能なNavigationWindowクラス     |
+| [CustomTitlebarWindow](./docs/CustomTitlebarWindow.md)       | タイトルバーをカスタマイズ可能なWindowクラス                 |
+| [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow.md) | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
+| [TransformContentControl](./docs/TransformContentControl.md) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
+| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl.md) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
 
 
 
-## Attached Behaviors
+## 添付ビヘイビア
 
-| behavior name                                                | remarks                                                      |
+| ビヘイビア名                                                 | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior-en.md) | Behavior to attach to Window to save the current position, size, and WidnowState properties when exiting and restore the previous state the next time it is launched. |
+| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior.md) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
 
 
 
-## View Services
+## View Service
 
-| View Service Name                                   | remarks                                                      |
-| --------------------------------------------------- | ------------------------------------------------------------ |
-| [NavigationService](./docs/NavigationService-en.md) | ViewService to perform screen transitions from an available ViewModel when Application.Current.MainWindow is NavigationWindow |
-| [MessageBoxService](./docs/MessageBoxService-en.md) | ViewServce to allow message box operations to be performed from the ViewModel |
+| View Service名                                   | 備考                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| [NavigationService](./docs/NavigationService.md) | Application.Current.MainWindowがNavigationWindowの場合、使用可能なViewModelから画面遷移を実行するためのViewService |
+| [MessageBoxService](./docs/MessageBoxService.md) | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
+

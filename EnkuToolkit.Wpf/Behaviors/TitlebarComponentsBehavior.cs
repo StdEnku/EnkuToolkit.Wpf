@@ -5,18 +5,13 @@ using System.Windows;
 using System.Windows.Shell;
 
 /// <summary>
-/// CustomTitlebarWindow, CustomTitlebarAnimatedNavigationWindow, etc.
-/// Objects implementing IInputElement, such as buttons used in custom titlebars, such as CustomTitlebarWindow and CustomTitlebarAnimatedNavigationWindow, must be clickable.
-/// Behaviors for specifying whether an object that implements an IInputElement, such as a button used in a custom titlebar, is clickable
+/// CustomTitlebarWindowやCustomTitlebarAnimatedNavigationWindowで
+/// タイトルバー内のボタンなどをクリック可能にするためのビヘイビア
 /// </summary>
-/// <remarks>
-/// This behavior is only implemented to unify the namespace, but the reality is that it is a thin wrapper for
-/// IsHitTestVisibleInChrome.
-/// </remarks>
 public class TitlebarComponentsBehavior
 {
     /// <summary>
-    /// Attachment property to specify whether previous state should be preserved
+    /// タイトルバー内のボタンなどをクリック可能にするか指定するための添付プロパティ
     /// </summary>
     public static readonly DependencyProperty IsHitTestVisibleProperty
         = DependencyProperty.RegisterAttached(
@@ -27,10 +22,13 @@ public class TitlebarComponentsBehavior
         );
 
     /// <summary>
-    /// IsHitTestVisibleProperty attached property setter
+    /// IsHitTestVisibleProperty添付プロパティのセッター
     /// </summary>
-    /// <param name="inputElement">DependencyObject that implements the target IInputElement</param>
-    /// <param name="value">Value to be set</param>
+    /// <param name="inputElement">添付対象のIInputElementを実装したDependencyObject</param>
+    /// <param name="value">
+    /// タイトルバー内のボタンなどをクリック可能にする場合trueを指定する、
+    /// しない場合はfalseを指定する。
+    /// </param>
     public static void SetIsHitTestVisible(IInputElement inputElement, bool value)
     {
         var attachedObject = inputElement as DependencyObject;
@@ -42,10 +40,13 @@ public class TitlebarComponentsBehavior
     }
 
     /// <summary>
-    /// Getter for IsHitTestVisibleProperty attached property
+    /// IsHitTestVisibleProperty添付プロパティのゲッター
     /// </summary>
-    /// <param name="inputElement">DependencyObject that implements the target IInputElement</param>
-    /// <returns>Value of the IsStateSaveProperty attached property</returns>
+    /// <param name="inputElement">添付対象のIInputElementを実装したDependencyObject</param>
+    /// <returns>
+    /// タイトルバー内のボタンなどをクリック可能にする場合trueを返す、
+    /// しない場合はfalseを返す。
+    /// </returns>
     public static bool GetIsHitTestVisible(IInputElement inputElement)
     {
         var attachedObject = inputElement as DependencyObject;

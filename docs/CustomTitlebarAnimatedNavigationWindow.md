@@ -1,34 +1,34 @@
-# CustomTitlebarAnimatedNavigationWindow Class
+# CustomTitlebarAnimatedNavigationWindowクラス
 
-assembly : EnkuToolkit.Wpf
+アセンブリ : EnkuToolkit.Wpf
 
-namespace : EnkuToolkit.Wpf.Controls
+名前空間 : EnkuToolkit.Wpf.Controls
 
 ## 概要
 
-Customizable [AnimatedNavigationWindow](./AnimatedNavigationWindow-en.md) class
+タイトルバーをカスタマイズ可能な[AnimatedNavigationWindow](./AnimatedNavigationWindow.md)クラス
 
-It has a Titlebar property of the FrameworkElement type.
+FrameworkElement型のTitlebarプロパティを持ち、
 
-The content of the titlebar is written there.
+そこにタイトルバーの内容を書いていく。
 
-The size of the titlebar depends on the Height property of the
+タイトルバーのサイズはTitlebarプロパティ内の
 
-The size of the titlebar depends on the Height property of the object in the Titlebar property.
-
-
-
-In addition, buttons and other objects in the titlebar are recognized as window movement areas as they are, and cannot be clicked or otherwise manipulated.
-
-IsHitTestVisible property is attached to the TitlebarComponentsBehavior.
-
-IsHitTestVisible property and set its value to true.
+オブジェクトのHeightプロパティに依存する。
 
 
 
-## example
+また、Titlebar内のボタン等はそのままではウィンドウ移動用の領域と認識されてしまい、
 
-All of the following files should be placed in the root folder of the project.
+クリック等の操作ができないためTitlebarComponentsBehavior.IsHitTestVisible添付プロパティを
+
+添付して、その値にtrueを指定してください。
+
+
+
+## 使用例
+
+下記ファイル群はすべてプロジェクトのルートフォルダに配置してください。
 
 
 

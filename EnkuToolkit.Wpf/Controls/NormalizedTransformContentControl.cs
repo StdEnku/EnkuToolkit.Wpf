@@ -5,8 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 /// <summary>
-/// Each deformation property can be manipulated with a value from 0 to 1.
-/// ContentControl with properties for deformation
+/// 変形用プロパティを0~1までの値で指定可能なTransformContentControl
 /// </summary>
 public class NormalizedTransformContentControl : ContentControl
 {
@@ -17,7 +16,7 @@ public class NormalizedTransformContentControl : ContentControl
     private const double DEFAULT_SIZE = 1;
 
     /// <summary>
-    /// constructor
+    /// コンストラクタ
     /// </summary>
     public NormalizedTransformContentControl()
     {
@@ -36,9 +35,9 @@ public class NormalizedTransformContentControl : ContentControl
         this._translateTransform.Y = this.TranslateY * this.ActualHeight;
     }
 
-    #region Dependency property for movement in X direction
+    #region X方向への移動を行うための依存関係プロパティ
     /// <summary>
-    /// Dependency property for movement in X direction
+    /// X方向への移動を行うための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty TranslateXProperty
         = DependencyProperty.Register(
@@ -49,7 +48,7 @@ public class NormalizedTransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the TranslateXProperty dependency property
+    /// TranslateXPropertyに対応するCLRプロパティ
     /// </summary>
     public double TranslateX
     {
@@ -64,9 +63,9 @@ public class NormalizedTransformContentControl : ContentControl
     }
     #endregion
 
-    #region Dependency property for movement in Y direction
+    #region Y方向への移動を行うための依存関係プロパティ
     /// <summary>
-    /// Dependency property for movement in Y direction
+    /// Y方向への移動を行うための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty TranslateYProperty
         = DependencyProperty.Register(
@@ -77,7 +76,7 @@ public class NormalizedTransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the TranslateYProperty dependency property
+    /// TranslateYPropertyに対応するCLRプロパティ
     /// </summary>
     public double TranslateY
     {
@@ -92,9 +91,9 @@ public class NormalizedTransformContentControl : ContentControl
     }
     #endregion
 
-    #region Dependency property for specifying the angle of rotation
+    #region 回転角を指定するための依存関係プロパティ
     /// <summary>
-    /// Dependency property for specifying the angle of rotation
+    /// 回転角を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty RotateAngleProperty
         = DependencyProperty.Register(
@@ -105,7 +104,7 @@ public class NormalizedTransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR property corresponding to the RotateAngleProperty dependency property
+    /// RotateAnglePropertyに対応するCLRプロパティ
     /// </summary>
     public double RotateAngle
     {
@@ -120,9 +119,9 @@ public class NormalizedTransformContentControl : ContentControl
     }
     #endregion
 
-    #region Property for specifying the magnification rate in the x direction
+    #region X方向への拡大倍率を指定するための依存関係プロパティ
     /// <summary>
-    /// Property for specifying the magnification rate in the x direction
+    /// X方向への拡大倍率を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty ScaleXProperty
         = DependencyProperty.Register(
@@ -133,7 +132,7 @@ public class NormalizedTransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR properties for ScaleXProperty
+    /// ScaleXPropertyに対応するCLRプロパティ
     /// </summary>
     public double ScaleX
     {
@@ -148,9 +147,9 @@ public class NormalizedTransformContentControl : ContentControl
     }
     #endregion
 
-    #region Property for specifying the magnification rate in the Y direction
+    #region Y方向への拡大倍率を指定するための依存関係プロパティ
     /// <summary>
-    /// Property for specifying the magnification rate in the Y direction
+    /// Y方向への拡大倍率を指定するための依存関係プロパティ
     /// </summary>
     public static readonly DependencyProperty ScaleYProperty
         = DependencyProperty.Register(
@@ -161,7 +160,7 @@ public class NormalizedTransformContentControl : ContentControl
         );
 
     /// <summary>
-    /// CLR properties for ScaleYProperty
+    /// ScaleYPropertyに対応するCLRプロパティ
     /// </summary>
     public double ScaleY
     {
