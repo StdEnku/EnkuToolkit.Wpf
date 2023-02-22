@@ -27,7 +27,7 @@ public abstract class AbstractNavigatedCommandBehavior<TInheritance>
         = DependencyProperty.RegisterAttached(
             "NavigatedCommand",
             typeof(ICommand),
-            typeof(AbstractNavigatedCommandBehavior<T>),
+            typeof(AbstractNavigatedCommandBehavior<TInheritance>),
             new PropertyMetadata(null, onNavigatedCommandChanged)
         );
 
