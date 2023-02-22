@@ -6,12 +6,19 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 
 /// <summary>
-/// Application.Current.MainWindowがNavigateionWindowの場合のみ使用可能な
 /// 添付対象のページへの画面遷移後に実行可能なコマンドを指定できる添付ビヘイビア。
 /// 以前表示していたページからのデータの受け取りを行うことを想定している。
+/// 継承してカスタマイズする際はTargetNavigationServiceプロパティのゲッターをオーバーライドして
+/// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返す処理を記してください。
 /// </summary>
-public class PageNavigatedCommandBehavior
+public abstract class AbstractNavigatedCommandBehavior<T> 
+    where T : AbstractNavigatedCommandBehavior<T>, new()
 {
+    /// <summary>
+    /// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返すプロパティ
+    /// </summary>
+    protected abstract NavigationService TargetNavigationService { get; }
+
     /// <summary>
     /// 画面遷移後に実行可能なコマンドを指定するための添付プロパティ
     /// </summary>
@@ -19,7 +26,7 @@ public class PageNavigatedCommandBehavior
         = DependencyProperty.RegisterAttached(
             "NavigatedCommand",
             typeof(ICommand),
-            typeof(PageNavigatedCommandBehavior),
+            typeof(AbstractNavigatedCommandBehavior<T>),
             new PropertyMetadata(null, onNavigatedCommandChanged)
         );
 
@@ -41,13 +48,11 @@ public class PageNavigatedCommandBehavior
 
     private static void onNavigatedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var page = (Page)d;
-        var nw = (NavigationWindow)Application.Current.MainWindow;
-        var ns = nw.NavigationService;
-        ns.Navigated += onTargetNavigated;
+        var ncb = new T();
+        ncb.TargetNavigationService.Navigated += onNavigated;
     }
 
-    private static void onTargetNavigated(object sender, NavigationEventArgs e)
+    private static void onNavigated(object sender, NavigationEventArgs e)
     {
         var ns = (NavigationWindow)sender;
         var page = (Page)e.Content;
@@ -57,6 +62,6 @@ public class PageNavigatedCommandBehavior
         if (command?.CanExecute(extraData) ?? false)
             command.Execute(extraData);
 
-        ns.Navigated -= onTargetNavigated;
+        ns.Navigated -= onNavigated;
     }
 }
