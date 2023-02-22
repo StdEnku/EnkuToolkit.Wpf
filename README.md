@@ -67,18 +67,17 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
 | ビヘイビア名                                                 | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior.md) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
-| AbstractNavigatedCommandBehavior<T>                          |                                                              |
-| MainNavigationWindowNavigationCommandBehavior                |                                                              |
+| AbstractNavigatedCommandBehavior<T>                          | 近いうちに書きます。                                         |
+| MainNavigationWindowNavigationCommandBehavior                | 近いうちに書きます。                                         |
 
 
 
 ## View Service
 
-| View Service名                                       | 備考                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| ~~[NavigationService](./docs/NavigationService.md)~~ | ~~Application.Current.MainWindowがNavigationWindowの場合、使用可能なViewModelから画面遷移を実行するためのViewService~~ |
-| [MessageBoxService](./docs/MessageBoxService.md)     | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
-| AbstractNavigationService                            |                                                              |
-| MainNavigationWindowNavigationService                |                                                              |
-| ApplicationPropertyiesService                        |                                                              |
+| View Service名                                   | 備考                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| [MessageBoxService](./docs/MessageBoxService.md) | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
+| AbstractNavigationService                        | 近いうちに書きます。                                         |
+| MainNavigationWindowNavigationService            | 近いうちに書きます。                                         |
+| ApplicationPropertyiesService                    | 近いうちに書きます。                                         |
 
