@@ -6,21 +6,15 @@ using EnkuToolkit.UiIndependent.Services;
 using EnkuViewModelLocator.Wpf;
 
 [ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
-public partial class Page2ViewModel : ObservableObject
+public partial class Page3ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
     private readonly IMessageBoxService _messageBoxService;
 
-    public Page2ViewModel(INavigationService navigationService, IMessageBoxService messageBoxService)
+    public Page3ViewModel(INavigationService navigationService, IMessageBoxService messageBoxService)
     {
         this._navigationService = navigationService;
         this._messageBoxService = messageBoxService;
-    }
-
-    [RelayCommand]
-    private void NextPage()
-    {
-        this._navigationService.NavigateRootBase("Views/Page3.xaml", "From Page2");
     }
 
     [RelayCommand]

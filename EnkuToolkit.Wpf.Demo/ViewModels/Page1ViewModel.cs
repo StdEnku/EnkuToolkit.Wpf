@@ -6,7 +6,7 @@ using EnkuToolkit.UiIndependent.Services;
 using EnkuViewModelLocator.Wpf;
 using System;
 
-[ViewModel]
+[ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
 public partial class Page1ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
@@ -16,12 +16,9 @@ public partial class Page1ViewModel : ObservableObject
         this._navigationService = navigationService;
     }
 
-    [ObservableProperty]
-    private string _titleText = "Page1";
-
     [RelayCommand]
-    private void Clicked()
+    private void NextPage()
     {
-        this._navigationService.NavigateRootBase("Views/Page2.xaml");
+        this._navigationService.NavigateRootBase("Views/Page2.xaml", "From Page1");
     }
 }

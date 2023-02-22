@@ -5,23 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo.Views"
       xmlns:vm="clr-namespace:EnkuToolkit.Wpf.Demo.ViewModels"
+      xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
       DataContext="{x:Static vm:ViewModels.Page2ViewModel}"
+      et:PageNavigatedCommandBehavior.NavigatedCommand="{Binding NavigatedCommand}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <DockPanel LastChildFill="True">
+        <Button Content="Next page" Command="{Binding NextPageCommand}" Margin="10" DockPanel.Dock="Bottom" />
+        <Button Content="go back" Command="{Binding GoBackCommand}" Margin="10" DockPanel.Dock="Bottom" />
 
-        <Viewbox Grid.Row="0">
-            <Label Content="{Binding TitleText}" />
+        <Viewbox DockPanel.Dock="Top">
+            <Label Content="Page2" />
         </Viewbox>
-
-        <Button Content="Show Msg Box" Command="{Binding ShowMessageBoxCommand}" Margin="10" Grid.Row="1" />
-        <Button Content="go back" Command="{Binding ClickedCommand}" Margin="10" Grid.Row="2" />
-    </Grid>
+    </DockPanel>
 </Page>
