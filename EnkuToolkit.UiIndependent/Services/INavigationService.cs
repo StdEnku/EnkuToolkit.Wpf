@@ -46,4 +46,19 @@ public interface INavigationService
     /// 画面遷移を中断するためのメソッド
     /// </summary>
     void StopLoading();
+
+    /// <summary>
+    /// ナビゲーション履歴をすべて削除するためのメソッド
+    /// </summary>
+    void RemoveAllHistory();
+
+    /// <summary>
+    /// 画面遷移対象のFrameやNavigationWindowでGoBackメソッドが実行可能かを表すプロパティ
+    /// </summary>
+    bool CanGoBack { get; }
+
+    /// <summary>
+    /// 画面遷移対象のFrameやNavigationWindowでGoForwardメソッドが実行可能かを表すプロパティ
+    /// </summary>
+    bool CanGoForward { get; }
 }
