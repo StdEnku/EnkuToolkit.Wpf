@@ -54,7 +54,7 @@ public abstract class AbstractNavigatedCommandBehavior<T>
 
     private static void onNavigated(object sender, NavigationEventArgs e)
     {
-        var ns = (NavigationWindow)sender;
+        var ncb = new T();
         var page = (Page)e.Content;
         var extraData = e.ExtraData;
         var command = GetNavigatedCommand(page);
@@ -62,6 +62,6 @@ public abstract class AbstractNavigatedCommandBehavior<T>
         if (command?.CanExecute(extraData) ?? false)
             command.Execute(extraData);
 
-        ns.Navigated -= onNavigated;
+        ncb.TargetNavigationService.Navigated -= onNavigated;
     }
 }
