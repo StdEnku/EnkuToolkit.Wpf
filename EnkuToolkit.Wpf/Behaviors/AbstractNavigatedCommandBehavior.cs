@@ -11,8 +11,9 @@ using System.Windows.Navigation;
 /// 継承してカスタマイズする際はTargetNavigationServiceプロパティのゲッターをオーバーライドして
 /// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返す処理を記してください。
 /// </summary>
-public abstract class AbstractNavigatedCommandBehavior<T> 
-    where T : AbstractNavigatedCommandBehavior<T>, new()
+/// <typeparam name="TInheritance">継承先の型</typeparam>
+public abstract class AbstractNavigatedCommandBehavior<TInheritance> 
+    where TInheritance : AbstractNavigatedCommandBehavior<TInheritance>, new()
 {
     /// <summary>
     /// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返すプロパティ
@@ -48,13 +49,13 @@ public abstract class AbstractNavigatedCommandBehavior<T>
 
     private static void onNavigatedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var ncb = new T();
+        var ncb = new TInheritance();
         ncb.TargetNavigationService.Navigated += onNavigated;
     }
 
     private static void onNavigated(object sender, NavigationEventArgs e)
     {
-        var ncb = new T();
+        var ncb = new TInheritance();
         var page = (Page)e.Content;
         var extraData = e.ExtraData;
         var command = GetNavigatedCommand(page);
