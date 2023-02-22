@@ -3,15 +3,18 @@
 using EnkuToolkit.UiIndependent.Services;
 using System.Windows.Navigation;
 using System;
-using System.Windows;
 
 /// <summary>
-/// Application.Current.MainWindowがNavigationWindowの場合使用可能な、
-/// ViewModelから画面遷移を行うためのViewServiceの実装
+/// ViewModelから画面遷移を行うためのViewServiceの抽象クラス
+/// 継承してカスタマイズする際はTargetNavigationServiceプロパティのゲッターをオーバーライドして
+/// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返す処理を記してください。
 /// </summary>
-public class NavigationService : INavigationService
+public abstract class AbstractNavigationService : INavigationService
 {
-    private NavigationWindow MainNavigationWindow => (NavigationWindow)Application.Current.MainWindow;
+    /// <summary>
+    /// 画面遷移の対象となるFrameやNavigationWindowのNavigationServiceプロパティを返す処理を記したプロパティ
+    /// </summary>
+    protected abstract NavigationService TargetNavigationService { get; }
 
     /// <summary>
     /// プロジェクトのルートフォルダをベースURIとして遷移先のURIを指定できる画面遷移用メソッド
@@ -26,11 +29,11 @@ public class NavigationService : INavigationService
 
         if (extraData is null)
         {
-            return this.MainNavigationWindow.Navigate(uri);
+            return this.TargetNavigationService.Navigate(uri);
         }
         else
         {
-            return this.MainNavigationWindow.Navigate(uri, extraData);
+            return this.TargetNavigationService.Navigate(uri, extraData);
         }
     }
 
@@ -44,11 +47,11 @@ public class NavigationService : INavigationService
     {
         if (extraData is null)
         {
-            return this.MainNavigationWindow.Navigate(uri);
+            return this.TargetNavigationService.Navigate(uri);
         }
         else
         {
-            return this.MainNavigationWindow.Navigate(uri, extraData);
+            return this.TargetNavigationService.Navigate(uri, extraData);
         }
     }
 
@@ -57,7 +60,7 @@ public class NavigationService : INavigationService
     /// </summary>
     public void GoForward()
     {
-        this.MainNavigationWindow.GoForward();
+        this.TargetNavigationService.GoForward();
     }
 
     /// <summary>
@@ -65,7 +68,7 @@ public class NavigationService : INavigationService
     /// </summary>
     public void GoBack()
     {
-        this.MainNavigationWindow.GoBack();
+        this.TargetNavigationService.GoBack();
     }
 
     /// <summary>
@@ -73,7 +76,7 @@ public class NavigationService : INavigationService
     /// </summary>
     public void Refresh()
     {
-        this.MainNavigationWindow.Refresh();
+        this.TargetNavigationService.Refresh();
     }
 
     /// <summary>
@@ -81,7 +84,7 @@ public class NavigationService : INavigationService
     /// </summary>
     public void RemoveBackEntry()
     {
-        this.MainNavigationWindow.RemoveBackEntry();
+        this.TargetNavigationService.RemoveBackEntry();
     }
 
     /// <summary>
@@ -89,6 +92,28 @@ public class NavigationService : INavigationService
     /// </summary>
     public void StopLoading()
     {
-        this.MainNavigationWindow.StopLoading();
+        this.TargetNavigationService.StopLoading();
     }
+
+    /// <summary>
+    /// ナビゲーション履歴をすべて削除するためのメソッド
+    /// </summary>
+    public void RemoveAllHistory()
+    {
+        var ns = this.TargetNavigationService;
+        while(ns.CanGoBack)
+        {
+            ns.RemoveBackEntry();
+        }
+    }
+
+    /// <summary>
+    /// 画面遷移対象のFrameやNavigationWindowでGoBackメソッドが実行可能かを表すプロパティ
+    /// </summary>
+    public bool CanGoBack => this.TargetNavigationService.CanGoBack;
+
+    /// <summary>
+    /// 画面遷移対象のFrameやNavigationWindowでGoForwardメソッドが実行可能かを表すプロパティ
+    /// </summary>
+    public bool CanGoForward => this.TargetNavigationService.CanGoForward;
 }

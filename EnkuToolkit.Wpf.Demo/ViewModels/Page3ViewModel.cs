@@ -4,16 +4,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuViewModelLocator.Wpf;
-using System;
 
 [ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
-public partial class Page1ViewModel : ObservableObject
+public partial class Page3ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
     private readonly IApplicationPropertyiesService _applicationPropertyiesService;
     private readonly IMessageBoxService _messageBoxService;
 
-    public Page1ViewModel(INavigationService navigationService, 
+    public Page3ViewModel(INavigationService navigationService,
                           IApplicationPropertyiesService applicationPropertyiesService,
                           IMessageBoxService messageBoxService)
     {
@@ -23,8 +22,16 @@ public partial class Page1ViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void NextPage()
+    private void GoBack()
     {
-        this._navigationService.NavigateRootBase("Views/Page2.xaml", "From Page1");
+        this._navigationService.GoBack();
+    }
+
+    [RelayCommand]
+    private void Navigated(object? extraData)
+    {
+        var data = extraData as string;
+        if (data is not null)
+            System.Diagnostics.Debug.WriteLine(data);
     }
 }

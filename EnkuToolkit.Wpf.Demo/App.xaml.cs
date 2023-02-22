@@ -3,12 +3,7 @@
 using EnkuViewModelLocator.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using EnkuToolkit.Wpf.Services;
 using EnkuToolkit.UiIndependent.Services;
@@ -42,8 +37,9 @@ public partial class App : Application, IDiApplication
                 services.AddSingleton(i.ViewModelType);
         }
 
-        services.AddTransient<INavigationService, NavigationService>();
+        services.AddTransient<INavigationService, MainNavigationWindowNavigationService>();
         services.AddTransient<IMessageBoxService, MessageBoxService>();
+        services.AddTransient<IApplicationPropertyiesService, ApplicationPropertyiesService>();
 
         return services.BuildServiceProvider();
     }
