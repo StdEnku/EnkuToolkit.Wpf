@@ -3,6 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 using EnkuViewModelLocator.Wpf;
 
 [ViewModel]

@@ -1,6 +1,6 @@
 ﻿namespace EnkuToolkit.Wpf.Behaviors;
 
-using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
