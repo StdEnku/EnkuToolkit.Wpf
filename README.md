@@ -47,18 +47,19 @@ xaml上から本ライブラリのすべてのクラスにアクセスするに�
 xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 ```
 
-
+> ドキュメントは完全ではありませんがサンプルは下記リポジトリにおいてます。こちらもまだ未完成ですが...
+[EnkuToolkitExamples](https://github.com/StdEnku/EnkuToolkitExamples)
 
 ## カスタムコントロール
 
 | コントロール名                                               | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AnimatedFrame](./docs/AnimatedFrame.md)                     | 画面遷移時にアニメーションが可能なFrameクラス                |
-| [AnimatedNavigationWindow](./docs/AnimatedNavigationWindow.md) | 画面遷移時にアニメーションが可能なNavigationWindowクラス     |
-| [CustomTitlebarWindow](./docs/CustomTitlebarWindow.md)       | タイトルバーをカスタマイズ可能なWindowクラス                 |
-| [CustomTitlebarAnimatedNavigationWindow](./docs/CustomTitlebarAnimatedNavigationWindow.md) | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
-| [TransformContentControl](./docs/TransformContentControl.md) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
-| [NormalizedTransformContentControl](./docs/NormalizedTransformContentControl.md) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
+| AnimatedFrame                     | 画面遷移時にアニメーションが可能なFrameクラス                |
+| AnimatedNavigationWindow | 画面遷移時にアニメーションが可能なNavigationWindowクラス     |
+| CustomTitlebarWindow      | タイトルバーをカスタマイズ可能なWindowクラス                 |
+| CustomTitlebarAnimatedNavigationWindow | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
+| TransformContentControl | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
+| NormalizedTransformContentControl | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
 
 
 
@@ -66,7 +67,7 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 
 | ビヘイビア名                                                 | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [WindowStateSaveBehavior](./docs/WindowStateSaveBehavior.md) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
+| WindowStateSaveBehavior | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
 | NavigatedParamSendBehavior                                   | 近いうちに書きます。                                         |
 
 
