@@ -7,7 +7,6 @@
       xmlns:vm="clr-namespace:EnkuToolkit.Wpf.Demo.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
       DataContext="{x:Static vm:ViewModels.Page2ViewModel}"
-      et:MainNavigationWindowNavigationCommandBehavior.NavigatedCommand="{Binding NavigatedCommand}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">

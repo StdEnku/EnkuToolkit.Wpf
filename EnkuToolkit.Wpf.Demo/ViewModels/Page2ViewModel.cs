@@ -5,8 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuViewModelLocator.Wpf;
 
-[ViewModel(ViewModelAttribute.ServiceLifeTime.Singleton)]
-public partial class Page2ViewModel : ObservableObject
+[ViewModel]
+public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
 {
     private readonly INavigationService _navigationService;
     private readonly IApplicationPropertyiesService _applicationPropertyiesService;
@@ -33,11 +33,8 @@ public partial class Page2ViewModel : ObservableObject
         this._navigationService.GoBack();
     }
 
-    [RelayCommand]
-    private void Navigated(object? extraData)
+    public void Navigated(object? extraData)
     {
-        var data = extraData as string;
-        if (data is not null)
-            System.Diagnostics.Debug.WriteLine(data);
+        System.Diagnostics.Debug.WriteLine("Page2");
     }
 }
