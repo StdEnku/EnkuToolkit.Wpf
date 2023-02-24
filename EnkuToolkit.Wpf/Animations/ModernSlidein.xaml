@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
+                    xmlns:et="clr-namespace:EnkuToolkit.Wpf.Controls"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Storyboard x:Key="ModernSlideinToLeft">

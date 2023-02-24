@@ -10,5 +10,5 @@ using System.Windows.Markup;
                                               // app, or any theme specific resource dictionaries)
 )]
 
-[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit/Wpf/Controls", "EnkuToolkit.Wpf.Controls")]
-[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit/Wpf/Controls", "EnkuToolkit.Wpf.Behaviors")]
+[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.Wpf.Controls")]
+[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.Wpf.Behaviors")]

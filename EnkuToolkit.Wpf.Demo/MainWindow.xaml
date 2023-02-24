@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
+    xmlns:et="https://github.com/StdEnku/EnkuToolkit"
     xmlns:local="clr-namespace:EnkuToolkit.Wpf.Demo"
     Source="Views/Page1.xaml"
     BuiltinAnimType="ModernSlidein"
