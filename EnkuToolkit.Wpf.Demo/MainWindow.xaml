@@ -10,6 +10,7 @@
     BuiltinAnimType="ModernSlidein"
     mc:Ignorable="d"
     et:WindowStateSaveBehavior.IsStateSave="True"
+    et:NavigatedParamSendBehavior.IsSendFromNavigationWindow="True"
     Title="DemoApp">
 
     <et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
