@@ -76,7 +76,7 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 
 | View Service名                                   | 備考                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
-| [MessageBoxService](./docs/MessageBoxService.md) | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
+| MessageBoxService | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
 | AbstractNavigationService                        | 近いうちに書きます。                                         |
 | MainNavigationWindowNavigationService            | 近いうちに書きます。                                         |
 | ApplicationPropertyiesService                    | 近いうちに書きます。                                         |
