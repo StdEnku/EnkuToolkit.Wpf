@@ -44,7 +44,7 @@ ViewModel側のプロジェクトにEnkuToolkit.UiIndependentをインストー�
 xaml上から本ライブラリのすべてのクラスにアクセスするには下記のxml名前空間からアクセスしてください。
 
 ```xaml
-xmlns:et="https://github.com/StdEnku/EnkuToolkit/Wpf/Controls"
+xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 ```
 
 
