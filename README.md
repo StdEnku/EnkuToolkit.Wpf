@@ -47,9 +47,6 @@ xaml上から本ライブラリのすべてのクラスにアクセスするに�
 xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 ```
 
-> ドキュメントは完全ではありませんがサンプルは下記リポジトリにおいてます。こちらもまだ未完成ですが...
-[EnkuToolkitExamples](https://github.com/StdEnku/EnkuToolkitExamples)
-
 ## カスタムコントロール
 
 | コントロール名                                               | 備考                                                         |
