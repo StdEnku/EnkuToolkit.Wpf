@@ -47,7 +47,8 @@ xaml上から本ライブラリのすべてのクラスにアクセスするに�
 xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 ```
 
-
+> ドキュメントは完全ではありませんがサンプルは下記リポジトリにおいてます。こちらもまだ未完成ですが...
+[EnkuToolkitExamples](https://github.com/StdEnku/EnkuToolkitExamples)
 
 ## カスタムコントロール
 
@@ -60,14 +61,13 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | [TransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/04.TransformContentControl) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
 | [NormalizedTransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/05.NormalizedTransformContentControl) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
 
-
-
 ## 添付ビヘイビア
 
 | ビヘイビア名                                                 | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [WindowStateSaveBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/06.WindowStateSaveBehavior) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
 | [NavigatedParamSendBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/11.NavigatedParamSendBehavior) | FrameやNavigationWindowにて画面遷移を行う際に前の画面から渡されたパラメータをViewModelで取得するためのビヘイビア |
+
 
 
 
