@@ -62,7 +62,7 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 
 マークアップ拡張
 
-| マークアップ拡張名         | 備考               |
-| -------------------------- | ------------------ |
-| ViewModelProviderExtension | 近いうちに書きます |
+| マークアップ拡張名                                           | 備考                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [ViewModelProviderExtension](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/12.ViewModelProviderExtension) | DIコンテナからViewModelのオブジェクトを生成するためのマークアップ拡張 |
 
