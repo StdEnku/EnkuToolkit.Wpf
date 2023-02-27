@@ -25,10 +25,10 @@ public class ViewModelProviderExtension : MarkupExtension
     }
 
     /// <summary>
-    /// 派生クラスで実装された場合、このマークアップ拡張機能のターゲット プロパティの値として提供されるオブジェクトを返します。
+    /// 本マークアップ拡張の戻り値を作成するメソッド
     /// </summary>
-    /// <param name="serviceProvider">マークアップ拡張機能のサービスを提供できるサービス プロバイダーのヘルパー。</param>
-    /// <returns>拡張機能が適用されたプロパティで設定するオブジェクト値。</returns>
+    /// <param name="serviceProvider">マークアップ拡張機能のサービスを提供できるサービスプロバイダーのヘルパー</param>
+    /// <returns>DIコンテナから生成されたViewModelオブジェクト</returns>
     /// <exception cref="InvalidOperationException">
     /// DIコンテナViewModelを生成できなかった場合に投げられる例外
     /// </exception>
