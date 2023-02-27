@@ -60,3 +60,9 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | [MainNavigationWindowNavigationService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/09.MainNavigationWindowNavigationService) | App.Current.MainWindowがNavigationWindowの場合使用可能なViewModelから画面遷移させるためのViewService |
 | [ApplicationPropertyiesService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/10.ApplicationPropertyiesService) | ViewModelからApplication.Propertyisプロパティを操作可能にするためのViewService |
 
+マークアップ拡張
+
+| マークアップ拡張名         | 備考               |
+| -------------------------- | ------------------ |
+| ViewModelProviderExtension | 近いうちに書きます |
+

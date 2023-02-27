@@ -1,17 +1,17 @@
 ﻿namespace EnkuToolkit.Wpf.Demo;
 
-using EnkuViewModelLocator.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Reflection;
 using System.Windows;
 using EnkuToolkit.Wpf.Services;
 using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.Wpf.Demo.ViewModels;
+using EnkuToolkit.UiIndependent.ApplicationInterfaces;
 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application, IDiApplication
+public partial class App : Application, IServicesOwner
 {
     public App()
     {
@@ -27,16 +27,9 @@ public partial class App : Application, IDiApplication
     {
         var services = new ServiceCollection();
 
-        var assembly = Assembly.GetExecutingAssembly();
-        var vmWithLifeTime = SearchViewModelService.FromAssembly(assembly);
-        foreach (var i in vmWithLifeTime)
-        {
-            if (i.LifeTime == ViewModelAttribute.ServiceLifeTime.Transient)
-                services.AddTransient(i.ViewModelType);
-            else
-                services.AddSingleton(i.ViewModelType);
-        }
-
+        services.AddTransient<Page1ViewModel>();
+        services.AddTransient<Page2ViewModel>();
+        services.AddTransient<Page3ViewModel>();
         services.AddTransient<INavigationService, MainNavigationWindowNavigationService>();
         services.AddTransient<IMessageBoxService, MessageBoxService>();
         services.AddTransient<IApplicationPropertyiesService, ApplicationPropertyiesService>();
