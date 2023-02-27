@@ -6,7 +6,7 @@ using System.Windows;
 using EnkuToolkit.Wpf.Services;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.Wpf.Demo.ViewModels;
-using EnkuToolkit.UiIndependent.ApplicationInterfaces;
+using EnkuToolkit.Wpf.MarkupExtensions;
 
 /// <summary>
 /// Interaction logic for App.xaml
