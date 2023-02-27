@@ -3,10 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
-using EnkuViewModelLocator.Wpf;
-using System;
 
-[ViewModel]
 public partial class Page1ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;

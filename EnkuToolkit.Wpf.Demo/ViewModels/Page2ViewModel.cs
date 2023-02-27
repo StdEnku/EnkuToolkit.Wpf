@@ -4,9 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.UiIndependent.ViewModelInterfaces;
-using EnkuViewModelLocator.Wpf;
 
-[ViewModel]
 public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
 {
     private readonly INavigationService _navigationService;
