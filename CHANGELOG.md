@@ -23,3 +23,15 @@
 ### Changed
 
 - `INavigationService`インターフェースの`RemoveAllHistory`メソッドが履歴をすべて削除するのではなくBack方向への履歴をすべて削除するメソッドであるため紛らわしいので名前を`RemoveAllBackEntry`へ修正
+
+
+
+## [1.0.10] - 2023-02-28
+
+### Removed
+
+- v1.0.8で実装されたINavigatedParamReceiveインターフェースのNavigatedメソッドから画面遷移の種類を取得できる機能を削除
+
+### Changed
+
+- NavigatedParamSendBehaviorを使用して画面遷移した際遷移先INavigatedParamReceiveインターフェースが実装されたViewModelのNavigatedメソッドはパラメータが以前の画面から渡されていない場合実行されないように修正
