@@ -15,3 +15,11 @@
 ### Changed
 
 - 画面遷移時にパラメータをViewModelで受け取るためのINavigatedParamReceiveインターフェースのNavigatedメソッドに実行された画面遷移の種類(BackやForwardなど)を取得するための第二引数modeを追加
+
+
+
+## [1.0.9] - 2023-02-28
+
+### Changed
+
+- `INavigationService`インターフェースの`RemoveAllHistory`メソッドが履歴をすべて削除するのではなくBack方向への履歴をすべて削除するメソッドであるため紛らわしいので名前を`RemoveAllBackEntry`へ修正
