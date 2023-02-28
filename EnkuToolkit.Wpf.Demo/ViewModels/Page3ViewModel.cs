@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.UiIndependent.ViewModelInterfaces;
+using EnkuToolkit.UiIndependent.Constants;
 
 public partial class Page3ViewModel : ObservableObject, INavigatedParamReceive
 {
@@ -26,8 +27,8 @@ public partial class Page3ViewModel : ObservableObject, INavigatedParamReceive
         this._navigationService.GoBack();
     }
 
-    public void Navigated(object? extraData)
+    public void Navigated(object? extraData, NavigationMode mode)
     {
-        System.Diagnostics.Debug.WriteLine("Page3");
+        System.Diagnostics.Debug.WriteLine(mode);
     }
 }

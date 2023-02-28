@@ -1,5 +1,7 @@
 ﻿namespace EnkuToolkit.UiIndependent.ViewModelInterfaces;
 
+using EnkuToolkit.UiIndependent.Constants;
+
 /// <summary>
 /// NavigatedParamSendBehaviorが適用されたFrameやNavigationWidnowでの画面遷移時に
 /// パラメータの受け取りを行うためのNavigatedメソッドを含むインターフェース。
@@ -10,5 +12,6 @@ public interface INavigatedParamReceive
     /// NavigatedParamSendBehaviorが適用されたFrameやNavigationWidnowでの画面遷移時に呼ばれるメソッド
     /// </summary>
     /// <param name="extraData">以前表示されていたPageやそのViewModelから渡されたパラメータ</param>
-    void Navigated(object? extraData);
+    /// <param name="mode">実行された画面遷移の種類</param>
+    void Navigated(object? extraData, NavigationMode mode);
 }
