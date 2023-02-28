@@ -22,6 +22,9 @@ public partial class Page1ViewModel : ObservableObject
     [RelayCommand]
     private void NextPage()
     {
-        this._navigationService.NavigateRootBase("Views/Page2.xaml", "From Page1");
+        if (this._navigationService.CanGoForward)
+            this._navigationService.GoForward();
+        else
+            this._navigationService.NavigateRootBase("Views/Page2.xaml", "From Page1");
     }
 }

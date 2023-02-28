@@ -1,6 +1,6 @@
 ![logo](./imgs/logo.png)
 
-
+[CHANGELOG.md](./CHANGELOG.md)
 
 # インストール
 
