@@ -71,7 +71,7 @@ public class CustomTitlebarWindow : Window
     protected override void OnStateChanged(EventArgs e)
     {
         var nextMargin = this.WindowState == WindowState.Maximized ? 
-                         new Thickness(8) : 
+                         new Thickness(8, 8, 8, 0) : 
                          new Thickness(0);
 
         this.Titlebar.Margin = nextMargin;
