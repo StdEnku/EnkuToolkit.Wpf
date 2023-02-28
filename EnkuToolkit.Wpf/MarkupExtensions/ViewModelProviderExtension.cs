@@ -41,7 +41,7 @@ public class ViewModelProviderExtension : MarkupExtension
     /// <param name="serviceProvider">マークアップ拡張機能のサービスを提供できるサービスプロバイダーのヘルパー</param>
     /// <returns>DIコンテナから生成されたViewModelオブジェクト</returns>
     /// <exception cref="InvalidOperationException">
-    /// DIコンテナViewModelを生成できなかった場合に投げられる例外
+    /// DIコンテナでViewModelを生成できなかった場合に投げられる例外
     /// </exception>
     public override object? ProvideValue(IServiceProvider serviceProvider)
     {
