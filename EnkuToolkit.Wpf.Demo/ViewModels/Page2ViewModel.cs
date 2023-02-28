@@ -20,14 +20,17 @@ public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
         this._messageBoxService = messageBoxService;
     }
 
+    [ObservableProperty]
+    private string _text = "NULL";
+
     [RelayCommand]
     private void GoBack()
     {
         this._navigationService.GoBack();
     }
 
-    public void Navigated(object? extraData)
+    public void Navigated(object extraData)
     {
-        
+        this.Text = (string)extraData;
     }
 }
