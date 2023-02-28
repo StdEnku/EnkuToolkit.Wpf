@@ -48,9 +48,9 @@ public interface INavigationService
     void StopLoading();
 
     /// <summary>
-    /// ナビゲーション履歴をすべて削除するためのメソッド
+    /// 履歴から前回表示されていたページの履歴をすべて削除するためのメソッド
     /// </summary>
-    void RemoveAllHistory();
+    void RemoveAllBackEntry();
 
     /// <summary>
     /// 画面遷移対象のFrameやNavigationWindowでGoBackメソッドが実行可能かを表すプロパティ
