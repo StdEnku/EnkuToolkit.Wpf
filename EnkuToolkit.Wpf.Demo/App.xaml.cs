@@ -29,7 +29,6 @@ public partial class App : Application, IServicesOwner
 
         services.AddTransient<Page1ViewModel>();
         services.AddTransient<Page2ViewModel>();
-        services.AddTransient<Page3ViewModel>();
         services.AddTransient<INavigationService, MainNavigationWindowNavigationService>();
         services.AddTransient<IMessageBoxService, MessageBoxService>();
         services.AddTransient<IApplicationPropertyiesService, ApplicationPropertyiesService>();

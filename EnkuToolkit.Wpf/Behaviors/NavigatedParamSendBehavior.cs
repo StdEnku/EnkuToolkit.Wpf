@@ -1,6 +1,5 @@
 ﻿namespace EnkuToolkit.Wpf.Behaviors;
 
-using EnkuNavigationMode = EnkuToolkit.UiIndependent.Constants.NavigationMode;
 using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,19 +16,9 @@ public class NavigatedParamSendBehavior
         var nextPage = (Page)e.Content;
         var extraData = e.ExtraData;
 
-        if (nextPage.DataContext is INavigatedParamReceive dc)
-            dc.Navigated(extraData, currentNaivgationMode);
+        if (nextPage.DataContext is INavigatedParamReceive dc && extraData is not null)
+            dc.Navigated(extraData);
     }
-
-    private static void onTargetNavigating(object sender, NavigatingCancelEventArgs e)
-    {
-        currentNaivgationMode = e.NavigationMode == NavigationMode.New ? EnkuNavigationMode.New :
-                                e.NavigationMode == NavigationMode.Forward ? EnkuNavigationMode.Forward :
-                                e.NavigationMode == NavigationMode.Back ? EnkuNavigationMode.Back :
-                                EnkuNavigationMode.Reflesh;
-    }
-
-    private static EnkuNavigationMode currentNaivgationMode;
 
     #region NavigationWindowに添付できる添付プロパティ
     /// <summary>
@@ -72,7 +61,6 @@ public class NavigatedParamSendBehavior
 
         var target = (NavigationWindow)d;
         target.NavigationService.Navigated += onTargetNavigated;
-        target.NavigationService.Navigating += onTargetNavigating;
     }
     #endregion
 
@@ -117,7 +105,6 @@ public class NavigatedParamSendBehavior
 
         var target = (Frame)d;
         target.NavigationService.Navigated += onTargetNavigated;
-        target.NavigationService.Navigating += onTargetNavigating;
     }
     #endregion
 }

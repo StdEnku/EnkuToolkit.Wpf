@@ -2,7 +2,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EnkuToolkit.UiIndependent.Constants;
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 
@@ -22,22 +21,13 @@ public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
     }
 
     [RelayCommand]
-    private void NextPage()
-    {
-        if (this._navigationService.CanGoForward)
-            this._navigationService.GoForward();
-        else
-            this._navigationService.NavigateRootBase("Views/Page3.xaml", "From Page2");
-    }
-
-    [RelayCommand]
     private void GoBack()
     {
         this._navigationService.GoBack();
     }
 
-    public void Navigated(object? extraData, NavigationMode mode)
+    public void Navigated(object? extraData)
     {
-        System.Diagnostics.Debug.WriteLine(mode);
+        
     }
 }
