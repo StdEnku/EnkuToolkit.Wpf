@@ -28,7 +28,7 @@
                             <Setter Property="et:TitlebarComponentsBehavior.IsHitTestVisible" Value="True" />
                         </Style>
                     </StackPanel.Resources>
-                    
+
                     <Button Content="_" Click="MinimizeButtonClicked" />
                     <Button Content="□" Click="MaximizeButtonClicked" />
                     <Button Content="×" Click="ShutdownButtonClicked" />
@@ -36,5 +36,4 @@
             </UniformGrid>
         </Border>
     </et:CustomTitlebarAnimatedNavigationWindow.Titlebar>
-
 </et:CustomTitlebarAnimatedNavigationWindow>

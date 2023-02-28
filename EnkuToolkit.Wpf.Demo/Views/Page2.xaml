@@ -13,11 +13,10 @@
       Title="Page2">
 
     <DockPanel LastChildFill="True">
-        <Button Content="Next page" Command="{Binding NextPageCommand}" Margin="10" DockPanel.Dock="Bottom" />
         <Button Content="go back" Command="{Binding GoBackCommand}" Margin="10" DockPanel.Dock="Bottom" />
 
         <Viewbox DockPanel.Dock="Top">
-            <Label Content="Page2" />
+            <Label Content="{Binding Text}" />
         </Viewbox>
     </DockPanel>
 </Page>
