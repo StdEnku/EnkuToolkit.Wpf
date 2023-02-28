@@ -35,3 +35,11 @@
 ### Changed
 
 - NavigatedParamSendBehaviorを使用して画面遷移した際遷移先INavigatedParamReceiveインターフェースが実装されたViewModelのNavigatedメソッドはパラメータが以前の画面から渡されていない場合実行されないように修正
+
+
+
+## [1.0.11] - 2023-02-28
+
+### Changed
+
+- v1.0.7の頃と同じようにNavigatedParamSendBehaviorを使用して画面遷移した際遷移先INavigatedParamReceiveインターフェースが実装されたViewModelのNavigatedメソッドがパラメータが以前の画面から渡されていない場合でも実行されるように修正して、引数extraDataをNull許容型に変更

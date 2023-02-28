@@ -10,5 +10,5 @@ public interface INavigatedParamReceive
     /// NavigatedParamSendBehaviorが適用されたFrameやNavigationWidnowでの画面遷移時に呼ばれるメソッド
     /// </summary>
     /// <param name="extraData">以前表示されていたPageやそのViewModelから渡されたパラメータ</param>
-    void Navigated(object extraData);
+    void Navigated(object? extraData);
 }

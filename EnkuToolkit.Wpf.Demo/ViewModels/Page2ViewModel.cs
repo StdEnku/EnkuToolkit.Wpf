@@ -29,8 +29,9 @@ public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
         this._navigationService.GoBack();
     }
 
-    public void Navigated(object extraData)
+    public void Navigated(object? extraData)
     {
-        this.Text = (string)extraData;
+        if (extraData is string paramText)
+            this.Text = paramText;
     }
 }
