@@ -96,12 +96,12 @@ public abstract class AbstractNavigationService : INavigationService
     }
 
     /// <summary>
-    /// ナビゲーション履歴をすべて削除するためのメソッド
+    /// 履歴から前回表示されていたページの履歴をすべて削除するためのメソッド
     /// </summary>
-    public void RemoveAllHistory()
+    public void RemoveAllBackEntry()
     {
         var ns = this.TargetNavigationService;
-        while(ns.CanGoBack)
+        while (ns.CanGoBack)
         {
             ns.RemoveBackEntry();
         }
