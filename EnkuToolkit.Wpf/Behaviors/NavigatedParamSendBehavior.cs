@@ -16,7 +16,7 @@ public class NavigatedParamSendBehavior
         var nextPage = (Page)e.Content;
         var extraData = e.ExtraData;
 
-        if (nextPage.DataContext is INavigatedParamReceive dc && extraData is not null)
+        if (nextPage.DataContext is INavigatedParamReceive dc)
             dc.Navigated(extraData);
     }
 
