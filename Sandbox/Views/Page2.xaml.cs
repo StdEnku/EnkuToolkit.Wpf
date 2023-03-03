@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.Wpf.Demo.Views;
+﻿namespace Sandbox.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +15,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 /// <summary>
-/// Page1.xaml の相互作用ロジック
+/// Page2.xaml の相互作用ロジック
 /// </summary>
-public partial class Page1 : Page
+public partial class Page2 : Page
 {
-    public Page1()
+    public Page2()
     {
         InitializeComponent();
     }

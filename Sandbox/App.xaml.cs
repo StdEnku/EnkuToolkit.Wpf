@@ -1,16 +1,13 @@
-﻿namespace EnkuToolkit.Wpf.Demo;
+﻿namespace Sandbox;
 
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
 using EnkuToolkit.Wpf.Services;
 using EnkuToolkit.UiIndependent.Services;
-using EnkuToolkit.Wpf.Demo.ViewModels;
 using EnkuToolkit.Wpf.MarkupExtensions;
+using Sandbox.ViewModels;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application, IServicesOwner
 {
     public App()

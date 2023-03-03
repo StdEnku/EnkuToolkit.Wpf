@@ -43,3 +43,11 @@
 ### Changed
 
 - v1.0.7の頃と同じようにNavigatedParamSendBehaviorを使用して画面遷移した際遷移先INavigatedParamReceiveインターフェースが実装されたViewModelのNavigatedメソッドがパラメータが以前の画面から渡されていない場合でも実行されるように修正して、引数extraDataをNull許容型に変更
+
+
+
+## [1.0.12] - 2023-03-03
+
+### Removed
+
+- TitlebarComponentsBehaviorはただ単にWindowChrome.IsHitTestVisibleInChromeをラップしているだけの無駄な実装だったため削除しました。以降カスタムタイトルバー系のウィンドウを使用してタイトルバー内にボタンなどのクリック可能にしたいコントロールがある場合はそのコントロールにWindowChrome.IsHitTestVisibleInChrome="True"と添付してください。

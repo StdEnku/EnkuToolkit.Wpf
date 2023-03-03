@@ -4,6 +4,7 @@ using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using System.Diagnostics;
 
 /// <summary>
 /// 画面遷移時に読み込まれたPageオブジェクトのDataContextがINavigatedPraramReceiveを実装している場合
@@ -11,15 +12,6 @@ using System.Windows.Navigation;
 /// </summary>
 public class NavigatedParamSendBehavior
 {
-    private static void onTargetNavigated(object sender, NavigationEventArgs e)
-    {
-        var nextPage = (Page)e.Content;
-        var extraData = e.ExtraData;
-
-        if (nextPage.DataContext is INavigatedParamReceive dc)
-            dc.Navigated(extraData);
-    }
-
     #region NavigationWindowに添付できる添付プロパティ
     /// <summary>
     /// NavigationWindow用のパラメータの送信を行うか指定するための添付プロパティ
@@ -29,7 +21,7 @@ public class NavigatedParamSendBehavior
             "IsSendFromNavigationWindow",
             typeof(bool),
             typeof(NavigatedParamSendBehavior),
-            new PropertyMetadata(false, onIsSendFromNavigationWindowChanged)
+            new PropertyMetadata(false, onIsSendChanged)
         );
 
     /// <summary>
@@ -53,15 +45,6 @@ public class NavigatedParamSendBehavior
     /// </returns>
     public static bool GetIsSendFromNavigationWindow(NavigationWindow target)
         => (bool)target.GetValue(IsSendFromNavigationWindowProperty);
-
-    private static void onIsSendFromNavigationWindowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var value = (bool)e.NewValue;
-        if (!value) return;
-
-        var target = (NavigationWindow)d;
-        target.NavigationService.Navigated += onTargetNavigated;
-    }
     #endregion
 
     #region Frameに添付できる添付プロパティ
@@ -73,7 +56,7 @@ public class NavigatedParamSendBehavior
             "IsSendFromFrame",
             typeof(bool),
             typeof(NavigatedParamSendBehavior),
-            new PropertyMetadata(false, onIsSendFromFrameChanged)
+            new PropertyMetadata(false, onIsSendChanged)
         );
 
     /// <summary>
@@ -97,14 +80,34 @@ public class NavigatedParamSendBehavior
     /// </returns>
     public static bool GetIsSendFromFrame(Frame target)
         => (bool)target.GetValue(IsSendFromFrameProperty);
+    #endregion
 
-    private static void onIsSendFromFrameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void onIsSendChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var value = (bool)e.NewValue;
-        if (!value) return;
 
-        var target = (Frame)d;
-        target.NavigationService.Navigated += onTargetNavigated;
+        if (d is NavigationWindow nWindow)
+        {
+            if (!value) return;
+            nWindow.NavigationService.Navigated += onTargetNavigated;
+        }
+        else if (d is Frame frame)
+        {
+            if (!value) return;
+            frame.NavigationService.Navigated += onTargetNavigated;
+        }
+        else
+        {
+            Debug.Assert(false, "The only attached properties that use this method are Frame or NaigationWindow, so it should not pass through here.");
+        }
     }
-    #endregion
+
+    private static void onTargetNavigated(object sender, NavigationEventArgs e)
+    {
+        var nextPage = (Page)e.Content;
+        var extraData = e.ExtraData;
+
+        if (nextPage.DataContext is INavigatedParamReceive dc)
+            dc.Navigated(extraData);
+    }
 }
