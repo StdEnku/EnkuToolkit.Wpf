@@ -25,7 +25,7 @@
                             <Setter Property="Foreground" Value="White" />
                             <Setter Property="FontSize" Value="30" />
                             <Setter Property="Width" Value="50" />
-                            <Setter Property="et:TitlebarComponentsBehavior.IsHitTestVisible" Value="True" />
+                            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
                         </Style>
                     </StackPanel.Resources>
 
