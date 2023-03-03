@@ -1,17 +1,16 @@
-﻿namespace EnkuToolkit.Wpf.Demo.ViewModels;
+﻿namespace Sandbox.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
-using EnkuToolkit.UiIndependent.ViewModelInterfaces;
 
-public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
+public partial class Page1ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
     private readonly IApplicationPropertyiesService _applicationPropertyiesService;
     private readonly IMessageBoxService _messageBoxService;
 
-    public Page2ViewModel(INavigationService navigationService,
+    public Page1ViewModel(INavigationService navigationService, 
                           IApplicationPropertyiesService applicationPropertyiesService,
                           IMessageBoxService messageBoxService)
     {
@@ -21,17 +20,11 @@ public partial class Page2ViewModel : ObservableObject, INavigatedParamReceive
     }
 
     [ObservableProperty]
-    private string _text = "NULL";
+    private string _text = "Hello Wrold";
 
     [RelayCommand]
-    private void GoBack()
+    private void NextPage()
     {
-        this._navigationService.GoBack();
-    }
-
-    public void Navigated(object? extraData)
-    {
-        if (extraData is string paramText)
-            this.Text = paramText;
+        this._navigationService.NavigateRootBase("Views/Page2.xaml", this.Text);
     }
 }
