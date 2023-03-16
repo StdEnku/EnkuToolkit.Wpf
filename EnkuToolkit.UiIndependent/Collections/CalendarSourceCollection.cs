@@ -53,7 +53,7 @@ public class CalendarSourceCollection : ObservableCollection<ICalendarSource>
             var minYear = DateTime.MinValue.Year;
 
             if (year > maxYear || year < minYear)
-                throw new ArgumentOutOfRangeException($"Year property must be from {maxYear} to {minYear}.");
+                throw new ArgumentOutOfRangeException(nameof(value), $"Year property must be from {maxYear} to {minYear}.");
 
             this._year = year;
         }
@@ -75,7 +75,7 @@ public class CalendarSourceCollection : ObservableCollection<ICalendarSource>
             var minMonth = DateTime.MinValue.Month;
 
             if (month > maxMonth || month < minMonth)
-                throw new ArgumentOutOfRangeException($"Month property must be from {maxMonth} to {minMonth}.");
+                throw new ArgumentOutOfRangeException(nameof(value), $"Month property must be from {maxMonth} to {minMonth}.");
 
             this._month = month;
         }
@@ -91,21 +91,25 @@ public class CalendarSourceCollection : ObservableCollection<ICalendarSource>
     /// </exception>
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
-        // 範囲を超えた日付を指定してないかのバリデーション
-        foreach (var day in from calendarSource in this select calendarSource.Day)
+        var action = e.Action;
+        if (action == NotifyCollectionChangedAction.Add || action == NotifyCollectionChangedAction.Replace)
         {
-            if (!DateTime.TryParse($"{this.Year}/{this.Month}/{day}", out DateTime _))
-                throw new InvalidOperationException("Valid date range exceeded.");
+            // 範囲を超えた日付を指定してないかのバリデーション
+            foreach (var day in from calendarSource in this select calendarSource.Day)
+            {
+                if (!DateTime.TryParse($"{this.Year}/{this.Month}/{day}", out DateTime _))
+                    throw new InvalidOperationException("Valid date range exceeded.");
+            }
+
+            // 重複する日付が追加されていないかのバリデーション
+            var isDupplicated = (from calendarSource in this
+                                 group calendarSource by calendarSource.Day into uniqueGroup
+                                 where uniqueGroup.Count() > 1
+                                 select uniqueGroup).Count() > 0;
+
+            if (isDupplicated)
+                throw new InvalidOperationException("Duplicate dates are registered.");
         }
-
-        // 重複する日付が追加されていないかのバリデーション
-        var isDupplicated = (from calendarSource in this
-                             group calendarSource by calendarSource.Day into uniqueGroup
-                             where uniqueGroup.Count() > 1
-                             select uniqueGroup).Count() > 0;
-
-        if (isDupplicated)
-            throw new InvalidOperationException("Duplicate dates are registered.");
 
         base.OnCollectionChanged(e);
     }
