@@ -28,6 +28,12 @@
                     <sys:String>土</sys:String>
                 </x:Array>
             </et:CustamizableCalendar.DayOfWeekSource>
+
+            <et:CustamizableCalendar.Source>
+                <et:CalendarSourceCollection Year="2023" Month="3">
+                    <et:CalendarSource Day="1" />
+                </et:CalendarSourceCollection>
+            </et:CustamizableCalendar.Source>
         </et:CustamizableCalendar>
     </DockPanel>
 </Page>

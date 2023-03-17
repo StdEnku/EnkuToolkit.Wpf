@@ -1,9 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:etuic="clr-namespace:EnkuToolkit.UiIndependent.Collections;assembly=EnkuToolkit.UiIndependent"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="controls:CustamizableCalendar">
+        <!--#region 各種プロパティ用の初期値-->
         <Setter Property="DayOfWeekSource">
             <Setter.Value>
                 <x:Array Type="{x:Type sys:String}">
@@ -25,7 +27,24 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        
+
+        <Setter Property="CellTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="etuic:CalendarSource">
+                    <Label Content="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="AutoGenCellTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="etuic:CalendarSource">
+                    <Label Content="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--#endregion-->
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustamizableCalendar">
@@ -149,9 +168,14 @@
                         </Grid>
                         <!--#endregion-->
 
-                        <Viewbox DockPanel.Dock="Bottom">
-                            <Label Content="カレンダー" />
-                        </Viewbox>
+                        <ListBox Name="CalendarCells" 
+                                 DockPanel.Dock="Bottom">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="6" Columns="7" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
