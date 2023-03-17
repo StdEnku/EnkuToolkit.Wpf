@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sandbox.Views"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
       DataContext="{et:ViewModelProvider vm:Page1ViewModel}"
@@ -12,8 +13,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <StackPanel VerticalAlignment="Center">
-        <TextBox Text="{Binding Text}" Margin="20" />
-        <Button Content="Next page" Command="{Binding NextPageCommand}" Margin="20" />
-    </StackPanel>
+    <DockPanel LastChildFill="True">
+        <CheckBox Content="IsStartWeekMonday" Name="cb" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10" />
+
+        <et:CustamizableCalendar DockPanel.Dock="Bottom" IsStartWeekMonday="{Binding ElementName=cb, Path=IsChecked}">
+            <et:CustamizableCalendar.DayOfWeekSource>
+                <x:Array Type="{x:Type sys:String}">
+                    <sys:String>日</sys:String>
+                    <sys:String>月</sys:String>
+                    <sys:String>火</sys:String>
+                    <sys:String>水</sys:String>
+                    <sys:String>木</sys:String>
+                    <sys:String>金</sys:String>
+                    <sys:String>土</sys:String>
+                </x:Array>
+            </et:CustamizableCalendar.DayOfWeekSource>
+        </et:CustamizableCalendar>
+    </DockPanel>
 </Page>

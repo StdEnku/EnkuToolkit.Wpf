@@ -13,3 +13,4 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.Wpf.Controls")]
 [assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.Wpf.Behaviors")]
 [assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.Wpf.MarkupExtensions")]
+[assembly: XmlnsDefinition("https://github.com/StdEnku/EnkuToolkit", "EnkuToolkit.UiIndependent.Collections")]

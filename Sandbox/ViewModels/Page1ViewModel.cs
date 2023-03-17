@@ -19,12 +19,5 @@ public partial class Page1ViewModel : ObservableObject
         this._messageBoxService = messageBoxService;
     }
 
-    [ObservableProperty]
-    private string _text = "Hello Wrold";
-
-    [RelayCommand]
-    private void NextPage()
-    {
-        this._navigationService.NavigateRootBase("Views/Page2.xaml", this.Text);
-    }
+    
 }
