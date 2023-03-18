@@ -31,7 +31,11 @@
         <Setter Property="CellTemplate">
             <Setter.Value>
                 <DataTemplate DataType="etuic:CalendarSource">
-                    <Label Content="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid>
+                        <Label Content="{Binding Day}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -39,7 +43,11 @@
         <Setter Property="AutoGenCellTemplate">
             <Setter.Value>
                 <DataTemplate DataType="etuic:CalendarSource">
-                    <Label Content="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid>
+                        <Label Content="{Binding Day}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -168,13 +176,20 @@
                         </Grid>
                         <!--#endregion-->
 
-                        <ListBox Name="CalendarCells" 
+                        <ListBox Name="CalendarCells"
                                  DockPanel.Dock="Bottom">
+                            
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Rows="6" Columns="7" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
+
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListBox.ItemContainerStyle>
                         </ListBox>
                     </DockPanel>
                 </ControlTemplate>

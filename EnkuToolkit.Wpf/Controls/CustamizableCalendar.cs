@@ -215,6 +215,7 @@ public class CustamizableCalendar : Control
     {
         this.calendarReload();
     }
+    #endregion
 
     //ある範囲のDateTimeのIEnumerableを取得するためのメソッド
     private static IEnumerable<DateTime> getDateTimeRange(DateTime startDate, DateTime endDate)
@@ -283,7 +284,6 @@ public class CustamizableCalendar : Control
             listbox.Items.Add(listBoxItem);
         }
     }
-    #endregion
 
     /// <summary>
     /// コンストラクタ
