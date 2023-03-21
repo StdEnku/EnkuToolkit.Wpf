@@ -1,67 +1,36 @@
 ﻿namespace EnkuToolkit.Wpf.Controls;
 
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using UicCalendarSourceCollection = UiIndependent.Collections.CalendarSourceCollection;
-using UicCalendarSource = UiIndependent.Collections.CalendarSource;
-using UicICalendarSource = UiIndependent.Collections.ICalendarSource;
-using System.Collections.Specialized;
-
-/// <summary>
-/// 本ライブラリのクライアントプロジェクトから
-/// 通常のカスタムコントロールと同じxml名前空間で
-/// CalendarSourceCollectionクラスを呼び出せるようにするためのクラス
-/// </summary>
-public class CalendarSourceCollection : UicCalendarSourceCollection { }
-
-/// <summary>
-/// 本ライブラリのクライアントプロジェクトから
-/// 通常のカスタムコントロールと同じxml名前空間で
-/// CalendarSourceクラスを呼び出せるようにするためのクラス
-/// </summary>
-public class CalendarSource : UicCalendarSource { }
+using System.Collections.ObjectModel;
+using UiIndependent.Items;
+using System;
+using System.Windows.Media;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
 /// </summary>
 public class CustamizableCalendar : Control
 {
-    #region DayOfWeekSource依存関係プロパティ
+    #region DayOfWeekSourceプロパティ
     /// <summary>
-    /// 曜日名セルに渡すデータを表す依存関係プロパティ
+    /// 曜日行用のデータソースを表すプロパティ
     /// </summary>
-    /// <remarks>
-    /// セットできるアイテムの数は必ず7つである必要がある。
-    /// それ以外の場合InvalidOperationExceptionが投げられる。
-    /// </remarks>
     public static readonly DependencyProperty DayOfWeekSourceProperty
         = DependencyProperty.Register(
             nameof(DayOfWeekSource),
-            typeof(IEnumerable),
+            typeof(ObservableCollection<CalendarDayOfWeekSource>),
             typeof(CustamizableCalendar),
-            new PropertyMetadata(null, onDayOfWeekSourceChanged)
+            new FrameworkPropertyMetadata(new ObservableCollection<CalendarDayOfWeekSource>())
         );
 
     /// <summary>
     /// DayOfWeekSourceProperty用のCLRプロパティ
     /// </summary>
-    public IEnumerable? DayOfWeekSource
+    public ObservableCollection<CalendarDayOfWeekSource> DayOfWeekSource
     {
-        get => (IEnumerable?)this.GetValue(DayOfWeekSourceProperty);
+        get => (ObservableCollection<CalendarDayOfWeekSource>)this.GetValue(DayOfWeekSourceProperty);
         set => this.SetValue(DayOfWeekSourceProperty, value);
-    }
-
-    private static void onDayOfWeekSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var newValue = (IEnumerable<object>)e.NewValue;
-        var dayOfWeekCount = Enum.GetValues(typeof(DayOfWeek)).Length;
-
-        if (newValue.Count() != dayOfWeekCount)
-            throw new InvalidOperationException($"Only {dayOfWeekCount} elements can be specified for the WeekOfDaysSource property.");
     }
     #endregion
 
@@ -101,7 +70,7 @@ public class CustamizableCalendar : Control
             "IsStartWeekMonday",
             typeof(bool),
             typeof(CustamizableCalendar),
-            new PropertyMetadata(false, onIsStartWeekMondayChanged)
+            new PropertyMetadata(false)
         );
 
     /// <summary>
@@ -111,12 +80,6 @@ public class CustamizableCalendar : Control
     {
         get => (bool)this.GetValue(IsStartWeekMondayProperty);
         set => this.SetValue(IsStartWeekMondayProperty, value);
-    }
-
-    private static void onIsStartWeekMondayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var custamizableCalendar = (CustamizableCalendar)d;
-        custamizableCalendar.calendarReload();
     }
     #endregion
 
@@ -174,130 +137,64 @@ public class CustamizableCalendar : Control
     public static readonly DependencyProperty SourceProperty
         = DependencyProperty.Register(
             nameof(Source),
-            typeof(UicCalendarSourceCollection),
+            typeof(ObservableCollection<CalendarSource>),
             typeof(CustamizableCalendar),
-            new PropertyMetadata(
-                new UicCalendarSourceCollection() 
-                { 
-                    Year=DateTime.Today.Year, 
-                    Month=DateTime.Today.Month 
-                }, 
-                onSourceChanged
-            )
+            new PropertyMetadata(new ObservableCollection<CalendarSource>())
         );
 
     /// <summary>
     /// SourceProperty用のCLRプロパティ
     /// </summary>
-    public UicCalendarSourceCollection Source
+    public ObservableCollection<CalendarSource> Source
     {
-        get => (UicCalendarSourceCollection)this.GetValue(SourceProperty);
+        get => (ObservableCollection<CalendarSource>)this.GetValue(SourceProperty);
         set => this.SetValue(SourceProperty, value);
-    }
-
-    private static void onSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var custamizedCalendar = (CustamizableCalendar)d;
-        var newSource = e.NewValue as UicCalendarSourceCollection;
-        var oldSource = e.OldValue as UicCalendarSourceCollection;
-
-        if (oldSource is not null)
-            oldSource.CollectionChanged -= custamizedCalendar.onSourceCollectionChanged;
-
-        if (newSource is not null)
-            newSource.CollectionChanged += custamizedCalendar.onSourceCollectionChanged;
-
-        custamizedCalendar.calendarReload();
-    }
-
-    // Sourceプロパティに指定されたコレクションのアイテム変化時に呼び出されるメソッド
-    private void onSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        this.calendarReload();
     }
     #endregion
 
-    //ある範囲のDateTimeのIEnumerableを取得するためのメソッド
-    private static IEnumerable<DateTime> getDateTimeRange(DateTime startDate, DateTime endDate)
-    {
-        for (var i = startDate; i < endDate; i = i.AddDays(1))
-            yield return i;
-    }
-
-    // カレンダーセルの再読み込み用メソッド
-    private void calendarReload()
-    {
-        if (!this.IsLoaded) return;
-        if (this.Source is null) throw new NullReferenceException("The CustamizableCalendar.Source property is null.");
-
-        var listbox = (ListBox)this.GetTemplateChild("CalendarCells");
-        listbox.Items.Clear();
-
-        // 先月の日付を追加
-        var firstDay = new DateTime(this.Source.Year, this.Source.Month, 1);
-        var subLastMonday = (this.IsStartWeekMonday ? DayOfWeek.Monday : DayOfWeek.Sunday) - firstDay.DayOfWeek;
-        var lastMonthDateTimes = getDateTimeRange(firstDay.AddDays(subLastMonday), firstDay);
-        foreach (var i in lastMonthDateTimes)
-        {
-            var listBoxItem = new ListBoxItem()
-            {
-                Content = new UicCalendarSource { Day = i.Day },
-                ContentTemplate = this.AutoGenCellTemplate,
-                IsEnabled = false,
-            };
-
-            listbox.Items.Add(listBoxItem);
-        }
-
-        // 今月の日付を追加
-        var daysInMonthNum = DateTime.DaysInMonth(this.Source.Year, this.Source.Month);
-        UicICalendarSource? targetDay;
-        foreach (var dayNum in Enumerable.Range(1, daysInMonthNum))
-        {
-            targetDay = (from i in this.Source
-                         where i.Day == dayNum
-                         select i).FirstOrDefault();
-
-            var listBoxItem = new ListBoxItem()
-            {
-                Content = targetDay ?? new UicCalendarSource() { Day = dayNum },
-                ContentTemplate = targetDay is null ? this.AutoGenCellTemplate : this.CellTemplate,
-                IsEnabled = true,
-            };
-            listbox.Items.Add(listBoxItem);
-        }
-
-        // 来月の日付を追加
-        var lastDayNum = DateTime.DaysInMonth(this.Source.Year, this.Source.Month);
-        var lastDay = new DateTime(this.Source.Year, this.Source.Month, lastDayNum);
-        var numberOfExtraCells = 43 - listbox.Items.Count;
-        var nextMonthDateTimes = getDateTimeRange(lastDay.AddDays(1), lastDay.AddDays(numberOfExtraCells));
-        foreach (var i in nextMonthDateTimes)
-        {
-            var listBoxItem = new ListBoxItem()
-            {
-                Content = new UicCalendarSource { Day = i.Day },
-                ContentTemplate = this.AutoGenCellTemplate,
-                IsEnabled = false,
-            };
-
-            listbox.Items.Add(listBoxItem);
-        }
-    }
+    #region Year依存関係プロパティ
+    /// <summary>
+    /// 表示したい年を表す依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty YearProperty
+        = DependencyProperty.Register(
+            nameof(Year),
+            typeof(int),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(DateTime.Today.Year)
+        );
 
     /// <summary>
-    /// コンストラクタ
+    /// YearProperty用のCLRプロパティ
     /// </summary>
-    public CustamizableCalendar()
+    public int Year
     {
-        this.Loaded += this.onLoaded;
+        get => (int)this.GetValue(YearProperty);
+        set => this.SetValue(YearProperty, value);
     }
+    #endregion
 
-    // 本オブジェクトにてLoadedイベントが発火した際に実行されるメソッド
-    private void onLoaded(object sender, RoutedEventArgs e)
+    #region Month依存関係プロパティ
+    /// <summary>
+    /// 表示したい月を表す依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty MonthProperty
+        = DependencyProperty.Register(
+            nameof(Month),
+            typeof(int),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(DateTime.Today.Month)
+        );
+
+    /// <summary>
+    /// MonthProperty用のCLRプロパティ
+    /// </summary>
+    public int Month
     {
-        this.calendarReload();
+        get => (int)this.GetValue(MonthProperty);
+        set => this.SetValue(MonthProperty, value);
     }
+    #endregion
 
     static CustamizableCalendar()
     {

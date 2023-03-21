@@ -16,23 +16,19 @@
     <DockPanel LastChildFill="True">
         <CheckBox Content="IsStartWeekMonday" Name="cb" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10" />
 
-        <et:CustamizableCalendar DockPanel.Dock="Bottom" IsStartWeekMonday="{Binding ElementName=cb, Path=IsChecked}">
+        <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb, Path=IsChecked}" DockPanel.Dock="Bottom">
             <et:CustamizableCalendar.DayOfWeekSource>
-                <x:Array Type="{x:Type sys:String}">
-                    <sys:String>日</sys:String>
-                    <sys:String>月</sys:String>
-                    <sys:String>火</sys:String>
-                    <sys:String>水</sys:String>
-                    <sys:String>木</sys:String>
-                    <sys:String>金</sys:String>
-                    <sys:String>土</sys:String>
-                </x:Array>
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Sunday" Text="日" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Monday" Text="月" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Tuesday" Text="火" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Wednesday" Text="水" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Thursday" Text="木" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Friday" Text="金" />
+                <et:CalendarDayOfWeekSource TargetDayOfWeek="Saturday" Text="土" />
             </et:CustamizableCalendar.DayOfWeekSource>
 
             <et:CustamizableCalendar.Source>
-                <et:CalendarSourceCollection Year="2023" Month="3">
-                    <et:CalendarSource Day="1" />
-                </et:CalendarSourceCollection>
+                <et:CalendarSource Date="2023/03/1" />
             </et:CustamizableCalendar.Source>
         </et:CustamizableCalendar>
     </DockPanel>

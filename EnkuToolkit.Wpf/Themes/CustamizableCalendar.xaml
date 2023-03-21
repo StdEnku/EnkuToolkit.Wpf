@@ -1,53 +1,31 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:etuic="clr-namespace:EnkuToolkit.UiIndependent.Collections;assembly=EnkuToolkit.UiIndependent"
+                    xmlns:icv="clr-namespace:EnkuToolkit.Wpf.Controls.InternalConverters.CustamizableCalendar"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="controls:CustamizableCalendar">
-        <!--#region 各種プロパティ用の初期値-->
-        <Setter Property="DayOfWeekSource">
-            <Setter.Value>
-                <x:Array Type="{x:Type sys:String}">
-                    <sys:String>Sun</sys:String>
-                    <sys:String>Mon</sys:String>
-                    <sys:String>Tue</sys:String>
-                    <sys:String>Wed</sys:String>
-                    <sys:String>Thu</sys:String>
-                    <sys:String>Fri</sys:String>
-                    <sys:String>Sat</sys:String>
-                </x:Array>
-            </Setter.Value>
-        </Setter>
-
+        <!--#region プロパティの初期値-->
         <Setter Property="DayOfWeekTemplate">
             <Setter.Value>
-                <DataTemplate DataType="sys:String" >
-                    <Label Content="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <DataTemplate DataType="controls:DayOfWeekSource" >
+                    <Label Content="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
 
         <Setter Property="CellTemplate">
             <Setter.Value>
-                <DataTemplate DataType="etuic:CalendarSource">
-                    <Grid>
-                        <Label Content="{Binding Day}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" />
-                    </Grid>
+                <DataTemplate DataType="controls:CalendarSource">
+                    <Label Background="Green" Content="{Binding Date.Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
 
         <Setter Property="AutoGenCellTemplate">
             <Setter.Value>
-                <DataTemplate DataType="etuic:CalendarSource">
-                    <Grid>
-                        <Label Content="{Binding Day}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" />
-                    </Grid>
+                <DataTemplate DataType="controls:CalendarSource">
+                    <Label Background="Red" Content="{Binding Date.Day}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -57,137 +35,51 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustamizableCalendar">
                     <DockPanel LastChildFill="True">
-                        <!--#region 曜日表示エリア-->
-                        <Grid DockPanel.Dock="Top">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                        <DockPanel.Resources>
+                            <icv:DayOfWeekSourceToItemsSourceConverter x:Key="DayOfWeekSourceToItemsSourceConverter"/>
+                            <icv:SourceToItemsConverter x:Key="SourceToItemsConverter" />
+                        </DockPanel.Resources>
 
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[0]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="6" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="0" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
+                        <ItemsControl DockPanel.Dock="Top"
+                                      ItemTemplate="{TemplateBinding DayOfWeekTemplate}">
+                            <ItemsControl.ItemsSource>
+                                <MultiBinding Converter="{StaticResource DayOfWeekSourceToItemsSourceConverter}">
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DayOfWeekSource"/>
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
+                                </MultiBinding>
+                            </ItemsControl.ItemsSource>
 
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[1]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="0" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="1" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="7"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
 
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[2]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="1" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="2" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
+                        <ListBox DockPanel.Dock="Bottom">
+                            <ListBox.ItemsSource>
+                                <MultiBinding Converter="{StaticResource SourceToItemsConverter}">
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="AutoGenCellTemplate" />
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Year" />
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Month" />
+                                </MultiBinding>
+                            </ListBox.ItemsSource>
 
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[3]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="2" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="3" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
-
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[4]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="3" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="4" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
-
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[5]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="4" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="5" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
-
-                            <ContentControl Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=DayOfWeekSource[6]}" ContentTemplate="{TemplateBinding DayOfWeekTemplate}">
-                                <Control.Style>
-                                    <Style TargetType="Control">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="True">
-                                                <Setter Property="Grid.Column" Value="5" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsStartWeekMonday}" Value="False">
-                                                <Setter Property="Grid.Column" Value="6" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Control.Style>
-                            </ContentControl>
-                        </Grid>
-                        <!--#endregion-->
-
-                        <ListBox Name="CalendarCells"
-                                 DockPanel.Dock="Bottom">
-                            
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <UniformGrid Rows="6" Columns="7" />
+                                    <UniformGrid Columns="7" Rows="6" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
 
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                                    <Setter Property="Content" Value="{Binding}" />
+                                    <Setter Property="ContentTemplate" Value="{Binding TargetTemplate}" />
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
