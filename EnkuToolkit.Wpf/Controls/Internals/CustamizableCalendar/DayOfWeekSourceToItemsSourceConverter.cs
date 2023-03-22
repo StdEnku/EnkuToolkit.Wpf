@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.Wpf.Controls.InternalConverters.CustamizableCalendar;
+﻿namespace EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar;
 
 using System.Collections.Generic;
 using System.Globalization;

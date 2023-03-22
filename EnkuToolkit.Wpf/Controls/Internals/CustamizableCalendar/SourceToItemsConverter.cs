@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.Wpf.Controls.InternalConverters.CustamizableCalendar;
+﻿namespace EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar;
 
 using System;
 using System.Collections.Generic;
@@ -50,10 +50,10 @@ internal class SourceToItemsConverter : IMultiValueConverter
 
             if (source is null)
             {
-                source = new CalendarSource() 
-                { 
-                    Date = new DateTime(targetYear, targetMonth, dayNum), 
-                    TargetTemplate = autoGenCellTemplate 
+                source = new CalendarSource()
+                {
+                    Date = new DateTime(targetYear, targetMonth, dayNum),
+                    TargetTemplate = autoGenCellTemplate
                 };
             }
             else
