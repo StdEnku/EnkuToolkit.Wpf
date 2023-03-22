@@ -85,7 +85,7 @@
                             </ListBox.ItemsPanel>
                             
                             <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem" BasedOn="{me:GetGlobalStyle ListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResourceExtension {x:Type ListBoxItem}}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
                                     <Setter Property="Content" Value="{Binding}" />
