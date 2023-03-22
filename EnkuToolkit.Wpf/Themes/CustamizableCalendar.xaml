@@ -87,8 +87,8 @@
                                     HorizontalAlignment="Center"
                                     DockPanel.Dock="Top">
                             <StackPanel.Resources>
-                                <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResource {x:Type ListBoxItem}}">
-                                    <Setter Property="FontSize" Value="30" />
+                                <Style TargetType="Button" BasedOn="{me:GetApplicationResource {x:Type Button}}">
+                                    <Setter Property="FontSize" Value="20" />
                                     <Setter Property="HorizontalAlignment" Value="Center" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
                                     <Setter Property="Margin" Value="5" />
@@ -101,11 +101,11 @@
                                 </Style>
                             </StackPanel.Resources>
                             
-                            <ListBoxItem Content="▼" />
-                            <Label Content="{TemplateBinding Year}" />
-                            <Label Content="/" />
-                            <Label Content="{TemplateBinding Month}" />
-                            <ListBoxItem Content="▲" />
+                            <Button Name="a" Content="▼" />
+                            <Label Name="b" Content="{TemplateBinding Year}" />
+                            <Label Name="c" Content="/" />
+                            <Label Name="d" Content="{TemplateBinding Month}" />
+                            <Button Name="e" Content="▲" />
                         </StackPanel>
                         <!--#endregion-->
 
