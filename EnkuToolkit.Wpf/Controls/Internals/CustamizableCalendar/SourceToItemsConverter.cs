@@ -27,7 +27,7 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var targetYear = yearAndMonth.Year;
         var targetMonth = yearAndMonth.Month;
 
-        var result = new List<CalendarSource>();
+        var result = new List<CalendarSource>(42);
 
         // 先月の日付を追加
         var firstDay = new DateTime(targetYear, targetMonth, 1);
