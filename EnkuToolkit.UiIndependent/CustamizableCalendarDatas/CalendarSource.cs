@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.UiIndependent.Items;
+﻿namespace EnkuToolkit.UiIndependent.CustamizableCalendarDatas;
 
 /// <summary>
 /// CustamizableCalendarのSourceプロパティで使用するデータ。
@@ -33,4 +33,20 @@ public class CalendarSource
     /// CustamizableCalendarの機構上や仕方なく追加したプロパティのためnullにしておいてください。
     /// </summary>
     public object? TargetTemplate { get; set; }
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public CalendarSource()
+    {
+
+    }
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public CalendarSource(DateTime date)
+    {
+        this.Date = date;
+    }
 }

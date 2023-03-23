@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.UiIndependent.Items;
+﻿namespace EnkuToolkit.UiIndependent.CustamizableCalendarDatas;
 
 /// <summary>
 /// CustamizableCalendarのDayOfWeekSourceプロパティで使用する曜日行をカスタマイズするときに使用するデータ
@@ -21,4 +21,20 @@ public class CalendarDayOfWeekSource
     public bool IsHoliday => this.TargetDayOfWeek == DayOfWeek.Saturday ||
                              this.TargetDayOfWeek == DayOfWeek.Sunday ?
                              true : false;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public CalendarDayOfWeekSource()
+    {
+
+    }
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public CalendarDayOfWeekSource(DayOfWeek dayOfWeek)
+    {
+        this.TargetDayOfWeek = dayOfWeek;
+    }
 }

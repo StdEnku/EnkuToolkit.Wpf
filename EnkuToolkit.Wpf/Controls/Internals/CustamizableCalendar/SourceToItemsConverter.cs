@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using UiIndependent.Items;
+using UiIndependent.CustamizableCalendarDatas;
 
 internal class SourceToItemsConverter : IMultiValueConverter
 {
@@ -23,8 +23,9 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var isStartWeekMonday = (bool)values[1];
         var cellTemplate = (DataTemplate)values[2];
         var autoGenCellTemplate = (DataTemplate)values[3];
-        var targetYear = (int)values[4];
-        var targetMonth = (int)values[5];
+        var yearAndMonth = (YearAndMonth)values[4];
+        var targetYear = yearAndMonth.Year;
+        var targetMonth = yearAndMonth.Month;
 
         var result = new List<CalendarSource>();
 

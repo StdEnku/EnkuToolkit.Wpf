@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
                     xmlns:internal="clr-namespace:EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar"
+                    xmlns:datas="clr-namespace:EnkuToolkit.UiIndependent.CustamizableCalendarDatas;assembly=EnkuToolkit.UiIndependent"
                     xmlns:me="clr-namespace:EnkuToolkit.Wpf.MarkupExtensions"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -8,7 +9,7 @@
         <!--#region プロパティの初期値指定用セッター群-->
         <Setter Property="DayOfWeekTemplate">
             <Setter.Value>
-                <DataTemplate DataType="controls:DayOfWeekSource" >
+                <DataTemplate DataType="datas:DayOfWeekSource" >
                     <Label Content="{Binding Text}" 
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center">
@@ -29,7 +30,7 @@
 
         <Setter Property="CellTemplate">
             <Setter.Value>
-                <DataTemplate DataType="controls:CalendarSource">
+                <DataTemplate DataType="datas:CalendarSource">
                     <Border CornerRadius="10" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center">
@@ -51,7 +52,7 @@
 
         <Setter Property="AutoGenCellTemplate">
             <Setter.Value>
-                <DataTemplate DataType="controls:CalendarSource">
+                <DataTemplate DataType="datas:CalendarSource">
                     <Border CornerRadius="10" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center">
@@ -87,9 +88,7 @@
                                     DockPanel.Dock="Top">
 
                             <Button Content="▼" FontSize="20" Margin="5" Command="{TemplateBinding ToLastMonthButtonCommand}" />
-                            <Label Content="{TemplateBinding Year}" FontSize="40" Padding="0" />
-                            <Label Content="/" FontSize="40" Padding="0" />
-                            <Label Content="{TemplateBinding Month}" ContentStringFormat="{}{0:00}" FontSize="40" Padding="0" />
+                            <Label Content="{TemplateBinding TargetYearAndMonth}" FontSize="40" Padding="0" />
                             <Button Content="▲" FontSize="20" Margin="5" Command="{TemplateBinding ToNextMonthButtonCommand}" />
 
                             <StackPanel.Style>
@@ -134,8 +133,7 @@
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="AutoGenCellTemplate" />
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Year" />
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Month" />
+                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="TargetYearAndMonth" />
                                 </MultiBinding>
                             </ListBox.ItemsSource>
 

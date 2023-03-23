@@ -3,7 +3,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
-using UiIndependent.Items;
+using UiIndependent.CustamizableCalendarDatas;
 using System;
 using System.Windows.Input;
 using EnkuToolkit.Wpf.Controls.Internals;
@@ -153,47 +153,25 @@ public class CustamizableCalendar : Control
     }
     #endregion
 
-    #region Year依存関係プロパティ
+    #region TargetYearAndMonth依存関係プロパティ
     /// <summary>
-    /// 表示したい年を表す依存関係プロパティ
+    /// 表示したい年と月を表す依存関係プロパティ
     /// </summary>
-    public static readonly DependencyProperty YearProperty
+    public static readonly DependencyProperty TargetYearAndMonthProperty
         = DependencyProperty.Register(
-            nameof(Year),
-            typeof(int),
+            nameof(TargetYearAndMonth),
+            typeof(YearAndMonth),
             typeof(CustamizableCalendar),
-            new PropertyMetadata(DateTime.Today.Year)
+            new PropertyMetadata(new YearAndMonth(DateTime.Today.Year, DateTime.Today.Month))
         );
 
     /// <summary>
-    /// YearProperty用のCLRプロパティ
+    /// TargetYearProperty用のCLRプロパティ
     /// </summary>
-    public int Year
+    public YearAndMonth TargetYearAndMonth
     {
-        get => (int)this.GetValue(YearProperty);
-        set => this.SetValue(YearProperty, value);
-    }
-    #endregion
-
-    #region Month依存関係プロパティ
-    /// <summary>
-    /// 表示したい月を表す依存関係プロパティ
-    /// </summary>
-    public static readonly DependencyProperty MonthProperty
-        = DependencyProperty.Register(
-            nameof(Month),
-            typeof(int),
-            typeof(CustamizableCalendar),
-            new PropertyMetadata(DateTime.Today.Month)
-        );
-
-    /// <summary>
-    /// MonthProperty用のCLRプロパティ
-    /// </summary>
-    public int Month
-    {
-        get => (int)this.GetValue(MonthProperty);
-        set => this.SetValue(MonthProperty, value);
+        get => (YearAndMonth)this.GetValue(TargetYearAndMonthProperty);
+        set => this.SetValue(TargetYearAndMonthProperty, value);
     }
     #endregion
 
@@ -214,15 +192,7 @@ public class CustamizableCalendar : Control
 
     private void onNextMonthButtonClickedCommand()
     {
-        if (this.Month == 12)
-        {
-            this.Month = 1;
-            this.Year++;
-        }
-        else
-        {
-            this.Month++;
-        }
+        this.TargetYearAndMonth = this.TargetYearAndMonth.ForwardMonth();
     }
     #endregion
 
@@ -241,17 +211,9 @@ public class CustamizableCalendar : Control
         set => this.SetValue(ToLastMonthButtonCommandProperty, value);
     }
 
-    private void onLastMonthButtonClickedCommand()
+    private void onBackMonthButtonClickedCommand()
     {
-        if (this.Month == 1)
-        {
-            this.Month = 12;
-            this.Year--;
-        }
-        else
-        {
-            this.Month--;
-        }
+        this.TargetYearAndMonth = this.TargetYearAndMonth.BackwardMonth();
     }
     #endregion
 
@@ -283,7 +245,7 @@ public class CustamizableCalendar : Control
     public CustamizableCalendar()
     {
         this.ToNextMonthButtonCommand = new InternalDelegateCommand(this.onNextMonthButtonClickedCommand);
-        this.ToLastMonthButtonCommand = new InternalDelegateCommand(this.onLastMonthButtonClickedCommand);
+        this.ToLastMonthButtonCommand = new InternalDelegateCommand(this.onBackMonthButtonClickedCommand);
     }
 
     static CustamizableCalendar()

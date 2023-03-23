@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
 using System;
-using UiIndependent.Items;
+using UiIndependent.CustamizableCalendarDatas;
 using System.Linq;
 
 internal class DayOfWeekSourceToItemsSourceConverter : IMultiValueConverter

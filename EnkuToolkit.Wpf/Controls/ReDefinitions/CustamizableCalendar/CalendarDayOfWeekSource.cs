@@ -1,6 +1,6 @@
 ﻿namespace EnkuToolkit.Wpf.Controls.ReDefinitions.CustamizableCalendar;
 
-using EkuiCalendarDayOfWeekSource = UiIndependent.Items.CalendarDayOfWeekSource;
+using EkuiCalendarDayOfWeekSource = UiIndependent.CustamizableCalendarDatas.CalendarDayOfWeekSource;
 
 /// <summary>
 /// 他のコントロールと同じxml名前空間で呼び出し可能なCalendarDayOfWeekSourceクラス
