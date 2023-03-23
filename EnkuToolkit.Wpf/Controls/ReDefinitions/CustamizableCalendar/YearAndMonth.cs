@@ -3,7 +3,7 @@
 using EkuiYearAndMonth = EnkuToolkit.UiIndependent.CustamizableCalendarDatas.YearAndMonth;
 
 /// <summary>
-/// 他のコントロールと同じxml名前空間で呼び出し可能なCalendarSourceクラス
+/// 他のコントロールと同じxml名前空間で呼び出し可能なYearAndMonthクラス
 /// </summary>
 public class YearAndMonth : EkuiYearAndMonth
 {
