@@ -89,7 +89,7 @@
                             <Button Content="▼" FontSize="20" Margin="5" Command="{TemplateBinding ToLastMonthButtonCommand}" />
                             <Label Content="{TemplateBinding Year}" FontSize="40" Padding="0" />
                             <Label Content="/" FontSize="40" Padding="0" />
-                            <Label Content="{TemplateBinding Month}" FontSize="40" Padding="0" />
+                            <Label Content="{TemplateBinding Month}" ContentStringFormat="{}{0:00}" FontSize="40" Padding="0" />
                             <Button Content="▲" FontSize="20" Margin="5" Command="{TemplateBinding ToNextMonthButtonCommand}" />
 
                             <StackPanel.Style>
