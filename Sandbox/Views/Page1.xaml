@@ -14,9 +14,22 @@
       Title="Page1">
 
     <DockPanel LastChildFill="True">
-        <CheckBox Content="IsStartWeekMonday" Name="cb" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10" />
+        <CheckBox Content="IsStartWeekMonday" 
+                  Name="cb1" 
+                  DockPanel.Dock="Top" 
+                  HorizontalAlignment="Center" 
+                  Margin="10" />
 
-        <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb, Path=IsChecked}" DockPanel.Dock="Bottom">
+        <CheckBox Content="IsShowHeader" 
+                  IsChecked="True"
+                  Name="cb2" 
+                  DockPanel.Dock="Top" 
+                  HorizontalAlignment="Center" 
+                  Margin="10" />
+
+        <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
+                                 IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
+                                 DockPanel.Dock="Bottom">
             <et:CustamizableCalendar.DayOfWeekSource>
                 <et:CalendarDayOfWeekSource TargetDayOfWeek="Sunday" Text="日" />
                 <et:CalendarDayOfWeekSource TargetDayOfWeek="Monday" Text="月" />

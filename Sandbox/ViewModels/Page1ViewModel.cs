@@ -3,6 +3,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
+using System;
 
 public partial class Page1ViewModel : ObservableObject
 {
@@ -18,6 +19,4 @@ public partial class Page1ViewModel : ObservableObject
         this._applicationPropertyiesService = applicationPropertyiesService;
         this._messageBoxService = messageBoxService;
     }
-
-    
 }

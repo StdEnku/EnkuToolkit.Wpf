@@ -5,7 +5,8 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using UiIndependent.Items;
 using System;
-using System.Windows.Media;
+using System.Windows.Input;
+using EnkuToolkit.Wpf.Controls.Internals;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
@@ -195,6 +196,95 @@ public class CustamizableCalendar : Control
         set => this.SetValue(MonthProperty, value);
     }
     #endregion
+
+    #region ToNextMonthButtonCommandProperty依存関係プロパティ
+    internal static readonly DependencyProperty ToNextMonthButtonCommandProperty
+        = DependencyProperty.Register(
+            nameof(ToNextMonthButtonCommand),
+            typeof(ICommand),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(null)
+        );
+
+    internal ICommand? ToNextMonthButtonCommand
+    {
+        get => this.GetValue(ToNextMonthButtonCommandProperty) as ICommand;
+        set => this.SetValue(ToNextMonthButtonCommandProperty, value);
+    }
+
+    private void onNextMonthButtonClickedCommand()
+    {
+        if (this.Month == 12)
+        {
+            this.Month = 1;
+            this.Year++;
+        }
+        else
+        {
+            this.Month++;
+        }
+    }
+    #endregion
+
+    #region ToLastMonthButtonCommandProperty依存関係プロパティ
+    internal static readonly DependencyProperty ToLastMonthButtonCommandProperty
+        = DependencyProperty.Register(
+            nameof(ToLastMonthButtonCommand),
+            typeof(ICommand),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(null)
+        );
+
+    internal ICommand? ToLastMonthButtonCommand
+    {
+        get => this.GetValue(ToLastMonthButtonCommandProperty) as ICommand;
+        set => this.SetValue(ToLastMonthButtonCommandProperty, value);
+    }
+
+    private void onLastMonthButtonClickedCommand()
+    {
+        if (this.Month == 1)
+        {
+            this.Month = 12;
+            this.Year--;
+        }
+        else
+        {
+            this.Month--;
+        }
+    }
+    #endregion
+
+    #region IsShowHeader依存関係プロパティ
+    /// <summary>
+    /// ヘッダー部を表示するかどうか指定するための依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty IsShowHeaderProperty
+        = DependencyProperty.Register(
+            nameof(IsShowHeader),
+            typeof(bool),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(true)
+        );
+
+    /// <summary>
+    /// IsShowHeaderProperty用のCLRプロパティ
+    /// </summary>
+    public bool IsShowHeader
+    {
+        get => (bool)this.GetValue(IsShowHeaderProperty);
+        set => this.SetValue(IsShowHeaderProperty, value);
+    }
+    #endregion
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public CustamizableCalendar()
+    {
+        this.ToNextMonthButtonCommand = new InternalDelegateCommand(this.onNextMonthButtonClickedCommand);
+        this.ToLastMonthButtonCommand = new InternalDelegateCommand(this.onLastMonthButtonClickedCommand);
+    }
 
     static CustamizableCalendar()
     {
