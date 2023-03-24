@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sandbox.Views"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
       DataContext="{et:ViewModelProvider vm:Page1ViewModel}"
@@ -13,36 +14,52 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <DockPanel LastChildFill="True">
-        <CheckBox Content="IsStartWeekMonday" 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <md:Card Grid.Column="0" Margin="10" UniformCornerRadius="5">
+            <DockPanel LastChildFill="True">
+                <CheckBox Content="IsStartWeekMonday" 
                   Name="cb1" 
                   DockPanel.Dock="Top" 
                   HorizontalAlignment="Center" 
                   Margin="10" />
 
-        <CheckBox Content="IsShowHeader" 
+                <CheckBox Content="IsShowHeader" 
                   IsChecked="True"
                   Name="cb2" 
                   DockPanel.Dock="Top" 
                   HorizontalAlignment="Center" 
                   Margin="10" />
 
-        <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
+                <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
                                  IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
                                  DockPanel.Dock="Bottom">
-            <et:CustamizableCalendar.DayOfWeekSource>
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Sunday" Text="日" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Monday" Text="月" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Tuesday" Text="火" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Wednesday" Text="水" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Thursday" Text="木" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Friday" Text="金" />
-                <et:CalendarDayOfWeekSource TargetDayOfWeek="Saturday" Text="土" />
-            </et:CustamizableCalendar.DayOfWeekSource>
+                    <et:CustamizableCalendar.DayOfWeekSource>
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Sunday" Text="日" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Monday" Text="月" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Tuesday" Text="火" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Wednesday" Text="水" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Thursday" Text="木" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Friday" Text="金" />
+                        <et:CalendarDayOfWeekSource TargetDayOfWeek="Saturday" Text="土" />
+                    </et:CustamizableCalendar.DayOfWeekSource>
 
-            <et:CustamizableCalendar.Source>
-                <et:CalendarSource Date="2023/03/1" />
-            </et:CustamizableCalendar.Source>
-        </et:CustamizableCalendar>
-    </DockPanel>
+                    <et:CustamizableCalendar.Source>
+                        <et:CalendarSource Date="2023/03/1" />
+                    </et:CustamizableCalendar.Source>
+                </et:CustamizableCalendar>
+            </DockPanel>
+        </md:Card>
+
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
+
+        <md:Card Grid.Column="2" Margin="10" UniformCornerRadius="5">
+            <Calendar />
+        </md:Card>
+    </Grid>
 </Page>

@@ -87,6 +87,7 @@ public class CustomTitlebarWindow : Window
         base.OnInitialized(e);
         this._windowChrome.CaptionHeight = this.Titlebar?.Height ?? default(double);
         this._windowChrome.ResizeBorderThickness = this.ResizeBorderThickness;
+        this.OnStateChanged(EventArgs.Empty);
     }
 
     /// <summary>
