@@ -27,7 +27,7 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var targetYear = yearAndMonth.Year;
         var targetMonth = yearAndMonth.Month;
 
-        var result = new List<CalendarSource>(42);
+        var result = new List<CalendarCellFullSource>(42);
 
         // 先月の日付を追加
         var firstDay = new DateTime(targetYear, targetMonth, 1);
@@ -35,10 +35,13 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var lastMonthDateTimes = getDateTimeRange(firstDay.AddDays(subLastMonday), firstDay);
 
         CalendarSource? source;
+        CalendarCellFullSource fullSource;
+
         foreach (var dateTime in lastMonthDateTimes)
         {
-            source = new CalendarSource() { Date = dateTime, IsEnabled = false, TargetTemplate = autoGenCellTemplate };
-            result.Add(source);
+            source = new CalendarSource(dateTime);
+            fullSource = new CalendarCellFullSource(source, false, autoGenCellTemplate);
+            result.Add(fullSource);
         }
 
         // 今月の日付を追加
@@ -51,18 +54,16 @@ internal class SourceToItemsConverter : IMultiValueConverter
 
             if (source is null)
             {
-                source = new CalendarSource()
-                {
-                    Date = new DateTime(targetYear, targetMonth, dayNum),
-                    TargetTemplate = autoGenCellTemplate
-                };
+                source = new CalendarSource(new DateTime(targetYear, targetMonth, dayNum));
+                fullSource = new CalendarCellFullSource(source, true, autoGenCellTemplate);
             }
             else
             {
-                source.TargetTemplate = cellTemplate;
+                fullSource = new CalendarCellFullSource(source, true, cellTemplate);
             }
 
-            result.Add(source);
+            
+            result.Add(fullSource);
         }
 
         // 来月の日付を追加
@@ -71,8 +72,9 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var nextMonthDateTimes = getDateTimeRange(lastDay.AddDays(1), lastDay.AddDays(numberOfExtraCells));
         foreach (var dateTime in nextMonthDateTimes)
         {
-            source = new CalendarSource() { Date = dateTime, IsEnabled = false, TargetTemplate = autoGenCellTemplate };
-            result.Add(source);
+            source = new CalendarSource(dateTime);
+            fullSource = new CalendarCellFullSource(source, false, autoGenCellTemplate);
+            result.Add(fullSource);
         }
 
         return result;

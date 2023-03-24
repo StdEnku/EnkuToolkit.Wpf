@@ -24,17 +24,6 @@ public class CalendarSource
     public bool IsToday => this.Date == DateTime.Today;
 
     /// <summary>
-    /// 本オブジェクトのデータを表示するListBoxItemのIsEnabledを有効化するかを表すプロパティ
-    /// </summary>
-    public bool IsEnabled { get; init; } = true;
-
-    /// <summary>
-    /// セル表示用のテンプレートを表すプロパティ
-    /// CustamizableCalendarの機構上や仕方なく追加したプロパティのためnullにしておいてください。
-    /// </summary>
-    public object? TargetTemplate { get; set; }
-
-    /// <summary>
     /// コンストラクタ
     /// </summary>
     public CalendarSource()
