@@ -37,22 +37,16 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var allDates = DatesOnAPage(targetYear, targetMonth, isStartWeekMonday ? DayOfWeek.Monday : DayOfWeek.Sunday);
         var result = new List<CalendarCellFullSource>(42);
 
-        int currentYear;
-        int currentMonth;
-        int currentDay;
         bool isTargetYearAndMonth;
         CalendarSource? tempSource;
         CalendarSource source;
         CalendarCellFullSource fullSource;
         foreach (var datetime in allDates)
         {
-            currentYear = datetime.Year;
-            currentMonth = datetime.Month;
-            currentDay = datetime.Day;
-            isTargetYearAndMonth = currentYear == targetYear && currentMonth == targetMonth;
+            isTargetYearAndMonth = datetime.Year == targetYear && datetime.Month == targetMonth;
 
             tempSource = (from calendarSource in calendarSources
-                          where calendarSource.Date.Year == targetYear && calendarSource.Date.Month == targetMonth && calendarSource.Date.Day == currentDay
+                          where calendarSource.Date == datetime.Date
                           select calendarSource).FirstOrDefault();
 
             source = tempSource ?? new CalendarSource(datetime);

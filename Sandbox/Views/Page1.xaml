@@ -51,6 +51,7 @@
 
                     <et:CustamizableCalendar.Source>
                         <et:CalendarSource Date="2023/03/1" />
+                        <et:CalendarSource Date="2023/03/2" />
                     </et:CustamizableCalendar.Source>
 
                     <et:CustamizableCalendar.CellTemplate>
@@ -76,7 +77,7 @@
                     <et:CustamizableCalendar.AutoGenCellTemplate>
                         <DataTemplate DataType="datas:CalendarSource">
                             <StackPanel>
-                                <Border Margin="2" CornerRadius="5">
+                                <Border Margin="5,5,5,1" CornerRadius="5">
                                     <Label Content="{Binding Date.Day}" />
 
                                     <Border.Style>
@@ -90,7 +91,7 @@
                                     </Border.Style>
                                 </Border>
 
-                                <Separator Margin="5" />
+                                <Separator Margin="5,0,5,0" />
                                 <Label Content="-備考1" />
                                 <Label Content="-備考2" />
                                 <Label Content="-備考3" />
