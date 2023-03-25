@@ -21,7 +21,23 @@ public class GetApplicationResourceExtension : MarkupExtension
     /// <summary>
     /// 本マークアップ拡張の戻り値を作成するメソッド
     /// </summary>
-    /// <returns>発見されたリソース</returns>
+    /// <returns>
+    /// 発見されたリソースのオブジェクト
+    /// 発見されなかった場合nullを返す
+    /// </returns>
     public override object? ProvideValue(IServiceProvider serviceProvider)
-        => Application.Current.FindResource(this._key);
+    {
+        object? result;
+
+        try
+        {
+            result = Application.Current.FindResource(this._key);
+        }
+        catch (ResourceReferenceKeyNotFoundException)
+        {
+            result = null;
+        }
+
+        return result;
+    }
 }
