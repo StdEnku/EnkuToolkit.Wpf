@@ -147,6 +147,10 @@
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResourceExtension {x:Type ListBoxItem}}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                    <Setter Property="Padding" Value="0"/>
                                     <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
                                     <Setter Property="Content" Value="{Binding Source}" />
                                     <Setter Property="ContentTemplate" Value="{Binding DataTemplate}" />
