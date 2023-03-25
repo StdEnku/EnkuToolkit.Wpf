@@ -126,7 +126,8 @@
                         <!--#endregion-->
 
                         <!--#region カレンダーセル-->
-                        <ListBox DockPanel.Dock="Bottom">
+                        <ListBox DockPanel.Dock="Bottom"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
                             <ListBox.ItemsSource>
                                 <MultiBinding Converter="{StaticResource SourceToItemsConverter}">
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
