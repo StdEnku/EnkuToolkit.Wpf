@@ -59,7 +59,9 @@
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
 
         <md:Card Grid.Column="2" Margin="10" UniformCornerRadius="5">
-            <Calendar />
+            <Viewbox>
+                <Calendar Style="{x:Null}" />
+            </Viewbox>
         </md:Card>
     </Grid>
 </Page>
