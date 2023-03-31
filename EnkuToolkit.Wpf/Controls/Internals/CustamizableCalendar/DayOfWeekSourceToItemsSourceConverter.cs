@@ -9,6 +9,9 @@ using System.Linq;
 
 internal class DayOfWeekSourceToItemsSourceConverter : IMultiValueConverter
 {
+    // インスタンス取得用のプロパティ
+    public static DayOfWeekSourceToItemsSourceConverter Instance => new DayOfWeekSourceToItemsSourceConverter();
+
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
         var input = (IEnumerable<CalendarDayOfWeekSource>)values[0];

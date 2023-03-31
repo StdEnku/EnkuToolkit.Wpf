@@ -77,22 +77,38 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustamizableCalendar">
                     <DockPanel LastChildFill="True">
-                        <DockPanel.Resources>
-                            <internal:DayOfWeekSourceToItemsSourceConverter x:Key="DayOfWeekSourceToItemsSourceConverter"/>
-                            <internal:SourceToItemsConverter x:Key="SourceToItemsConverter" />
-                        </DockPanel.Resources>
-
                         <!--#region ヘッダー-->
-                        <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Center" 
-                                    DockPanel.Dock="Top">
+                        <UniformGrid Columns="3"
+                                     DockPanel.Dock="Top">
 
-                            <Button Content="▼" FontSize="20" Margin="5" Command="{TemplateBinding ToLastMonthButtonCommand}" />
-                            <Label Content="{TemplateBinding TargetYearAndMonth}" FontSize="40" Padding="0" />
-                            <Button Content="▲" FontSize="20" Margin="5" Command="{TemplateBinding ToNextMonthButtonCommand}" />
+                            <Button Margin="5" 
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Command="{TemplateBinding ToLastMonthButtonCommand}"
+                                        HorizontalAlignment="Left">
+                                <Polygon Points="14,0 14,14, 0,7" 
+                                         Stroke="{Binding ElementName=YearAndMonthLabel, Path=Foreground}" 
+                                         Fill="{Binding ElementName=YearAndMonthLabel, Path=Foreground}"  />
+                            </Button>
 
-                            <StackPanel.Style>
-                                <Style TargetType="StackPanel">
+                            <Label Name="YearAndMonthLabel" 
+                                       Content="{TemplateBinding TargetYearAndMonth}" 
+                                       FontSize="15" Padding="0" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                            <Button Margin="5" 
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Command="{TemplateBinding ToNextMonthButtonCommand}"
+                                        HorizontalAlignment="Right">
+                                <Polygon Points="0,0 0,14, 14,7"
+                                         Stroke="{Binding ElementName=YearAndMonthLabel, Path=Foreground}" 
+                                         Fill="{Binding ElementName=YearAndMonthLabel, Path=Foreground}"  />
+                            </Button>
+
+                            <UniformGrid.Style>
+                                <Style TargetType="UniformGrid">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsShowHeader}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
@@ -103,15 +119,15 @@
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </StackPanel.Style>
-                        </StackPanel>
+                            </UniformGrid.Style>
+                        </UniformGrid>
                         <!--#endregion-->
 
                         <!--region 曜日表示行-->
                         <ItemsControl DockPanel.Dock="Top"
                                       ItemTemplate="{TemplateBinding DayOfWeekTemplate}">
                             <ItemsControl.ItemsSource>
-                                <MultiBinding Converter="{StaticResource DayOfWeekSourceToItemsSourceConverter}">
+                                <MultiBinding Converter="{x:Static internal:DayOfWeekSourceToItemsSourceConverter.Instance}">
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DayOfWeekSource"/>
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
                                 </MultiBinding>
@@ -129,7 +145,7 @@
                         <ListBox DockPanel.Dock="Bottom"
                                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
                             <ListBox.ItemsSource>
-                                <MultiBinding Converter="{StaticResource SourceToItemsConverter}">
+                                <MultiBinding Converter="{x:Static internal:SourceToItemsConverter.Instance}">
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
                                     <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
@@ -143,7 +159,7 @@
                                     <UniformGrid Columns="7" Rows="6" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
-                            
+
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResourceExtension {x:Type ListBoxItem}}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

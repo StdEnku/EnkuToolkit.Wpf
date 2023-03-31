@@ -10,6 +10,9 @@ using UiIndependent.CustamizableCalendarDatas;
 
 internal class SourceToItemsConverter : IMultiValueConverter
 {
+    // インスタンス取得用のプロパティ
+    public static SourceToItemsConverter Instance => new SourceToItemsConverter();
+
     // ある月のカレンダーに表示するすべての日付を取得するためのメソッド
     private static IEnumerable<DateTime> DatesOnAPage(int year, int month, DayOfWeek startDayOfWeek)
     {

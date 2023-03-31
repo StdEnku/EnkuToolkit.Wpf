@@ -54,6 +54,7 @@
                         <et:CalendarSource Date="2023/03/2" />
                     </et:CustamizableCalendar.Source>
 
+                    <!--#region セル用のテンプレート-->
                     <et:CustamizableCalendar.CellTemplate>
                         <DataTemplate DataType="datas:CalendarSource">
                             <Border CornerRadius="10" 
@@ -81,7 +82,7 @@
                                     <Label Content="{Binding Date.Day}" />
 
                                     <Border.Style>
-                                        <Style TargetType="Border" BasedOn="{et:GetApplicationResource {x:Type Border}}">
+                                        <Style TargetType="Border">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsToday}" Value="True">
                                                     <Setter Property="Background" Value="ForestGreen" />
@@ -98,6 +99,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </et:CustamizableCalendar.AutoGenCellTemplate>
+                    <!--#endregion-->
                 </et:CustamizableCalendar>
             </DockPanel>
         </md:Card>

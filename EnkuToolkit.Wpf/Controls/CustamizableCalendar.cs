@@ -2,11 +2,11 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using UiIndependent.CustamizableCalendarDatas;
 using System;
 using System.Windows.Input;
 using EnkuToolkit.Wpf.Controls.Internals;
+using System.Collections.Generic;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
@@ -20,17 +20,17 @@ public class CustamizableCalendar : Control
     public static readonly DependencyProperty DayOfWeekSourceProperty
         = DependencyProperty.Register(
             nameof(DayOfWeekSource),
-            typeof(ObservableCollection<CalendarDayOfWeekSource>),
+            typeof(List<CalendarDayOfWeekSource>),
             typeof(CustamizableCalendar),
-            new FrameworkPropertyMetadata(new ObservableCollection<CalendarDayOfWeekSource>())
+            new FrameworkPropertyMetadata(new List<CalendarDayOfWeekSource>())
         );
 
     /// <summary>
     /// DayOfWeekSourceProperty用のCLRプロパティ
     /// </summary>
-    public ObservableCollection<CalendarDayOfWeekSource> DayOfWeekSource
+    public List<CalendarDayOfWeekSource> DayOfWeekSource
     {
-        get => (ObservableCollection<CalendarDayOfWeekSource>)this.GetValue(DayOfWeekSourceProperty);
+        get => (List<CalendarDayOfWeekSource>)this.GetValue(DayOfWeekSourceProperty);
         set => this.SetValue(DayOfWeekSourceProperty, value);
     }
     #endregion
@@ -138,17 +138,17 @@ public class CustamizableCalendar : Control
     public static readonly DependencyProperty SourceProperty
         = DependencyProperty.Register(
             nameof(Source),
-            typeof(ObservableCollection<CalendarSource>),
+            typeof(List<CalendarSource>),
             typeof(CustamizableCalendar),
-            new PropertyMetadata(new ObservableCollection<CalendarSource>())
+            new PropertyMetadata(new List<CalendarSource>())
         );
 
     /// <summary>
     /// SourceProperty用のCLRプロパティ
     /// </summary>
-    public ObservableCollection<CalendarSource> Source
+    public List<CalendarSource> Source
     {
-        get => (ObservableCollection<CalendarSource>)this.GetValue(SourceProperty);
+        get => (List<CalendarSource>)this.GetValue(SourceProperty);
         set => this.SetValue(SourceProperty, value);
     }
     #endregion
