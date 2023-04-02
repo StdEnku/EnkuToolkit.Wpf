@@ -77,26 +77,28 @@
 
                     <et:CustamizableCalendar.AutoGenCellTemplate>
                         <DataTemplate DataType="datas:CalendarSource">
-                            <StackPanel>
-                                <Border Margin="5,5,5,1" CornerRadius="5">
-                                    <Label Content="{Binding Date.Day}" />
+                            <md:Card UniformCornerRadius="5" Margin="2">
+                                <StackPanel>
+                                    <Border Margin="5,5,5,1" CornerRadius="5">
+                                        <Label Content="{Binding Date.Day}" />
 
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsToday}" Value="True">
-                                                    <Setter Property="Background" Value="ForestGreen" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                </Border>
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                        <Setter Property="Background" Value="ForestGreen" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                    </Border>
 
-                                <Separator Margin="5,0,5,0" />
-                                <Label Content="-備考1" />
-                                <Label Content="-備考2" />
-                                <Label Content="-備考3" />
-                            </StackPanel>
+                                    <Separator Margin="5,0,5,0" />
+                                    <Label Content="-備考1" />
+                                    <Label Content="-備考2" />
+                                    <Label Content="-備考3" />
+                                </StackPanel>
+                            </md:Card>
                         </DataTemplate>
                     </et:CustamizableCalendar.AutoGenCellTemplate>
                     <!--#endregion-->

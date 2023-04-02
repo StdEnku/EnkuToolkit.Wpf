@@ -170,10 +170,10 @@
 
                                 <!--#region カレンダーセル-->
                                 <ListBox DockPanel.Dock="Bottom"
-                                     HorizontalAlignment="Center"
-                                     Name="listBox"
-                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                         HorizontalAlignment="Center"
+                                         Name="listBox"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                     <ListBox.DataContext>
                                         <MultiBinding Converter="{x:Static internal:SourceToItemsConverter.Instance}">
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
@@ -220,215 +220,221 @@
 
                                     <ListBox.Items>
                                         <ListBoxItem Grid.Column="0" Grid.Row="0" Name="CelendarCel0Row0Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[0].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[0].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[0].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[0].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[0].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[0].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="0" Name="CelendarCel0Row1Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[1].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[1].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[1].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[1].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[1].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[1].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="0" Name="CelendarCel0Row2Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[2].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[2].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[2].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[2].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[2].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[2].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="0"  Name="CelendarCel0Row3Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[3].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[3].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[3].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[3].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[3].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[3].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="0"  Name="CelendarCel0Row4Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[4].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[4].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[4].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[4].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[4].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[4].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="0" Name="CelendarCel0Row5Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[5].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[5].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[5].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[5].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[5].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[5].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="0" Name="CelendarCel0Row6Col"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[6].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[6].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[6].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[6].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[6].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[6].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="0" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[7].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[7].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[7].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[7].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[7].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[7].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[8].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[8].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[8].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[8].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[8].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[8].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[9].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[9].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[9].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[9].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[9].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[9].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[10].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[10].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[10].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[10].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[10].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[10].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[11].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[11].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[11].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[11].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[11].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[11].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[12].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[12].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[12].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[12].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[12].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[12].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="1"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[13].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[13].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[13].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[13].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[13].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[13].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="0" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[14].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[14].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[14].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[14].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[14].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[14].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[15].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[15].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[15].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[15].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[15].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[15].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[16].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[16].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[16].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[16].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[16].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[16].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[17].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[17].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[17].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[17].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[17].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[17].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[18].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[18].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[18].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[18].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[18].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[18].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[19].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[19].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[19].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[19].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[19].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[19].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="2"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[20].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[20].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[20].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[20].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[20].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[20].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="0" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[21].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[21].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[21].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[21].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[21].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[21].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[22].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[22].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[22].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[22].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[22].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[22].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[23].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[23].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[23].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[23].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[23].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[23].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[24].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[24].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[24].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[24].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[24].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[24].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[25].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[25].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[25].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[25].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[25].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[25].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[26].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[26].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[26].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[26].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[26].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[26].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="3"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[27].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[27].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[27].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[27].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[27].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[27].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="0" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[28].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[28].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[28].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[28].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[28].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[28].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[29].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[29].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[29].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[29].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[29].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[29].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[30].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[30].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[30].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[30].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[30].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[30].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[31].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[31].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[31].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[31].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[31].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[31].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[32].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[32].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[32].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[32].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[32].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[32].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[33].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[33].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[33].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[33].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[33].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[33].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="4"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[34].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[34].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[34].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[34].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[34].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[34].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="0" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[35].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[35].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[35].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[35].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[35].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[35].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="1" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[36].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[36].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[36].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[36].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[36].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[36].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="2" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[37].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[37].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[37].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[37].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[37].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[37].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="3" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[38].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[38].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[38].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[38].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[38].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[38].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="4" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[39].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[39].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[39].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[39].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[39].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[39].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="5" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[40].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[40].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[40].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[40].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[40].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[40].DataTemplate}"/>
 
                                         <ListBoxItem Grid.Column="6" Grid.Row="5"
-                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[41].IsEnabled}"
-                                             Content="{Binding ElementName=listBox, Path=DataContext[41].Source}"
-                                             ContentTemplate="{Binding ElementName=listBox,Path=DataContext[41].DataTemplate}"/>
+                                                     IsEnabled="{Binding ElementName=listBox, Path=DataContext[41].IsEnabled}"
+                                                     Content="{Binding ElementName=listBox, Path=DataContext[41].Source}"
+                                                     ContentTemplate="{Binding ElementName=listBox,Path=DataContext[41].DataTemplate}"/>
                                     </ListBox.Items>
+
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter/>
+                                        </ControlTemplate>
+                                    </ListBox.Template>
                                 </ListBox>
                                 <!--#endregion-->
                             </StackPanel>
