@@ -13,7 +13,7 @@
                     <Label Content="{Binding Text}" 
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center">
-                        
+
                         <Label.Style>
                             <Style TargetType="Label" BasedOn="{me:GetApplicationResource {x:Type Label}}">
                                 <Style.Triggers>
@@ -21,7 +21,7 @@
                                         <Setter Property="Foreground" Value="Red" />
                                     </DataTrigger>
                                 </Style.Triggers>
-                            </Style>    
+                            </Style>
                         </Label.Style>
                     </Label>
                 </DataTemplate>
@@ -79,29 +79,29 @@
                     <DockPanel LastChildFill="True">
                         <!--#region ヘッダー-->
                         <UniformGrid Columns="3"
-                                     DockPanel.Dock="Top">
-
+                                     DockPanel.Dock="Top"
+                                     HorizontalAlignment="Center">
                             <Button Margin="5" 
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        Command="{TemplateBinding ToLastMonthButtonCommand}"
-                                        HorizontalAlignment="Left">
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{TemplateBinding ToLastMonthButtonCommand}"
+                                    HorizontalAlignment="Left">
                                 <Polygon Points="14,0 14,14, 0,7" 
                                          Stroke="{Binding ElementName=YearAndMonthLabel, Path=Foreground}" 
                                          Fill="{Binding ElementName=YearAndMonthLabel, Path=Foreground}"  />
                             </Button>
 
                             <Label Name="YearAndMonthLabel" 
-                                       Content="{TemplateBinding TargetYearAndMonth}" 
-                                       FontSize="15" Padding="0" 
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"/>
+                                   Content="{TemplateBinding TargetYearAndMonth}" 
+                                   FontSize="15" Padding="0" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
 
                             <Button Margin="5" 
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        Command="{TemplateBinding ToNextMonthButtonCommand}"
-                                        HorizontalAlignment="Right">
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{TemplateBinding ToNextMonthButtonCommand}"
+                                    HorizontalAlignment="Right">
                                 <Polygon Points="0,0 0,14, 14,7"
                                          Stroke="{Binding ElementName=YearAndMonthLabel, Path=Foreground}" 
                                          Fill="{Binding ElementName=YearAndMonthLabel, Path=Foreground}"  />
@@ -123,225 +123,316 @@
                         </UniformGrid>
                         <!--#endregion-->
 
-                        <!--region 曜日表示行-->
-                        <ItemsControl DockPanel.Dock="Top"
-                                      ItemTemplate="{TemplateBinding DayOfWeekTemplate}">
-                            <ItemsControl.ItemsSource>
-                                <MultiBinding Converter="{x:Static internal:DayOfWeekSourceToItemsSourceConverter.Instance}">
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DayOfWeekSource"/>
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
-                                </MultiBinding>
-                            </ItemsControl.ItemsSource>
+                        <ScrollViewer DockPanel.Dock="Bottom"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <!--region 曜日表示行-->
+                                <StackPanel Name="DayOfWeekRows" 
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <StackPanel.DataContext>
+                                        <MultiBinding Converter="{x:Static internal:DayOfWeekSourceToItemsSourceConverter.Instance}">
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DayOfWeekSource"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
+                                        </MultiBinding>
+                                    </StackPanel.DataContext>
 
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="7"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                        <!--#endregion-->
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[0]}"
+                                            Width="{Binding ElementName=CelendarCel0Row0Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
-                        <!--#region カレンダーセル-->
-                        <ListBox DockPanel.Dock="Bottom"
-                                 Name="listBox"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                            <ListBox.DataContext>
-                                <MultiBinding Converter="{x:Static internal:SourceToItemsConverter.Instance}">
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="AutoGenCellTemplate" />
-                                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="TargetYearAndMonth" />
-                                </MultiBinding>
-                            </ListBox.DataContext>
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[1]}"
+                                            Width="{Binding ElementName=CelendarCel0Row1Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="7" Rows="6" />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[2]}"
+                                            Width="{Binding ElementName=CelendarCel0Row2Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResourceExtension {x:Type ListBoxItem}}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                    <Setter Property="Padding" Value="0"/>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[3]}"
+                                            Width="{Binding ElementName=CelendarCel0Row3Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
-                            <ListBox.Items>
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[0].IsEnabled}"
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[4]}"
+                                            Width="{Binding ElementName=CelendarCel0Row4Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[5]}"
+                                            Width="{Binding ElementName=CelendarCel0Row5Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+
+                                    <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[6]}"
+                                            Width="{Binding ElementName=CelendarCel0Row6Col, Path=ActualWidth}"
+                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                </StackPanel>
+                                <!--#endregion-->
+
+                                <!--#region カレンダーセル-->
+                                <ListBox DockPanel.Dock="Bottom"
+                                     HorizontalAlignment="Center"
+                                     Name="listBox"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <ListBox.DataContext>
+                                        <MultiBinding Converter="{x:Static internal:SourceToItemsConverter.Instance}">
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="AutoGenCellTemplate" />
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="TargetYearAndMonth" />
+                                        </MultiBinding>
+                                    </ListBox.DataContext>
+
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                            </Grid>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResourceExtension {x:Type ListBoxItem}}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="Padding" Value="0"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+
+                                    <ListBox.Items>
+                                        <ListBoxItem Grid.Column="0" Grid.Row="0" Name="CelendarCel0Row0Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[0].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[0].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[0].DataTemplate}"/>
-                                
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[1].IsEnabled}"
+
+                                        <ListBoxItem Grid.Column="1" Grid.Row="0" Name="CelendarCel0Row1Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[1].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[1].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[1].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[2].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="0" Name="CelendarCel0Row2Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[2].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[2].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[2].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[3].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="0"  Name="CelendarCel0Row3Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[3].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[3].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[3].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[4].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="0"  Name="CelendarCel0Row4Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[4].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[4].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[4].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[5].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="0" Name="CelendarCel0Row5Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[5].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[5].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[5].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[6].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="0" Name="CelendarCel0Row6Col"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[6].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[6].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[6].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[7].IsEnabled}"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[7].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[7].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[7].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[8].IsEnabled}"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[8].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[8].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[8].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[9].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[9].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[9].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[9].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[10].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[10].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[10].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[10].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[11].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[11].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[11].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[11].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[12].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[12].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[12].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[12].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[13].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="1"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[13].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[13].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[13].DataTemplate}"/>
-                                
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[14].IsEnabled}"
+
+                                        <ListBoxItem Grid.Column="0" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[14].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[14].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[14].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[15].IsEnabled}"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[15].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[15].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[15].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[16].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[16].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[16].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[16].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[17].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[17].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[17].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[17].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[18].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[18].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[18].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[18].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[19].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[19].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[19].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[19].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[20].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="2"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[20].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[20].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[20].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[21].IsEnabled}"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[21].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[21].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[21].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[22].IsEnabled}"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[22].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[22].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[22].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[23].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[23].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[23].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[23].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[24].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[24].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[24].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[24].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[25].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[25].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[25].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[25].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[26].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[26].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[26].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[26].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[27].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="3"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[27].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[27].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[27].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[28].IsEnabled}"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[28].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[28].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[28].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[29].IsEnabled}"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[29].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[29].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[29].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[30].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[30].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[30].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[30].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[31].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[31].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[31].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[31].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[32].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[32].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[32].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[32].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[33].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[33].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[33].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[33].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[34].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="4"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[34].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[34].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[34].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[35].IsEnabled}"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[35].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[35].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[35].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[36].IsEnabled}"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[36].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[36].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[36].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[37].IsEnabled}"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[37].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[37].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[37].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[38].IsEnabled}"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[38].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[38].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[38].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[39].IsEnabled}"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[39].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[39].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[39].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[40].IsEnabled}"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[40].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[40].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[40].DataTemplate}"/>
 
-                                <ListBoxItem IsEnabled="{Binding ElementName=listBox, Path=DataContext[41].IsEnabled}"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="5"
+                                             IsEnabled="{Binding ElementName=listBox, Path=DataContext[41].IsEnabled}"
                                              Content="{Binding ElementName=listBox, Path=DataContext[41].Source}"
                                              ContentTemplate="{Binding ElementName=listBox,Path=DataContext[41].DataTemplate}"/>
-                            </ListBox.Items>
-                        </ListBox>
-                        <!--#endregion-->
+                                    </ListBox.Items>
+                                </ListBox>
+                                <!--#endregion-->
+                            </StackPanel>
+                        </ScrollViewer>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

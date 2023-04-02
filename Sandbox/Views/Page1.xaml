@@ -37,8 +37,8 @@
                   Margin="10" />
 
                 <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
-                                 IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
-                                 DockPanel.Dock="Bottom">
+                                         IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
+                                         DockPanel.Dock="Bottom">
                     <et:CustamizableCalendar.DayOfWeekSource>
                         <et:CalendarDayOfWeekSource TargetDayOfWeek="Sunday" Text="日" />
                         <et:CalendarDayOfWeekSource TargetDayOfWeek="Monday" Text="月" />
@@ -107,9 +107,7 @@
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
 
         <md:Card Grid.Column="2" Margin="10" UniformCornerRadius="5">
-            <Viewbox>
-                <Calendar Style="{x:Null}" />
-            </Viewbox>
+            <Calendar Style="{x:Null}" />
         </md:Card>
     </Grid>
 </Page>
