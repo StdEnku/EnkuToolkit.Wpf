@@ -239,6 +239,27 @@ public class CustamizableCalendar : Control
     }
     #endregion
 
+    #region SelectionMode依存関係プロパティ
+    /// <summary>
+    /// カレンダーセルのSelectionModeを指定するためのプロパティ
+    /// </summary>
+    public static readonly DependencyProperty SelectionModeProperty
+        = DependencyProperty.Register(
+            nameof(SelectionMode),
+            typeof(SelectionMode),
+            typeof(CustamizableCalendar)
+        );
+
+    /// <summary>
+    /// SelectionModeProperty用のCLRプロパティ
+    /// </summary>
+    public SelectionMode SelectionMode
+    {
+        get => (SelectionMode)this.GetValue(SelectionModeProperty);
+        set => this.SetValue(SelectionModeProperty, value);
+    }
+    #endregion
+
     /// <summary>
     /// コンストラクタ
     /// </summary>

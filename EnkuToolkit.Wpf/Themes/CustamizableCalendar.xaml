@@ -171,6 +171,7 @@
                                 <!--#region カレンダーセル-->
                                 <ListBox DockPanel.Dock="Bottom"
                                          HorizontalAlignment="Center"
+                                         SelectionMode="{TemplateBinding SelectionMode}"
                                          Name="listBox"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
