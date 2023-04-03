@@ -172,6 +172,7 @@
                                 <ListBox DockPanel.Dock="Bottom"
                                          HorizontalAlignment="Center"
                                          SelectionMode="{TemplateBinding SelectionMode}"
+                                         internal:ListboxUnselectOnDataContextChangedBehavior.IsApply="True"
                                          Name="listBox"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
