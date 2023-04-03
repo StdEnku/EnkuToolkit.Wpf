@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
-                    xmlns:internal="clr-namespace:EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar"
+                    xmlns:ib="clr-namespace:EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar.Behaviors"
+                    xmlns:ic="clr-namespace:EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar.Converters"
                     xmlns:datas="clr-namespace:EnkuToolkit.UiIndependent.CustamizableCalendarDatas;assembly=EnkuToolkit.UiIndependent"
                     xmlns:me="clr-namespace:EnkuToolkit.Wpf.MarkupExtensions"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -132,39 +133,39 @@
                                             HorizontalAlignment="Center"
                                             Orientation="Horizontal">
                                     <StackPanel.DataContext>
-                                        <MultiBinding Converter="{x:Static internal:DayOfWeekSourceToItemsSourceConverter.Instance}">
+                                        <MultiBinding Converter="{x:Static ic:DayOfWeekSourceToItemsSourceConverter.Instance}">
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DayOfWeekSource"/>
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
                                         </MultiBinding>
                                     </StackPanel.DataContext>
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[0]}"
-                                            Width="{Binding ElementName=CelendarCel0Row0Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row0Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[1]}"
-                                            Width="{Binding ElementName=CelendarCel0Row1Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row1Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[2]}"
-                                            Width="{Binding ElementName=CelendarCel0Row2Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row2Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[3]}"
-                                            Width="{Binding ElementName=CelendarCel0Row3Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row3Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[4]}"
-                                            Width="{Binding ElementName=CelendarCel0Row4Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row4Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[5]}"
-                                            Width="{Binding ElementName=CelendarCel0Row5Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row5Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[6]}"
-                                            Width="{Binding ElementName=CelendarCel0Row6Col, Path=ActualWidth}"
-                                            ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
+                                                    Width="{Binding ElementName=CelendarCel0Row6Col, Path=ActualWidth}"
+                                                    ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
                                 </StackPanel>
                                 <!--#endregion-->
 
@@ -172,12 +173,12 @@
                                 <ListBox DockPanel.Dock="Bottom"
                                          HorizontalAlignment="Center"
                                          SelectionMode="{TemplateBinding SelectionMode}"
-                                         internal:ListboxUnselectAllOnDataContextChangedBehavior.IsApply="True"
+                                         ib:ListboxUnselectAllOnDataContextChangedBehavior.IsApply="True"
                                          Name="listBox"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                     <ListBox.DataContext>
-                                        <MultiBinding Converter="{x:Static internal:SourceToItemsConverter.Instance}">
+                                        <MultiBinding Converter="{x:Static ic:SourceToItemsConverter.Instance}">
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Source"/>
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsStartWeekMonday" />
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />

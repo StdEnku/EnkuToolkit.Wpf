@@ -1,4 +1,4 @@
-﻿namespace EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar;
+﻿namespace EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar.Behaviors;
 
 using System.Windows;
 using System.Windows.Controls;
