@@ -3,13 +3,13 @@
 using System.Windows;
 using System.Windows.Controls;
 
-internal class ListboxUnselectOnDataContextChangedBehavior
+internal class ListboxUnselectAllOnDataContextChangedBehavior
 {
     public static readonly DependencyProperty IsApplyProperty
         = DependencyProperty.RegisterAttached(
             "IsApply",
             typeof(bool),
-            typeof(ListboxUnselectOnDataContextChangedBehavior),
+            typeof(ListboxUnselectAllOnDataContextChangedBehavior),
             new PropertyMetadata(false, onIsApplyChanged)
         );
 
