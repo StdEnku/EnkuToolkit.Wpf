@@ -36,7 +36,8 @@
                   HorizontalAlignment="Center" 
                   Margin="10" />
 
-                <et:CustamizableCalendar IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
+                <et:CustamizableCalendar Name="cc"
+                                         IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
                                          IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
                                          SelectionMode="Extended"
                                          DockPanel.Dock="Bottom">
@@ -110,7 +111,9 @@
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
 
         <md:Card Grid.Column="2" Margin="10" UniformCornerRadius="5">
-            <Calendar Style="{x:Null}" />
+            <ItemsControl ItemsSource="{Binding ElementName=cc, Path=SelectedDates, Mode=OneWay}">
+                
+            </ItemsControl>
         </md:Card>
     </Grid>
 </Page>

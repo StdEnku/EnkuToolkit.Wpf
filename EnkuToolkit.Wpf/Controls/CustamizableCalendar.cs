@@ -7,6 +7,8 @@ using System;
 using System.Windows.Input;
 using EnkuToolkit.Wpf.Controls.Internals;
 using System.Collections.Generic;
+using System.Linq;
+using EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
@@ -260,6 +262,27 @@ public class CustamizableCalendar : Control
     }
     #endregion
 
+    #region SelectedDatesProperty依存関係プロパティ
+    /// <summary>
+    /// 複数選択モードの状態で選択されている日付の一覧を取得するための依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty SelectedDatesProperty
+        = DependencyProperty.Register(
+            nameof(SelectedDates),
+            typeof(IEnumerable<DateTime>),
+            typeof(CustamizableCalendar)
+        );
+
+    /// <summary>
+    /// SelectedDatesProperty用のCLRプロパティ
+    /// </summary>
+    public IEnumerable<DateTime>? SelectedDates
+    {
+        get => this.GetValue(SelectedDatesProperty) as IEnumerable<DateTime>;
+        set => throw new InvalidOperationException("CustamizableCalendar.SelectedDatescan dependency property only be bound in OneWayToSource mode.");
+    }
+    #endregion
+
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -267,6 +290,23 @@ public class CustamizableCalendar : Control
     {
         this.ToNextMonthButtonCommand = new InternalDelegateCommand(this.onNextMonthButtonClickedCommand);
         this.ToLastMonthButtonCommand = new InternalDelegateCommand(this.onBackMonthButtonClickedCommand);
+        this.Loaded += CustamizableCalendar_Loaded;
+    }
+
+    private void CustamizableCalendar_Loaded(object sender, RoutedEventArgs e)
+    {
+        var calendarCells = (ListBox)this.GetTemplateChild("CalendarCells");
+        calendarCells.SelectionChanged += CalendarCells_SelectionChanged;
+    }
+
+    private void CalendarCells_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var calendarCells = (ListBox)sender;
+        var hoge = from i in calendarCells.Items.Cast<ListBoxItem>().ToList()
+                   where i.IsSelected == true
+                   select ((CalendarSource)i.Content).Date;
+
+        this.SetValue(SelectedDatesProperty, hoge);
     }
 
     static CustamizableCalendar()
