@@ -111,9 +111,9 @@
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
 
         <md:Card Grid.Column="2" Margin="10" UniformCornerRadius="5">
-            <ItemsControl ItemsSource="{Binding ElementName=cc, Path=SelectedDates, Mode=OneWay}">
-                
-            </ItemsControl>
+            <Viewbox>
+                <ItemsControl ItemsSource="{Binding ElementName=cc, Path=SelectedDates, Mode=OneWay}" />
+            </Viewbox>
         </md:Card>
     </Grid>
 </Page>

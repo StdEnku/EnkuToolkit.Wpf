@@ -8,7 +8,6 @@ using System.Windows.Input;
 using EnkuToolkit.Wpf.Controls.Internals;
 using System.Collections.Generic;
 using System.Linq;
-using EnkuToolkit.Wpf.Controls.Internals.CustamizableCalendar;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
@@ -302,11 +301,11 @@ public class CustamizableCalendar : Control
     private void CalendarCells_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var calendarCells = (ListBox)sender;
-        var hoge = from i in calendarCells.Items.Cast<ListBoxItem>().ToList()
-                   where i.IsSelected == true
-                   select ((CalendarSource)i.Content).Date;
+        var selectedDates = from calendarCell in calendarCells.Items.Cast<ListBoxItem>().ToList()
+                            where calendarCell.IsSelected == true
+                            select ((CalendarSource)calendarCell.Content).Date;
 
-        this.SetValue(SelectedDatesProperty, hoge);
+        this.SetValue(SelectedDatesProperty, selectedDates);
     }
 
     static CustamizableCalendar()
