@@ -19,4 +19,11 @@ public partial class Page1ViewModel : ObservableObject
         this._applicationPropertyiesService = applicationPropertyiesService;
         this._messageBoxService = messageBoxService;
     }
+
+    [RelayCommand]
+    private void OnDoubleClicked(object arg)
+    {
+        var date = (DateTime)arg;
+        this._messageBoxService.ShowOk(date.ToString());
+    }
 }

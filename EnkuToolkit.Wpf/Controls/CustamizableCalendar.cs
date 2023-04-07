@@ -8,6 +8,7 @@ using System.Windows.Input;
 using EnkuToolkit.Wpf.Controls.Internals;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 /// セルを簡単にカスタマイズ可能なカレンダーコントロール
@@ -282,6 +283,39 @@ public class CustamizableCalendar : Control
     }
     #endregion
 
+    #region DoubleClickedCommand依存関係プロパティ
+    /// <summary>
+    /// カレンダーセルがダブルクリックされた際に実行されるコマンドを表す依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty DoubleClickedCommandProperty
+        = DependencyProperty.Register(
+            nameof(DoubleClickedCommand),
+            typeof(ICommand),
+            typeof(CustamizableCalendar)
+        );
+
+    /// <summary>
+    /// DoubleClickedCommandProperty用のCLRプロパティ
+    /// </summary>
+    public ICommand? DoubleClickedCommand
+    {
+        get => this.GetValue(DoubleClickedCommandProperty) as ICommand;
+        set => this.SetValue(DoubleClickedCommandProperty, value);
+    }
+    #endregion
+
+    private IEnumerable<ListBoxItem> CallendarCells
+    {
+        get
+        {
+            for (int row=0; row<6; row++)
+            for (int col=0; col<7; col++)
+            {
+                    yield return (ListBoxItem)this.GetTemplateChild($"CelendarCell{row}Row{col}Col");
+            }
+        }
+    }
+
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -296,16 +330,37 @@ public class CustamizableCalendar : Control
     {
         var calendarCells = (ListBox)this.GetTemplateChild("CalendarCells");
         calendarCells.SelectionChanged += CalendarCells_SelectionChanged;
+
+        foreach (var cell in this.CallendarCells)
+        {
+            cell.MouseDoubleClick += Cell_MouseDoubleClick;
+        }
     }
 
-    private void CalendarCells_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private static void Cell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        var cell = (ListBoxItem)sender;
+        var custamizableCalendar = (CustamizableCalendar)cell.TemplatedParent;
+        var doubleClickedCommand = custamizableCalendar.DoubleClickedCommand;
+        var commandArg = ((CalendarSource)cell.Content).Date;
+
+        if (cell.IsEnabled && 
+            doubleClickedCommand is not null && 
+            doubleClickedCommand.CanExecute(commandArg))
+        {
+            doubleClickedCommand.Execute(commandArg);
+        }
+    }
+
+    private static void CalendarCells_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var calendarCells = (ListBox)sender;
+        var custamizableCalendar = (CustamizableCalendar)calendarCells.TemplatedParent;
         var selectedDates = from calendarCell in calendarCells.Items.Cast<ListBoxItem>().ToList()
                             where calendarCell.IsSelected == true
                             select ((CalendarSource)calendarCell.Content).Date;
 
-        this.SetValue(SelectedDatesProperty, selectedDates);
+        custamizableCalendar.SetValue(SelectedDatesProperty, selectedDates);
     }
 
     static CustamizableCalendar()

@@ -141,31 +141,31 @@
                                     </StackPanel.DataContext>
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[0]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row0Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row0Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[1]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row1Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row1Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[2]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row2Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row2Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[3]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row3Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row3Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[4]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row4Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row4Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[5]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row5Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row5Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
 
                                     <ContentControl Content="{Binding ElementName=DayOfWeekRows, Path=DataContext[6]}"
-                                                    Width="{Binding ElementName=CelendarCel0Row6Col, Path=ActualWidth}"
+                                                    Width="{Binding ElementName=CelendarCell0Row6Col, Path=ActualWidth}"
                                                     ContentTemplate="{TemplateBinding DayOfWeekTemplate}" />
                                 </StackPanel>
                                 <!--#endregion-->
@@ -224,212 +224,212 @@
                                     </ListBox.ItemContainerStyle>
 
                                     <ListBox.Items>
-                                        <ListBoxItem Grid.Column="0" Grid.Row="0" Name="CelendarCel0Row0Col"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="0" Name="CelendarCell0Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[0].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[0].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[0].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="0" Name="CelendarCel0Row1Col"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="0" Name="CelendarCell0Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[1].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[1].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[1].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="0" Name="CelendarCel0Row2Col"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="0" Name="CelendarCell0Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[2].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[2].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[2].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="0"  Name="CelendarCel0Row3Col"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="0"  Name="CelendarCell0Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[3].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[3].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[3].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="0"  Name="CelendarCel0Row4Col"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="0"  Name="CelendarCell0Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[4].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[4].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[4].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="0" Name="CelendarCel0Row5Col"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="0" Name="CelendarCell0Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[5].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[5].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[5].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="0" Name="CelendarCel0Row6Col"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="0" Name="CelendarCell0Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[6].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[6].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[6].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="0" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="1" Name="CelendarCell1Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[7].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[7].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[7].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="1" Name="CelendarCell1Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[8].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[8].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[8].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="1" Name="CelendarCell1Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[9].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[9].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[9].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="1" Name="CelendarCell1Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[10].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[10].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[10].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="1" Name="CelendarCell1Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[11].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[11].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[11].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="1" Name="CelendarCell1Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[12].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[12].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[12].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="1"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="1" Name="CelendarCell1Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[13].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[13].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[13].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="0" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="2" Name="CelendarCell2Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[14].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[14].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[14].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="2" Name="CelendarCell2Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[15].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[15].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[15].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="2" Name="CelendarCell2Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[16].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[16].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[16].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="2" Name="CelendarCell2Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[17].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[17].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[17].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="2" Name="CelendarCell2Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[18].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[18].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[18].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="2" Name="CelendarCell2Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[19].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[19].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[19].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="2"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="2" Name="CelendarCell2Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[20].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[20].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[20].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="0" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="3" Name="CelendarCell3Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[21].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[21].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[21].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="3" Name="CelendarCell3Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[22].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[22].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[22].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="3" Name="CelendarCell3Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[23].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[23].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[23].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="3" Name="CelendarCell3Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[24].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[24].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[24].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="3" Name="CelendarCell3Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[25].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[25].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[25].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="3" Name="CelendarCell3Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[26].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[26].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[26].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="3"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="3" Name="CelendarCell3Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[27].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[27].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[27].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="0" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="4" Name="CelendarCell4Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[28].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[28].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[28].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="4" Name="CelendarCell4Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[29].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[29].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[29].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="4" Name="CelendarCell4Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[30].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[30].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[30].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="4" Name="CelendarCell4Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[31].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[31].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[31].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="4" Name="CelendarCell4Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[32].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[32].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[32].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="4" Name="CelendarCell4Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[33].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[33].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[33].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="4"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="4" Name="CelendarCell4Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[34].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[34].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[34].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="0" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="0" Grid.Row="5" Name="CelendarCell5Row0Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[35].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[35].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[35].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="1" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="1" Grid.Row="5" Name="CelendarCell5Row1Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[36].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[36].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[36].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="2" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="2" Grid.Row="5" Name="CelendarCell5Row2Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[37].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[37].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[37].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="3" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="3" Grid.Row="5" Name="CelendarCell5Row3Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[38].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[38].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[38].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="4" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="4" Grid.Row="5" Name="CelendarCell5Row4Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[39].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[39].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[39].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="5" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="5" Grid.Row="5" Name="CelendarCell5Row5Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[40].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[40].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[40].DataTemplate}"/>
 
-                                        <ListBoxItem Grid.Column="6" Grid.Row="5"
+                                        <ListBoxItem Grid.Column="6" Grid.Row="5" Name="CelendarCell5Row6Col"
                                                      IsEnabled="{Binding ElementName=CalendarCells, Path=DataContext[41].IsEnabled}"
                                                      Content="{Binding ElementName=CalendarCells, Path=DataContext[41].Source}"
                                                      ContentTemplate="{Binding ElementName=CalendarCells,Path=DataContext[41].DataTemplate}"/>

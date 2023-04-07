@@ -39,6 +39,7 @@
                 <et:CustamizableCalendar Name="cc"
                                          IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
                                          IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
+                                         DoubleClickedCommand="{Binding DoubleClickedCommand}"
                                          SelectionMode="Extended"
                                          DockPanel.Dock="Bottom">
                     <et:CustamizableCalendar.DayOfWeekSource>
