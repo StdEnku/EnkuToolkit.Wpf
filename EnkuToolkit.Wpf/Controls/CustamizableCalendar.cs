@@ -103,7 +103,7 @@ public class CustamizableCalendar : Control
     /// </summary>
     public DataTemplate? CellTemplate
     {
-        get => (DataTemplate?)this.GetValue(CellTemplateProperty);
+        get => this.GetValue(CellTemplateProperty) as DataTemplate;
         set => this.SetValue(CellTemplateProperty, value);
     }
     #endregion
@@ -125,7 +125,7 @@ public class CustamizableCalendar : Control
     /// </summary>
     public DataTemplate? AutoGenCellTemplate
     {
-        get => (DataTemplate?)this.GetValue(AutoGenCellTemplateProperty);
+        get => this.GetValue(AutoGenCellTemplateProperty) as DataTemplate;
         set => this.SetValue(AutoGenCellTemplateProperty, value);
     }
     #endregion
@@ -301,6 +301,50 @@ public class CustamizableCalendar : Control
     {
         get => this.GetValue(DoubleClickedCommandProperty) as ICommand;
         set => this.SetValue(DoubleClickedCommandProperty, value);
+    }
+    #endregion
+
+    #region IsShowOtherMonthCell依存関係プロパティ
+    /// <summary>
+    /// 対象外の月のセルを表示するか指定するための依存関係プロパティ
+    /// </summary>
+    public static readonly DependencyProperty IsShowOtherMonthCellProperty
+        = DependencyProperty.Register(
+            nameof(IsShowOtherMonthCell),
+            typeof(bool),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(true)
+        );
+
+    /// <summary>
+    /// IsShowOtherMonthCellProperty用のCLRプロパティ
+    /// </summary>
+    public bool IsShowOtherMonthCell
+    {
+        get => (bool)this.GetValue(IsShowOtherMonthCellProperty);
+        set => this.SetValue(IsShowOtherMonthCellProperty, value);
+    }
+    #endregion
+
+    #region OtherMonthHiddenTemplate依存関係プロパティ
+    /// <summary>
+    /// IsShowOtherMonthCellプロパティがFalseの場合対象外の月のセルに適用されるデータテンプレート
+    /// </summary>
+    public static readonly DependencyProperty OtherMonthHiddenTemplateProperty
+        = DependencyProperty.Register(
+            nameof(OtherMonthHiddenTemplate),
+            typeof(DataTemplate),
+            typeof(CustamizableCalendar),
+            new PropertyMetadata(null)
+        );
+
+    /// <summary>
+    /// OtherMonthHiddenTemplateProperty用のCLRプロパティ
+    /// </summary>
+    public DataTemplate? OtherMonthHiddenTemplate
+    {
+        get => this.GetValue(OtherMonthHiddenTemplateProperty) as DataTemplate;
+        set => this.SetValue(OtherMonthHiddenTemplateProperty, value);
     }
     #endregion
 

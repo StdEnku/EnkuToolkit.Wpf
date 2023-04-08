@@ -24,6 +24,6 @@ public partial class Page1ViewModel : ObservableObject
     private void OnDoubleClicked(object arg)
     {
         var date = (DateTime)arg;
-        this._messageBoxService.ShowOk(date.ToString());
+        this._messageBoxService.ShowOk($"{date.Year}年{date.Month}月{date.Day}日");
     }
 }

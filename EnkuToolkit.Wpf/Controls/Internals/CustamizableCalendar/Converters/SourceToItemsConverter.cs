@@ -34,6 +34,8 @@ internal class SourceToItemsConverter : IMultiValueConverter
         var cellTemplate = (DataTemplate)values[2];
         var autoGenCellTemplate = (DataTemplate)values[3];
         var yearAndMonth = (YearAndMonth)values[4];
+        var isShowOtherMonthCell = (bool)values[5];
+        var otherMonthHiddenTemplate = (DataTemplate)values[6];
         var targetYear = yearAndMonth.Year;
         var targetMonth = yearAndMonth.Month;
         
@@ -42,8 +44,9 @@ internal class SourceToItemsConverter : IMultiValueConverter
 
         bool isTargetYearAndMonth;
         CalendarSource? tempSource;
-        CalendarSource source;
+        CalendarSource? source;
         CalendarCellFullSource fullSource;
+        DataTemplate? template;
         foreach (var datetime in allDates)
         {
             isTargetYearAndMonth = datetime.Year == targetYear && datetime.Month == targetMonth;
@@ -53,8 +56,15 @@ internal class SourceToItemsConverter : IMultiValueConverter
                           select calendarSource).FirstOrDefault();
 
             source = tempSource ?? new CalendarSource(datetime);
+            template = tempSource is null ? autoGenCellTemplate : cellTemplate;
 
-            fullSource = new CalendarCellFullSource(source, isTargetYearAndMonth, tempSource is null ? autoGenCellTemplate : cellTemplate);
+            if (!isShowOtherMonthCell && !isTargetYearAndMonth)
+            {
+                //source = null;
+                template = otherMonthHiddenTemplate;
+            }
+
+            fullSource = new CalendarCellFullSource(source, isTargetYearAndMonth, template);
             result.Add(fullSource);
         }
 

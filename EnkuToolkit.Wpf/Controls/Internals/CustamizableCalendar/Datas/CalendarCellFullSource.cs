@@ -5,13 +5,13 @@ using System.Windows;
 
 internal class CalendarCellFullSource
 {
-    public CalendarSource Source { get; }
+    public CalendarSource? Source { get; }
 
     public bool IsEnabled { get; }
 
     public DataTemplate DataTemplate { get; }
 
-    public CalendarCellFullSource(CalendarSource source, bool isEnabled, DataTemplate dataTemplate)
+    public CalendarCellFullSource(CalendarSource? source, bool isEnabled, DataTemplate dataTemplate)
     {
         this.Source = source;
         this.IsEnabled = isEnabled;

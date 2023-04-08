@@ -36,9 +36,17 @@
                   HorizontalAlignment="Center" 
                   Margin="10" />
 
+                <CheckBox Content="IsShowOtherMonthCell" 
+                  IsChecked="True"
+                  Name="cb3" 
+                  DockPanel.Dock="Top" 
+                  HorizontalAlignment="Center" 
+                  Margin="10" />
+
                 <et:CustamizableCalendar Name="cc"
                                          IsStartWeekMonday="{Binding ElementName=cb1, Path=IsChecked}" 
                                          IsShowHeader="{Binding ElementName=cb2, Path=IsChecked}"
+                                         IsShowOtherMonthCell="{Binding ElementName=cb3, Path=IsChecked}"
                                          DoubleClickedCommand="{Binding DoubleClickedCommand}"
                                          SelectionMode="Extended"
                                          DockPanel.Dock="Bottom">
@@ -104,6 +112,17 @@
                             </md:Card>
                         </DataTemplate>
                     </et:CustamizableCalendar.AutoGenCellTemplate>
+
+                    <et:CustamizableCalendar.OtherMonthHiddenTemplate>
+                        <DataTemplate DataType="datas:CalendarSource">
+                            <md:Card UniformCornerRadius="5" Margin="2">
+                                <md:PackIcon Kind="CalendarTodayOutline" 
+                                             Height="20" Width="20"
+                                             HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center" />
+                            </md:Card>
+                        </DataTemplate>
+                    </et:CustamizableCalendar.OtherMonthHiddenTemplate>
                     <!--#endregion-->
                 </et:CustamizableCalendar>
             </DockPanel>

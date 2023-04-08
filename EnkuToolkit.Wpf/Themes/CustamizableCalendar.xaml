@@ -73,6 +73,14 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+
+        <Setter Property="OtherMonthHiddenTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="datas:CalendarSource">
+                    
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <!--#endregion-->
 
         <Setter Property="Template">
@@ -186,6 +194,8 @@
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CellTemplate" />
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="AutoGenCellTemplate" />
                                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="TargetYearAndMonth" />
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="IsShowOtherMonthCell" />
+                                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="OtherMonthHiddenTemplate" />
                                         </MultiBinding>
                                     </ListBox.DataContext>
 
