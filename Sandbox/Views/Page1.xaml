@@ -16,9 +16,18 @@
 
     <DockPanel LastChildFill="True">
         <Button Content="ToNextPage" DockPanel.Dock="Bottom" Command="{Binding ToNextPageButtonClickedCommand}" Margin="20" />
-        
-        <Viewbox DockPanel.Dock="Top">
-            <Label Content="Page1" />
-        </Viewbox>
+
+        <UniformGrid Columns="2" DockPanel.Dock="Top">
+            <md:Card UniformCornerRadius="5" Margin="10">
+                <ListBox SelectionMode="Extended"
+                         ItemsSource="{Binding Sources}"
+                         et:ListBoxExpansionsBehavior.IsEnableExpansions="True"
+                         et:ListBoxExpansionsBehavior.BindableSelectedSources="{Binding SelectedSources, Mode=OneWayToSource}" />
+            </md:Card>
+
+            <md:Card UniformCornerRadius="5" Margin="10">
+                <ListBox ItemsSource="{Binding SelectedSources}" />
+            </md:Card>
+        </UniformGrid>
     </DockPanel>
 </Page>

@@ -41,7 +41,7 @@
                 <Label ContentStringFormat="{}{0:N1}">
                     <Label.Content>
                         <MultiBinding Converter="{x:Static et:MathConverter.Instance}" 
-                                      ConverterParameter="{x:Static et:MathOperations.Div}">
+                                      ConverterParameter="{x:Static et:MathOperations.Add}">
                             <Binding ElementName="sl1" Path="Value" />
                             <Binding ElementName="sl2" Path="Value" />
                             <Binding ElementName="sl3" Path="Value" />

@@ -60,6 +60,7 @@
 
 - MathConverterの追加
 - GetApplicationResourceExtensionマークアップ拡張追加
+- ListBoxExpansionsBehaviorビヘイビアの追加
 
 ### Fixed
 
