@@ -38,7 +38,6 @@ public class ViewModelProviderExtension : MarkupExtension
     /// <summary>
     /// 本マークアップ拡張の戻り値を作成するメソッド
     /// </summary>
-    /// <param name="serviceProvider">マークアップ拡張機能のサービスを提供できるサービスプロバイダーのヘルパー</param>
     /// <returns>DIコンテナから生成されたViewModelオブジェクト</returns>
     /// <exception cref="InvalidOperationException">
     /// DIコンテナでViewModelを生成できなかった場合に投げられる例外

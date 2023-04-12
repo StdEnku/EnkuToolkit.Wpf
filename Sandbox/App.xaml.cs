@@ -20,6 +20,7 @@ public partial class App : Application, IServicesOwner
 
     public IServiceProvider Services { get; }
 
+    // DIコンテナへの登録用メソッド
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();

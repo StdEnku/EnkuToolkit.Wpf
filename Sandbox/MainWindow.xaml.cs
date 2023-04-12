@@ -10,7 +10,7 @@ public partial class MainWindow : CustomTitlebarAnimatedNavigationWindow
         InitializeComponent();
     }
 
-    private void ShutdownButtonClicked(object sender, RoutedEventArgs e)
+    private void ShutDownButtonClicked(object sender, RoutedEventArgs e)
     {
         App.Current.Shutdown();
     }
@@ -20,9 +20,19 @@ public partial class MainWindow : CustomTitlebarAnimatedNavigationWindow
         this.WindowState = WindowState.Minimized;
     }
 
-    private void MaximizeButtonClicked(object sender, RoutedEventArgs e)
+    private void NormalMaximizeButtonClicked(object sender, RoutedEventArgs e)
     {
         var nextState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         this.WindowState = nextState;
+    }
+
+    private void GoBackButtonClicked(object sender, RoutedEventArgs e)
+    {
+        this.GoBack();
+    }
+
+    private void GoForwardButtonClicked(object sender, RoutedEventArgs e)
+    {
+        this.GoForward();
     }
 }

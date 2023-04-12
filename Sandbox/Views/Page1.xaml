@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sandbox.Views"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
       DataContext="{et:ViewModelProvider vm:Page1ViewModel}"
@@ -12,8 +14,20 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <StackPanel VerticalAlignment="Center">
-        <TextBox Text="{Binding Text}" Margin="20" />
-        <Button Content="Next page" Command="{Binding NextPageCommand}" Margin="20" />
-    </StackPanel>
+    <DockPanel LastChildFill="True">
+        <Button Content="ToNextPage" DockPanel.Dock="Bottom" Command="{Binding ToNextPageButtonClickedCommand}" Margin="20" />
+
+        <UniformGrid Columns="2" DockPanel.Dock="Top">
+            <md:Card UniformCornerRadius="5" Margin="10">
+                <ListBox SelectionMode="Extended"
+                         ItemsSource="{Binding Sources}"
+                         et:ListBoxExpansionsBehavior.IsEnableExpansions="True"
+                         et:ListBoxExpansionsBehavior.BindableSelectedSources="{Binding SelectedSources, Mode=OneWayToSource}" />
+            </md:Card>
+
+            <md:Card UniformCornerRadius="5" Margin="10">
+                <ListBox ItemsSource="{Binding SelectedSources}" />
+            </md:Card>
+        </UniformGrid>
+    </DockPanel>
 </Page>
