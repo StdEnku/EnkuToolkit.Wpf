@@ -66,7 +66,7 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | マークアップ拡張名                                           | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [ViewModelProviderExtension](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/12.ViewModelProviderExtension) | DIコンテナからViewModelのオブジェクトを生成するためのマークアップ拡張 |
-| [GetApplicationResourceExtension](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/13.ListBoxExpansionsBehavior) | Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
+| [GetApplicationResourceExtension](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/14.GetApplicationResourceExtension) | Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
 
 ## コンバーター
 
