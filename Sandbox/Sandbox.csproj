@@ -9,7 +9,9 @@
 
   <ItemGroup>
 	<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	<PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+	<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <ProjectReference Include="..\EnkuToolkit.Wpf\EnkuToolkit.Wpf.csproj" />
   </ItemGroup>
 

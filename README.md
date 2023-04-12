@@ -49,6 +49,7 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [WindowStateSaveBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/06.WindowStateSaveBehavior) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
 | [NavigatedParamSendBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/11.NavigatedParamSendBehavior) | FrameやNavigationWindowにて画面遷移を行う際に前の画面から渡されたパラメータをViewModelで取得するためのビヘイビア |
+| ListBoxExpansionsBehavior                                    | ListBoxを拡張するためのビヘイビア<br>現在複数選択されているソースをバインディングで取得可能にするための機能のみが実装されています。 |
 
 
 ## View Service
@@ -65,4 +66,11 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | マークアップ拡張名                                           | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [ViewModelProviderExtension](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/12.ViewModelProviderExtension) | DIコンテナからViewModelのオブジェクトを生成するためのマークアップ拡張 |
+| GetApplicationResourceExtension                              | Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
+
+## コンバーター
+
+| コンバーター名 | 備考                                 |
+| -------------- | ------------------------------------ |
+| MathConverter  | 四則演算をXAML上で可能なコンバーター |
 

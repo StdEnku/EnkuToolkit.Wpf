@@ -51,3 +51,17 @@
 ### Removed
 
 - TitlebarComponentsBehaviorはただ単にWindowChrome.IsHitTestVisibleInChromeをラップしているだけの無駄な実装だったため削除しました。以降カスタムタイトルバー系のウィンドウを使用してタイトルバー内にボタンなどのクリック可能にしたいコントロールがある場合はそのコントロールにWindowChrome.IsHitTestVisibleInChrome="True"と添付してください。
+
+
+
+## [1.0.13] - 2023-04-13
+
+### Added
+
+- MathConverterの追加
+- GetApplicationResourceExtensionマークアップ拡張追加
+- ListBoxExpansionsBehaviorビヘイビアの追加
+
+### Fixed
+
+- CustomTitlebarWindowとCustomTitlebarAnimatedNavigationWindowのWindowStateが起動時にMaximizeの場合タイトルバーのボタンが画面の端に埋もれてしまう問題を修正。
