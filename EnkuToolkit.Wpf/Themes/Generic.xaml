@@ -8,6 +8,5 @@
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedNavigationWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomTitlebarWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomTitlebarAnimatedNavigationWindow.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustamizableCalendar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

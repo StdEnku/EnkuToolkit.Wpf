@@ -1,27 +1,20 @@
 ﻿namespace Sandbox.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Services;
 
-public partial class Page1ViewModel : ObservableObject
+public partial class Page2ViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
     private readonly IApplicationPropertyiesService _applicationPropertyiesService;
     private readonly IMessageBoxService _messageBoxService;
 
-    public Page1ViewModel(INavigationService navigationService, 
+    public Page2ViewModel(INavigationService navigationService,
                           IApplicationPropertyiesService applicationPropertyiesService,
                           IMessageBoxService messageBoxService)
     {
         this._navigationService = navigationService;
         this._applicationPropertyiesService = applicationPropertyiesService;
         this._messageBoxService = messageBoxService;
-    }
-
-    [RelayCommand]
-    private void ToNextPageButtonClicked()
-    {
-        this._navigationService.NavigateRootBase("Views/Page2.xaml");
     }
 }

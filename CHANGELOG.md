@@ -58,7 +58,7 @@
 
 ### Added
 
-- CustamizableCalendarコントロール追加
+- MathConverterの追加
 - GetApplicationResourceExtensionマークアップ拡張追加
 
 ### Fixed

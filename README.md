@@ -42,7 +42,6 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | [CustomTitlebarAnimatedNavigationWindow](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/03.CustomTitlebarAnimatedNavigationWindow) | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
 | [TransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/04.TransformContentControl) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
 | [NormalizedTransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/05.NormalizedTransformContentControl) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
-| CustamizableCalendar                                         | **v0.0.13で実装予定**<br />セル内をカスタマイズ可能なカレンダー |
 
 ## 添付ビヘイビア
 
@@ -66,5 +65,11 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 | マークアップ拡張名                                           | 備考                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [ViewModelProviderExtension](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/12.ViewModelProviderExtension) | DIコンテナからViewModelのオブジェクトを生成するためのマークアップ拡張 |
-| GetApplicationResourceExtension                              | **v0.0.13で実装予定**<br />Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
+| GetApplicationResourceExtension                              | Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
+
+## コンバーター
+
+| コンバーター名 | 備考                                 |
+| -------------- | ------------------------------------ |
+| MathConverter  | 四則演算をXAML上で可能なコンバーター |
 

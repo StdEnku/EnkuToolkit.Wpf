@@ -26,6 +26,7 @@ public partial class App : Application, IServicesOwner
         var services = new ServiceCollection();
 
         services.AddSingleton<Page1ViewModel>();
+        services.AddSingleton<Page2ViewModel>();
         services.AddTransient<INavigationService, MainNavigationWindowNavigationService>();
         services.AddTransient<IMessageBoxService, MessageBoxService>();
         services.AddTransient<IApplicationPropertyiesService, ApplicationPropertyiesService>();
