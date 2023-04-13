@@ -72,5 +72,5 @@ xmlns:et="https://github.com/StdEnku/EnkuToolkit"
 
 | コンバーター名                                               | 備考                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [MathConverter](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/15.MathConverter) | 四則演算をXAML上で可能なコンバーター |
+| [MathConverter](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/15.MathConverter) | 四則演算を行えるコンバーター |
 
