@@ -27,10 +27,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build UiIndependent
-      run: dotnet build src/EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c $env:configuration
+      run: dotnet build src/EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c $env:Configuration
 
     - name: Build Wpf
-      run: dotnet build src/EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c $env:configuration
+      run: dotnet build src/EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c $env:Configuration
 
     - name: Test UiIndependent
-      run: dotnet test src/EnkuToolkit.UiIndependent.Test/EnkuToolkit.UiIndependent.Test.csproj -c $env:configuration
+      run: dotnet test src/EnkuToolkit.UiIndependent.Test/EnkuToolkit.UiIndependent.Test.csproj -c $env:Configuration
