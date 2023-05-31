@@ -2,9 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title> </title>
+      <title>Interface INavigationAware
+ </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content=" ">
+      <meta name="title" content="Interface INavigationAware
+ ">
       
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +17,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/97249051ceaaf5ac448a29c8bd739726b38d52f2/articles/intro.md/#L1">
+      
   </head>
 
   <script type="module">
@@ -30,7 +32,7 @@
   </script>
 
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
@@ -71,16 +73,86 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="">
+        <article data-uid="EnkuToolkit.UiIndependent.Navigation.INavigationAware">
 
-<p><img src="../images/logo.png" alt=""></p>
+
+
+  <h1 id="EnkuToolkit_UiIndependent_Navigation_INavigationAware" data-uid="EnkuToolkit.UiIndependent.Navigation.INavigationAware" class="text-break">
+    Interface INavigationAware
+  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="EnkuToolkit.html">EnkuToolkit</a>.<a class="xref" href="EnkuToolkit.UiIndependent.html">UiIndependent</a>.<a class="xref" href="EnkuToolkit.UiIndependent.Navigation.html">Navigation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>EnkuToolkit.UiIndependent.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Interface that describes methods to be executed on the ViewModel after screen transition when the IsSendNavigationParam attached property of FrameExtensionBehavior or NavigationWindowExtensionBehavior is True.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface INavigationAware</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="EnkuToolkit_UiIndependent_Navigation_INavigationAware_OnNavigated_" data-uid="EnkuToolkit.UiIndependent.Navigation.INavigationAware.OnNavigated*"></a>
+
+  <h3 id="EnkuToolkit_UiIndependent_Navigation_INavigationAware_OnNavigated_System_Object_EnkuToolkit_UiIndependent_Navigation_NavigationMode_" data-uid="EnkuToolkit.UiIndependent.Navigation.INavigationAware.OnNavigated(System.Object,EnkuToolkit.UiIndependent.Navigation.NavigationMode)">
+  OnNavigated(object?, NavigationMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Methods executed after screen transitions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnNavigated(object? param, NavigationMode navigationMode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>param</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Parameters passed from previous screens</p>
+</dd>
+    <dt><code>navigationMode</code> <a class="xref" href="EnkuToolkit.UiIndependent.Navigation.NavigationMode.html">NavigationMode</a></dt>
+    <dd><p>Mode of Navigation</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/97249051ceaaf5ac448a29c8bd739726b38d52f2/articles/intro.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
-        <div class="next-article d-print-none border-top" id="nextArticle"></div>
         
       </div>
 
