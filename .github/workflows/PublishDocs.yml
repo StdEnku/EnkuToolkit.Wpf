@@ -32,7 +32,7 @@ jobs:
 
     - run: dotnet tool update -g docfx
 
-    - run: docfx docfx_project/docfx.json
+    - run: docfx docfx.json
 
   deploy:
     environment:
