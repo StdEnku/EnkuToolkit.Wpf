@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sandbox.Views.MainWindow3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sandbox.Views"
+        xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+        mc:Ignorable="d"
+        Title="MainWindow3" Height="450" Width="800">
+
+    <DockPanel LastChildFill="True">
+        <UniformGrid Columns="3" DockPanel.Dock="Bottom" IsHitTestVisible="{Binding ElementName=tecc, Path=IsCompleted}">
+            <Button Content="forward" Click="ForwardButtonClick" Margin="10" />
+            <Button Content="backward" Click="BackwardButtonClick" Margin="10" />
+            <Button Content="reload" Click="ReloadButtonClick" Margin="10" />
+        </UniformGrid>
+        
+        <et:TransitionEffectContentControl 
+            Name="tecc" 
+            DockPanel.Dock="Top"
+            TransitionEffect="FadeOnly">
+            <Viewbox>
+                <Label Name="label" Content="0" />
+            </Viewbox>
+        </et:TransitionEffectContentControl>
+    </DockPanel>
+</Window>

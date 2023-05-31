@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="controls:AnimatedNavigationWindow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:AnimatedNavigationWindow">
+                    <Border Background="{TemplateBinding Background}">
+                        <controls:TransitionEffectContentControl 
+                            x:Name="transitionEffectContentControl"
+                            SnapshotDpiX="{TemplateBinding SnapshotDpiX}"
+                            SnapshotDpiY="{TemplateBinding SnapshotDpiY}"
+                            ForwardStoryboard="{TemplateBinding ForwardStoryboard}"
+                            BackwardStoryboard="{TemplateBinding BackwardStoryboard}"
+                            ReloadStoryboard="{TemplateBinding ReloadStoryboard}"
+                            TransitionEffect="{TemplateBinding TransitionEffect}">
+                            <ContentPresenter 
+                                Content="{TemplateBinding Content}" 
+                                IsHitTestVisible="{Binding ElementName=transitionEffectContentControl, Path=IsCompleted}" />
+                        </controls:TransitionEffectContentControl>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

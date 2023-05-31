@@ -1,0 +1,562 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Syple/Desktop/EnkuToolkit.Wpf",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Collections.DayDataCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Collections.DayDataCollection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Collections.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.BaseDayData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.BaseDayData.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.DayOfWeekData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.DayOfWeekData.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Navigation.INavigationAware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Navigation.INavigationAware.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Navigation.NavigationMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Navigation.NavigationMode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Navigation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Navigation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Services.IApplicationPropertyiesService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Services.IApplicationPropertyiesService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Services.IMessageBoxService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Services.IMessageBoxService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Services.INavigationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Services.INavigationService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.UiIndependent.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.UiIndependent.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Behaviors.FrameExtensionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Behaviors.FrameExtensionBehavior.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Behaviors.NavigationWindowExtensionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Behaviors.NavigationWindowExtensionBehavior.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Behaviors.WindowExtensionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Behaviors.WindowExtensionBehavior.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Behaviors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Behaviors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Constants.TransitionEffects.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Constants.TransitionEffects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Constants.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.AnimatedFrame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.AnimatedFrame.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.AnimatedNavigationWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.AnimatedNavigationWindow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableTitlebarAnimatedNavigationWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableTitlebarAnimatedNavigationWindow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableTitlebarWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableTitlebarWindow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.TransformContentControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.TransformContentControl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.TransitionEffectContentControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.TransitionEffectContentControl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Controls.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.MathConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.MathConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.MathOperations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.MathOperations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.AutoGenDayData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.AutoGenDayData.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.DayOfWeekData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.DayOfWeekData.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.GetApplicationResourceExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.GetApplicationResourceExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.IServicesOwner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.IServicesOwner.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.ViewModelProviderExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.ViewModelProviderExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.AbstractNavigationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Services.AbstractNavigationService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.ApplicationPropertyiesService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Services.ApplicationPropertyiesService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.MessageBoxService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Services.MessageBoxService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/1.Execute animation effects during screen transitions.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/1.Execute animation effects during screen transitions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

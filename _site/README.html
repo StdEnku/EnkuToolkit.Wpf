@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Summary </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Summary ">
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+  </head>
+
+  <script type="module">
+    import options from './public/main.js'
+    import { init } from './public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p><img src="C:%5CUsers%5CSyple%5CDesktop%5CEnkuToolkit.Wpf%5Cimages%5Clogo.png" alt="logo"></p>
+<p><img src="https://img.shields.io/bower/l/mi" alt="Bower"><img src="https://img.shields.io/nuget/v/EnkuToolkit.Wpf" alt="Nuget"><img src="https://img.shields.io/badge/.Net-7-blueviolet" alt=".Net: 7 (shields.io)"><br></p>
+<h1 id="summary">Summary</h1>
+<p>This library is an MIT-licensed OSS library that includes features that <br>the author felt were missing from the standard WPF functionality.</p>
+<p>Specifically, it includes the following features</p>
+<ul>
+<li>Custom controls</li>
+<li>Unique animation effect mechanism</li>
+<li>Attached behaviors to extend existing controls</li>
+<li>Value converters</li>
+<li>MarkupExtensions</li>
+<li>ViewServices</li>
+</ul>
+<h1 id="explanation-of-the-two-assemblies">Explanation of the two assemblies</h1>
+<p><img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?label=EnkuToolkit.Wpf&amp;logo=Nuget&amp;style=social" alt="Nuget"> : <a href="https://www.nuget.org/packages/EnkuToolkit.Wpf">NuGet Gallery | EnkuToolkit.Wpf</a><br>
+<img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?label=EnkuToolkit.UiIndependent&amp;logo=Nuget&amp;style=social" alt="Nuget"> : <a href="https://www.nuget.org/packages/EnkuToolkit.UiIndependent">NuGet Gallery | EnkuToolkit.UiIndependent</a><br></p>
+<p>This library consists of two assemblies:<br>EnkuToolkit.Wpf, which depends on the WPF assembly, and EnkuToolkit.UiIndependent, <br>which can be called from ViewModel and does not depend on the WPF assembly.</p>
+<p>When installing from Nuget, please note the following</p>
+<p>If you want to manage View and ViewModel in the same project, <br>install only EnkuToolkit.Wpf from Nuget because EnkuToolkit.Wpf <br>depends on EnkuToolkit.UiIndependent.</p>
+<p>If you want to manage View and ViewModel in different projects, <br>install EnkuToolkit.Wpf in the project for View and EnkuToolkit.UiIndependent <br>in the project for ViewModel.</p>
+<h1 id="to-call-classes-in-this-library-from-xaml">To call classes in this library from xaml</h1>
+<p>To access the classes of this library from xaml, use the following xml namespace.</p>
+<blockquote>
+<pre><code class="lang-xaml">xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+</code></pre>
+</blockquote>
+<h1 id="documentations">Documentations</h1>
+<ul>
+<li>Execute animation effects during screen transitions</li>
+<li>Customizing the Title Bar</li>
+<li>Perform deformation operations using binding</li>
+<li>Use animation effects on existing controls</li>
+<li>Save Window position and size to restore previous state at next startup</li>
+<li>How to receive parameters on the ViewModel during screen transitions</li>
+<li>Perform four arithmetic operations using converters</li>
+<li>Eliminate lengthy triggers and actions using ternary operator converters</li>
+<li>Retrieve application resources from markup extensions</li>
+<li>Retrieving ViewModel objects from a DI container on xaml</li>
+<li>Perform screen transitions from the ViewModel</li>
+<li>Displaying a Dialog from a ViewModel</li>
+<li>Retrieve Properties of the Application class from the ViewModel</li>
+<li>Create a calendar with customizable cell internals using CustomizableCalendar.</li>
+</ul>
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
