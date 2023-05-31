@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -39,6 +39,15 @@ jobs:
 
     - run: docfx docfx.json
 
+    - name: Build with Jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./
+        destination: ./_site
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+
   deploy:
     environment:
       name: github-pages
@@ -46,15 +55,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-    
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
