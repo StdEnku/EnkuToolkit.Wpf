@@ -30,7 +30,7 @@ jobs:
       run: dotnet build src/EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj
 
     - name: Build Wpf
-      run: dotnet build src/EnkuToolkit.Wpf.Test/EnkuToolkit.Wpf.csproj
+      run: dotnet build src/EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj
 
     - name: Test UiIndependent
       run: dotnet test src/EnkuToolkit.UiIndependent.Test/EnkuToolkit.UiIndependent.Test.csproj
