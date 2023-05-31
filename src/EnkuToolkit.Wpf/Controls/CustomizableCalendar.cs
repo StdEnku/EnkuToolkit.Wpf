@@ -616,8 +616,10 @@ public class CustomizableCalendar : Control
     {
         Debug.Assert(_timer is not null);
         _timer.Stop();
-        _timer.Interval = SecondsToTomorrow();
-        Reload();
+        _timer.Interval = MiliSecondsToTomorrow();
+
+        Dispatcher.Invoke(Reload);
+
         _timer.Start();
     }
 
@@ -634,20 +636,23 @@ public class CustomizableCalendar : Control
         _timer = new Timer();
         _timer.AutoReset = false;
         _timer.Elapsed += OnTimerElapsed;
-        _timer.Interval = SecondsToTomorrow();
+        _timer.Interval = MiliSecondsToTomorrow();
         _timer.Start();
     }
 
-    private static int SecondsToTomorrow()
+    private static int MiliSecondsToTomorrow()
     {
         var h = DateTime.Now.Hour;
         var m = DateTime.Now.Minute;
         var s = DateTime.Now.Second;
 
-        var aDaySecond = 60 * 60 * 24;
+        var allDaySecond = 60 * 60 * 24;
         var nowSecond = s + m * 60 + h * 60 * 60;
         var margin = 1;
-        return (aDaySecond - nowSecond) + margin;
+
+        var secondsToTomorrow = allDaySecond - nowSecond;
+
+        return (secondsToTomorrow + margin) * 1000;
     }
 
     private Timer? _timer;

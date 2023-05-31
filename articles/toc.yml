@@ -3,3 +3,6 @@
 
 - name: Execute animation effects during screen transitions
   href: 1.Execute animation effects during screen transitions.md
+
+- name: Customizing the Title Bar
+  href: 2.Customizing the Title Bar.md
