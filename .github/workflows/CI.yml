@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build&Test:
     strategy:
       matrix:
         configuration: [Debug, Release]
