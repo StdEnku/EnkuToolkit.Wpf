@@ -77,6 +77,7 @@
             Margin="3"
             BorderBrush="Gray"
             BorderThickness="1"
+            IsAutoReloadOnDateChanges="True"
             SelectionMode="{Binding ElementName=cb2, Path=IsChecked, Converter={StaticResource IsMultiSelectionConverter}}"
             SelectedDates="{Binding SelectedDates}"
             CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
@@ -137,11 +138,13 @@
 
             <et:CustomizableCalendar.OtherMonthCellTemplate>
                 <DataTemplate DataType="{x:Type et:AutoGenDayData}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Label Content="{Binding Month}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
-                        <Label Content="/" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
-                        <Label Content="{Binding Day}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
-                    </StackPanel>
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <Label Content="{Binding Month}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                            <Label Content="/" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                            <Label Content="{Binding Day}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </et:CustomizableCalendar.OtherMonthCellTemplate>
 

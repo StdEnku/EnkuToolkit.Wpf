@@ -435,6 +435,18 @@ internal class CustomizableCalendarDays : Control
         Update(CalendarDaysUpdatedType.Reload);
     }
 
+    internal bool IsExistsNowDateInShowingDates()
+    {
+        var showingDates = from item in _calendarCellItems
+                           select ((BaseDayData)item.Content).DateTime;
+
+        var isExists = (from date in showingDates
+                        where date.Date == DateTime.Now.Date
+                        select date).Count() > 0;
+
+        return isExists;
+    }
+
     private IEnumerable<ListBoxItem> _calendarCellItems
     {
         get

@@ -604,6 +604,11 @@ public class CustomizableCalendar : Control
 
     #region Mechanism for redrawing when the date changes during startup
     /// <summary>
+    /// Property for specifying whether or not to automatically update when the date changes
+    /// </summary>
+    public bool IsAutoReloadOnDateChanges { get; init; } = false;
+
+    /// <summary>
     /// Constructor
     /// </summary>
     public CustomizableCalendar()
@@ -618,14 +623,18 @@ public class CustomizableCalendar : Control
         _timer.Stop();
         _timer.Interval = MiliSecondsToTomorrow();
 
-        Dispatcher.Invoke(Reload);
+        Dispatcher.Invoke(() => 
+        { 
+            if (_customizableCalendarDays.IsExistsNowDateInShowingDates())
+                Reload();
+        });
 
         _timer.Start();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        Debug.Assert(_timer is not null);
+        if (_timer is null) return;
         _timer.Elapsed -= OnTimerElapsed;
         _timer.Stop();
         _timer.Dispose();
@@ -633,6 +642,7 @@ public class CustomizableCalendar : Control
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        if (!IsAutoReloadOnDateChanges) return;
         _timer = new Timer();
         _timer.AutoReset = false;
         _timer.Elapsed += OnTimerElapsed;
