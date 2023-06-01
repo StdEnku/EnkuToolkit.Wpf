@@ -12,3 +12,6 @@
 
 - name: Execute effects when the display state changes
   href: 4.Execute effects when the display state changes.md
+
+- name: Save Window position and size to restore previous state at next startup
+  href: 5.Save Window position and size to restore previous state at next startup.md
