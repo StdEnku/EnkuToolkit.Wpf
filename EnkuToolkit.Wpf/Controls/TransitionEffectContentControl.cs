@@ -234,7 +234,7 @@ public class TransitionEffectContentControl : ContentControl
     /// <summary>
     /// A method that executes an animation for reloading. Before executing this method, be sure to register a snapshot of the state before the update using the Snapshot method before calling this method.
     /// </summary>
-    public void RunReloadwardEffect()
+    public void RunReloadEffect()
     {
         var storyBoard = GetReloadStoryboard(TransitionEffect);
         if (storyBoard is null) return;

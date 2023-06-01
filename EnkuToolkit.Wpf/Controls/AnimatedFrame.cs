@@ -178,7 +178,7 @@ public class AnimatedFrame : Frame
         else if (_navigationMode == NavigationMode.Back)
             _transitionEffectContentControl.RunBackwardEffect();
         else if (_navigationMode == NavigationMode.Refresh)
-            _transitionEffectContentControl.RunReloadwardEffect();
+            _transitionEffectContentControl.RunReloadEffect();
     }
 
     private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");

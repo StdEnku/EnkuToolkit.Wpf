@@ -44,6 +44,6 @@ public partial class MainWindow3 : Window
     private void ReloadButtonClick(object sender, RoutedEventArgs e)
     {
         tecc.Snapshot();
-        tecc.RunReloadwardEffect();
+        tecc.RunReloadEffect();
     }
 }

@@ -588,7 +588,7 @@ public class CustomizableCalendar : Control
         }
         else
         {
-            transitionEffectContentControl.RunReloadwardEffect();
+            transitionEffectContentControl.RunReloadEffect();
         }
     }
 

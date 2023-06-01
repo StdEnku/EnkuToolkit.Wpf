@@ -10,5 +10,5 @@
 - name: Rotateexpandmove operation is simple with bindings
   href: 3.Rotateexpandmove operation is simple with bindings.md
 
-- name: Use animation effects on existing controls
-  href: 4.Use animation effects on existing controls.md
+- name: Execute effects when the display state changes
+  href: 4.Execute effects when the display state changes.md
