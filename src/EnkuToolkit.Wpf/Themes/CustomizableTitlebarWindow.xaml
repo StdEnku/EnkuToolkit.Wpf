@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
+                    xmlns:me="clr-namespace:EnkuToolkit.Wpf.MarkupExtensions"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style TargetType="controls:CustomizableTitlebarWindow">
+    <Style TargetType="controls:CustomizableTitlebarWindow" BasedOn="{me:GetApplicationResource {x:Type Window}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustomizableTitlebarWindow">
