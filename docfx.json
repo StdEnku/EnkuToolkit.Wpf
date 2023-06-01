@@ -4,8 +4,8 @@
       "src": [
         {
           "files": [
-            "src/EnkuToolkit.UiIndependent/bin/Release/net7.0/EnkuToolkit.UiIndependent.dll",
-            "src/EnkuToolkit.Wpf/bin/Release/net7.0-windows/EnkuToolkit.Wpf.dll"
+            "EnkuToolkit.UiIndependent/bin/Release/net7.0/EnkuToolkit.UiIndependent.dll",
+            "EnkuToolkit.Wpf/bin/Release/net7.0-windows/EnkuToolkit.Wpf.dll"
           ]
         }
       ],

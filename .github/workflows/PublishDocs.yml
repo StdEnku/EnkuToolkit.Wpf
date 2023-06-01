@@ -30,10 +30,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build UiIndependent
-      run: dotnet build src/EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c Release
+      run: dotnet build EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c Release
 
     - name: Build Wpf
-      run: dotnet build src/EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c Release
+      run: dotnet build EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c Release
 
     - run: dotnet tool update -g docfx
 

@@ -29,10 +29,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build UiIndependent
-      run: dotnet build src/EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c ${{ matrix.configuration }}
+      run: dotnet build EnkuToolkit.UiIndependent/EnkuToolkit.UiIndependent.csproj -c ${{ matrix.configuration }}
 
     - name: Build Wpf
-      run: dotnet build src/EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c ${{ matrix.configuration }}
+      run: dotnet build EnkuToolkit.Wpf/EnkuToolkit.Wpf.csproj -c ${{ matrix.configuration }}
 
     - name: Test UiIndependent
-      run: dotnet test src/EnkuToolkit.UiIndependent.Test/EnkuToolkit.UiIndependent.Test.csproj -c ${{ matrix.configuration }}
+      run: dotnet test EnkuToolkit.UiIndependent.Test/EnkuToolkit.UiIndependent.Test.csproj -c ${{ matrix.configuration }}
