@@ -107,9 +107,6 @@ public static class ListBoxExtensionBehavior
     {
         var listBox = (ListBox)d;
 
-        if (listBox.SelectionMode == SelectionMode.Single)
-            throw new InvalidOperationException("Single is specified for the SelectionMode property of the target ListBox. Please make multiple selections possible or review the binding mode.");
-
         var isRegistered = GetIsRegistered(listBox);
         if (!isRegistered)
         {
@@ -123,6 +120,12 @@ public static class ListBoxExtensionBehavior
         #region The part to be executed only if the binding source changes from here
 
         var sourceValue = GetSelectedContents(listBox);
+
+        if (listBox.SelectionMode == SelectionMode.Single && sourceValue.Count > 1)
+        {
+            SetIsSourceChanged(listBox, false);
+            throw new InvalidOperationException("The target ListBox is trying to perform multiple selections even though its SelectionMode is Single. Please review the SelectionMode property or binding mode of the target ListBox or modify the code so that the number of elements in this property does not exceed 1.");
+        }
 
         var items = from item in listBox.Items.Cast<ListBoxItem>()
                     from source in sourceValue
