@@ -4,8 +4,8 @@
 
 # Summary
 
-This is a ZLib licensed OSS library that implements features the author felt were missing from the standard WPF functionality.
-Therefore, you do not need to give credit to this library when using it or copying parts of its code to create other libraries or applications.
+This library implements features that the author felt were lacking in the standard WPF functionality. This library is an OSS library under the ZLib license.
+Therefore, when you use this library or copy a part of the code of this library to create other libraries or applications, you do not need to display the credit of this library in the repository where you manage your deliverables or in the credit screen of your application.
 
 Specifically, it includes the following features
 
