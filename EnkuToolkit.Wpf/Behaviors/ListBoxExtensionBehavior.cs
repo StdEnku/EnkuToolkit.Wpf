@@ -91,23 +91,10 @@ public static class ListBoxExtensionBehavior
         if (isSourceChanged) return;
         SetIsListBoxSelectionChanged(listBox, true);
         #region The part that is executed only when the selection on the target ListBox side changes from here
+        var list = from item in listBox.SelectedItems.Cast<object>()
+                   select item is ListBoxItem listBoxItem ? listBoxItem.Content : item;
 
-        var list = new List<object>();
-
-        foreach (var item in listBox.SelectedItems)
-        {
-            if (item is ListBoxItem listBoxItem)
-            {
-                list.Add(listBoxItem.Content);
-            }
-            else
-            {
-                list.Add(item);
-            }
-        }
-
-        SetSelectedContents(listBox, list);
-
+        SetSelectedContents(listBox, list.ToList());
         #endregion
         SetIsListBoxSelectionChanged(listBox, false);
     }
@@ -136,12 +123,13 @@ public static class ListBoxExtensionBehavior
             throw new InvalidOperationException("The target ListBox is trying to perform multiple selections even though its SelectionMode is Single. Please review the SelectionMode property or binding mode of the target ListBox or modify the code so that the number of elements in this property does not exceed 1.");
         }
 
-        var items = from item in listBox.Items.Cast<object>()
-                    from source in sourceValue
-                    where EqualsLogic(item, source)
-                    select item;
+        var nextItems = from item in listBox.Items.Cast<object>()
+                        from source in sourceValue
+                        where EqualsLogic(item, source)
+                        select item;
 
-        foreach (var item in items)
+        listBox.SelectedItems.Clear();
+        foreach (var item in nextItems)
             listBox.SelectedItems.Add(item);
 
         #endregion
