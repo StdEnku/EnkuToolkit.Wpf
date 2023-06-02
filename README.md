@@ -1,10 +1,11 @@
 ![logo](./images/logo.png)
 
-![Bower](https://img.shields.io/bower/l/mi) ![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) ![.Net: 7 (shields.io)](https://img.shields.io/badge/.Net-7-blueviolet)<br/>
+![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) ![.Net: 7 (shields.io)](https://img.shields.io/badge/.Net-7-blueviolet)<br/>
 
 # Summary
 
-This library is an MIT-licensed OSS library that includes features that <br/>the author felt were missing from the standard WPF functionality.
+This is a ZLib licensed OSS library that implements features the author felt were missing from the standard WPF functionality.
+Therefore, you do not need to give credit to this library when using it or copying parts of its code to create other libraries or applications.
 
 Specifically, it includes the following features
 
