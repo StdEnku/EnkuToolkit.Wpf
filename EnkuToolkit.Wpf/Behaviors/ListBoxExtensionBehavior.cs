@@ -11,33 +11,33 @@ using System.Windows.Controls;
 /// </summary>
 public static class ListBoxExtensionBehavior
 {
-    #region Attachment property representing all selected Contents of the target ListBox
+    #region Mutually bindable SelectedItems attachment properties
     /// <summary>
-    /// Attachment property representing all selected Contents of the target ListBox
+    ///  Mutually bindable SelectedItems attachment properties
     /// </summary>
-    public static readonly DependencyProperty SelectedContentsProperty
+    public static readonly DependencyProperty BindableSelectedItemsProperty
         = DependencyProperty.RegisterAttached(
-            "SelectedContents",  
+            "BindableSelectedItems",  
             typeof(List<object>),
             typeof(ListBoxExtensionBehavior),
-            new FrameworkPropertyMetadata(new List<object>(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedContentsChanged)
+            new FrameworkPropertyMetadata(new List<object>(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBindableSelectedItemsChanged)
         );
 
     /// <summary>
-    /// Getter for SelectedContentsProperty, an attached property representing all selected Contents of the target ListBox
+    ///  Getter for BindableSelectedItemsProperty, a mutually bindable SelectedItems attachment property
     /// </summary>
     /// <param name="target">Target ListBox</param>
-    /// <returns>List containing the value of Content for all items currently selected in the ListBox</returns>
-    public static List<object> GetSelectedContents(ListBox target)
-        => (List<object>)target.GetValue(SelectedContentsProperty);
+    /// <returns>All items currently selected in the target ListBox</returns>
+    public static List<object> GetBindableSelectedItems(ListBox target)
+        => (List<object>)target.GetValue(BindableSelectedItemsProperty);
 
     /// <summary>
-    /// Setter for SelectedContentsProperty, an attached property representing all selected Contents of the target ListBox
+    /// Setter for BindableSelectedItemsProperty, a mutually bindable SelectedItems attachment property
     /// </summary>
     /// <param name="target">Target ListBox</param>
-    /// <param name="value">List of Content equal to the item to be selected in the ListBox.</param>
-    public static void SetSelectedContents(ListBox target, List<object> value)
-        => target.SetValue(SelectedContentsProperty, value);
+    /// <param name="value">List containing the items you want to make selected</param>
+    public static void SetBindableSelectedItems(ListBox target, List<object> value)
+        => target.SetValue(BindableSelectedItemsProperty, value);
     #endregion
 
     #region A group of attached properties used by the internal mechanism
@@ -94,12 +94,12 @@ public static class ListBoxExtensionBehavior
         var list = from item in listBox.SelectedItems.Cast<object>()
                    select item is ListBoxItem listBoxItem ? listBoxItem.Content : item;
 
-        SetSelectedContents(listBox, list.ToList());
+        SetBindableSelectedItems(listBox, list.ToList());
         #endregion
         SetIsListBoxSelectionChanged(listBox, false);
     }
 
-    private static void OnSelectedContentsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnBindableSelectedItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var listBox = (ListBox)d;
 
@@ -115,7 +115,7 @@ public static class ListBoxExtensionBehavior
         SetIsSourceChanged(listBox, true);
         #region The part to be executed only if the binding source changes from here
 
-        var sourceValue = GetSelectedContents(listBox);
+        var sourceValue = GetBindableSelectedItems(listBox);
 
         if (listBox.SelectionMode == SelectionMode.Single && sourceValue.Count > 1)
         {

@@ -15,7 +15,7 @@
 
         <ListBox DockPanel.Dock="Top" 
                  SelectionMode="Extended"
-                 et:ListBoxExtensionBehavior.SelectedContents="{Binding Selecteds}">
+                 et:ListBoxExtensionBehavior.BindableSelectedItems="{Binding Selecteds}">
             <ListBoxItem>リンゴ</ListBoxItem>
             <ListBoxItem>みかん</ListBoxItem>
             <ListBoxItem>バナナ</ListBoxItem>
