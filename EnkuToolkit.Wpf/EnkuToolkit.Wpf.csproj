@@ -14,8 +14,6 @@
     <PackageTags>wpf;custom;controls;</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageReadmeFile></PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
