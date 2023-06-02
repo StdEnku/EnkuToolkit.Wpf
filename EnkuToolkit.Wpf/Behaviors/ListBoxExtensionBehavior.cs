@@ -94,8 +94,17 @@ public static class ListBoxExtensionBehavior
 
         var list = new List<object>();
 
-        foreach (var item in listBox.SelectedItems.Cast<ListBoxItem>())
-            list.Add(item.Content);
+        foreach (var item in listBox.SelectedItems)
+        {
+            if (item is ListBoxItem listBoxItem)
+            {
+                list.Add(listBoxItem.Content);
+            }
+            else
+            {
+                list.Add(item);
+            }
+        }
 
         SetSelectedContents(listBox, list);
 
@@ -127,15 +136,24 @@ public static class ListBoxExtensionBehavior
             throw new InvalidOperationException("The target ListBox is trying to perform multiple selections even though its SelectionMode is Single. Please review the SelectionMode property or binding mode of the target ListBox or modify the code so that the number of elements in this property does not exceed 1.");
         }
 
-        var items = from item in listBox.Items.Cast<ListBoxItem>()
+        var items = from item in listBox.Items.Cast<object>()
                     from source in sourceValue
-                    where source.Equals(item.Content)
+                    where EqualsLogic(item, source)
                     select item;
 
         foreach (var item in items)
-            item.IsSelected = true;
+            listBox.SelectedItems.Add(item);
 
         #endregion
         SetIsSourceChanged(listBox, false);
+    }
+
+    private static bool EqualsLogic(object item, object source)
+    {
+        var result = item is ListBoxItem listBoxItem ? 
+            source.Equals(listBoxItem.Content) : 
+            source.Equals(item);
+
+        return result;
     }
 }
