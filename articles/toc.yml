@@ -24,6 +24,3 @@
 
 - name: Eliminate lengthy triggers and actions using ternary operator converters
   href: 8.Eliminate lengthy triggers and actions using ternary operator converters.md
-
-- name: Retrieve application resources from markup extensions
-  href: 9.Retrieve application resources from markup extensions.md

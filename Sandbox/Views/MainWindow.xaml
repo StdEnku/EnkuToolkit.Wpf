@@ -27,13 +27,13 @@
         <!--#region Button and date labels-->
         <UniformGrid Columns="3" DockPanel.Dock="Top" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=calendar, Path=IsEffectCompleted}">
             <UniformGrid.Resources>
-                <Style TargetType="Button" BasedOn="{et:GetApplicationResource {x:Type Button}}">
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                     <Setter Property="Margin" Value="10,0,10,0" />
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="BorderThickness" Value="0" />
                 </Style>
 
-                <Style TargetType="Label" BasedOn="{et:GetApplicationResource {x:Type Label}}">
+                <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
                     <Setter Property="FontSize" Value="35" />
                     <Setter Property="HorizontalAlignment" Value="Center" />
                     <Setter Property="VerticalAlignment" Value="Center" />
