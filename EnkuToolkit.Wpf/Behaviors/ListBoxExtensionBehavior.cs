@@ -25,6 +25,7 @@ namespace EnkuToolkit.Wpf.Behaviors;
 
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,7 +42,7 @@ public static class ListBoxExtensionBehavior
     public static readonly DependencyProperty BindableSelectedItemsProperty
         = DependencyProperty.RegisterAttached(
             "BindableSelectedItems",  
-            typeof(List<object>),
+            typeof(IList),
             typeof(ListBoxExtensionBehavior),
             new FrameworkPropertyMetadata(new List<object>(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBindableSelectedItemsChanged)
         );
@@ -51,8 +52,8 @@ public static class ListBoxExtensionBehavior
     /// </summary>
     /// <param name="target">Target ListBox</param>
     /// <returns>All items currently selected in the target ListBox</returns>
-    public static List<object> GetBindableSelectedItems(ListBox target)
-        => (List<object>)target.GetValue(BindableSelectedItemsProperty);
+    public static IList GetBindableSelectedItems(ListBox target)
+        => (IList)target.GetValue(BindableSelectedItemsProperty);
 
     /// <summary>
     /// Setter for BindableSelectedItemsProperty, a mutually bindable SelectedItems attachment property
@@ -147,7 +148,7 @@ public static class ListBoxExtensionBehavior
         }
 
         var nextItems = from item in listBox.Items.Cast<object>()
-                        from source in sourceValue
+                        from source in sourceValue.Cast<object>()
                         where EqualsLogic(item, source)
                         select item;
 

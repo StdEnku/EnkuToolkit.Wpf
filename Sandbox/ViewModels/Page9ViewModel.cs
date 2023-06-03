@@ -7,8 +7,8 @@ using System.Windows;
 
 public class Page9ViewModel : ViewModelsBase
 {
-    private List<object> _selecteds = new List<object>();
-    public List<object> Selecteds
+    private List<string> _selecteds = new();
+    public List<string> Selecteds
     {
         get => _selecteds;
         set
@@ -34,7 +34,7 @@ public class Page9ViewModel : ViewModelsBase
 
     public void OnLoaded()
     {
-        var list = new List<object>();
+        var list = new List<string>();
         list.Add("みかん");
         list.Add("パイナップル");
         Selecteds = list;
