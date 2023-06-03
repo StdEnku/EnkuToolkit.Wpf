@@ -36,3 +36,6 @@
 
 - name: Binding multiple selected items in the ListBox to ViewModel properties
   href: 12.Binding multiple selected items in the ListBox to ViewModel properties.md
+
+- name: Create a calendar with customizable cell internals using CustomizableCalendar
+  href: 13.Create a calendar with customizable cell internals using CustomizableCalendar.md
