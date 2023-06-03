@@ -3,12 +3,13 @@
 using EnkuToolkit.Wpf.Behaviors;
 using Sandbox.MvvmUtil;
 using System.Collections.Generic;
+using System.Collections;
 using System.Windows;
 
 public class Page9ViewModel : ViewModelsBase
 {
-    private List<string> _selecteds = new();
-    public List<string> Selecteds
+    private IList _selecteds = new List<string>();
+    public IList Selecteds
     {
         get => _selecteds;
         set
