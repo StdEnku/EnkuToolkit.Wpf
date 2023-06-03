@@ -24,18 +24,18 @@
 namespace EnkuToolkit.Wpf.Services;
 
 using EnkuToolkit.UiIndependent.Services;
-using System.Windows.Navigation;
 using System;
+using System.Windows.Controls;
 
 /// <summary>
-/// When customizing a ViewService abstract class inherited from ViewModel to perform screen transitions, override the TargetNavigationService property getter. When customizing a ViewService abstract class inherited from ViewModel to perform screen transitions, override the TargetNavigationService property getter and write a process that returns the NavigationService property of the target Frame or NavigationWindow for screen transitions.
+/// ViewService for executing screen transitions from the ViewModel to the Frame on the Window
 /// </summary>
-public abstract class AbstractNavigationService : INavigationService
+public abstract class AbstractFrameNavigationService : INavigationService
 {
     /// <summary>
-    /// Property that describes the process of returning the NavigationService property of the target Frame or NavigationWindow for screen transitions.
+    /// Property that returns the target Frame object for screen transition
     /// </summary>
-    protected abstract NavigationService TargetNavigationService { get; }
+    protected abstract Frame TargetFrame { get; }
 
     /// <summary>
     /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
@@ -50,11 +50,11 @@ public abstract class AbstractNavigationService : INavigationService
 
         if (extraData is null)
         {
-            return TargetNavigationService.Navigate(uri);
+            return TargetFrame.Navigate(uri);
         }
         else
         {
-            return TargetNavigationService.Navigate(uri, extraData);
+            return TargetFrame.Navigate(uri, extraData);
         }
     }
 
@@ -68,11 +68,11 @@ public abstract class AbstractNavigationService : INavigationService
     {
         if (extraData is null)
         {
-            return TargetNavigationService.Navigate(uri);
+            return TargetFrame.Navigate(uri);
         }
         else
         {
-            return TargetNavigationService.Navigate(uri, extraData);
+            return TargetFrame.Navigate(uri, extraData);
         }
     }
 
@@ -81,7 +81,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void GoForward()
     {
-        TargetNavigationService.GoForward();
+        TargetFrame.GoForward();
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void GoBack()
     {
-        TargetNavigationService.GoBack();
+        TargetFrame.GoBack();
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void Refresh()
     {
-        TargetNavigationService.Refresh();
+        TargetFrame.Refresh();
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void RemoveBackEntry()
     {
-        TargetNavigationService.RemoveBackEntry();
+        TargetFrame.RemoveBackEntry();
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void StopLoading()
     {
-        TargetNavigationService.StopLoading();
+        TargetFrame.StopLoading();
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public abstract class AbstractNavigationService : INavigationService
     /// </summary>
     public void RemoveAllBackEntry()
     {
-        var ns = TargetNavigationService;
+        var ns = TargetFrame;
         while (ns.CanGoBack)
         {
             ns.RemoveBackEntry();
@@ -131,10 +131,10 @@ public abstract class AbstractNavigationService : INavigationService
     /// <summary>
     /// Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     /// </summary>
-    public bool CanGoBack => TargetNavigationService.CanGoBack;
+    public bool CanGoBack => TargetFrame.CanGoBack;
 
     /// <summary>
     /// Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     /// </summary>
-    public bool CanGoForward => TargetNavigationService.CanGoForward;
+    public bool CanGoForward => TargetFrame.CanGoForward;
 }
