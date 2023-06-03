@@ -30,3 +30,6 @@
 
 - name: Perform screen transitions from the ViewModel
   href: 10.Perform screen transitions from the ViewModel.md
+
+- name: Displaying a Dialog from a ViewModel
+  href: 11.Displaying a Dialog from a ViewModel.md
