@@ -33,3 +33,6 @@
 
 - name: Displaying a Dialog from a ViewModel
   href: 11.Displaying a Dialog from a ViewModel.md
+
+- name: Binding multiple selected items in the ListBox to ViewModel properties
+  href: 12.Binding multiple selected items in the ListBox to ViewModel properties.md
