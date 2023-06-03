@@ -15,3 +15,12 @@
 
 - name: Save Window position and size to restore previous state at next startup
   href: 5.Save Window position and size to restore previous state at next startup.md
+
+- name: How to receive parameters on the ViewModel during screen transitions
+  href: 6.How to receive parameters on the ViewModel during screen transitions.md
+
+- name: Using Math Converter
+  href: 7.Using Math Converter.md
+
+- name: Eliminate lengthy triggers and actions using ternary operator converters
+  href: 8.Eliminate lengthy triggers and actions using ternary operator converters.md
