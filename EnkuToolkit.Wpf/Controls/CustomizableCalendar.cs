@@ -37,6 +37,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
+using System.Timers;
+using System.Diagnostics;
 
 /// <summary>
 /// Customizable calendar control for cells in the calendar
@@ -748,6 +750,14 @@ public class CustomizableCalendar : Control
     #endregion
 
     /// <summary>
+    /// Methods for manual updates
+    /// </summary>
+    public void Update()
+    {
+        UpdateDayOfCell(UpdateEffectType.Reflesh);
+    }
+
+    /// <summary>
     /// Process executed when template is loaded
     /// </summary>
     public override void OnApplyTemplate()
@@ -761,11 +771,44 @@ public class CustomizableCalendar : Control
     }
 
     /// <summary>
+    /// Property for specifying whether or not to automatically update when the date changes
+    /// </summary>
+    public bool IsAutoReloadOnDateChanges { get; init; } = true;
+
+    /// <summary>
     /// Constructor
     /// </summary>
     public CustomizableCalendar()
     {
         Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private bool IsExistsNowDateInShowingDates()
+    {
+        var showingDates = from item in _calendarCellItems
+                           select ((BaseDayData)item.Content).DateTime;
+
+        var isExists = (from date in showingDates
+                        where date.Date == DateTime.Now.Date
+                        select date).Count() > 0;
+
+        return isExists;
+    }
+
+    private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
+    {
+        Debug.Assert(_timer is not null);
+        _timer.Stop();
+        _timer.Interval = MiliSecondsToTomorrow();
+
+        Dispatcher.Invoke(() =>
+        {
+            if (IsExistsNowDateInShowingDates())
+                Update();
+        });
+
+        _timer.Start();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -773,7 +816,39 @@ public class CustomizableCalendar : Control
         UpdateDayOfWeeksLine(UpdateEffectType.None);
         UpdateDayOfCell(UpdateEffectType.None);
         OnSelectedDatesChanged(this, new DependencyPropertyChangedEventArgs(SelectedDatesProperty, null, this.SelectedDates));
+
+        if (!IsAutoReloadOnDateChanges) return;
+        _timer = new Timer();
+        _timer.AutoReset = false;
+        _timer.Elapsed += OnTimerElapsed;
+        _timer.Interval = MiliSecondsToTomorrow();
+        _timer.Start();
     }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        if (_timer is null) return;
+        _timer.Elapsed -= OnTimerElapsed;
+        _timer.Stop();
+        _timer.Dispose();
+    }
+
+    private static int MiliSecondsToTomorrow()
+    {
+        var h = DateTime.Now.Hour;
+        var m = DateTime.Now.Minute;
+        var s = DateTime.Now.Second;
+
+        var allDaySecond = 60 * 60 * 24;
+        var nowSecond = s + m * 60 + h * 60 * 60;
+        var margin = 1;
+
+        var secondsToTomorrow = allDaySecond - nowSecond;
+
+        return (secondsToTomorrow + margin) * 1000;
+    }
+
+    private Timer? _timer;
 
     static CustomizableCalendar()
     {
