@@ -68,42 +68,13 @@
 
         <et:CustomizableCalendar 
             Name="calendar"
-            DockPanel.Dock="Bottom" 
-            CellBorderThickness="1"
-            CellBorderBrush="Gray"
-            CellMargin="3"
-            CellPadding="3"
-            Padding="3"
-            Margin="3"
-            BorderBrush="Gray"
-            BorderThickness="1"
-            IsAutoReloadOnDateChanges="True"
-            SelectionMode="{Binding ElementName=cb2, Path=IsChecked, Converter={StaticResource IsMultiSelectionConverter}}"
-            SelectedDates="{Binding SelectedDates}"
-            CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
             Source="{Binding Source}"
-            IsStartMonday="{Binding ElementName=cb1, Path=IsChecked}"
-            TransitionEffect="VerticalModernSlide">
-
-            <et:CustomizableCalendar.DayOfWeekLineSource>
-                <et:DayOfWeekData DayOfWeek="Monday" Text="月曜" />
-                <et:DayOfWeekData DayOfWeek="Tuesday" Text="火曜" />
-                <et:DayOfWeekData DayOfWeek="Wednesday" Text="水曜" />
-                <et:DayOfWeekData DayOfWeek="Thursday" Text="木曜" />
-                <et:DayOfWeekData DayOfWeek="Friday" Text="金曜" />
-                <et:DayOfWeekData DayOfWeek="Saturday" Text="土曜" />
-                <et:DayOfWeekData DayOfWeek="Sunday" Text="日曜" />
-            </et:CustomizableCalendar.DayOfWeekLineSource>
-
-            <et:CustomizableCalendar.DayOfWeekLineTemplate>
-                <DataTemplate DataType="{x:Type et:DayOfWeekData}">
-                    <Border Background="{Binding IsHoliday, Converter={StaticResource BoolToHolidayColorConverter}}">
-                        <Label Content="{Binding Text}" 
-                               FontSize="20" 
-                               HorizontalAlignment="Center" />
-                    </Border>
-                </DataTemplate>
-            </et:CustomizableCalendar.DayOfWeekLineTemplate>
+            TransitionEffect="VerticalModernSlide"
+            SelectionMode="Extended"
+            SelectedDates="{Binding SelectedDates}"
+            DockPanel.Dock="Bottom" 
+            CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
+            IsStartMonday="{Binding ElementName=cb1, Path=IsChecked}">
 
             <et:CustomizableCalendar.AutoGenCellTemplate>
                 <DataTemplate DataType="{x:Type et:AutoGenDayData}">

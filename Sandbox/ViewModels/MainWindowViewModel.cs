@@ -25,6 +25,7 @@ public class MainWindowViewModel : ViewModelsBase
 
     #region 選択されている日付プロパティ
     private IEnumerable<DateTime> _selectedDates = new List<DateTime>();
+
     public IEnumerable<DateTime> SelectedDates
     {
         get => _selectedDates;
@@ -107,7 +108,6 @@ public class MainWindowViewModel : ViewModelsBase
         source.Add(new DayData(1 , "鮭", "カレー", "ハンバーグ"));
         source.Add(new DayData(2 , "鮭", "カレー", "ハンバーグ"));
         source.Add(new DayData(3 , "鮭", "カレー", "ハンバーグ"));
-
         _source = source;
     }
 }

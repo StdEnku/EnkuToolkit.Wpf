@@ -25,6 +25,6 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        calendar.Reload();
+        //calendar.Reload();
     }
 }

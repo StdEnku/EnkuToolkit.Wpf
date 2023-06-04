@@ -27,8 +27,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableCalendar.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableCalendarDayOfWeekLine.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableCalendarDays.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/TransitionEffectContentControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedFrame.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedNavigationWindow.xaml" />

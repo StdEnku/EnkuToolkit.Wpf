@@ -23,12 +23,31 @@
  */
 namespace EnkuToolkit.Wpf.DataObjects;
 
-using UiiDayOfWeekData = UiIndependent.DataObjects.DayOfWeekData;
+using System;
 
 /// <summary>
 /// Data that serves as the source for the day-of-week row in the CustamizableCalendar
 /// </summary>
-public class DayOfWeekData : UiiDayOfWeekData
+public class DayOfWeekData
 {
+    /// <summary>
+    /// Property to get the target day of the week
+    /// </summary>
+    public DayOfWeek DayOfWeek { get; }
 
+    /// <summary>
+    /// Text property to display as the name of the day of the week
+    /// </summary>
+    public string DayOfWeekName { get; }
+
+    /// <summary>
+    /// Property to get whether the target day of the week is a holiday or not
+    /// </summary>
+    public bool IsHoliday => DayOfWeek == DayOfWeek.Sunday || DayOfWeek == DayOfWeek.Saturday;
+
+    internal DayOfWeekData(DayOfWeek dayOfWeek, string dayOfWeekName)
+    {
+        DayOfWeek = dayOfWeek;
+        DayOfWeekName = dayOfWeekName;
+    }
 }

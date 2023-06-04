@@ -20,44 +20,17 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE. 
--->
+-->    
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:controls="clr-namespace:EnkuToolkit.Wpf.Controls"
-                    xmlns:do="clr-namespace:EnkuToolkit.Wpf.DataObjects"
+                    xmlns:doi="clr-namespace:EnkuToolkit.Wpf.DataObjects"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <DataTemplate x:Key="DefaultCellTemplate">
-        <Border CornerRadius="20">
-            <Label Content="{Binding Day}" 
-                   FontSize="50" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" />
-
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsToday}" Value="True">
-                            <Setter Property="Background" Value="LightSeaGreen" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding IsToday}" Value="False">
-                            <Setter Property="Background" Value="Transparent" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-        </Border>
-    </DataTemplate>
-
     <Style TargetType="controls:CustomizableCalendar">
-        <Setter Property="HasDataCellTemplate" Value="{StaticResource DefaultCellTemplate}" />
-        <Setter Property="AutoGenCellTemplate" Value="{StaticResource DefaultCellTemplate}" />
-        <Setter Property="OtherMonthCellTemplate" Value="{StaticResource DefaultCellTemplate}" />
-
         <Setter Property="DayOfWeekLineTemplate">
             <Setter.Value>
-                <DataTemplate DataType="do:DaysOfWeekData">
-                    <Label Content="{Binding Text}" FontSize="20" HorizontalAlignment="Center" />
+                <DataTemplate DataType="doi:DaysOfWeekData">
+                    <Label Content="{Binding DayOfWeekName}" FontSize="20" HorizontalAlignment="Center" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -67,46 +40,137 @@
                 <ControlTemplate TargetType="controls:CustomizableCalendar">
                     <controls:TransitionEffectContentControl 
                         x:Name="transitionEffectContentControl"
-                        SnapshotDpiX="{TemplateBinding SnapshotDpiX}"
-                        SnapshotDpiY="{TemplateBinding SnapshotDpiY}"
+                        IsCompleted="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsEffectCompleted, Mode=TwoWay}"
                         ForwardStoryboard="{TemplateBinding ForwardStoryboard}"
                         BackwardStoryboard="{TemplateBinding BackwardStoryboard}"
                         ReloadStoryboard="{TemplateBinding ReloadStoryboard}"
                         TransitionEffect="{TemplateBinding TransitionEffect}"
-                        IsCompleted="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsEffectCompleted, Mode=OneWayToSource}">
+                        SnapshotDpiX="{TemplateBinding SnapshotDpiX}"
+                        SnapshotDpiY="{TemplateBinding SnapshotDpiY}">
                         <ScrollViewer 
                             HorizontalScrollBarVisibility="Auto"
                             VerticalScrollBarVisibility="Auto">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <DockPanel LastChildFill="True">
-                                    <controls:CustomizableCalendarDayOfWeekLine
-                                        x:Name="dayOfWeekLine"
-                                        DockPanel.Dock="Top"
-                                        IsStartMonday="{TemplateBinding IsStartMonday}"
-                                        Source="{TemplateBinding DayOfWeekLineSource}"
-                                        ItemTemplate="{TemplateBinding DayOfWeekLineTemplate}"
-                                        CellBorderThickness="{TemplateBinding CellBorderThickness}"
-                                        CellBorderBrush="{TemplateBinding CellBorderBrush}"
-                                        CellMargin="{TemplateBinding CellMargin}"
-                                        CellPadding="{TemplateBinding CellPadding}"/>
+                            <DockPanel LastChildFill="True">
+                                <!--#region dayOfWeekLine-->
+                                <ItemsControl Name="dayOfWeekLine" 
+                                              ItemTemplate="{TemplateBinding DayOfWeekLineTemplate}"
+                                              DockPanel.Dock="Top">
 
-                                    <controls:CustomizableCalendarDays 
-                                        x:Name="calendarDays"
-                                        DockPanel.Dock="Bottom"
-                                        Source="{TemplateBinding Source}"
-                                        IsStartMonday="{TemplateBinding IsStartMonday}"
-                                        HasDataCellTemplate="{TemplateBinding HasDataCellTemplate}"
-                                        AutoGenCellTemplate="{TemplateBinding AutoGenCellTemplate}"
-                                        OtherMonthCellTemplate="{TemplateBinding OtherMonthCellTemplate}"
-                                        CellBorderThickness="{TemplateBinding CellBorderThickness}"
-                                        CellBorderBrush="{TemplateBinding CellBorderBrush}"
-                                        CellMargin="{TemplateBinding CellMargin}"
-                                        CellPadding="{TemplateBinding CellPadding}"
-                                        SelectionMode="{TemplateBinding SelectionMode}"
-                                        SelectedDates="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=SelectedDates, Mode=TwoWay}"/>
-                                </DockPanel>
-                            </Border>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="7" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+
+                                    <ItemsControl.Template>
+                                        <ControlTemplate TargetType="ItemsControl">
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+                                </ItemsControl>
+                                <!--#endregion-->
+
+                                <!--#region dayOfCells-->
+                                <ListBox DockPanel.Dock="Bottom"
+                                         SelectionMode="{TemplateBinding SelectionMode}"
+                                         Name="dayOfCells">
+
+                                    <ListBox.Resources>
+                                        <DataTemplate x:Key="DefaultCellTemplate">
+                                            <Border CornerRadius="20">
+                                                <Label Content="{Binding Day}" 
+                                                       FontSize="50" 
+                                                       HorizontalAlignment="Center" 
+                                                       VerticalAlignment="Center" />
+
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                                <Setter Property="Background" Value="LightSeaGreen" />
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding IsToday}" Value="False">
+                                                                <Setter Property="Background" Value="Transparent" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.Resources>
+
+                                    <ListBoxItem Name="calendarCell0Row0Column" />
+                                    <ListBoxItem Name="calendarCell0Row1Column" />
+                                    <ListBoxItem Name="calendarCell0Row2Column" />
+                                    <ListBoxItem Name="calendarCell0Row3Column" />
+                                    <ListBoxItem Name="calendarCell0Row4Column" />
+                                    <ListBoxItem Name="calendarCell0Row5Column" />
+                                    <ListBoxItem Name="calendarCell0Row6Column" />
+
+                                    <ListBoxItem Name="calendarCell1Row0Column" />
+                                    <ListBoxItem Name="calendarCell1Row1Column" />
+                                    <ListBoxItem Name="calendarCell1Row2Column" />
+                                    <ListBoxItem Name="calendarCell1Row3Column" />
+                                    <ListBoxItem Name="calendarCell1Row4Column" />
+                                    <ListBoxItem Name="calendarCell1Row5Column" />
+                                    <ListBoxItem Name="calendarCell1Row6Column" />
+
+                                    <ListBoxItem Name="calendarCell2Row0Column" />
+                                    <ListBoxItem Name="calendarCell2Row1Column" />
+                                    <ListBoxItem Name="calendarCell2Row2Column" />
+                                    <ListBoxItem Name="calendarCell2Row3Column" />
+                                    <ListBoxItem Name="calendarCell2Row4Column" />
+                                    <ListBoxItem Name="calendarCell2Row5Column" />
+                                    <ListBoxItem Name="calendarCell2Row6Column" />
+
+                                    <ListBoxItem Name="calendarCell3Row0Column" />
+                                    <ListBoxItem Name="calendarCell3Row1Column" />
+                                    <ListBoxItem Name="calendarCell3Row2Column" />
+                                    <ListBoxItem Name="calendarCell3Row3Column" />
+                                    <ListBoxItem Name="calendarCell3Row4Column" />
+                                    <ListBoxItem Name="calendarCell3Row5Column" />
+                                    <ListBoxItem Name="calendarCell3Row6Column" />
+
+                                    <ListBoxItem Name="calendarCell4Row0Column" />
+                                    <ListBoxItem Name="calendarCell4Row1Column" />
+                                    <ListBoxItem Name="calendarCell4Row2Column" />
+                                    <ListBoxItem Name="calendarCell4Row3Column" />
+                                    <ListBoxItem Name="calendarCell4Row4Column" />
+                                    <ListBoxItem Name="calendarCell4Row5Column" />
+                                    <ListBoxItem Name="calendarCell4Row6Column" />
+
+                                    <ListBoxItem Name="calendarCell5Row0Column" />
+                                    <ListBoxItem Name="calendarCell5Row1Column" />
+                                    <ListBoxItem Name="calendarCell5Row2Column" />
+                                    <ListBoxItem Name="calendarCell5Row3Column" />
+                                    <ListBoxItem Name="calendarCell5Row4Column" />
+                                    <ListBoxItem Name="calendarCell5Row5Column" />
+                                    <ListBoxItem Name="calendarCell5Row6Column" />
+
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="7" Rows="6" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+
+                                    <ItemsControl.Template>
+                                        <ControlTemplate TargetType="ItemsControl">
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}" >
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                            <Setter Property="Margin" Value="0" />
+                                            <Setter Property="Padding" Value="0" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                                <!--#endregion-->
+                            </DockPanel>
                         </ScrollViewer>
                     </controls:TransitionEffectContentControl>
                 </ControlTemplate>
