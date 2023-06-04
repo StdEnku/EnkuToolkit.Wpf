@@ -73,8 +73,22 @@
             SelectionMode="Extended"
             SelectedDates="{Binding SelectedDates}"
             DockPanel.Dock="Bottom" 
+            CellBorderBrush="Black"
+            CellBorderThickness="1"
+            CellMargin="2"
+            CellPadding="2"
             CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
             IsStartMonday="{Binding ElementName=cb1, Path=IsChecked}">
+
+            <et:CustomizableCalendar.DayOfWeekLineTemplate>
+                <DataTemplate DataType="{x:Type et:DayOfWeekData}">
+                    <Border Background="{Binding IsHoliday, Converter={StaticResource BoolToHolidayColorConverter}}">
+                        <Label Content="{Binding DayOfWeekName}" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" />
+                    </Border>
+                </DataTemplate>
+            </et:CustomizableCalendar.DayOfWeekLineTemplate>
 
             <et:CustomizableCalendar.AutoGenCellTemplate>
                 <DataTemplate DataType="{x:Type et:AutoGenDayData}">

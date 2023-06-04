@@ -27,14 +27,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="controls:CustomizableCalendar">
-        <Setter Property="DayOfWeekLineTemplate">
-            <Setter.Value>
-                <DataTemplate DataType="doi:DaysOfWeekData">
-                    <Label Content="{Binding DayOfWeekName}" FontSize="20" HorizontalAlignment="Center" />
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustomizableCalendar">
@@ -52,22 +44,41 @@
                             VerticalScrollBarVisibility="Auto">
                             <DockPanel LastChildFill="True">
                                 <!--#region dayOfWeekLine-->
-                                <ItemsControl Name="dayOfWeekLine" 
-                                              ItemTemplate="{TemplateBinding DayOfWeekLineTemplate}"
-                                              DockPanel.Dock="Top">
+                                <UniformGrid Columns="7" Name="dayOfWeekLine" DockPanel.Dock="Top">
+                                    <UniformGrid.Resources>
+                                        <DataTemplate x:Key="dayOfWeekLineDefaultTemplate" DataType="doi:DaysOfWeekData">
+                                            <Label Content="{Binding DayOfWeekName}" FontSize="20" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </UniformGrid.Resources>
 
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Columns="7" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine0" />
+                                    </Border>
 
-                                    <ItemsControl.Template>
-                                        <ControlTemplate TargetType="ItemsControl">
-                                            <ItemsPresenter />
-                                        </ControlTemplate>
-                                    </ItemsControl.Template>
-                                </ItemsControl>
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine1" />
+                                    </Border>
+
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine2" />
+                                    </Border>
+
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine3" />
+                                    </Border>
+
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine4" />
+                                    </Border>
+
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine5" />
+                                    </Border>
+
+                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                        <ContentControl Name="dayOfWeekLine6" />
+                                    </Border>
+                                </UniformGrid>
                                 <!--#endregion-->
 
                                 <!--#region dayOfCells-->
@@ -164,8 +175,10 @@
                                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}" >
                                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                             <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                            <Setter Property="Margin" Value="0" />
-                                            <Setter Property="Padding" Value="0" />
+                                            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellMargin}" />
+                                            <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellPadding}" />
+                                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderBrush}" />
+                                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderThickness}" />
                                         </Style>
                                     </ListBox.ItemContainerStyle>
                                 </ListBox>

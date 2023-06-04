@@ -35,6 +35,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Controls.Primitives;
 
 /// <summary>
 /// Customizable calendar control for cells in the calendar
@@ -96,36 +98,6 @@ public class CustomizableCalendar : Control
     }
 
     private static void OnDayOfWeeksCultureChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var customizableCalendar = (CustomizableCalendar)d;
-
-        if (customizableCalendar.IsLoaded)
-            customizableCalendar.UpdateDayOfWeeksLine(UpdateEffectType.Reflesh);
-    }
-    #endregion
-
-    #region Dependency property representing the template to be applied in the day-of-week display line
-    /// <summary>
-    /// Dependency property representing the template to be applied in the day-of-week display line
-    /// </summary>
-    public static readonly DependencyProperty DayOfWeekLineTemplateProperty
-        = DependencyProperty.Register(
-            nameof(DayOfWeekLineTemplate),
-            typeof(DataTemplate),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(OnDayOfWeekLineTemplateChanged)
-        );
-
-    /// <summary>
-    /// CLR property for the DaysOfWeekRowTemplateProperty, a dependency property that represents the template to be applied in the weekday row
-    /// </summary>
-    public DataTemplate DayOfWeekLineTemplate
-    {
-        get => (DataTemplate)GetValue(DayOfWeekLineTemplateProperty);
-        set => SetValue(DayOfWeekLineTemplateProperty, value);
-    }
-
-    private static void OnDayOfWeekLineTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var customizableCalendar = (CustomizableCalendar)d;
 
@@ -320,6 +292,14 @@ public class CustomizableCalendar : Control
 
     #region Template property to specify the appearance of cells for date display
     /// <summary>
+    /// property representing the template to be applied in the day-of-week display line
+    /// </summary>
+    /// <remarks>
+    /// If Null is specified, the standard built-in template is applied
+    /// </remarks>
+    public DataTemplate? DayOfWeekLineTemplate { get; init; }
+
+    /// <summary>
     /// Template property for specifying the appearance of cells when data is specified in Source
     /// </summary>
     /// <remarks>
@@ -415,7 +395,15 @@ public class CustomizableCalendar : Control
             dayOfWeeks = dayOfWeeksList;
         }
 
-        _dayOfWeekLine.ItemsSource = dayOfWeekNames.Zip(dayOfWeeks, (name, week) => new DayOfWeekData(week, name));
+        var daysOfWeekDatas = dayOfWeekNames.Zip(dayOfWeeks, (name, week) => new DayOfWeekData(week, name));
+        var datasWithCells = daysOfWeekDatas.Zip(_dayOfWeekLineCells, (dayOfWeekData, cell) => new { dayOfWeekData, cell });
+
+        foreach (var dataWithCell in datasWithCells)
+        {
+            dataWithCell.cell.Content = dataWithCell.dayOfWeekData;
+            dataWithCell.cell.ContentTemplate = DayOfWeekLineTemplate ?? _dayOfWeekLineDefaultTemplate;
+        }
+        
         RunEffect(updateEffectType);
     }
 
@@ -470,8 +458,6 @@ public class CustomizableCalendar : Control
     #endregion
 
     #region Properties for accessing controls on the template
-    private ItemsControl _dayOfWeekLine => (ItemsControl)GetTemplateChild("dayOfWeekLine");
-
     private ListBox _dayOfCells => (ListBox)GetTemplateChild("dayOfCells");
 
     private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
@@ -487,6 +473,19 @@ public class CustomizableCalendar : Control
                     yield return (ListBoxItem)GetTemplateChild($"calendarCell{row}Row{column}Column");
         }
     }
+
+    private IEnumerable<ContentControl> _dayOfWeekLineCells
+    {
+        get
+        {
+            foreach (var column in Enumerable.Range(0, CellColumnNum))
+                yield return (ContentControl)GetTemplateChild($"dayOfWeekLine{column}");
+        }
+    }
+
+    private UniformGrid _dayOfWeekLine => (UniformGrid)GetTemplateChild("dayOfWeekLine");
+
+    private DataTemplate _dayOfWeekLineDefaultTemplate => (DataTemplate)_dayOfWeekLine.Resources["dayOfWeekLineDefaultTemplate"];
     #endregion
 
     #region Dependency property to get the currently selected item
@@ -657,6 +656,94 @@ public class CustomizableCalendar : Control
     {
         get => GetValue(CellDoubleClickedCommandProperty) as ICommand;
         set => SetValue(CellDoubleClickedCommandProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying the width of a cell border
+    /// <summary>
+    /// Dependency property for specifying the width of a cell border
+    /// </summary>
+    public static readonly DependencyProperty CellBorderThicknessProperty
+        = DependencyProperty.Register(
+            nameof(CellBorderThickness),
+            typeof(Thickness),
+            typeof(CustomizableCalendar),
+            new FrameworkPropertyMetadata(new Thickness(0))
+        );
+
+    /// <summary>
+    /// CLR property for CellBorderThicknessProperty, a dependency property for specifying the width of a cell border
+    /// </summary>
+    public Thickness CellBorderThickness
+    {
+        get => (Thickness)GetValue(CellBorderThicknessProperty);
+        set => SetValue(CellBorderThicknessProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying the cell border color
+    /// <summary>
+    /// Dependency property for specifying the cell border color
+    /// </summary>
+    public static readonly DependencyProperty CellBorderBrushProperty
+        = DependencyProperty.Register(
+            nameof(CellBorderBrush),
+            typeof(Brush),
+            typeof(CustomizableCalendar),
+            new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Transparent))
+        );
+
+    /// <summary>
+    /// CLR property for CellsBorderBrushProperty, a dependency property for specifying the cell border color
+    /// </summary>
+    public Brush CellBorderBrush
+    {
+        get => (Brush)GetValue(CellBorderBrushProperty);
+        set => SetValue(CellBorderBrushProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying cell margins
+    /// <summary>
+    /// Dependency property for specifying cell margins
+    /// </summary>
+    public static readonly DependencyProperty CellMarginProperty
+        = DependencyProperty.Register(
+            nameof(CellMargin),
+            typeof(Thickness),
+            typeof(CustomizableCalendar),
+            new FrameworkPropertyMetadata(new Thickness(0))
+        );
+
+    /// <summary>
+    /// CLR property for CellsMarginProperty, a dependency property for specifying cell margins
+    /// </summary>
+    public Thickness CellMargin
+    {
+        get => (Thickness)GetValue(CellMarginProperty);
+        set => SetValue(CellMarginProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying cell padding
+    /// <summary>
+    /// Dependency property for specifying cell padding
+    /// </summary>
+    public static readonly DependencyProperty CellPaddingProperty
+        = DependencyProperty.Register(
+            nameof(CellPadding),
+            typeof(Thickness),
+            typeof(CustomizableCalendar),
+            new FrameworkPropertyMetadata(new Thickness(0))
+        );
+
+    /// <summary>
+    /// CLR property for CellsPaddingProperty, a dependency property for specifying cell padding
+    /// </summary>
+    public Thickness CellPadding
+    {
+        get => (Thickness)GetValue(CellPaddingProperty);
+        set => SetValue(CellPaddingProperty, value);
     }
     #endregion
 
