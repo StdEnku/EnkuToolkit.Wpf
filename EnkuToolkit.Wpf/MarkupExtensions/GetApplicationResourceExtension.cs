@@ -28,9 +28,13 @@ using System.Windows;
 using System.Windows.Markup;
 
 /// <summary>
-/// Markup extension to retrieve resources in the Application class.
+/// This class is a markup extension to retrieve resources directly from Application.Current, 
+/// since it is not possible to retrieve the style by using StaticResorce 
+/// in the library when a library that defines a global style is applied in the application project. 
+/// 
+/// The class is Internal because it is sufficient to use StaticResource from the application project.
 /// </summary>
-public class GetApplicationResourceExtension : MarkupExtension
+internal class GetApplicationResourceExtension : MarkupExtension
 {
     private Object _key;
 
