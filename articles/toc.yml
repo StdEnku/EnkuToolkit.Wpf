@@ -37,5 +37,8 @@
 - name: Binding multiple selected items in the ListBox to ViewModel properties
   href: 12.Binding multiple selected items in the ListBox to ViewModel properties.md
 
+- name: Method for changing integers from 1~12 to the name of the month using a converter
+  href: 13.Method for changing integers from 1~12 to the name of the month using a converter.md
+
 - name: Create a calendar with customizable cell internals using CustomizableCalendar
   href: 14.Create a calendar with customizable cell internals using CustomizableCalendar.md
