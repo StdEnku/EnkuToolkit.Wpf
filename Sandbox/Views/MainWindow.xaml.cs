@@ -1,4 +1,6 @@
 ﻿namespace Sandbox.Views;
+
+using EnkuToolkit.Wpf.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,6 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        //calendar.Reload();
+        customizableCalendar.Update();
     }
 }

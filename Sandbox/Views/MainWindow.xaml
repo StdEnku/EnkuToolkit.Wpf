@@ -25,7 +25,7 @@
         <CheckBox Content="IsMultiSelectionMode" Name="cb2" IsChecked="True" DockPanel.Dock="Top" HorizontalAlignment="Center" />
 
         <!--#region Button and date labels-->
-        <UniformGrid Columns="3" DockPanel.Dock="Top" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=calendar, Path=IsEffectCompleted}">
+        <UniformGrid Columns="3" DockPanel.Dock="Top" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=customizableCalendar, Path=IsEffectCompleted}">
             <UniformGrid.Resources>
                 <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                     <Setter Property="Margin" Value="10,0,10,0" />
@@ -67,7 +67,7 @@
         <Button Content="Update" Click="Button_Click" DockPanel.Dock="Bottom" Margin="10" />
 
         <et:CustomizableCalendar 
-            Name="calendar"
+            Name="customizableCalendar"
             Source="{Binding Source}"
             TransitionEffect="VerticalModernSlide"
             SelectionMode="Extended"
