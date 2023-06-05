@@ -175,14 +175,25 @@ public class AnimatedNavigationWindow : NavigationWindow
     #endregion
 
     /// <summary>
-    /// Methods to be executed when loading templates
+    /// Constructor
     /// </summary>
-    public override void OnApplyTemplate()
+    public AnimatedNavigationWindow()
+    {
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+        this.ShowsNavigationUI = false;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        Navigated -= OnNavigated;
+        Navigating -= OnNavigating;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
         Navigated += OnNavigated;
         Navigating += OnNavigating;
-        this.ShowsNavigationUI = false;
-        base.OnApplyTemplate();
     }
 
     private NavigationMode _navigationMode;

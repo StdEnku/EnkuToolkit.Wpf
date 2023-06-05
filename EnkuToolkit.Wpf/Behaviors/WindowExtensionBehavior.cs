@@ -99,6 +99,9 @@ public class WindowExtensionBehavior
             window.Top = windowSaveData.Top;
             window.Left = windowSaveData.Left;
             window.WindowState = windowSaveData.IsMaximized ? WindowState.Maximized : WindowState.Normal;
+
+            window.Initialized -= OnWindowInitialized;
+            window.Closed -= OnWindowClosed;
         }
     }
 

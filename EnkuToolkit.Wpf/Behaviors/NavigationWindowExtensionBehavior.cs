@@ -73,10 +73,18 @@ public class NavigationWindowExtensionBehavior
         var value = (bool)e.NewValue;
         var navigationWindow = (NavigationWindow)d;
         if (!value) return;
-        navigationWindow.Navigating += OnFrameNavigating;
+        navigationWindow.Navigating += OnNavigationWindowNavigating;
+        navigationWindow.Unloaded += OnNavigationWindowUnloaded;
     }
 
-    private static void OnFrameNavigating(object sender, NavigatingCancelEventArgs e)
+    private static void OnNavigationWindowUnloaded(object sender, RoutedEventArgs e)
+    {
+        var navigationWindow = (NavigationWindow)sender;
+        navigationWindow.Navigating -= OnNavigationWindowNavigating;
+        navigationWindow.Unloaded -= OnNavigationWindowUnloaded;
+    }
+
+    private static void OnNavigationWindowNavigating(object sender, NavigatingCancelEventArgs e)
     {
         var navigationWindow = (NavigationWindow)sender;
         var isSendNavigationParam = GetIsSendNavigationParam(navigationWindow);

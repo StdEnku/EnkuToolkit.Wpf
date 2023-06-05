@@ -80,22 +80,20 @@ public class CustomizableTitlebarAnimatedNavigationWindow : AnimatedNavigationWi
         base.OnApplyTemplate();
     }
 
-    private static void OnTitlebarLoaded(object sender, RoutedEventArgs e)
+    private void OnTitlebarLoaded(object sender, RoutedEventArgs e)
     {
-        var titlebar = (ContentControl)sender;
-        var customizableTitlebarAnimatedNavigationWindow = (CustomizableTitlebarAnimatedNavigationWindow)titlebar.TemplatedParent;
-
         var windowChrome = new WindowChrome()
         {
-            CaptionHeight = titlebar.ActualHeight,
-            CornerRadius = customizableTitlebarAnimatedNavigationWindow.CornerRadius,
+            CaptionHeight = _titlebar.ActualHeight,
+            CornerRadius = CornerRadius,
             GlassFrameThickness = new Thickness(0),
-            //NonClientFrameEdges = NonClientFrameEdges.Bottom,
-            ResizeBorderThickness = customizableTitlebarAnimatedNavigationWindow.ResizeBorderThickness,
+            ResizeBorderThickness = ResizeBorderThickness,
             UseAeroCaptionButtons = false,
         };
 
-        WindowChrome.SetWindowChrome(customizableTitlebarAnimatedNavigationWindow, windowChrome);
+        WindowChrome.SetWindowChrome(this, windowChrome);
+
+        _titlebar.Loaded -= OnTitlebarLoaded;
     }
 
     static CustomizableTitlebarAnimatedNavigationWindow()

@@ -758,19 +758,6 @@ public class CustomizableCalendar : Control
     }
 
     /// <summary>
-    /// Process executed when template is loaded
-    /// </summary>
-    public override void OnApplyTemplate()
-    {
-        _dayOfCells.SelectionChanged += OnDayOfCellsSelectionChanged;
-
-        foreach (var item in _calendarCellItems)
-            item.MouseDoubleClick += OnCellItemsMouseDoubleClick;
-
-        base.OnApplyTemplate();
-    }
-
-    /// <summary>
     /// Property for specifying whether or not to automatically update when the date changes
     /// </summary>
     public bool IsAutoReloadOnDateChanges { get; init; } = true;
@@ -813,6 +800,11 @@ public class CustomizableCalendar : Control
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        _dayOfCells.SelectionChanged += OnDayOfCellsSelectionChanged;
+
+        foreach (var item in _calendarCellItems)
+            item.MouseDoubleClick += OnCellItemsMouseDoubleClick;
+
         UpdateDayOfWeeksLine(UpdateEffectType.None);
         UpdateDayOfCell(UpdateEffectType.None);
         OnSelectedDatesChanged(this, new DependencyPropertyChangedEventArgs(SelectedDatesProperty, null, this.SelectedDates));
@@ -827,6 +819,11 @@ public class CustomizableCalendar : Control
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
+        _dayOfCells.SelectionChanged -= OnDayOfCellsSelectionChanged;
+
+        foreach (var item in _calendarCellItems)
+            item.MouseDoubleClick -= OnCellItemsMouseDoubleClick;
+
         if (_timer is null) return;
         _timer.Elapsed -= OnTimerElapsed;
         _timer.Stop();

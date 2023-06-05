@@ -29,6 +29,8 @@ using System.Windows.Navigation;
 using SystemNavigationMode = System.Windows.Navigation.NavigationMode;
 using EnkuNavigationMode = UiIndependent.Navigation.NavigationMode;
 using EnkuToolkit.UiIndependent.Navigation;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 /// <summary>
 /// Attached behaviors to extend Frame
@@ -74,6 +76,14 @@ public class FrameExtensionBehavior
         var frame = (Frame)d;
         if (!value) return;
         frame.Navigating += OnFrameNavigating;
+        frame.Unloaded += OnFrameUnloaded;
+    }
+
+    private static void OnFrameUnloaded(object sender, RoutedEventArgs e)
+    {
+        var frame = (Frame)sender;
+        frame.Navigating -= OnFrameNavigating;
+        frame.Unloaded -= OnFrameUnloaded;
     }
 
     private static void OnFrameNavigating(object sender, NavigatingCancelEventArgs e)

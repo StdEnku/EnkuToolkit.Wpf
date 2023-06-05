@@ -80,22 +80,20 @@ public class CustomizableTitlebarWindow : Window
         base.OnApplyTemplate();
     }
 
-    private static void OnTitlebarLoaded(object sender, RoutedEventArgs e)
+    private void OnTitlebarLoaded(object sender, RoutedEventArgs e)
     {
-        var titlebar = (ContentControl)sender;
-        var customizableTitlebarWindow = (CustomizableTitlebarWindow)titlebar.TemplatedParent;
-
         var windowChrome = new WindowChrome()
         {
-            CaptionHeight = titlebar.ActualHeight,
-            CornerRadius = customizableTitlebarWindow.CornerRadius,
+            CaptionHeight = _titlebar.ActualHeight,
+            CornerRadius = CornerRadius,
             GlassFrameThickness = new Thickness(0),
-            //NonClientFrameEdges = NonClientFrameEdges.Bottom,
-            ResizeBorderThickness = customizableTitlebarWindow.ResizeBorderThickness,
+            ResizeBorderThickness = ResizeBorderThickness,
             UseAeroCaptionButtons = false,
         };
 
-        WindowChrome.SetWindowChrome(customizableTitlebarWindow, windowChrome);
+        WindowChrome.SetWindowChrome(this, windowChrome);
+
+        _titlebar.Loaded -= OnTitlebarLoaded;
     }
 
     static CustomizableTitlebarWindow()

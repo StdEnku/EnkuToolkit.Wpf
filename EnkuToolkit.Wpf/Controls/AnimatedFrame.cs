@@ -176,14 +176,25 @@ public class AnimatedFrame : Frame
     #endregion
 
     /// <summary>
-    /// Methods to be executed when loading templates
+    /// Constructor
     /// </summary>
-    public override void OnApplyTemplate()
+    public AnimatedFrame()
+    {
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+        NavigationUIVisibility = NavigationUIVisibility.Hidden;
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        Navigated -= OnNavigated;
+        Navigating -= OnNavigating;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
         Navigated += OnNavigated;
         Navigating += OnNavigating;
-        NavigationUIVisibility = NavigationUIVisibility.Hidden;
-        base.OnApplyTemplate();
     }
 
     private NavigationMode _navigationMode;

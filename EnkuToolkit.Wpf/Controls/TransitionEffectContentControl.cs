@@ -225,8 +225,8 @@ public class TransitionEffectContentControl : ContentControl
     public void Snapshot()
     {
         var bitmap = new RenderTargetBitmap(
-            (int)ActualWidth,
-            (int)ActualHeight,
+            (int)ActualWidth == 0 ? (int)Width : (int)ActualWidth,
+            (int)ActualHeight == 0 ? (int)Height : (int)ActualHeight,
             SnapshotDpiX, SnapshotDpiY, PixelFormats.Pbgra32
         );
 
@@ -270,7 +270,7 @@ public class TransitionEffectContentControl : ContentControl
         completedEvent = (sender, e) =>
         {
             _image.Visibility = Visibility.Hidden;
-            this.IsHitTestVisible = true;
+            IsHitTestVisible = true;
             storyboard.Completed -= completedEvent;
             IsCompleted = true;
         };
@@ -278,7 +278,7 @@ public class TransitionEffectContentControl : ContentControl
         IsCompleted = false;
         storyboard.Completed += completedEvent;
         _image.Visibility = Visibility.Visible;
-        this.IsHitTestVisible = false;
+        IsHitTestVisible = false;
         storyboard.Begin(_rootPanel);
     }
 
@@ -309,14 +309,6 @@ public class TransitionEffectContentControl : ContentControl
         return transitionEffects == TransitionEffects.None ? null :
                transitionEffects == TransitionEffects.Custom ? ReloadStoryboard : 
                (Storyboard)_rootPanel.Resources[FadeAnimationNames.FadeAnimation];
-    }
-
-    /// <summary>
-    /// Processing to be performed when the template is applied
-    /// </summary>
-    public override void OnApplyTemplate()
-    {
-        base.OnApplyTemplate();
     }
 
     static TransitionEffectContentControl()

@@ -10,7 +10,7 @@
 
     <et:AnimatedFrame 
         et:FrameExtensionBehavior.IsSendNavigationParam="True"
-        TransitionEffect="HorizontalSlide" 
+        TransitionEffect="HorizontalModernSlide" 
         Source="Page1.xaml" 
         DockPanel.Dock="Top" />
 </Window>
