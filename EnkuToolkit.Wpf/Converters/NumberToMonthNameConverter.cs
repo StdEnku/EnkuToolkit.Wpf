@@ -5,15 +5,15 @@ using System.Globalization;
 using System.Windows.Data;
 
 /// <summary>
-/// Converter for converting integers from 1 to 12 to strings with month names, such as January and February, based on CultureInfo.CurrentCulture
+/// Converter for converting integers from 1 to 12 to strings with month names, such as January and February
 /// </summary>
 [ValueConversion(typeof(int), typeof(String))]
-public class NumberToCurrentCultureMonthNameConverter : IValueConverter
+public class NumberToMonthNameConverter : IValueConverter
 {
     /// <summary>
     /// Property to get an instance from x:Static
     /// </summary>
-    public static NumberToCurrentCultureMonthNameConverter Instance => new NumberToCurrentCultureMonthNameConverter();
+    public static NumberToMonthNameConverter Instance => new NumberToMonthNameConverter();
 
     /// <summary>
     /// Methods for Forward Conversion
@@ -21,7 +21,7 @@ public class NumberToCurrentCultureMonthNameConverter : IValueConverter
     /// <param name="value">Binding Source Value</param>
     /// <param name="targetType">Not used</param>
     /// <param name="parameter">Not used</param>
-    /// <param name="culture">Not used</param>
+    /// <param name="culture">Specify the ClutureInfo you wish to use</param>
     /// <returns>Names of months such as January and February</returns>
     /// <exception cref="ArgumentException">Exception thrown if the value of the binding source exceeds the range of values from 1 to 12</exception>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -30,7 +30,7 @@ public class NumberToCurrentCultureMonthNameConverter : IValueConverter
         if (num < 1 || num > 12)
             throw new ArgumentOutOfRangeException(nameof(value), "When using the NumberToMonthNameConverter, the binding source can only have values from 1 to 12.");
 
-        return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(num);
+        return culture.DateTimeFormat.GetMonthName(num);
     }
 
     /// <summary>

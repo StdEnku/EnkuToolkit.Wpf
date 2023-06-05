@@ -52,7 +52,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding Source.Year}"/>
                 <Label Content="/" />
-                <Label Content="{Binding Source.Month}" />
+                <Label Content="{Binding Source.Month, Converter={x:Static et:NumberToMonthNameConverter.Instance}, ConverterCulture=zh}" />
             </StackPanel>
 
             <Button Command="{Binding RightArrowClickedCommand}">
@@ -77,6 +77,7 @@
             CellBorderThickness="1"
             CellMargin="2"
             CellPadding="2"
+            DayOfWeeksCulture="en-US"
             CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
             IsStartMonday="{Binding ElementName=cb1, Path=IsChecked}">
 
