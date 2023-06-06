@@ -31,162 +31,152 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CustomizableCalendar">
-                    <controls:TransitionEffectContentControl 
-                        x:Name="transitionEffectContentControl"
-                        IsCompleted="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsEffectCompleted, Mode=TwoWay}"
-                        ForwardStoryboard="{TemplateBinding ForwardStoryboard}"
-                        BackwardStoryboard="{TemplateBinding BackwardStoryboard}"
-                        ReloadStoryboard="{TemplateBinding ReloadStoryboard}"
-                        TransitionEffect="{TemplateBinding TransitionEffect}"
-                        SnapshotDpiX="{TemplateBinding SnapshotDpiX}"
-                        SnapshotDpiY="{TemplateBinding SnapshotDpiY}">
-                        <ScrollViewer 
+                    <ScrollViewer 
                             HorizontalScrollBarVisibility="Auto"
                             VerticalScrollBarVisibility="Auto">
-                            <DockPanel LastChildFill="True">
-                                <!--#region dayOfWeekLine-->
-                                <UniformGrid Columns="7" Name="dayOfWeekLine" DockPanel.Dock="Top">
-                                    <UniformGrid.Resources>
-                                        <DataTemplate x:Key="dayOfWeekLineDefaultTemplate" DataType="doi:DaysOfWeekData">
-                                            <Label Content="{Binding DayOfWeekName}" FontSize="20" HorizontalAlignment="Center" />
-                                        </DataTemplate>
-                                    </UniformGrid.Resources>
+                        <DockPanel LastChildFill="True">
+                            <!--#region dayOfWeekLine-->
+                            <UniformGrid Columns="7" Name="dayOfWeekLine" DockPanel.Dock="Top">
+                                <UniformGrid.Resources>
+                                    <DataTemplate x:Key="dayOfWeekLineDefaultTemplate" DataType="doi:DaysOfWeekData">
+                                        <Label Content="{Binding DayOfWeekName}" FontSize="20" HorizontalAlignment="Center" />
+                                    </DataTemplate>
+                                </UniformGrid.Resources>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine0" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine0" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine1" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine1" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine2" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine2" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine3" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine3" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine4" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine4" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine5" />
-                                    </Border>
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine5" />
+                                </Border>
 
-                                    <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
-                                        <ContentControl Name="dayOfWeekLine6" />
-                                    </Border>
-                                </UniformGrid>
-                                <!--#endregion-->
+                                <Border BorderBrush="{TemplateBinding CellBorderBrush}" BorderThickness="{TemplateBinding CellBorderThickness}" Margin="{TemplateBinding CellMargin}" Padding="{TemplateBinding CellPadding}">
+                                    <ContentControl Name="dayOfWeekLine6" />
+                                </Border>
+                            </UniformGrid>
+                            <!--#endregion-->
 
-                                <!--#region dayOfCells-->
-                                <ListBox DockPanel.Dock="Bottom"
+                            <!--#region dayOfCells-->
+                            <ListBox DockPanel.Dock="Bottom"
                                          SelectionMode="{TemplateBinding SelectionMode}"
                                          Name="dayOfCells">
 
-                                    <ListBox.Resources>
-                                        <DataTemplate x:Key="DefaultCellTemplate">
-                                            <Border CornerRadius="20">
-                                                <Label Content="{Binding Day}" 
+                                <ListBox.Resources>
+                                    <DataTemplate x:Key="DefaultCellTemplate">
+                                        <Border CornerRadius="20">
+                                            <Label Content="{Binding Day}" 
                                                        FontSize="50" 
                                                        HorizontalAlignment="Center" 
                                                        VerticalAlignment="Center" />
 
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsToday}" Value="True">
-                                                                <Setter Property="Background" Value="LightSeaGreen" />
-                                                            </DataTrigger>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                            <Setter Property="Background" Value="LightSeaGreen" />
+                                                        </DataTrigger>
 
-                                                            <DataTrigger Binding="{Binding IsToday}" Value="False">
-                                                                <Setter Property="Background" Value="Transparent" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ListBox.Resources>
+                                                        <DataTrigger Binding="{Binding IsToday}" Value="False">
+                                                            <Setter Property="Background" Value="Transparent" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.Resources>
 
-                                    <ListBoxItem Name="calendarCell0Row0Column" />
-                                    <ListBoxItem Name="calendarCell0Row1Column" />
-                                    <ListBoxItem Name="calendarCell0Row2Column" />
-                                    <ListBoxItem Name="calendarCell0Row3Column" />
-                                    <ListBoxItem Name="calendarCell0Row4Column" />
-                                    <ListBoxItem Name="calendarCell0Row5Column" />
-                                    <ListBoxItem Name="calendarCell0Row6Column" />
+                                <ListBoxItem Name="calendarCell0Row0Column" />
+                                <ListBoxItem Name="calendarCell0Row1Column" />
+                                <ListBoxItem Name="calendarCell0Row2Column" />
+                                <ListBoxItem Name="calendarCell0Row3Column" />
+                                <ListBoxItem Name="calendarCell0Row4Column" />
+                                <ListBoxItem Name="calendarCell0Row5Column" />
+                                <ListBoxItem Name="calendarCell0Row6Column" />
 
-                                    <ListBoxItem Name="calendarCell1Row0Column" />
-                                    <ListBoxItem Name="calendarCell1Row1Column" />
-                                    <ListBoxItem Name="calendarCell1Row2Column" />
-                                    <ListBoxItem Name="calendarCell1Row3Column" />
-                                    <ListBoxItem Name="calendarCell1Row4Column" />
-                                    <ListBoxItem Name="calendarCell1Row5Column" />
-                                    <ListBoxItem Name="calendarCell1Row6Column" />
+                                <ListBoxItem Name="calendarCell1Row0Column" />
+                                <ListBoxItem Name="calendarCell1Row1Column" />
+                                <ListBoxItem Name="calendarCell1Row2Column" />
+                                <ListBoxItem Name="calendarCell1Row3Column" />
+                                <ListBoxItem Name="calendarCell1Row4Column" />
+                                <ListBoxItem Name="calendarCell1Row5Column" />
+                                <ListBoxItem Name="calendarCell1Row6Column" />
 
-                                    <ListBoxItem Name="calendarCell2Row0Column" />
-                                    <ListBoxItem Name="calendarCell2Row1Column" />
-                                    <ListBoxItem Name="calendarCell2Row2Column" />
-                                    <ListBoxItem Name="calendarCell2Row3Column" />
-                                    <ListBoxItem Name="calendarCell2Row4Column" />
-                                    <ListBoxItem Name="calendarCell2Row5Column" />
-                                    <ListBoxItem Name="calendarCell2Row6Column" />
+                                <ListBoxItem Name="calendarCell2Row0Column" />
+                                <ListBoxItem Name="calendarCell2Row1Column" />
+                                <ListBoxItem Name="calendarCell2Row2Column" />
+                                <ListBoxItem Name="calendarCell2Row3Column" />
+                                <ListBoxItem Name="calendarCell2Row4Column" />
+                                <ListBoxItem Name="calendarCell2Row5Column" />
+                                <ListBoxItem Name="calendarCell2Row6Column" />
 
-                                    <ListBoxItem Name="calendarCell3Row0Column" />
-                                    <ListBoxItem Name="calendarCell3Row1Column" />
-                                    <ListBoxItem Name="calendarCell3Row2Column" />
-                                    <ListBoxItem Name="calendarCell3Row3Column" />
-                                    <ListBoxItem Name="calendarCell3Row4Column" />
-                                    <ListBoxItem Name="calendarCell3Row5Column" />
-                                    <ListBoxItem Name="calendarCell3Row6Column" />
+                                <ListBoxItem Name="calendarCell3Row0Column" />
+                                <ListBoxItem Name="calendarCell3Row1Column" />
+                                <ListBoxItem Name="calendarCell3Row2Column" />
+                                <ListBoxItem Name="calendarCell3Row3Column" />
+                                <ListBoxItem Name="calendarCell3Row4Column" />
+                                <ListBoxItem Name="calendarCell3Row5Column" />
+                                <ListBoxItem Name="calendarCell3Row6Column" />
 
-                                    <ListBoxItem Name="calendarCell4Row0Column" />
-                                    <ListBoxItem Name="calendarCell4Row1Column" />
-                                    <ListBoxItem Name="calendarCell4Row2Column" />
-                                    <ListBoxItem Name="calendarCell4Row3Column" />
-                                    <ListBoxItem Name="calendarCell4Row4Column" />
-                                    <ListBoxItem Name="calendarCell4Row5Column" />
-                                    <ListBoxItem Name="calendarCell4Row6Column" />
+                                <ListBoxItem Name="calendarCell4Row0Column" />
+                                <ListBoxItem Name="calendarCell4Row1Column" />
+                                <ListBoxItem Name="calendarCell4Row2Column" />
+                                <ListBoxItem Name="calendarCell4Row3Column" />
+                                <ListBoxItem Name="calendarCell4Row4Column" />
+                                <ListBoxItem Name="calendarCell4Row5Column" />
+                                <ListBoxItem Name="calendarCell4Row6Column" />
 
-                                    <ListBoxItem Name="calendarCell5Row0Column" />
-                                    <ListBoxItem Name="calendarCell5Row1Column" />
-                                    <ListBoxItem Name="calendarCell5Row2Column" />
-                                    <ListBoxItem Name="calendarCell5Row3Column" />
-                                    <ListBoxItem Name="calendarCell5Row4Column" />
-                                    <ListBoxItem Name="calendarCell5Row5Column" />
-                                    <ListBoxItem Name="calendarCell5Row6Column" />
+                                <ListBoxItem Name="calendarCell5Row0Column" />
+                                <ListBoxItem Name="calendarCell5Row1Column" />
+                                <ListBoxItem Name="calendarCell5Row2Column" />
+                                <ListBoxItem Name="calendarCell5Row3Column" />
+                                <ListBoxItem Name="calendarCell5Row4Column" />
+                                <ListBoxItem Name="calendarCell5Row5Column" />
+                                <ListBoxItem Name="calendarCell5Row6Column" />
 
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Columns="7" Rows="6" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="7" Rows="6" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
 
-                                    <ItemsControl.Template>
-                                        <ControlTemplate TargetType="ItemsControl">
-                                            <ItemsPresenter />
-                                        </ControlTemplate>
-                                    </ItemsControl.Template>
+                                <ItemsControl.Template>
+                                    <ControlTemplate TargetType="ItemsControl">
+                                        <ItemsPresenter />
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
 
-                                    <ListBox.ItemContainerStyle>
-                                        <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResource {x:Type ListBoxItem}}" >
-                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                            <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellMargin}" />
-                                            <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellPadding}" />
-                                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderBrush}" />
-                                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderThickness}" />
-                                        </Style>
-                                    </ListBox.ItemContainerStyle>
-                                </ListBox>
-                                <!--#endregion-->
-                            </DockPanel>
-                        </ScrollViewer>
-                    </controls:TransitionEffectContentControl>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem" BasedOn="{me:GetApplicationResource {x:Type ListBoxItem}}" >
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellMargin}" />
+                                        <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellPadding}" />
+                                        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderBrush}" />
+                                        <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=CellBorderThickness}" />
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+                            <!--#endregion-->
+                        </DockPanel>
+                    </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

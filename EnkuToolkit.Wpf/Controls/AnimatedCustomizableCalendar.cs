@@ -26,27 +26,26 @@ namespace EnkuToolkit.Wpf.Controls;
 using EnkuToolkit.Wpf.Constants;
 using System.Windows;
 using System.Windows.Media.Animation;
-using System.Windows.Navigation;
 
 /// <summary>
-/// NavigationWindow that can execute effects during screen transitions
+/// CustomizableCalendar to support animation effects when updating
 /// </summary>
-public class AnimatedNavigationWindow : NavigationWindow
+public class AnimatedCustomizableCalendar : CustomizableCalendar
 {
-    #region Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
+    #region Dependency property for setting the horizontal Dpi value specified when creating a snapshot of Content
     /// <summary>
-    /// Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// Dependency property for setting the horizontal Dpi value specified when creating a snapshot of Content
     /// </summary>
     public static readonly DependencyProperty SnapshotDpiXProperty
         = DependencyProperty.Register(
             nameof(SnapshotDpiX),
             typeof(int),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(96)
         );
 
     /// <summary>
-    /// CLR property for SnapshotDpiXProperty, which is a dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// CLR property for the dependency property to set the horizontal Dpi value specified when creating a snapshot of Content
     /// </summary>
     public int SnapshotDpiX
     {
@@ -55,20 +54,20 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
     #endregion
 
-    #region Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
+    #region Dependency property for setting the vertical Dpi value specified when creating a snapshot of Content
     /// <summary>
-    /// Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// Dependency property for setting the vertical Dpi value specified when creating a snapshot of Content
     /// </summary>
     public static readonly DependencyProperty SnapshotDpiYProperty
         = DependencyProperty.Register(
             nameof(SnapshotDpiY),
             typeof(int),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(96)
         );
 
     /// <summary>
-    /// CLR property for SnapshotDpiYProperty, which is a dependency property for specifying the vertical dpi value of the image created by the effect that is executed when updating this control to create an image.
+    /// CLR property for the dependency property to set the vertical Dpi value specified when creating a snapshot of Content
     /// </summary>
     public int SnapshotDpiY
     {
@@ -77,24 +76,27 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
     #endregion
 
-    #region Dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    #region Dependency properties of type Storyboard, including animations executed during forward state transitions
     /// <summary>
-    /// Dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    /// Dependency properties of type Storyboard, including animations executed during forward state transitions
     /// </summary>
     /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
     /// </remarks>
     public static readonly DependencyProperty ForwardStoryboardProperty
         = DependencyProperty.Register(
             nameof(ForwardStoryboard),
             typeof(Storyboard),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(null)
         );
 
     /// <summary>
-    /// CLR property for ForwardStoryboardProperty, a dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    /// CLR property for ForwardStoryboardProperty, a dependency property of type Storyboard that contains an animation to be executed during a forward state transition
     /// </summary>
+    /// <remarks>
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
+    /// </remarks>
     public Storyboard? ForwardStoryboard
     {
         get => GetValue(ForwardStoryboardProperty) as Storyboard;
@@ -102,24 +104,27 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
     #endregion
 
-    #region Dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    #region Dependency properties of type Storyboard containing animations to be performed during state transitions in the reverse direction
     /// <summary>
-    /// Dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    /// Dependency properties of type Storyboard containing animations to be performed during state transitions in the reverse direction
     /// </summary>
     /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
     /// </remarks>
     public static readonly DependencyProperty BackwardStoryboardProperty
         = DependencyProperty.Register(
             nameof(BackwardStoryboard),
             typeof(Storyboard),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(null)
         );
 
     /// <summary>
-    /// CLR property for BackwardStoryboardProperty, a dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    /// CLR property for BackwardStoryboard, a dependency property of type Storyboard that contains an animation to be executed during a state transition in the reverse direction
     /// </summary>
+    /// <remarks>
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
+    /// </remarks>
     public Storyboard? BackwardStoryboard
     {
         get => GetValue(BackwardStoryboardProperty) as Storyboard;
@@ -127,24 +132,27 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
     #endregion
 
-    #region Dependency property to specify the Storyboard to run when the page is refresh
+    #region Dependency properties of type Storyboard, including animations executed on reload
     /// <summary>
-    /// Dependency property to specify the Storyboard to run when the page is refresh
+    /// Dependency properties of type Storyboard, including animations executed on reload
     /// </summary>
     /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
     /// </remarks>
     public static readonly DependencyProperty ReloadStoryboardProperty
         = DependencyProperty.Register(
             nameof(ReloadStoryboard),
             typeof(Storyboard),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(null)
         );
 
     /// <summary>
-    /// CLR property for ReloadStoryboardProperty, a dependency property for specifying the Storyboard to run when the page is refresh
+    /// CLR property for ReloadStoryboardProperty, a dependency property of type Storyboard that contains the animation to be executed when reloading
     /// </summary>
+    /// <remarks>
+    /// If the value of TransitionEffect, a dependency property of this class, is not set to Custom, it is ignored.
+    /// </remarks>
     public Storyboard? ReloadStoryboard
     {
         get => GetValue(ReloadStoryboardProperty) as Storyboard;
@@ -160,7 +168,7 @@ public class AnimatedNavigationWindow : NavigationWindow
         = DependencyProperty.Register(
             nameof(TransitionEffect),
             typeof(TransitionEffects),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(TransitionEffects.None)
         );
 
@@ -182,7 +190,7 @@ public class AnimatedNavigationWindow : NavigationWindow
         = DependencyProperty.Register(
             nameof(IsCompletedEffect),
             typeof(bool),
-            typeof(AnimatedNavigationWindow),
+            typeof(AnimatedCustomizableCalendar),
             new PropertyMetadata(true)
         );
 
@@ -196,53 +204,55 @@ public class AnimatedNavigationWindow : NavigationWindow
     }
     #endregion
 
+    TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
+
     /// <summary>
     /// Constructor
     /// </summary>
-    public AnimatedNavigationWindow()
+    public AnimatedCustomizableCalendar()
     {
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
-        this.ShowsNavigationUI = false;
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        Navigated -= OnNavigated;
-        Navigating -= OnNavigating;
+        CellsUpdating -= OnCellsUpdating;
+        CellsUpdated -= OnCellsUpdated;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigated += OnNavigated;
-        Navigating += OnNavigating;
+        CellsUpdating += OnCellsUpdating;
+        CellsUpdated += OnCellsUpdated;
     }
 
-    private NavigationMode _navigationMode;
+    private void OnCellsUpdated(object sender, CellsUpdateEventArgs e)
+    {
+        if (e.UpdateMode == UpdateMode.Forward)
+        {
+            _transitionEffectContentControl.RunForwardEffect();
+        }
+        else if (e.UpdateMode == UpdateMode.Backward)
+        {
+            _transitionEffectContentControl.RunBackwardEffect();
+        }
+        else if (e.UpdateMode == UpdateMode.Reflesh)
+        {
+            _transitionEffectContentControl.RunReloadEffect();
+        }
+    }
 
-    private void OnNavigating(object sender, NavigatingCancelEventArgs e)
+    private void OnCellsUpdating(object sender, CellsUpdateEventArgs e)
     {
         _transitionEffectContentControl.Snapshot();
-        _navigationMode = e.NavigationMode;
     }
 
-    private void OnNavigated(object sender, NavigationEventArgs e)
-    {
-        if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
-            _transitionEffectContentControl.RunForwardEffect();
-        else if (_navigationMode == NavigationMode.Back)
-            _transitionEffectContentControl.RunBackwardEffect();
-        else if (_navigationMode == NavigationMode.Refresh)
-            _transitionEffectContentControl.RunReloadEffect();
-    }
-
-    private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
-
-    static AnimatedNavigationWindow()
+    static AnimatedCustomizableCalendar()
     {
         DefaultStyleKeyProperty.OverrideMetadata(
-            typeof(AnimatedNavigationWindow),
-            new FrameworkPropertyMetadata(typeof(AnimatedNavigationWindow))
+            typeof(AnimatedCustomizableCalendar),
+            new FrameworkPropertyMetadata(typeof(AnimatedCustomizableCalendar))
         );
     }
 }

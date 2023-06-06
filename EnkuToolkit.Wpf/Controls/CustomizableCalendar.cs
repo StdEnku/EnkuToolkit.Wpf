@@ -25,7 +25,6 @@ namespace EnkuToolkit.Wpf.Controls;
 
 using EnkuToolkit.UiIndependent.Collections;
 using EnkuToolkit.UiIndependent.DataObjects;
-using EnkuToolkit.Wpf.Constants;
 using EnkuToolkit.Wpf.DataObjects;
 using System;
 using System.Collections.Generic;
@@ -33,7 +32,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
@@ -72,203 +70,17 @@ public class CustomizableCalendar : Control
 
         if (customizableCalendar.IsLoaded)
         {
-            customizableCalendar.UpdateDayOfWeeksLine(UpdateEffectType.None);
-            customizableCalendar.UpdateDayOfCell(UpdateEffectType.Reflesh);
+            customizableCalendar.UpdateDayOfWeeksLine();
+            customizableCalendar.UpdateDayOfCell(UpdateMode.Reflesh);
         }
     }
     #endregion
 
-    #region Dependency property for specifying CultureInfo to determine the name of the day of the week
+    #region property for specifying CultureInfo to determine the name of the day of the week
     /// <summary>
-    /// Dependency property for specifying CultureInfo to determine the name of the day of the week
+    /// property for specifying CultureInfo to determine the name of the day of the week
     /// </summary>
-    public static readonly DependencyProperty DayOfWeeksCultureProperty
-        = DependencyProperty.Register(
-            nameof(DayOfWeeksCulture),
-            typeof(CultureInfo),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(CultureInfo.CurrentCulture, OnDayOfWeeksCultureChanged)
-        );
-
-    /// <summary>
-    /// CLR property for DayOfWeeksCultureProperty, a dependency property for specifying CultureInfo to determine the name of the day of the week
-    /// </summary>
-    public CultureInfo DayOfWeeksCulture
-    {
-        get => (CultureInfo)GetValue(DayOfWeeksCultureProperty);
-        set => SetValue(DayOfWeeksCultureProperty, value);
-    }
-
-    private static void OnDayOfWeeksCultureChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var customizableCalendar = (CustomizableCalendar)d;
-
-        if (customizableCalendar.IsLoaded)
-            customizableCalendar.UpdateDayOfWeeksLine(UpdateEffectType.Reflesh);
-    }
-    #endregion
-
-    #region Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
-    /// <summary>
-    /// Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
-    /// </summary>
-    public static readonly DependencyProperty SnapshotDpiXProperty
-        = DependencyProperty.Register(
-            nameof(SnapshotDpiX),
-            typeof(int),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(96)
-        );
-
-    /// <summary>
-    /// CLR property for SnapshotDpiXProperty, which is a dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
-    /// </summary>
-    public int SnapshotDpiX
-    {
-        get => (int)GetValue(SnapshotDpiXProperty);
-        set => SetValue(SnapshotDpiXProperty, value);
-    }
-    #endregion
-
-    #region Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
-    /// <summary>
-    /// Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
-    /// </summary>
-    public static readonly DependencyProperty SnapshotDpiYProperty
-        = DependencyProperty.Register(
-            nameof(SnapshotDpiY),
-            typeof(int),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(96)
-        );
-
-    /// <summary>
-    /// CLR property for SnapshotDpiYProperty, which is a dependency property for specifying the vertical dpi value of the image created by the effect that is executed when updating this control to create an image.
-    /// </summary>
-    public int SnapshotDpiY
-    {
-        get => (int)GetValue(SnapshotDpiYProperty);
-        set => SetValue(SnapshotDpiYProperty, value);
-    }
-    #endregion
-
-    #region Dependency property to specify the Storyboard to be executed as an effect when attempting to display the year/month after the currently displayed month
-    /// <summary>
-    /// Dependency property to specify the Storyboard to be executed as an effect when attempting to display the year/month after the currently displayed month
-    /// </summary>
-    /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
-    /// </remarks>
-    public static readonly DependencyProperty ForwardStoryboardProperty
-        = DependencyProperty.Register(
-            nameof(ForwardStoryboard),
-            typeof(Storyboard),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(null)
-        );
-
-    /// <summary>
-    /// CLR property for ForwardStoryboardProperty, a dependency property for specifying the Storyboard to run as an effect when attempting to display the year/month after the currently displayed month
-    /// </summary>
-    public Storyboard? ForwardStoryboard
-    {
-        get => GetValue(ForwardStoryboardProperty) as Storyboard;
-        set => SetValue(ForwardStoryboardProperty, value);
-    }
-    #endregion
-
-    #region Dependency property to specify the Storyboard to run as an effect when attempting to display a year/month prior to the currently displayed month
-    /// <summary>
-    /// Dependency property to specify the Storyboard to run as an effect when attempting to display a year/month prior to the currently displayed month
-    /// </summary>
-    /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
-    /// </remarks>
-    public static readonly DependencyProperty BackwardStoryboardProperty
-        = DependencyProperty.Register(
-            nameof(BackwardStoryboard),
-            typeof(Storyboard),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(null)
-        );
-
-    /// <summary>
-    /// CLR property for BackwardStoryboardProperty, a dependency property for specifying the Storyboard to run as an effect when attempting to display a year/month prior to the currently displayed month
-    /// </summary>
-    public Storyboard? BackwardStoryboard
-    {
-        get => GetValue(BackwardStoryboardProperty) as Storyboard;
-        set => SetValue(BackwardStoryboardProperty, value);
-    }
-    #endregion
-
-    #region Dependency property to specify the Storyboard to be executed as an effect when an update is made to the screen without changing the month being displayed
-    /// <summary>
-    /// Dependency property to specify the Storyboard to be executed as an effect when an update is made to the screen without changing the month being displayed
-    /// </summary>
-    /// <remarks>
-    /// Ignored if Custom is not specified for the TransitionEffect value
-    /// </remarks>
-    public static readonly DependencyProperty ReloadStoryboardProperty
-        = DependencyProperty.Register(
-            nameof(ReloadStoryboard),
-            typeof(Storyboard),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(null)
-        );
-
-    /// <summary>
-    /// CLR property for ReloadStoryboardProperty, a dependency property for specifying the Storyboard to be executed as an effect when an update is made to the screen without changing the month being displayed
-    /// </summary>
-    public Storyboard? ReloadStoryboard
-    {
-        get => GetValue(ReloadStoryboardProperty) as Storyboard;
-        set => SetValue(ReloadStoryboardProperty, value);
-    }
-    #endregion
-
-    #region Dependency property for specifying the type of effect to be executed when the screen is refreshed
-    /// <summary>
-    /// Dependency property for specifying the type of effect to be executed when the screen is refreshed
-    /// </summary>
-    public static readonly DependencyProperty TransitionEffectProperty
-        = DependencyProperty.Register(
-            nameof(TransitionEffect),
-            typeof(TransitionEffects),
-            typeof(CustomizableCalendar),
-            new PropertyMetadata(TransitionEffects.None)
-        );
-
-    /// <summary>
-    /// CLR property for TransitionEffectProperty, a dependency property for specifying the type of effect to be performed during screen updates
-    /// </summary>
-    public TransitionEffects TransitionEffect
-    {
-        get => (TransitionEffects)GetValue(TransitionEffectProperty);
-        set => SetValue(TransitionEffectProperty, value);
-    }
-    #endregion
-
-    #region Dependency property that is True if the effect to be executed on screen refresh is complete
-    /// <summary>
-    /// Dependency property that is True if the effect to be executed on screen refresh is complete
-    /// </summary>
-    public static readonly DependencyProperty IsEffectCompletedProperty
-        = DependencyProperty.Register(
-            nameof(IsEffectCompleted),
-            typeof(bool),
-            typeof(CustomizableCalendar),
-            new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault)
-        );
-
-    /// <summary>
-    /// CLR property for IsCompletedProperty, a dependency property that is True if the effect performed on screen refresh is complete
-    /// </summary>
-    public bool IsEffectCompleted
-    {
-        get => (bool)GetValue(IsEffectCompletedProperty);
-        set => SetValue(IsEffectCompletedProperty, value);
-    }
+    public CultureInfo DayOfWeeksCulture { get; init; } = CultureInfo.CurrentCulture;
     #endregion
 
     #region Dependency property for specifying the selection mode
@@ -361,9 +173,9 @@ public class CustomizableCalendar : Control
             var newDate = new DateTime(newValue.Year, newValue.Month, 1).Date;
             var oldDate = new DateTime(oldValue.Year, oldValue.Month, 1).Date;
 
-            var updateType = newDate > oldDate ? UpdateEffectType.Forward :
-                             newDate < oldDate ? UpdateEffectType.Backward :
-                             UpdateEffectType.Reflesh;
+            var updateType = newDate > oldDate ? UpdateMode.Forward :
+                             newDate < oldDate ? UpdateMode.Backward :
+                             UpdateMode.Reflesh;
 
             customizableCalendar.UpdateDayOfCell(updateType);
         }
@@ -371,15 +183,13 @@ public class CustomizableCalendar : Control
 
     private void OnNewValueCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
-        UpdateDayOfCell(UpdateEffectType.Reflesh);
+        UpdateDayOfCell(UpdateMode.Reflesh);
     }
     #endregion
 
     #region Methods for updating display content
-    private void UpdateDayOfWeeksLine(UpdateEffectType updateEffectType)
+    private void UpdateDayOfWeeksLine()
     {
-        if (updateEffectType != UpdateEffectType.None)
-            _transitionEffectContentControl.Snapshot();
         var dayOfWeekNames = (IEnumerable<string>)DayOfWeeksCulture.DateTimeFormat.AbbreviatedDayNames;
         var dayOfWeeks = (IEnumerable<DayOfWeek>)Enum.GetValues<DayOfWeek>();
 
@@ -406,15 +216,11 @@ public class CustomizableCalendar : Control
             dataWithCell.cell.Content = dataWithCell.dayOfWeekData;
             dataWithCell.cell.ContentTemplate = DayOfWeekLineTemplate ?? _dayOfWeekLineDefaultTemplate;
         }
-        
-        RunEffect(updateEffectType);
     }
 
-    private void UpdateDayOfCell(UpdateEffectType updateEffectType)
+    private void UpdateDayOfCell(UpdateMode updateMode)
     {
-        if (updateEffectType != UpdateEffectType.None)
-            _transitionEffectContentControl.Snapshot();
-
+        RaiseCellsUpdatingEvent(updateMode);
         var targetYear = Source.Year;
         var targetMonth = Source.Month;
         var startWeek = IsStartMonday ? DayOfWeek.Monday : DayOfWeek.Sunday;
@@ -457,14 +263,12 @@ public class CustomizableCalendar : Control
             currentCell.IsSelected = false;
         }
 
-        RunEffect(updateEffectType);
+        RaiseCellsUpdatedEvent(updateMode);
     }
     #endregion
 
     #region Properties for accessing controls on the template
     private ListBox _dayOfCells => (ListBox)GetTemplateChild("dayOfCells");
-
-    private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
 
     private DataTemplate _defaultCellTemplate => (DataTemplate)_dayOfCells.Resources["DefaultCellTemplate"];
 
@@ -751,12 +555,100 @@ public class CustomizableCalendar : Control
     }
     #endregion
 
+    #region routed event fired when a screen cells update is performed
+    /// <summary>
+    /// Argument for routed event to be fired when a cells update is performed
+    /// </summary>
+    public class CellsUpdateEventArgs : RoutedEventArgs
+    {
+        /// <summary>
+        /// Type of update
+        /// </summary>
+        public UpdateMode UpdateMode { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="routedEvent">The routed event identifier for this instance of the RoutedEventArgs class</param>
+        /// <param name="updateMode">Type of update</param>
+        public CellsUpdateEventArgs(RoutedEvent routedEvent, UpdateMode updateMode ) : base(routedEvent)
+        {
+            UpdateMode = updateMode;
+        }
+    }
+
+    /// <summary>
+    /// Handler for routed events fired at cells update
+    /// </summary>
+    /// <param name="sender">Object on which the event occurred</param>
+    /// <param name="e">event parameter</param>
+    public delegate void CellsUpdateEventHandler(object sender, CellsUpdateEventArgs e);
+
+    /// <summary>
+    /// Routed event fired just before cells  refresh
+    /// </summary>
+    public static readonly RoutedEvent CellsUpdatingEvent
+       = EventManager.RegisterRoutedEvent(
+           nameof(CellsUpdating),
+           RoutingStrategy.Bubble,
+           typeof(CellsUpdateEventHandler),
+           typeof(CustomizableCalendar)
+       );
+
+    /// <summary>
+    /// CLR event for CellsUpdatingEvent, a routed event that fires just before a cells  update
+    /// </summary>
+    public event CellsUpdateEventHandler CellsUpdating
+    {
+        add { AddHandler(CellsUpdatingEvent, value); }
+        remove { RemoveHandler(CellsUpdatingEvent, value); }
+    }
+
+    /// <summary>
+    /// Methods for firing CellsUpdatingEvent
+    /// </summary>
+    private void RaiseCellsUpdatingEvent(UpdateMode updateMode)
+    {
+        var args = new CellsUpdateEventArgs(CellsUpdatingEvent, updateMode);
+        RaiseEvent(args);
+    }
+
+    /// <summary>
+    /// routed event fired after cells update
+    /// </summary>
+    public static readonly RoutedEvent CellsUpdatedEvent
+       = EventManager.RegisterRoutedEvent(
+           nameof(CellsUpdated),
+           RoutingStrategy.Bubble,
+           typeof(CellsUpdateEventHandler),
+           typeof(CustomizableCalendar)
+       );
+
+    /// <summary>
+    /// CLR event for CellsUpdatedEvent, a routed event that fires after a cells update
+    /// </summary>
+    public event CellsUpdateEventHandler CellsUpdated
+    {
+        add { AddHandler(CellsUpdatedEvent, value); }
+        remove { RemoveHandler(CellsUpdatedEvent, value); }
+    }
+
+    /// <summary>
+    /// Method for firing CellsUpdatedEvent
+    /// </summary>
+    private void RaiseCellsUpdatedEvent(UpdateMode updateMode)
+    {
+        var args = new CellsUpdateEventArgs(CellsUpdatedEvent, updateMode);
+        RaiseEvent(args);
+    }
+    #endregion
+
     /// <summary>
     /// Methods for manual updates
     /// </summary>
     public void Update()
     {
-        UpdateDayOfCell(UpdateEffectType.Reflesh);
+        UpdateDayOfCell(UpdateMode.Reflesh);
     }
 
     /// <summary>
@@ -807,8 +699,8 @@ public class CustomizableCalendar : Control
         foreach (var item in _calendarCellItems)
             item.MouseDoubleClick += OnCellItemsMouseDoubleClick;
 
-        UpdateDayOfWeeksLine(UpdateEffectType.None);
-        UpdateDayOfCell(UpdateEffectType.None);
+        UpdateDayOfWeeksLine();
+        UpdateDayOfCell(UpdateMode.Init);
         OnSelectedDatesChanged(this, new DependencyPropertyChangedEventArgs(SelectedDatesProperty, null, this.SelectedDates));
 
         if (!IsAutoReloadOnDateChanges) return;
@@ -857,28 +749,30 @@ public class CustomizableCalendar : Control
         );
     }
 
-    private enum UpdateEffectType
+    /// <summary>
+    /// Screen Update Type
+    /// </summary>
+    public enum UpdateMode
     {
+        /// <summary>
+        /// Updated to show months after the year/month that was being displayed.
+        /// </summary>
         Forward,
-        Backward,
-        Reflesh,
-        None,
-    }
 
-    private void RunEffect(UpdateEffectType updateEffectType)
-    {
-        if (updateEffectType == UpdateEffectType.Forward)
-        {
-            _transitionEffectContentControl.RunForwardEffect();
-        }
-        else if (updateEffectType == UpdateEffectType.Backward)
-        {
-            _transitionEffectContentControl.RunBackwardEffect();
-        }
-        else if (updateEffectType == UpdateEffectType.Reflesh)
-        {
-            _transitionEffectContentControl.RunReloadEffect();
-        }
+        /// <summary>
+        /// Updated to show months prior to the year/month that was being displayed.
+        /// </summary>
+        Backward,
+
+        /// <summary>
+        /// If the renewal is made for the same year/month as the year/month before the renewal
+        /// </summary>
+        Reflesh,
+
+        /// <summary>
+        /// On screen refresh at initialization
+        /// </summary>
+        Init,
     }
 
     // Methods for retrieving a range of dates to be displayed in the calendar

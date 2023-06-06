@@ -175,6 +175,28 @@ public class AnimatedFrame : Frame
     }
     #endregion
 
+    #region Dependency property that is True if the effect is being executed
+    /// <summary>
+    /// Dependency property that is True if the effect is being executed
+    /// </summary>
+    public static readonly DependencyProperty IsCompletedEffectProperty
+        = DependencyProperty.Register(
+            nameof(IsCompletedEffect),
+            typeof(bool),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(true)
+        );
+
+    /// <summary>
+    /// CLR property for IsCompletedProperty, a dependency property that is True if the effect is running
+    /// </summary>
+    public bool IsCompletedEffect
+    {
+        get => (bool)GetValue(IsCompletedEffectProperty);
+        set => SetValue(IsCompletedEffectProperty, value);
+    }
+    #endregion
+
     /// <summary>
     /// Constructor
     /// </summary>
