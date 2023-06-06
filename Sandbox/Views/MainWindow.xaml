@@ -67,6 +67,8 @@
         <Button Content="Update" Click="Button_Click" DockPanel.Dock="Bottom" Margin="10" />
 
         <et:CustomizableCalendar 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Name="customizableCalendar"
             Source="{Binding Source}"
             TransitionEffect="VerticalModernSlide"

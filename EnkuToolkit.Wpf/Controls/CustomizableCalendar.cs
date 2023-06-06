@@ -378,7 +378,8 @@ public class CustomizableCalendar : Control
     #region Methods for updating display content
     private void UpdateDayOfWeeksLine(UpdateEffectType updateEffectType)
     {
-        _transitionEffectContentControl.Snapshot();
+        if (updateEffectType != UpdateEffectType.None)
+            _transitionEffectContentControl.Snapshot();
         var dayOfWeekNames = (IEnumerable<string>)DayOfWeeksCulture.DateTimeFormat.AbbreviatedDayNames;
         var dayOfWeeks = (IEnumerable<DayOfWeek>)Enum.GetValues<DayOfWeek>();
 
@@ -411,7 +412,8 @@ public class CustomizableCalendar : Control
 
     private void UpdateDayOfCell(UpdateEffectType updateEffectType)
     {
-        _transitionEffectContentControl.Snapshot();
+        if (updateEffectType != UpdateEffectType.None)
+            _transitionEffectContentControl.Snapshot();
 
         var targetYear = Source.Year;
         var targetMonth = Source.Month;
