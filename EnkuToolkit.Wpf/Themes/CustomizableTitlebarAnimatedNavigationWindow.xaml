@@ -39,6 +39,7 @@
                             ForwardStoryboard="{TemplateBinding ForwardStoryboard}"
                             BackwardStoryboard="{TemplateBinding BackwardStoryboard}"
                             ReloadStoryboard="{TemplateBinding ReloadStoryboard}"
+                            IsCompleted="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsCompletedEffect, Mode=OneWayToSource}"
                             TransitionEffect="{TemplateBinding TransitionEffect}">
                             <ContentPresenter 
                                 Content="{TemplateBinding Content}" 
