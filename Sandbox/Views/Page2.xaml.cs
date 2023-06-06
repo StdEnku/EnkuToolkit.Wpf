@@ -30,34 +30,11 @@ namespace Sandbox.Views
             MessageBox.Show("Page2はダブルクリックされました");
         }
 
-        public static T GetParent<T>(DependencyObject child) where T : DependencyObject
-        {
-            DependencyObject dependencyObject = VisualTreeHelper.GetParent(child);
-
-            if (dependencyObject != null)
-            {
-                T parent = dependencyObject as T;
-                if (parent != null)
-                {
-                    return parent;
-                }
-                else
-                {
-                    return GetParent<T>(dependencyObject);
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private void toPage1_Click(object sender, RoutedEventArgs e)
         {
-            var f = GetParent<NavigationWindow>(this);
             var baseUri = new Uri("pack://application:,,,/Views/", UriKind.Absolute);
             var uri = new Uri(baseUri, "Page1.xaml");
-            f.Navigate(uri, "From Page2");
+            NavigationService.Navigate(uri);
         }
 
         private void goBack_Click(object sender, RoutedEventArgs e)

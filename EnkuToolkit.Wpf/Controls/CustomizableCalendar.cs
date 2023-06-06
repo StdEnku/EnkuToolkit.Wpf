@@ -807,12 +807,9 @@ public class CustomizableCalendar : Control
         foreach (var item in _calendarCellItems)
             item.MouseDoubleClick += OnCellItemsMouseDoubleClick;
 
-        if (_calendarCellItems.FirstOrDefault()?.Content is null)
-        {
-            UpdateDayOfWeeksLine(UpdateEffectType.None);
-            UpdateDayOfCell(UpdateEffectType.None);
-            OnSelectedDatesChanged(this, new DependencyPropertyChangedEventArgs(SelectedDatesProperty, null, this.SelectedDates));
-        }
+        UpdateDayOfWeeksLine(UpdateEffectType.None);
+        UpdateDayOfCell(UpdateEffectType.None);
+        OnSelectedDatesChanged(this, new DependencyPropertyChangedEventArgs(SelectedDatesProperty, null, this.SelectedDates));
 
         if (!IsAutoReloadOnDateChanges) return;
         _timer = new Timer();

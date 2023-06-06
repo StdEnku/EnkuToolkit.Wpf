@@ -22,8 +22,8 @@
             <Button Content="reflesh" Margin="10" Click="reflesh_Click" />
         </UniformGrid>
 
-        <Viewbox>
-            <Label Content="Page2" MouseDoubleClick="Label_MouseDoubleClick" />
-        </Viewbox>
+        <et:CustomizableCalendar DockPanel.Dock="Top">
+
+        </et:CustomizableCalendar>
     </DockPanel>
 </Page>

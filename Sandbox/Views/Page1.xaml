@@ -15,6 +15,13 @@
     </Page.DataContext>
     
     <DockPanel LastChildFill="True">
+        <DockPanel.Resources>
+            <et:TernaryOperatorConverter x:Key="BoolToHolidayColorConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Transparent" />
+            <et:TernaryOperatorConverter x:Key="BoolToHolidayTextColorConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Gray" />
+            <et:TernaryOperatorConverter x:Key="IsMultiSelectionConverter" ResultValueIfTrue="{x:Static SelectionMode.Extended}" ResultValueIfFalse="{x:Static SelectionMode.Single}" />
+            <et:TernaryOperatorConverter x:Key="BoolToCellBackgroundConverter" ResultValueIfTrue="LightSeaGreen" ResultValueIfFalse="Transparent" />
+        </DockPanel.Resources>
+        
         <UniformGrid DockPanel.Dock="Bottom" Columns="4">
             <Button Content="toPage2" Margin="10" Click="toPage2_Click" />
             <Button Content="goBack" Margin="10" Click="goBack_Click" />
@@ -22,8 +29,47 @@
             <Button Content="reflesh" Margin="10" Click="reflesh_Click" />
         </UniformGrid>
 
-        <Viewbox>
-            <Label Content="Page1" MouseDoubleClick="Label_MouseDoubleClick" />
-        </Viewbox>
+        <et:CustomizableCalendar DockPanel.Dock="Top">
+            <et:CustomizableCalendar.DayOfWeekLineTemplate>
+                <DataTemplate DataType="{x:Type et:DayOfWeekData}">
+                    <Border Background="{Binding IsHoliday, Converter={StaticResource BoolToHolidayColorConverter}}">
+                        <Label Content="{Binding DayOfWeekName}" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" />
+                    </Border>
+                </DataTemplate>
+            </et:CustomizableCalendar.DayOfWeekLineTemplate>
+
+            <et:CustomizableCalendar.AutoGenCellTemplate>
+                <DataTemplate DataType="{x:Type et:AutoGenDayData}">
+                    <StackPanel>
+                        <Border HorizontalAlignment="Left" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+                            <Label Content="{Binding Day}" 
+                                   FontSize="15"
+                                   Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                        </Border>
+                        <Separator BorderBrush="Gray" BorderThickness="1" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="- 朝食 :" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="- 昼食 :" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="- 夕食 :" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="指定なし" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="指定なし" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="指定なし" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </et:CustomizableCalendar.AutoGenCellTemplate>
+        </et:CustomizableCalendar>
     </DockPanel>
 </Page>

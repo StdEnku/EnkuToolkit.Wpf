@@ -10,7 +10,6 @@
         TransitionEffect="HorizontalModernSlide"
         mc:Ignorable="d"
         et:WindowExtensionBehavior.StateSavePath="./Hoge.json"
-        et:NavigationWindowExtensionBehavior.IsSendNavigationParam="True"
         Title="MainWindow5" Height="450" Width="800">
     
 </et:AnimatedNavigationWindow>
