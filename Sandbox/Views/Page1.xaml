@@ -6,8 +6,10 @@
       xmlns:local="clr-namespace:Sandbox.Views"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+      xmlns:do="clr-namespace:Sandbox.DataObjects"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="DarkRed"
       Title="Page1">
 
     <Page.DataContext>
@@ -20,6 +22,7 @@
             <et:TernaryOperatorConverter x:Key="BoolToHolidayTextColorConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Gray" />
             <et:TernaryOperatorConverter x:Key="IsMultiSelectionConverter" ResultValueIfTrue="{x:Static SelectionMode.Extended}" ResultValueIfFalse="{x:Static SelectionMode.Single}" />
             <et:TernaryOperatorConverter x:Key="BoolToCellBackgroundConverter" ResultValueIfTrue="LightSeaGreen" ResultValueIfFalse="Transparent" />
+            <et:TernaryOperatorConverter x:Key="BoolToOtherMonthCellBackgroundConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Gray" />
         </DockPanel.Resources>
         
         <UniformGrid DockPanel.Dock="Bottom" Columns="4">
@@ -29,7 +32,9 @@
             <Button Content="reflesh" Margin="10" Click="reflesh_Click" />
         </UniformGrid>
 
-        <et:CustomizableCalendar DockPanel.Dock="Top">
+        <et:CustomizableCalendar DockPanel.Dock="Top"
+                                 Source="{Binding DayDataCollection}">
+
             <et:CustomizableCalendar.DayOfWeekLineTemplate>
                 <DataTemplate DataType="{x:Type et:DayOfWeekData}">
                     <Border Background="{Binding IsHoliday, Converter={StaticResource BoolToHolidayColorConverter}}">
@@ -44,9 +49,11 @@
                 <DataTemplate DataType="{x:Type et:AutoGenDayData}">
                     <StackPanel>
                         <Border HorizontalAlignment="Left" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
-                            <Label Content="{Binding Day}" 
-                                   FontSize="15"
-                                   Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Month}"  FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                                <Label Content="/"  FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                                <Label Content="{Binding Day}" FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                            </StackPanel>
                         </Border>
                         <Separator BorderBrush="Gray" BorderThickness="1" />
                         <Grid>
@@ -60,16 +67,77 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <Label Content="- 朝食 :" Grid.Row="0" Grid.Column="0" />
-                            <Label Content="- 昼食 :" Grid.Row="1" Grid.Column="0" />
-                            <Label Content="- 夕食 :" Grid.Row="2" Grid.Column="0" />
-                            <Label Content="指定なし" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
-                            <Label Content="指定なし" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
-                            <Label Content="指定なし" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="- breakfirst :" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="- lunch :" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="- dinner :" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="None" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="None" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="None" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
                         </Grid>
                     </StackPanel>
                 </DataTemplate>
             </et:CustomizableCalendar.AutoGenCellTemplate>
+
+            <et:CustomizableCalendar.HasDataCellTemplate>
+                <DataTemplate DataType="{x:Type do:DayData}">
+                    <StackPanel>
+                        <Border HorizontalAlignment="Left" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Month}"  FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                                <Label Content="/"  FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                                <Label Content="{Binding Day}" FontSize="15" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                            </StackPanel>
+                        </Border>
+                        <Separator BorderBrush="Gray" BorderThickness="1" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="- breakfirst :" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="- lunch :" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="- dinner :" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="{Binding BreakfastName}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="{Binding LunchName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="{Binding DinnerName}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </et:CustomizableCalendar.HasDataCellTemplate>
+
+            <et:CustomizableCalendar.OtherMonthCellTemplate>
+                <DataTemplate DataType="{x:Type et:AutoGenDayData}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Label Content="{Binding Month}" Padding="0" Margin="0" FontSize="50" />
+                        <Label Content="/" Padding="0" Margin="0" FontSize="50" />
+                        <Label Content="{Binding Day}" Padding="0" Margin="0" FontSize="50" />
+
+                        <StackPanel.Background>
+                            <DrawingBrush Viewport="0,0,20,20" ViewportUnits="Absolute"
+                                          Viewbox="0,0,10,10" ViewboxUnits="Absolute"
+                                          TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="{Binding IsHoliday, Converter={StaticResource BoolToOtherMonthCellBackgroundConverter}}" Thickness="1"/>
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <Geometry>M10,0 L0,10</Geometry>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </StackPanel.Background>
+                    </StackPanel>
+                </DataTemplate>
+            </et:CustomizableCalendar.OtherMonthCellTemplate>
         </et:CustomizableCalendar>
     </DockPanel>
 </Page>

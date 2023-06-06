@@ -29,12 +29,12 @@
     <Storyboard x:Key="{x:Static local:SlideAnimationNames.SlideToLeftAnimation}">
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="contentTc"
+            Storyboard.TargetName="contentTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateX)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -43,12 +43,12 @@
 
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="imageTc"
+            Storyboard.TargetName="imageTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateX)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -59,12 +59,12 @@
     <Storyboard x:Key="{x:Static local:SlideAnimationNames.SlideToRightAnimation}">
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="contentTc"
+            Storyboard.TargetName="contentTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateX)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -73,12 +73,12 @@
 
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="imageTc"
+            Storyboard.TargetName="imageTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateX)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -89,12 +89,12 @@
     <Storyboard x:Key="{x:Static local:SlideAnimationNames.SlideToUpAnimation}">
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="contentTc"
+            Storyboard.TargetName="contentTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateY)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -103,12 +103,12 @@
 
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="imageTc"
+            Storyboard.TargetName="imageTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateY)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -119,12 +119,12 @@
     <Storyboard x:Key="{x:Static local:SlideAnimationNames.SlideToDownAnimation}">
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="contentTc"
+            Storyboard.TargetName="contentTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateY)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -133,12 +133,12 @@
 
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="imageTc"
+            Storyboard.TargetName="imageTc" Timeline.DesiredFrameRate="30"
             Storyboard.TargetProperty="(controls:TransformContentControl.TranslateY)"
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
