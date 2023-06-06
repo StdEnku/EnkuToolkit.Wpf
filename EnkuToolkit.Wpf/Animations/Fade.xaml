@@ -29,7 +29,7 @@
     <Storyboard x:Key="{x:Static local:FadeAnimationNames.FadeAnimation}">
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="imageTc" Timeline.DesiredFrameRate="30"
+            Storyboard.TargetName="imageTc" 
             Storyboard.TargetProperty="(controls:TransformContentControl.Opacity)"
             FillBehavior="Stop">
 
@@ -44,7 +44,7 @@
 
         <DoubleAnimationUsingKeyFrames 
             BeginTime="0:0:0"
-            Storyboard.TargetName="contentTc" Timeline.DesiredFrameRate="30"
+            Storyboard.TargetName="contentTc" 
             Storyboard.TargetProperty="(controls:TransformContentControl.Opacity)"
             FillBehavior="Stop">
 

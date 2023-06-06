@@ -9,7 +9,6 @@
       xmlns:do="clr-namespace:Sandbox.DataObjects"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Background="DarkRed"
       Title="Page1">
 
     <Page.DataContext>

@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Sandbox.Views"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
-      mc:Ignorable="d" 
-      Background="DarkBlue"
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">
 
