@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Retrieving ViewModel objects from a DI container on xaml </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Retrieving ViewModel objects from a DI container on xaml ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/8.Retrieving ViewModel objects from a DI container on xaml.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="retrieving-viewmodel-objects-from-a-di-container-on-xaml">Retrieving ViewModel objects from a DI container on xaml</h1>
+
+<p>First of all, as a preparation, please create a code to initially set up <code>Microsoft.Extensions.DependencyInjection</code> in the App class as follows.
+DependencyInjection` as follows in the App class.</p>
+<p>App.xaml.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows;
+
+public partial class App : Application
+{
+    public App()
+    {
+        Services = ConfigureServices();
+        InitializeComponent();
+    }
+
+    // Property to get IServiceProvider via App.Current
+    public IServiceProvider Services { get; }
+
+    // Methods for registering with the DI container
+    private static IServiceProvider ConfigureServices()
+    {
+        var services = new ServiceCollection();
+
+        // registration
+
+        return services.BuildServiceProvider();
+    }
+}
+</code></pre>
+<p>Then extend the <code>EnkuToolkit.Wpf.MarkupExtensions.IServicesOwner</code> interface to that App class
+The members of this interface are to return the ServiceProvider of the DI container
+Only properties of type System.IServiceProvider to return the ServiceProvider of the DI container</p>
+<pre><code class="lang-c#">IServiceProvider Services { get; }
+</code></pre>
+<p>Since there is already a Services property in the App class that only has a getter for IServiceProvider
+You do not need to add any code to implement the interface.
+Then you want to register the DI container within the ConfigureServices method.
+Please note the registration process for ViewModel and ViewService.</p>
+<p>App.xaml.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows;
+using EnkuToolkit.Wpf.MarkupExtensions; // &lt;-add
+
+public partial class App : Application, IServicesOwner // &lt;-add
+{
+    public App()
+    {
+        Services = ConfigureServices();
+        InitializeComponent();
+    }
+
+    // Property to get IServiceProvider via App.Current
+    public IServiceProvider Services { get; }
+
+    // Methods for registering with the DI container
+    private static IServiceProvider ConfigureServices()
+    {
+        var services = new ServiceCollection();
+
+        // registration
+        services.AddTransient&lt;HogePageViewModel&gt;();
+        services.Addtransient&lt;IHogeService, HogeService&gt;();
+
+        return services.BuildServiceProvider();
+    }
+}
+</code></pre>
+<p>At this stage, the modification to the App class is complete.</p>
+<p>Next, on the View side, specify the ViewModel object registered from the DI container in the View's DataContext.</p>
+<p>Define the xml namespace of the EnkuToolkit and the xml namespace of the ViewModel, and
+ViewModel you want to specify in the constructor of the ViewModelProvider markup extension.
+Type object of the ViewModel you want to specify to the constructor of the ViewModelProvider markup extension, you can get the ViewModel object from the DI container.
+Specify the value to the DataContext and you are done.</p>
+<p>Page1.xaml</p>
+<pre><code class="lang-xaml">&lt;Page ~Ellipsis~
+      xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+      xmlns:vm=&quot;clr-namespace:To.ViewModel.Path&quot;
+      DataContext=&quot;{et:ViewModelProvider vm:HogePageViewModel}&quot;&gt;
+
+&lt;/Page&gt;
+</code></pre>
+<p>However, in this state, the IntelliSense does not work, so the following
+It is recommended to specify d:DataContext as follows.</p>
+<pre><code class="lang-xaml">&lt;Page ~Ellipsis~
+      xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+      xmlns:vm=&quot;clr-namespace:To.ViewModel.Path&quot;
+      DataContext=&quot;{et:ViewModelProvider vm:HogePageViewModel}&quot;
+      d:DataContext=&quot;{d:DesignInstance vm:HogePageViewModel}&quot;&gt;
+
+&lt;/Page&gt;
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/8.Retrieving ViewModel objects from a DI container on xaml.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

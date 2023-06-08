@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/v1.1.0/articles/1.Execute animation effects during screen transitions.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/1.Execute animation effects during screen transitions.md/#L1">
   </head>
 
   <script type="module">
@@ -74,10 +74,146 @@
         <article data-uid="">
 <h1 id="execute-animation-effects-during-screen-transitions">Execute animation effects during screen transitions</h1>
 
+<h2 id="summary">Summary</h2>
+<p>Screen transitions in WPF are generally performed using the Frame class or NavigationWinodw,
+However, these classes are not equipped with a mechanism to execute effects during screen transitions.
+Therefore, if you want to execute effects during screen transitions, use the AnimatedFrame or AnimatedNavigationWindow classes in this library.</p>
+<p>The Frame and AnimatedFrame classes and the NavigationWindow and AnimatedNavigationWindow classes can be used in exactly the same way.
+However, a property called &quot;TransitionEffect&quot; has been added,
+By specifying the value of this property, you can specify the effect to be executed during screen transitions, which comes standard with this library.
+The TransitionEffect property allows you to specify effects that are executed during screen transitions and custom effects.</p>
+<pre><code class="lang-xaml">&lt;Window ~ellipsis~
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+
+    &lt;et:AnimatedFrame TransitionEffect=&quot;HorizontalModernSlide&quot; /&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>The type of TransitionEffect is EnkuToolkit.Wpf.Constants.TransitionEffects, which is an
+Enum value and has the following members</p>
+<ul>
+<li>None : Do not run effects</li>
+<li>HorizontalSlide : Perform horizontal sliding effects</li>
+<li>VerticalSlide : Perform vertical sliding effects</li>
+<li>HorizontalModernSlide : Perform modern sliding effects in horizontal direction</li>
+<li>VerticalModernSlide : Perform modern vertical sliding effects</li>
+<li>FadeOnly : Execute feed effects</li>
+<li>Custom : Value for executing custom effects as described below.</li>
+</ul>
+<p>Also note that the initial value of TransitionEffect is None.</p>
+<p><img src="../images/1_Effect-Example.gif" alt=""></p>
+<h2 id="explanation-of-custom-effects">Explanation of Custom Effects</h2>
+<h3 id="how-to-specify-custom-effects">How to specify custom effects</h3>
+<p>To execute a custom effect, set the TransitionEffect to Custom.
+To execute a custom effect, specify Custom for TransitionEffect and set the following three properties of the Storyboard type.</p>
+<ul>
+<li>ForwardStoryboard : Effects executed when Navigate or GoForward method is executed</li>
+<li>BackwardStoryboard : Effects executed when GoBack method is executed</li>
+<li>ReloadStoryboard : Effects executed when the Refresh method is executed</li>
+</ul>
+<p>Also, if null is specified for the value of any of these properties, the effect will not be executed even if the method corresponding to that property is executed.
+For example, if ForwardStoryboard is null and other properties are specified, no effect will be executed when the Navigate or GoForward method is executed, but the specified effect will be executed when the GoBack or Refresh method is executed.</p>
+<h3 id="description-of-storyboard-that-can-be-specified-for-custom-effects">Description of Storyboard that can be specified for custom effects</h3>
+<p>Inside an AnimatedFrame or AnimatedNavigationWinodw, there is a TransformContentControl called contentTc that displays the transition destination state and a TransformContentControl called imageTc that displays the state before the transition, so specify a storyboard that contains the animation to transform them.
+An example is given below.</p>
+<pre><code class="lang-xaml">&lt;Window ~ellipsis~
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+
+    &lt;et:AnimatedFrame Source=&quot;RootPage.xaml&quot; TransitionEffect=&quot;Custom&quot;&gt;
+        &lt;et:AnimatedFrame.ForwardStoryboard&gt;
+            &lt;Storyboard&gt;
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.5&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+            &lt;/Storyboard&gt;
+        &lt;/et:AnimatedFrame.ForwardStoryboard&gt;
+
+        &lt;et:AnimatedFrame.BackwardStoryboard&gt;
+            &lt;Storyboard&gt;
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;-0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;-0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;-1.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;-0.5&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;-0.5&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+            &lt;/Storyboard&gt;
+        &lt;/et:AnimatedFrame.BackwardStoryboard&gt;
+    &lt;/et:AnimatedFrame&gt;
+&lt;/Window&gt;
+</code></pre>
+<p><img src="../images/1_Example-SatoryBoard.gif" alt=""></p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/v1.1.0/articles/1.Execute animation effects during screen transitions.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/1.Execute animation effects during screen transitions.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

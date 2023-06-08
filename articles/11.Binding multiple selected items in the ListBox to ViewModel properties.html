@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Binding multiple selected items in the ListBox to ViewModel properties </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Binding multiple selected items in the ListBox to ViewModel properties ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/11.Binding multiple selected items in the ListBox to ViewModel properties.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="binding-multiple-selected-items-in-the-listbox-to-viewmodel-properties">Binding multiple selected items in the ListBox to ViewModel properties</h1>
+
+<p>To get all the items selected in the ListBox, you can use a property called SelectedItems.
+This property is a read-only property, so it can be bound to other control properties that are DependencyObjects, but not to properties in the ViewModel.
+Also, the value returned when an element is specified using ListBoxItem in a ListBox is
+ListBoxItem type, so it cannot be used in the ViewModel.</p>
+<p>For the above reasons, the SelectedItems property is very difficult to handle.
+The library provides attached behaviors to overcome these shortcomings.</p>
+<p>Defined within a class called EnkuToolkit.Wpf.Behaviors.ListBoxExtensionBehavior
+By binding with the BindableSelectedItemsProperty attached property and the IList type property in the ViewModel, you can get the selected items when multiple selections are made.
+This property returns the Contents of all selected ListBoxItem when an element is specified using ListBoxItem, and returns the value of the selected ItemsSource when an element is specified using ItemsSource, so it can be handled in the ViewModel This can also be handled in the ViewModel.</p>
+<blockquote>
+<p>note : The BindableSelectedItemsProperty attachment property searches for values in the ItemsSource using the Object.Equals method when there is a change from the binding source and sets the IsSelected property of the matching element to True Therefore, if the type specified for an element in the ItemsSource is a reference type, it is recommended to override the Object.Equals method for that type.</p>
+</blockquote>
+<p>Also, the default binding mode for the BindableSelectedItemsProperty attachment property is TwoWay.</p>
+<h2 id="example-of-using-a-value-type-as-itemssource-data">Example of using a value type as ItemsSource data</h2>
+<p>MainWindow.xaml</p>
+<pre><code class="lang-xaml">&lt;Window x:Class=&quot;MyApp.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+        xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        xmlns:local=&quot;clr-namespace:MyApp&quot;
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+        mc:Ignorable=&quot;d&quot;
+        Title=&quot;MainWindow&quot; Height=&quot;450&quot; Width=&quot;800&quot;&gt;
+
+    &lt;Window.DataContext&gt;
+        &lt;local:MainWindowViewModel /&gt;
+    &lt;/Window.DataContext&gt;
+
+    &lt;DockPanel LastChildFill=&quot;True&quot;&gt;
+        &lt;UniformGrid Columns=&quot;2&quot; DockPanel.Dock=&quot;Bottom&quot; Margin=&quot;20&quot;&gt;
+            &lt;Button Content=&quot;Show Selected Item&quot; Command=&quot;{Binding ShowSelectedItemCommand}&quot; /&gt;
+            &lt;Button Content=&quot;All Select&quot; Command=&quot;{Binding AllSelectCommand}&quot; /&gt;
+        &lt;/UniformGrid&gt;
+        
+        &lt;ListBox DockPanel.Dock=&quot;Top&quot;
+                 SelectionMode=&quot;Extended&quot;
+                 ItemsSource=&quot;{Binding ItemsSource}&quot;
+                 et:ListBoxExtensionBehavior.BindableSelectedItems=&quot;{Binding SelectedItems}&quot;/&gt;
+    &lt;/DockPanel&gt;
+    
+&lt;/Window&gt;
+</code></pre>
+<p>MainWindowViewModel.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
+
+public class MainWindowViewModel : INotifyPropertyChanged
+{
+    #region ItemsSource Property
+    private List&lt;object&gt; _itemsSource = new()
+    {
+        &quot;apple&quot;,
+        &quot;banana&quot;,
+        &quot;grape&quot;,
+        &quot;lemon&quot;,
+        &quot;strawberry&quot;,
+        &quot;peach&quot;,
+        &quot;mango&quot;,
+        &quot;papaya&quot;
+    };
+
+    public List&lt;object&gt; ItemsSource
+    {
+        get =&gt; _itemsSource;
+        set
+        {
+            _itemsSource = value;
+            NotifyPropertyChanged();
+        }
+    }
+    #endregion
+
+    #region SelectedItems Property
+    private IList _selectedItems = new List&lt;string&gt;();
+
+    public IList SelectedItems
+    {
+        get =&gt; _selectedItems;
+        set
+        {
+            _selectedItems = value;
+            NotifyPropertyChanged();
+        }
+    }
+    #endregion
+
+    #region ShowSelectedItemCommand
+    public DelegateCommand ShowSelectedItemCommand { get; }
+    private void ShowSelectedItem(object? param)
+    {
+        var text = string.Empty;
+        var stringItems = SelectedItems.Cast&lt;string&gt;();
+        foreach (var item in stringItems)
+        {
+            text += item + '\n';
+        }
+
+        // note : Since the MessageBox class is stored in the WPF assembly,
+        //        when managing View and ViewModel in separate projects,
+        //        the ViewModel-side project must also link the WPF assembly,
+        //        so calling the MessageBox class directly from ViewModel is not desirable.
+        MessageBox.Show(text);
+    }
+    #endregion
+
+    #region AllSelectCommand
+    public DelegateCommand AllSelectCommand { get; }
+    private void AllSelect(object? param)
+    {
+        var nextSelectedItem = new List&lt;object&gt;()
+        {
+            &quot;apple&quot;,
+            &quot;banana&quot;,
+            &quot;grape&quot;,
+            &quot;lemon&quot;,
+            &quot;strawberry&quot;,
+            &quot;peach&quot;,
+            &quot;mango&quot;,
+            &quot;papaya&quot;
+        };
+
+        SelectedItems = nextSelectedItem;
+    }
+    #endregion
+
+    public MainWindowViewModel()
+    {
+        ShowSelectedItemCommand = new(ShowSelectedItem);
+        AllSelectCommand = new(AllSelect);
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+        =&gt; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+}
+
+#region MVVM util
+public class DelegateCommand : ICommand
+{
+    private Action&lt;object?&gt; _execute;
+    private Func&lt;object?, bool&gt; _canExecute;
+
+    public DelegateCommand(Action&lt;object?&gt; execute, Func&lt;object?, bool&gt;? canExecute = null)
+    {
+        _execute = execute;
+        _canExecute = canExecute ?? (x =&gt; true);
+    }
+
+    public void RaiseCanExecuteChanged()
+    {
+        var functor = CanExecuteChanged;
+        functor?.Invoke(this, EventArgs.Empty);
+    }
+
+    public event EventHandler? CanExecuteChanged;
+
+    public bool CanExecute(object? parameter) =&gt; _canExecute(parameter);
+
+    public void Execute(object? parameter) =&gt; _execute(parameter);
+}
+#endregion
+</code></pre>
+<h2 id="example-of-using-a-reference-type-as-itemssource-data">Example of using a reference type as ItemsSource data</h2>
+<p>MainWindow.xaml</p>
+<pre><code class="lang-xaml">&lt;Window x:Class=&quot;MyApp.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+        xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        xmlns:local=&quot;clr-namespace:MyApp&quot;
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+        mc:Ignorable=&quot;d&quot;
+        Title=&quot;MainWindow&quot; Height=&quot;450&quot; Width=&quot;800&quot;&gt;
+
+    &lt;Window.DataContext&gt;
+        &lt;local:MainWindowViewModel /&gt;
+    &lt;/Window.DataContext&gt;
+
+    &lt;DockPanel LastChildFill=&quot;True&quot;&gt;
+        &lt;UniformGrid Columns=&quot;2&quot; DockPanel.Dock=&quot;Bottom&quot; Margin=&quot;20&quot;&gt;
+            &lt;Button Content=&quot;Show Selected Item&quot; Command=&quot;{Binding ShowSelectedItemCommand}&quot; /&gt;
+            &lt;Button Content=&quot;All Select&quot; Command=&quot;{Binding AllSelectCommand}&quot; /&gt;
+        &lt;/UniformGrid&gt;
+
+        &lt;ListBox DockPanel.Dock=&quot;Top&quot;
+                 SelectionMode=&quot;Extended&quot;
+                 ItemsSource=&quot;{Binding ItemsSource}&quot;
+                 et:ListBoxExtensionBehavior.BindableSelectedItems=&quot;{Binding SelectedItems}&quot;&gt;
+
+            &lt;ListBox.ItemTemplate&gt;
+                &lt;DataTemplate DataType=&quot;{x:Type local:PersonData}&quot;&gt;
+                    &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+                        &lt;Label Content=&quot;{Binding Name}&quot; /&gt;
+                        &lt;Label Content=&quot;{Binding Age}&quot; /&gt;
+                    &lt;/StackPanel&gt;
+                &lt;/DataTemplate&gt;
+            &lt;/ListBox.ItemTemplate&gt;
+        &lt;/ListBox&gt;
+    &lt;/DockPanel&gt;
+    
+&lt;/Window&gt;
+
+</code></pre>
+<p>MainWindowViewModel.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
+using System.Linq;
+
+public class MainWindowViewModel : INotifyPropertyChanged
+{
+    #region ItemsSource Property
+    private List&lt;PersonData&gt; _itemsSource = new()
+    {
+        new PersonData(1, &quot;jhone&quot;, 32),
+        new PersonData(2, &quot;jimi&quot;, 42),
+        new PersonData(3, &quot;jack&quot;, 52),
+        new PersonData(4, &quot;mike&quot;, 62),
+        new PersonData(5, &quot;bob&quot;, 72),
+    };
+
+    public List&lt;PersonData&gt; ItemsSource
+    {
+        get =&gt; _itemsSource;
+        set
+        {
+            _itemsSource = value;
+            NotifyPropertyChanged();
+        }
+    }
+    #endregion
+
+    #region SelectedItems Property
+    private IList _selectedItems = new List&lt;PersonData&gt;();
+
+    public IList SelectedItems
+    {
+        get =&gt; _selectedItems;
+        set
+        {
+            _selectedItems = value;
+            NotifyPropertyChanged();
+        }
+    }
+    #endregion
+
+    #region ShowSelectedItemCommand
+    public DelegateCommand ShowSelectedItemCommand { get; }
+    private void ShowSelectedItem(object? param)
+    {
+        var text = string.Empty;
+        var items = SelectedItems.Cast&lt;PersonData&gt;();
+        foreach (var item in items)
+        {
+            text += item.Name + '\n';
+        }
+
+        // note : Since the MessageBox class is stored in the WPF assembly,
+        //        when managing View and ViewModel in separate projects,
+        //        the ViewModel-side project must also link the WPF assembly,
+        //        so calling the MessageBox class directly from ViewModel is not desirable.
+        MessageBox.Show(text);
+    }
+    #endregion
+
+    #region AllSelectCommand
+    public DelegateCommand AllSelectCommand { get; }
+    private void AllSelect(object? param)
+    {
+        var nextSelectedItem = new List&lt;PersonData&gt;()
+        {
+            new PersonData(1, &quot;jhone&quot;, 32),
+            new PersonData(2, &quot;jimi&quot;, 42),
+            new PersonData(3, &quot;jack&quot;, 52),
+            new PersonData(4, &quot;mike&quot;, 62),
+            new PersonData(5, &quot;bob&quot;, 72),
+        };
+
+        SelectedItems = nextSelectedItem;
+    }
+    #endregion
+
+    public MainWindowViewModel()
+    {
+        ShowSelectedItemCommand = new(ShowSelectedItem);
+        AllSelectCommand = new(AllSelect);
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+        =&gt; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+}
+
+public class PersonData
+{
+    public int Id { get; }
+    public string Name { get; }
+    public int Age { get; }
+
+    public PersonData(int id, string name, int age)
+    {
+        Id = id;
+        Name = name;
+        Age = age;
+    }
+
+    public override bool Equals(object? obj) =&gt; obj is PersonData PersonData ? Id == PersonData.Id : ReferenceEquals(obj, this);
+    public override int GetHashCode() =&gt; Id.GetHashCode();
+}
+
+#region MVVM util
+public class DelegateCommand : ICommand
+{
+    private Action&lt;object?&gt; _execute;
+    private Func&lt;object?, bool&gt; _canExecute;
+
+    public DelegateCommand(Action&lt;object?&gt; execute, Func&lt;object?, bool&gt;? canExecute = null)
+    {
+        _execute = execute;
+        _canExecute = canExecute ?? (x =&gt; true);
+    }
+
+    public void RaiseCanExecuteChanged()
+    {
+        var functor = CanExecuteChanged;
+        functor?.Invoke(this, EventArgs.Empty);
+    }
+
+    public event EventHandler? CanExecuteChanged;
+
+    public bool CanExecute(object? parameter) =&gt; _canExecute(parameter);
+
+    public void Execute(object? parameter) =&gt; _execute(parameter);
+}
+#endregion
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/11.Binding multiple selected items in the ListBox to ViewModel properties.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

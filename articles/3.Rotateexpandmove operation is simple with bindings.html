@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Rotate/expand/move operation is simple with bindings </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Rotate/expand/move operation is simple with bindings ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/3.Rotateexpandmove operation is simple with bindings.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="rotateexpandmove-operation-is-simple-with-bindings">Rotate/expand/move operation is simple with bindings</h1>
+
+<p>There is a method of using RenderTransform to perform operations such as rotation/scaling in WPF, but it is not very simple.
+To perform such operations, use the TransformContentControl defined in this library.
+TransformContentControl defines the following five dependency properties that can be bound.</p>
+<ul>
+<li>ScaleX - Property that can specify horizontal size</li>
+<li>ScaleY - Property that can specify vertical size</li>
+<li>RotateAngle - Property that can specify rotation angle</li>
+<li>TranslateX - Property that allows specifying the amount of horizontal movement</li>
+<li>TranslateY - Property that allows you to specify the amount of vertical movement</li>
+</ul>
+<blockquote>
+<p>note : All of the above deformation properties can be used with values up to ±1. For example, setting ScaleY to -1 will turn the displayed Content upside down, and setting RotateAngle to 0.5 will rotate it 180°.</p>
+</blockquote>
+<p>A simple sample code is shown below.</p>
+<pre><code class="lang-xaml">&lt;Window 
+	~Ellipsis~&gt;
+
+    &lt;DockPanel LastChildFill=&quot;True&quot;&gt;
+        &lt;Grid DockPanel.Dock=&quot;Bottom&quot;&gt;
+            &lt;Grid.ColumnDefinitions&gt;
+                &lt;ColumnDefinition Width=&quot;Auto&quot; /&gt;
+                &lt;ColumnDefinition /&gt;
+            &lt;/Grid.ColumnDefinitions&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition /&gt;
+                &lt;RowDefinition /&gt;
+                &lt;RowDefinition /&gt;
+                &lt;RowDefinition /&gt;
+                &lt;RowDefinition /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+
+            &lt;Label Content=&quot;TranslateX&quot; Grid.Row=&quot;0&quot; Grid.Column=&quot;0&quot; /&gt;
+            &lt;Slider Name=&quot;translateXSlider&quot; Minimum=&quot;-1&quot; Maximum=&quot;1&quot; Value=&quot;0&quot; Grid.Row=&quot;0&quot; Grid.Column=&quot;1&quot; /&gt;
+
+            &lt;Label Content=&quot;TranslateY&quot; Grid.Row=&quot;1&quot; Grid.Column=&quot;0&quot; /&gt;
+            &lt;Slider Name=&quot;translateYSlider&quot; Minimum=&quot;-1&quot; Maximum=&quot;1&quot; Value=&quot;0&quot; Grid.Row=&quot;1&quot; Grid.Column=&quot;1&quot; /&gt;
+
+            &lt;Label Content=&quot;Angle&quot; Grid.Row=&quot;2&quot; Grid.Column=&quot;0&quot; /&gt;
+            &lt;Slider Name=&quot;angleSlider&quot; Minimum=&quot;-1&quot; Maximum=&quot;1&quot; Value=&quot;0&quot; Grid.Row=&quot;2&quot; Grid.Column=&quot;1&quot; /&gt;
+
+            &lt;Label Content=&quot;ScaleX&quot; Grid.Row=&quot;3&quot; Grid.Column=&quot;0&quot; /&gt;
+            &lt;Slider Name=&quot;scaleXSlider&quot; Minimum=&quot;0&quot; Maximum=&quot;1&quot; Value=&quot;1&quot; Grid.Row=&quot;3&quot; Grid.Column=&quot;1&quot; /&gt;
+
+            &lt;Label Content=&quot;ScaleY&quot; Grid.Row=&quot;4&quot; Grid.Column=&quot;0&quot; /&gt;
+            &lt;Slider Name=&quot;scaleYSlider&quot; Minimum=&quot;0&quot; Maximum=&quot;1&quot; Value=&quot;1&quot; Grid.Row=&quot;4&quot; Grid.Column=&quot;1&quot; /&gt;
+        &lt;/Grid&gt;
+
+        &lt;et:TransformContentControl 
+            DockPanel.Dock=&quot;Top&quot;
+            ScaleX=&quot;{Binding ElementName=scaleXSlider, Path=Value}&quot;
+            ScaleY=&quot;{Binding ElementName=scaleYSlider, Path=Value}&quot;
+            RotateAngle=&quot;{Binding ElementName=angleSlider, Path=Value}&quot;
+            TranslateX=&quot;{Binding ElementName=translateXSlider, Path=Value}&quot;
+            TranslateY=&quot;{Binding ElementName=translateYSlider, Path=Value}&quot;&gt;
+            &lt;Viewbox&gt;
+                &lt;Label Content=&quot;Hello World!&quot; /&gt;
+            &lt;/Viewbox&gt;
+        &lt;/et:TransformContentControl&gt;
+    &lt;/DockPanel&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>Result</p>
+<p><img src="../images/3_Example.gif" alt=""></p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/3.Rotateexpandmove operation is simple with bindings.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

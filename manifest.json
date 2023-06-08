@@ -15,56 +15,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.Collections.DayDataCollection.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.Collections.DayDataCollection.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.Collections.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.Collections.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.BaseDayData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.BaseDayData.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.DayOfWeekData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.DayOfWeekData.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.DataObjects.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/EnkuToolkit.UiIndependent.Navigation.INavigationAware.yml",
       "output": {
         ".html": {
@@ -89,16 +39,6 @@
       "output": {
         ".html": {
           "relative_path": "api/EnkuToolkit.UiIndependent.Navigation.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.UiIndependent.Services.IApplicationPropertyiesService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.UiIndependent.Services.IApplicationPropertyiesService.html"
         }
       },
       "version": ""
@@ -139,6 +79,16 @@
       "output": {
         ".html": {
           "relative_path": "api/EnkuToolkit.Wpf.Behaviors.FrameExtensionBehavior.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Behaviors.ListBoxExtensionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Behaviors.ListBoxExtensionBehavior.html"
         }
       },
       "version": ""
@@ -215,36 +165,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventArgs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventArgs.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.CellDoubleClickedEventHandler.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableCalendar.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/EnkuToolkit.Wpf.Controls.CustomizableTitlebarAnimatedNavigationWindow.yml",
       "output": {
         ".html": {
@@ -315,60 +235,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/EnkuToolkit.Wpf.Converters.yml",
       "output": {
         ".html": {
           "relative_path": "api/EnkuToolkit.Wpf.Converters.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.AutoGenDayData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.AutoGenDayData.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.DayOfWeekData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.DayOfWeekData.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.DataObjects.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.DataObjects.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.GetApplicationResourceExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.MarkupExtensions.GetApplicationResourceExtension.html"
         }
       },
       "version": ""
@@ -405,20 +275,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Services.AbstractNavigationService.yml",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.yml",
       "output": {
         ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Services.AbstractNavigationService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/EnkuToolkit.Wpf.Services.ApplicationPropertyiesService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/EnkuToolkit.Wpf.Services.ApplicationPropertyiesService.html"
+          "relative_path": "api/EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.html"
         }
       },
       "version": ""
@@ -488,6 +348,106 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/10.Displaying a Dialog from a ViewModel.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/10.Displaying a Dialog from a ViewModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/11.Binding multiple selected items in the ListBox to ViewModel properties.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/11.Binding multiple selected items in the ListBox to ViewModel properties.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/2.Customizing the Title Bar.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/2.Customizing the Title Bar.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/3.Rotateexpandmove operation is simple with bindings.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/3.Rotateexpandmove operation is simple with bindings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/4.Execute effects when the display state changes.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/4.Execute effects when the display state changes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/5.Save Window position and size to restore previous state at next startup.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/5.Save Window position and size to restore previous state at next startup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/6.How to receive parameters on the ViewModel during screen transitions.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/6.How to receive parameters on the ViewModel during screen transitions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/7.Using Math Converter.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/7.Using Math Converter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/8.Retrieving ViewModel objects from a DI container on xaml.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/8.Retrieving ViewModel objects from a DI container on xaml.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/9.Perform screen transitions from the ViewModel.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/9.Perform screen transitions from the ViewModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
@@ -505,6 +465,126 @@
         },
         ".json": {
           "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/13_Example.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/13_Example.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/13_Example_en.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/13_Example_en.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/14_After.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/14_After.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/14_Before.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/14_Before.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/1_Effect-Example.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/1_Effect-Example.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/1_Example-SatoryBoard.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/1_Example-SatoryBoard.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/2_CornerRadius.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/2_CornerRadius.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/2_TitlebarProperty.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/2_TitlebarProperty.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/3_Example.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/3_Example.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/4_CustomEffect.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/4_CustomEffect.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/4_Example.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/4_Example.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/8_Example.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/8_Example.gif"
         }
       },
       "version": ""

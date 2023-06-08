@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Customizing the Title Bar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Customizing the Title Bar ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/2.Customizing the Title Bar.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="customizing-the-title-bar">Customizing the Title Bar</h1>
+
+<p>This library defines two types of window classes that allow you to freely rewrite the title bar
+Two types of window classes are defined in this library that allow the title bar to be rewritten freely.</p>
+<p>One is the CustomizableTitlebarWindow class.
+This class was created by inheriting from the Winodw class that comes standard with WPF.
+It can be used in almost the same way as the normal Window class, but the following three properties have been added.</p>
+<ul>
+<li>Titlebar</li>
+<li>CornerRadius</li>
+<li>ResizeBorderThickness</li>
+</ul>
+<p>The other class is CustomizableTitlebarAnimatedNavigationWindow.
+This class is simply AnimatedNavigationWindow introduced in the document &quot;Execute animation effects during screen transitions&quot; with the above three properties added.</p>
+<h2 id="titlebar-property">Titlebar property</h2>
+<p>The Titlebar property can be set to an object of type FrameworkElement
+This property is used to inscribe the contents of the titlebar.</p>
+<blockquote>
+<p>note : If you include a clickable control such as a button inside a title bar property, be sure to attach the WindowChrome.IsHitTestVisibleInChrome attachment property to that control and set its value to True. Otherwise, even the clickable area will be recognized as an area for window movement and will not be clickable.</p>
+</blockquote>
+<p>A simple sample code is shown below.</p>
+<p>MainWindow.xaml</p>
+<pre><code class="lang-xaml">&lt;et:CustomizableTitlebarWindow
+        ~ellipsis~
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+    &lt;et:CustomizableTitlebarWindow.Titlebar&gt;
+        &lt;StackPanel Orientation=&quot;Horizontal&quot; HorizontalAlignment=&quot;Right&quot;&gt;
+            &lt;StackPanel.Resources&gt;
+                &lt;Style TargetType=&quot;Button&quot;&gt;
+                    &lt;Setter Property=&quot;FontSize&quot; Value=&quot;20&quot; /&gt;
+                    &lt;Setter Property=&quot;Width&quot; Value=&quot;30&quot; /&gt;
+                    &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;Transparent&quot; /&gt;
+                    &lt;Setter Property=&quot;Background&quot; Value=&quot;Transparent&quot; /&gt;
+                    &lt;Setter Property=&quot;WindowChrome.IsHitTestVisibleInChrome&quot; Value=&quot;True&quot; /&gt;
+                &lt;/Style&gt;
+            &lt;/StackPanel.Resources&gt;
+            
+            &lt;Button Content=&quot;_&quot; Click=&quot;MinimizeButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;□&quot; Click=&quot;MaximizeOrNormalizeButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;×&quot; Click=&quot;ShutDownButtonClicked&quot; /&gt;
+        &lt;/StackPanel&gt;
+    &lt;/et:CustomizableTitlebarWindow.Titlebar&gt;
+
+    &lt;Viewbox&gt;
+        &lt;Label Content=&quot;Hello World!&quot; /&gt;
+    &lt;/Viewbox&gt;
+&lt;/et:CustomizableTitlebarWindow&gt;
+</code></pre>
+<p>MainWindow.xaml.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using EnkuToolkit.Wpf.Controls;
+using System.Windows;
+
+public partial class MainWindow : CustomizableTitlebarWindow
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void MinimizeButtonClicked(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
+    }
+
+    private void MaximizeOrNormalizeButtonClicked(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+    }
+
+    private void ShutDownButtonClicked(object sender, RoutedEventArgs e)
+    {
+        App.Current.Shutdown();
+    }
+}
+</code></pre>
+<p>result</p>
+<p><img src="../images/2_TitlebarProperty.png" alt=""></p>
+<h2 id="cornerradius-property">CornerRadius property</h2>
+<p>This property is used to round the corners of the window.
+The screenshot below shows a case where 30 is specified for the CornerRadius property of the CustomizableTitlebarWindow class in the sample code above.</p>
+<pre><code class="lang-xaml">&lt;et:CustomizableTitlebarWindow
+        ~ellipsis~
+        CornerRadius=&quot;30&quot;
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+    ~ellipsis~
+&lt;/et:CustomizableTitlebarWindow&gt;
+</code></pre>
+<p><img src="../images/2_CornerRadius.png" alt=""></p>
+<h2 id="resizeborderthickness-property">ResizeBorderThickness property</h2>
+<p>This property is used to specify the size of the area for resizing the window.
+If 0 is specified, the window cannot be resized with the mouse, so specify an appropriate value.
+The default values are as follows</p>
+<ul>
+<li>Top : 0</li>
+<li>Left : 15</li>
+<li>Right : 15</li>
+<li>Bottom : 15</li>
+</ul>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/2.Customizing the Title Bar.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

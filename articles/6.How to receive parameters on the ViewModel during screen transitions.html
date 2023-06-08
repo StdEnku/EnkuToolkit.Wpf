@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>How to receive parameters on the ViewModel during screen transitions </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="How to receive parameters on the ViewModel during screen transitions ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/6.How to receive parameters on the ViewModel during screen transitions.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="how-to-receive-parameters-on-the-viewmodel-during-screen-transitions">How to receive parameters on the ViewModel during screen transitions</h1>
+
+<p>In this library, the derived classes of Frame and NavigationWindow have a mechanism to send parameters to the ViewModel of the destination page at the time of screen transition.
+To enable this feature, attach the attached behavior as follows in the derived class of Frame or NavigationWindow from which the screen transition originates.</p>
+<p>For classes derived from Frame</p>
+<pre><code class="lang-xaml">&lt;Window ~Ellipsis~
+    xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+
+    &lt;Frame ~Ellipsis~ 
+           et:FrameExtensionBehavior.IsSendNavigationParam=&quot;True&quot;&gt;
+    
+    &lt;/Frame&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>For classes derived from NavigationWindow</p>
+<pre><code class="lang-xaml">&lt;NavigationWindow ~Ellipsis~
+    xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;
+    et:NavigationWindowExtensionBehavior.IsSendNavigationParam=&quot;True&quot;&gt;
+
+&lt;/NavigationWindow&gt;
+</code></pre>
+<p>Then, implement the INavigationAware interface in the destination ViewModel for which you wish to obtain parameters during screen transitions, as shown below.</p>
+<pre><code class="lang-c#">using EnkuToolkit.UiIndependent.Navigation;
+
+public class ViewModel : INotifyPropertyChanged, INavigationAware
+{
+    ~Ellipsis~
+    
+    // Methods called after screen transitions occur
+    public void OnNavigated(object? param, NavigationMode navigationMode)
+    {
+        // Argument param is a parameter passed from the previous screen
+        // The navigationMode argument is a value that can be used to determine whether the screen transition is forward, backward, new, or reflesh.
+    }
+}
+</code></pre>
+<p>To specify parameters to be passed during screen transitions, the values specified in the extraData argument, which can be specified in the <a href="https://learn.microsoft.com/ja-jp/dotnet/api/system.windows.controls.frame.navigate?view=windowsdesktop-7.0">Navigate Method</a> of the target Frame or NavigationWindow, are passed.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/6.How to receive parameters on the ViewModel during screen transitions.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

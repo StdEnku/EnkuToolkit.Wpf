@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Perform screen transitions from the ViewModel </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Perform screen transitions from the ViewModel ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="perform-screen-transitions-from-the-viewmodel">Perform screen transitions from the ViewModel</h1>
+
+<p>This library provides the EnkuToolkit.UiIndependent.Services.INavigationService interface for screen transitions from the ViewModel and its implementation in the following class.</p>
+<ul>
+<li>EnkuToolkit.Wpf.Services.AbstractFrameNavigationService</li>
+<li>EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService</li>
+</ul>
+<p>AbstractFrameNavigationService is an abstract class used for screen transitions in a Frame on a Window.
+MainNavigationWindowNavigationService is a class used to perform screen transitions in NavigationWidnow.</p>
+<p>It is also assumed that they will be registered in a DI container and used in the ViewModel using constructor injection.</p>
+<h2 id="preparation-for-screen-transitions-in-a-frame-on-a-window">Preparation for screen transitions in a Frame on a Window</h2>
+<p>To perform screen transitions in a Frame on a Window, it is necessary to create a class in the application project that extends AbstractFrameNavigationService.</p>
+<p>There is one property that must be overloaded in the AbstractFrameNavigationService.</p>
+<blockquote>
+<pre><code class="lang-c#">protected abstract Frame TargetFrame { get; }
+</code></pre>
+</blockquote>
+<p>This property should be implemented in such a way that it returns the Frame you wish to use for screen transitions.
+(example)</p>
+<pre><code class="lang-c#">public class MainFrameNavigationService : AbstractFrameNavigationService
+{
+	protected override Frame TargetFrame
+    {
+        get
+        {
+            var app = (App)Application.Current;
+            var mainWindow = (MainWindow)app.MainWindow;
+            return mainWindow.MainFrame;
+        }
+	}
+}
+</code></pre>
+<p>Then register the class created with INavigationService to the DI container.</p>
+<pre><code class="lang-c#">services.AddTransient&lt;INavigationService, MainFrameNavigationService&gt;();
+</code></pre>
+<h2 id="preparation-for-screen-transitions-with-navigationwidnow">Preparation for screen transitions with NavigationWidnow</h2>
+<p>There is no need to create a class if the window specified in App.Current.MainWindow is NavigationWidnow.
+As shown below, INavigationService and MainNavigationWindowNavigationService only need to register NavigationWidnow in the DI container.</p>
+<pre><code class="lang-c#">services.AddTransient&lt;INavigationService, MainNavigationWindowNavigationService&gt;();
+</code></pre>
+<h2 id="how-to-perform-screen-transitions-in-viewmodel">How to perform screen transitions in ViewModel</h2>
+<p>The ViewModel of the page being displayed should be able to use the INavigationService object registered in the DI container above using constructor injection.</p>
+<pre><code class="lang-c#">public class Page1ViewModel : INotifyPropertyChanged
+{
+    private INavigationService _navigationService;
+    
+    public Page1ViewModel(INavigationService navigationService)
+    {
+        _navigationService = navigationService;
+    }
+}
+</code></pre>
+<p>The INavigationService object injected with the constructor above has the following methods.
+By using them, screen transitions can be performed from the ViewModel.</p>
+<pre><code class="lang-c#">/*
+ * MIT License
+ * 
+ * Copyright (c) 2023 StdEnku
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the &quot;Software&quot;), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+namespace EnkuToolkit.UiIndependent.Services;
+
+/// &lt;summary&gt;
+/// Interface for ViewService for screen transition from ViewModel that can be used when Application.Current.MainWindow is NavigationWindow
+/// &lt;/summary&gt;
+public interface INavigationService
+{
+    /// &lt;summary&gt;
+    /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;uriStr&quot;&gt;Relative URI to the destination page&lt;/param&gt;
+    /// &lt;param name=&quot;extraData&quot;&gt;Data to be passed to the destination&lt;/param&gt;
+    /// &lt;returns&gt;Returns false if the screen transition is canceled, true if not canceled&lt;/returns&gt;
+    bool NavigateRootBase(string uriStr, object? extraData = null);
+
+    /// &lt;summary&gt;
+    /// Methods to perform screen transitions by specifying the destination URI
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;uri&quot;&gt;URI to the destination page&lt;/param&gt;
+    /// &lt;param name=&quot;extraData&quot;&gt;Data to be passed to the destination&lt;/param&gt;
+    /// &lt;returns&gt;Returns false if the screen transition is canceled, true if not canceled&lt;/returns&gt;
+    bool Navigate(Uri uri, object? extraData = null);
+
+    /// &lt;summary&gt;
+    /// Method to advance the displayed page based on history
+    /// &lt;/summary&gt;
+    void GoForward();
+
+    /// &lt;summary&gt;
+    /// Method to return the page displayed based on the history
+    /// &lt;/summary&gt;
+    void GoBack();
+
+    /// &lt;summary&gt;
+    /// Methods for reloading the displayed page
+    /// &lt;/summary&gt;
+    void Refresh();
+
+    /// &lt;summary&gt;
+    /// Method to delete the previously viewed page from the history
+    /// &lt;/summary&gt;
+    void RemoveBackEntry();
+
+    /// &lt;summary&gt;
+    /// Methods for interrupting screen transitions
+    /// &lt;/summary&gt;
+    void StopLoading();
+
+    /// &lt;summary&gt;
+    /// Method to delete all the history of the last viewed page from the history
+    /// &lt;/summary&gt;
+    void RemoveAllBackEntry();
+
+    /// &lt;summary&gt;
+    /// Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
+    /// &lt;/summary&gt;
+    bool CanGoBack { get; }
+
+    /// &lt;summary&gt;
+    /// Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
+    /// &lt;/summary&gt;
+    bool CanGoForward { get; }
+}
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

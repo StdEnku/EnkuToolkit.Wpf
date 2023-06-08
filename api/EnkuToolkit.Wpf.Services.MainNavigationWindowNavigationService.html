@@ -92,7 +92,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MainNavigationWindowNavigationService : AbstractNavigationService, INavigationService</code></pre>
+    <pre><code class="lang-csharp hljs">public class MainNavigationWindowNavigationService : INavigationService</code></pre>
   </div>
 
 
@@ -102,7 +102,6 @@
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html">AbstractNavigationService</a></div>
       <div><span class="xref">MainNavigationWindowNavigationService</span></div>
     </dd>
   </dl>
@@ -118,36 +117,6 @@
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_NavigateRootBase_System_String_System_Object_">AbstractNavigationService.NavigateRootBase(string, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_Navigate_System_Uri_System_Object_">AbstractNavigationService.Navigate(Uri, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_GoForward">AbstractNavigationService.GoForward()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_GoBack">AbstractNavigationService.GoBack()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_Refresh">AbstractNavigationService.Refresh()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_RemoveBackEntry">AbstractNavigationService.RemoveBackEntry()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_StopLoading">AbstractNavigationService.StopLoading()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_RemoveAllBackEntry">AbstractNavigationService.RemoveAllBackEntry()</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_CanGoBack">AbstractNavigationService.CanGoBack</a>
-    </div>
-    <div>
-      <a class="xref" href="EnkuToolkit.Wpf.Services.AbstractNavigationService.html#EnkuToolkit_Wpf_Services_AbstractNavigationService_CanGoForward">AbstractNavigationService.CanGoForward</a>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
@@ -210,19 +179,19 @@
 </h2>
 
 
-  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_TargetNavigationService_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.TargetNavigationService*"></a>
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_CanGoBack_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.CanGoBack*"></a>
 
-  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_TargetNavigationService" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.TargetNavigationService">
-  TargetNavigationService
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_CanGoBack" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.CanGoBack">
+  CanGoBack
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Property that casts Application.Current.MainWindow to NavigationWindow and returns its NavigationServcie property</p>
+  <div class="markdown level1 summary"><p>Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override NavigationService TargetNavigationService { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool CanGoBack { get; }</code></pre>
   </div>
 
 
@@ -231,7 +200,7 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.navigation.navigationservice">NavigationService</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -239,12 +208,288 @@
 
 
 
-  <h4 class="section">Exceptions</h4>
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_CanGoForward_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.CanGoForward*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_CanGoForward" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.CanGoForward">
+  CanGoForward
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanGoForward { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidcastexception">InvalidCastException</a></dt>
-    <dd><p>Thrown when Application.Current.MainWindow cannot be cast to NavigationWindow.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_GoBack_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.GoBack*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_GoBack" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.GoBack">
+  GoBack()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to return the page displayed based on the history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GoBack()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_GoForward_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.GoForward*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_GoForward" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.GoForward">
+  GoForward()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to advance the displayed page based on history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GoForward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_Navigate_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Navigate*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_Navigate_System_Uri_System_Object_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Navigate(System.Uri,System.Object)">
+  Navigate(Uri, object?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Methods to perform screen transitions by specifying the destination URI</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Navigate(Uri uri, object? extraData = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>uri</code> <span class="xref">Uri</span></dt>
+    <dd><p>URI to the destination page</p>
+</dd>
+    <dt><code>extraData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Data to be passed to the destination</p>
 </dd>
   </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns false if the screen transition is canceled, true if not canceled</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_NavigateRootBase_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateRootBase*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_NavigateRootBase_System_String_System_Object_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateRootBase(System.String,System.Object)">
+  NavigateRootBase(string, object?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NavigateRootBase(string uriStr, object? extraData = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>uriStr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Relative URI to the destination page</p>
+</dd>
+    <dt><code>extraData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Data to be passed to the destination</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns false if the screen transition is canceled, true if not canceled</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_Refresh_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Refresh*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_Refresh" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Refresh">
+  Refresh()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Methods for reloading the displayed page</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Refresh()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_RemoveAllBackEntry_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.RemoveAllBackEntry*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_RemoveAllBackEntry" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.RemoveAllBackEntry">
+  RemoveAllBackEntry()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to delete all the history of the last viewed page from the history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAllBackEntry()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_RemoveBackEntry_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.RemoveBackEntry*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_RemoveBackEntry" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.RemoveBackEntry">
+  RemoveBackEntry()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to delete the previously viewed page from the history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveBackEntry()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_StopLoading_" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.StopLoading*"></a>
+
+  <h3 id="EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_StopLoading" data-uid="EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.StopLoading">
+  StopLoading()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Methods for interrupting screen transitions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopLoading()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

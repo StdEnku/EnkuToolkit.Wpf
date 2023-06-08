@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Execute effects when the display state changes </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Execute effects when the display state changes ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/4.Execute effects when the display state changes.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="execute-effects-when-the-display-state-changes">Execute effects when the display state changes</h1>
+
+<p>For example, if you have created a counter, you may want to execute an effect when the count-up or count-down button is clicked and the state on the screen changes.
+For such cases, a class called TransitionEffectContentControl exists in this library.
+This class can be used in the same way as a normal ContentControl, but it has the following members that are not present in ContentControl,</p>
+<ul>
+<li>Snapshot method - method to hold a bitmap of the display state before a change</li>
+<li>RunForwardEffect method - method for running forward effects</li>
+<li>RunBackwardEffect method - method for executing a backward effect</li>
+<li>RunReloadEffect method - method for executing effects for reloading</li>
+<li>TransitionEffect property - property for specifying the type of effect to execute</li>
+<li>IsCompleted property - Property of type bool that is True when no effect is running</li>
+<li>ForwardStoryboard property - property for specifying custom forward effects (Custom effects are described below.)</li>
+<li>BackwardStoryboard property - property for specifying custom backward effects (Custom effects are described below.)</li>
+<li>ReloadStoryboard property - property for specifying effects for custom reloads (Custom effects are described below.)</li>
+<li>SnapshotDpiX property - property for specifying the horizontal DPI value of the bitmap when imaging the state before the change</li>
+<li>SnapshotDpiY property - property for specifying the vertical DPI value of the bitmap when imaging the state before the change</li>
+</ul>
+<p>The basic usage is after specifying the type of effect you want to execute by specifying the TransitionEffect property during initialization, etc,
+Immediately before the screen state changes, the Snapshot method is executed to record an image of the current screen state,
+Then, the Snapshot method is executed immediately before the screen state changes to record an image of the current screen state, and the effect execution method is executed immediately after the screen state changes. This is the flow.</p>
+<p>Also, since it is uncomfortable to execute another effect while the effect is running, it is recommended to lock the effect while it is running by binding the IsEnabled property or IsHitTestVisible property, which is a member of the button or other control that triggers the effect execution, and the IsCompleted property, which is a member of the TranSitionEffectContentControl.</p>
+<p>The type of TransitionEffect is EnkuToolkit.Wpf.Constants.TransitionEffects, which is an
+Enum value and has the following members</p>
+<ul>
+<li>None : Do not run effects</li>
+<li>HorizontalSlide : Perform horizontal sliding effects</li>
+<li>VerticalSlide : Perform vertical sliding effects</li>
+<li>HorizontalModernSlide : Perform modern sliding effects in horizontal direction</li>
+<li>VerticalModernSlide : Perform modern vertical sliding effects</li>
+<li>FadeOnly : Execute feed effects</li>
+<li>Custom : Value for executing custom effects as described below.</li>
+</ul>
+<p>Also note that the initial value of TransitionEffect is None.</p>
+<p><img src="../images/1_Effect-Example.gif" alt=""></p>
+<h2 id="simple-sample-code">Simple sample code</h2>
+<p>MainWindow.xaml</p>
+<pre><code class="lang-Xaml">&lt;Window ~Ellipsis~
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+
+    &lt;DockPanel LastChildFill=&quot;True&quot;&gt;
+        &lt;UniformGrid Columns=&quot;3&quot; DockPanel.Dock=&quot;Bottom&quot; IsEnabled=&quot;{Binding ElementName=transitionEffect, Path=IsCompleted}&quot;&gt;
+            &lt;Button Content=&quot;+&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;PlusButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;-&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;MinusButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;Clear&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;ClearButtonClicked&quot; /&gt;
+        &lt;/UniformGrid&gt;
+
+        &lt;et:TransitionEffectContentControl Name=&quot;transitionEffect&quot; DockPanel.Dock=&quot;Top&quot; TransitionEffect=&quot;VerticalSlide&quot;&gt;
+            &lt;Viewbox&gt;
+                &lt;Label Content=&quot;0&quot; Name=&quot;label&quot; /&gt;
+            &lt;/Viewbox&gt;
+        &lt;/et:TransitionEffectContentControl&gt;
+    &lt;/DockPanel&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>MainWindow.xaml.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using System.Diagnostics;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+
+public partial class MainWindow : Window
+{
+    private int _count;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void PlusButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count++;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunForwardEffect(); //Effect execution after screen refresh
+    }
+
+    private void MinusButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count--;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunBackwardEffect(); //Effect execution after screen refresh
+    }
+
+    private void ClearButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count = 0;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunReloadEffect(); //Effect execution after screen refresh
+    }
+}
+</code></pre>
+<p>Result</p>
+<p><img src="../images/4_Example.gif" alt=""></p>
+<h2 id="explanation-of-custom-effects">Explanation of Custom Effects</h2>
+<h3 id="how-to-specify-custom-effects">How to specify custom effects</h3>
+<p>To execute a custom effect, set the TransitionEffect to Custom.
+To execute a custom effect, specify Custom for TransitionEffect and set the following three properties of the Storyboard type.</p>
+<ul>
+<li>ForwardStoryboard</li>
+<li>BackwardStoryboar</li>
+<li>ReloadStoryboard</li>
+</ul>
+<p>It is not necessary to specify all of the above properties; if they are null, nothing will happen when the corresponding effect is executed.</p>
+<h3 id="description-of-storyboard-that-can-be-specified-for-custom-effects">Description of Storyboard that can be specified for custom effects</h3>
+<p>Inside an TransitionEffectContentControl, there is a TransformContentControl called contentTc that displays the transition destination state and a TransformContentControl called imageTc that displays the state before the transition, so specify a storyboard that contains the animation to transform them.
+An example is given below.</p>
+<p>MainWindow.xaml</p>
+<pre><code class="lang-Xaml">&lt;Window ~Ellipsis~
+        xmlns:et=&quot;https://github.com/StdEnku/EnkuToolkit&quot;&gt;
+
+    &lt;DockPanel LastChildFill=&quot;True&quot;&gt;
+        &lt;UniformGrid Columns=&quot;3&quot; DockPanel.Dock=&quot;Bottom&quot; IsEnabled=&quot;{Binding ElementName=transitionEffect, Path=IsCompleted}&quot;&gt;
+            &lt;Button Content=&quot;+&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;PlusButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;-&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;MinusButtonClicked&quot; /&gt;
+            &lt;Button Content=&quot;Clear&quot; Margin=&quot;10&quot; FontSize=&quot;30&quot; Click=&quot;ClearButtonClicked&quot; /&gt;
+        &lt;/UniformGrid&gt;
+
+        &lt;et:TransitionEffectContentControl Name=&quot;transitionEffect&quot; DockPanel.Dock=&quot;Top&quot; TransitionEffect=&quot;VerticalSlide&quot;&gt;
+            &lt;Viewbox&gt;
+                &lt;Label Content=&quot;0&quot; Name=&quot;label&quot; /&gt;
+            &lt;/Viewbox&gt;
+            
+            &lt;et:TransitionEffectContentControl.ForwardStoryboard&gt;
+                &lt;Storyboard&gt;
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.5&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                &lt;/Storyboard&gt;
+            &lt;/et:TransitionEffectContentControl.ForwardStoryboard&gt;
+
+            &lt;et:TransitionEffectContentControl.BackwardStoryboard&gt;
+                &lt;Storyboard&gt;
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;-0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;-0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;-1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.RotateAngle)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;-0.5&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;-0.5&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                &lt;/Storyboard&gt;
+            &lt;/et:TransitionEffectContentControl.BackwardStoryboard&gt;
+
+            &lt;et:TransitionEffectContentControl.ReloadStoryboard&gt;
+                &lt;Storyboard&gt;
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.ScaleX)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.ScaleY)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                    
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;contentTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;1.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames 
+                    Storyboard.TargetName=&quot;imageTc&quot;
+                    Storyboard.TargetProperty=&quot;(et:TransformContentControl.Opacity)&quot;
+                    FillBehavior=&quot;Stop&quot;&gt;
+
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.0&quot; Value=&quot;1.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.2&quot; Value=&quot;0.0&quot; /&gt;
+                        &lt;LinearDoubleKeyFrame KeyTime=&quot;0:0:0.4&quot; Value=&quot;0.0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                &lt;/Storyboard&gt;
+            &lt;/et:TransitionEffectContentControl.ReloadStoryboard&gt;
+        &lt;/et:TransitionEffectContentControl&gt;
+    &lt;/DockPanel&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>MainWindow.xaml.cs</p>
+<pre><code class="lang-c#">namespace MyApp;
+
+using System.Diagnostics;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+
+public partial class MainWindow : Window
+{
+    private int _count;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void PlusButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count++;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunForwardEffect(); //Effect execution after screen refresh
+    }
+
+    private void MinusButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count--;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunBackwardEffect(); //Effect execution after screen refresh
+    }
+
+    private void ClearButtonClicked(object sender, RoutedEventArgs e)
+    {
+        _count = 0;
+        transitionEffect.Snapshot(); //Snapshot taken before screen update
+        label.Content = _count;
+        transitionEffect.RunReloadEffect(); //Effect execution after screen refresh
+    }
+}
+</code></pre>
+<p>Result</p>
+<p><img src="../images/4_CustomEffect.gif" alt=""></p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/56/merge/articles/4.Execute effects when the display state changes.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
