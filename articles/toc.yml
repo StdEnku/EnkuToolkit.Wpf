@@ -22,23 +22,14 @@
 - name: Using Math Converter
   href: 7.Using Math Converter.md
 
-- name: Eliminate lengthy triggers and actions using ternary operator converters
-  href: 8.Eliminate lengthy triggers and actions using ternary operator converters.md
-
 - name: Retrieving ViewModel objects from a DI container on xaml
-  href: 9.Retrieving ViewModel objects from a DI container on xaml.md
+  href: 8.Retrieving ViewModel objects from a DI container on xaml.md
 
 - name: Perform screen transitions from the ViewModel
-  href: 10.Perform screen transitions from the ViewModel.md
+  href: 9.Perform screen transitions from the ViewModel.md
 
 - name: Displaying a Dialog from a ViewModel
-  href: 11.Displaying a Dialog from a ViewModel.md
+  href: 10.Displaying a Dialog from a ViewModel.md
 
 - name: Binding multiple selected items in the ListBox to ViewModel properties
-  href: 12.Binding multiple selected items in the ListBox to ViewModel properties.md
-
-- name: Method for changing integers from 1~12 to the name of the month using a converter
-  href: 13.Method for changing integers from 1~12 to the name of the month using a converter.md
-
-- name: Create a calendar with customizable cell internals using CustomizableCalendar
-  href: 14.Create a calendar with customizable cell internals using CustomizableCalendar.md
+  href: 11.Binding multiple selected items in the ListBox to ViewModel properties.md

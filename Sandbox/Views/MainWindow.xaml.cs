@@ -1,45 +1,30 @@
 ﻿namespace Sandbox.Views;
 
-using EnkuToolkit.Wpf.Controls;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using EnkuToolkit.Wpf.Controls;
 
 /// <summary>
 /// MainWindow.xaml の相互作用ロジック
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : CustomizableTitlebarWindow
 {
     public MainWindow()
     {
         InitializeComponent();
-        customizableCalendar.CellsUpdated += CustomizableCalendar_CellsUpdated;
-        customizableCalendar.CellsUpdating += CustomizableCalendar_CellsUpdating;
     }
 
-    private void CustomizableCalendar_CellsUpdating(object sender, CustomizableCalendar.CellsUpdateEventArgs e)
+    private void MinimizeButtonClicked(object sender, RoutedEventArgs e)
     {
-        Debug.WriteLine($"CellsUpdating : {e.UpdateMode.ToString()}");
+        WindowState = WindowState.Minimized;
     }
 
-    private void CustomizableCalendar_CellsUpdated(object sender, CustomizableCalendar.CellsUpdateEventArgs e)
+    private void MaximizeOrNormalizeButtonClicked(object sender, RoutedEventArgs e)
     {
-        Debug.WriteLine($"CellsUpdated : {e.UpdateMode.ToString()}");
+        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void ShutDownButtonClicked(object sender, RoutedEventArgs e)
     {
-        customizableCalendar.Update();
+        App.Current.Shutdown();
     }
 }

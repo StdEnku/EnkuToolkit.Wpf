@@ -29,8 +29,6 @@ using System.Windows.Navigation;
 using SystemNavigationMode = System.Windows.Navigation.NavigationMode;
 using EnkuNavigationMode = UiIndependent.Navigation.NavigationMode;
 using EnkuToolkit.UiIndependent.Navigation;
-using System.Diagnostics;
-using System.Xml.Linq;
 
 /// <summary>
 /// Attached behaviors to extend Frame
