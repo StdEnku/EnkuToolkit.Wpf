@@ -1,0 +1,120 @@
+﻿<et:CustomizableTitlebarWindow
+    x:Class="_02_move_control.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:_02_move_control"
+    xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal" 
+    TextOptions.TextRenderingMode="Auto"        
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    mc:Ignorable="d"
+    Name="mainWindow"
+    CornerRadius="10"
+    et:WindowExtensionBehavior.StateSavePath="./WinsowStateSaveData.json"
+    Title="MainWindow" Height="450" Width="800">
+
+    <!--#region Titlebar-->
+    <et:CustomizableTitlebarWindow.Titlebar>
+        <Border Name="titlebarContent" Background="{DynamicResource PrimaryHueDarkBrush}" Height="50">
+            <UniformGrid Columns="3">
+                <UniformGrid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        <Setter Property="FontSize" Value="30" />
+                        <Setter Property="Width" Value="40" />
+                        <Setter Property="Height" Value="{Binding ElementName=titlebarContent, Path=Height}" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                    </Style>
+
+                    <Style TargetType="md:PackIcon">
+                        <Setter Property="Height" Value="25" />
+                        <Setter Property="Width" Value="25" />
+                    </Style>
+
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                    </Style>
+                </UniformGrid.Resources>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                </StackPanel>
+
+                <Label Content="{Binding ElementName=mainWindow, Path=Title}" HorizontalAlignment="Center" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="{md:PackIcon WindowMinimize}" Click="MinimizeButtonClicked"  />
+
+                    <Button Click="NormalMaximizeButtonClicked" >
+                        <i:Interaction.Triggers>
+                            <i:DataTrigger Binding="{Binding ElementName=mainWindow, Path=WindowState}" Value="{x:Static WindowState.Normal}">
+                                <i:ChangePropertyAction PropertyName="Content" Value="{md:PackIcon WindowMaximize}" />
+                            </i:DataTrigger>
+
+                            <i:DataTrigger Binding="{Binding ElementName=mainWindow, Path=WindowState}" Value="{x:Static WindowState.Maximized}">
+                                <i:ChangePropertyAction PropertyName="Content" Value="{md:PackIcon WindowRestore}" />
+                            </i:DataTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+
+                    <Button Content="{md:PackIcon Power}" Click="ShutDownButtonClicked" />
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+    </et:CustomizableTitlebarWindow.Titlebar>
+    <!--#endregion-->
+
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Content="TranslateX" Grid.Row="0" Grid.Column="0" />
+            <Slider Name="translateXSlider" Minimum="-1" Maximum="1" Value="0" Grid.Row="0" Grid.Column="1" />
+
+            <Label Content="TranslateY" Grid.Row="1" Grid.Column="0" />
+            <Slider Name="translateYSlider" Minimum="-1" Maximum="1" Value="0" Grid.Row="1" Grid.Column="1" />
+
+            <Label Content="Angle" Grid.Row="2" Grid.Column="0" />
+            <Slider Name="angleSlider" Minimum="-1" Maximum="1" Value="0" Grid.Row="2" Grid.Column="1" />
+
+            <Label Content="ScaleX" Grid.Row="3" Grid.Column="0" />
+            <Slider Name="scaleXSlider" Minimum="0" Maximum="1" Value="1" Grid.Row="3" Grid.Column="1" />
+
+            <Label Content="ScaleY" Grid.Row="4" Grid.Column="0" />
+            <Slider Name="scaleYSlider" Minimum="0" Maximum="1" Value="1" Grid.Row="4" Grid.Column="1" />
+        </Grid>
+
+        <et:TransformContentControl 
+            DockPanel.Dock="Top"
+            ScaleX="{Binding ElementName=scaleXSlider, Path=Value}"
+            ScaleY="{Binding ElementName=scaleYSlider, Path=Value}"
+            RotateAngle="{Binding ElementName=angleSlider, Path=Value}"
+            TranslateX="{Binding ElementName=translateXSlider, Path=Value}"
+            TranslateY="{Binding ElementName=translateYSlider, Path=Value}">
+            <Viewbox>
+                <Label Content="Hello World!" />
+            </Viewbox>
+        </et:TransformContentControl>
+    </DockPanel>
+</et:CustomizableTitlebarWindow>
