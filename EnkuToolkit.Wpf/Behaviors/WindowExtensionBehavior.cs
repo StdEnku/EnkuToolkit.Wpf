@@ -65,7 +65,29 @@ public class WindowExtensionBehavior
     {
         var window = (Window)d;
         window.Initialized += OnWindowInitialized;
-        window.Closed += OnWindowClosed;
+        window.Closing += OnWindowClosing;
+    }
+
+    private static void OnWindowClosing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        var window = sender as Window;
+        Debug.Assert(window is not null);
+        var path = GetStateSavePath(window);
+
+        var saveData = new WindowSaveData()
+        {
+            Height = window.Height,
+            Width = window.Width,
+            Top = window.Top,
+            Left = window.Left,
+            IsMaximized = window.WindowState == WindowState.Maximized,
+        };
+
+        var jsonString = JsonSerializer.Serialize(saveData);
+        File.WriteAllText(path, jsonString);
+
+        window.Initialized -= OnWindowInitialized;
+        window.Closing -= OnWindowClosing;
     }
 
     private static void OnWindowInitialized(object? sender, EventArgs e)
@@ -99,29 +121,7 @@ public class WindowExtensionBehavior
             window.Top = windowSaveData.Top;
             window.Left = windowSaveData.Left;
             window.WindowState = windowSaveData.IsMaximized ? WindowState.Maximized : WindowState.Normal;
-
-            window.Initialized -= OnWindowInitialized;
-            window.Closed -= OnWindowClosed;
         }
-    }
-
-    private static void OnWindowClosed(object? sender, EventArgs e)
-    {
-        var window = sender as Window;
-        Debug.Assert(window is not null);
-        var path = GetStateSavePath(window);
-
-        var saveData = new WindowSaveData()
-        {
-            Height = window.Height,
-            Width = window.Width,
-            Top = window.Top,
-            Left = window.Left,
-            IsMaximized = window.WindowState == WindowState.Maximized,
-        };
-
-        var jsonString = JsonSerializer.Serialize(saveData);
-        File.WriteAllText(path, jsonString);
     }
 
     private class WindowSaveData
