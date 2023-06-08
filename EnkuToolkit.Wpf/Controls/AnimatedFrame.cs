@@ -1,133 +1,249 @@
-﻿namespace EnkuToolkit.Wpf.Controls;
+﻿/*
+ * MIT License
+ * 
+ * Copyright (c) 2023 StdEnku
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+namespace EnkuToolkit.Wpf.Controls;
 
+using EnkuToolkit.Wpf.Constants;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using System.Windows.Navigation;
 using System.Windows.Media.Animation;
-using System;
-using Constants;
+using System.Windows.Navigation;
 
 /// <summary>
-/// 画面遷移時にアニメーションを実行可能なFrame
+/// Frame capable of executing effects during screen transitions
 /// </summary>
 public class AnimatedFrame : Frame
 {
+    #region Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
     /// <summary>
-    /// コンストラクタ
+    /// Dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// </summary>
+    public static readonly DependencyProperty SnapshotDpiXProperty
+        = DependencyProperty.Register(
+            nameof(SnapshotDpiX),
+            typeof(int),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(96)
+        );
+
+    /// <summary>
+    /// CLR property for SnapshotDpiXProperty, which is a dependency property for specifying the horizontal dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// </summary>
+    public int SnapshotDpiX
+    {
+        get => (int)GetValue(SnapshotDpiXProperty);
+        set => SetValue(SnapshotDpiXProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// <summary>
+    /// Dependency property for specifying the vertical dpi value of the image created when this control is imaged in the effect executed at update time.
+    /// </summary>
+    public static readonly DependencyProperty SnapshotDpiYProperty
+        = DependencyProperty.Register(
+            nameof(SnapshotDpiY),
+            typeof(int),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(96)
+        );
+
+    /// <summary>
+    /// CLR property for SnapshotDpiYProperty, which is a dependency property for specifying the vertical dpi value of the image created by the effect that is executed when updating this control to create an image.
+    /// </summary>
+    public int SnapshotDpiY
+    {
+        get => (int)GetValue(SnapshotDpiYProperty);
+        set => SetValue(SnapshotDpiYProperty, value);
+    }
+    #endregion
+
+    #region Dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    /// <summary>
+    /// Dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    /// </summary>
+    /// <remarks>
+    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// </remarks>
+    public static readonly DependencyProperty ForwardStoryboardProperty
+        = DependencyProperty.Register(
+            nameof(ForwardStoryboard),
+            typeof(Storyboard),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(null)
+        );
+
+    /// <summary>
+    /// CLR property for ForwardStoryboardProperty, a dependency property to specify the Storyboard to be executed when the Navigate or Forward method is executed
+    /// </summary>
+    public Storyboard? ForwardStoryboard
+    {
+        get => GetValue(ForwardStoryboardProperty) as Storyboard;
+        set => SetValue(ForwardStoryboardProperty, value);
+    }
+    #endregion
+
+    #region Dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    /// <summary>
+    /// Dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    /// </summary>
+    /// <remarks>
+    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// </remarks>
+    public static readonly DependencyProperty BackwardStoryboardProperty
+        = DependencyProperty.Register(
+            nameof(BackwardStoryboard),
+            typeof(Storyboard),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(null)
+        );
+
+    /// <summary>
+    /// CLR property for BackwardStoryboardProperty, a dependency property to specify the Storyboard to be executed when the GoBack method is executed
+    /// </summary>
+    public Storyboard? BackwardStoryboard
+    {
+        get => GetValue(BackwardStoryboardProperty) as Storyboard;
+        set => SetValue(BackwardStoryboardProperty, value);
+    }
+    #endregion
+
+    #region Dependency property to specify the Storyboard to run when the page is refresh
+    /// <summary>
+    /// Dependency property to specify the Storyboard to run when the page is refresh
+    /// </summary>
+    /// <remarks>
+    /// Ignored if Custom is not specified for the TransitionEffect value
+    /// </remarks>
+    public static readonly DependencyProperty ReloadStoryboardProperty
+        = DependencyProperty.Register(
+            nameof(ReloadStoryboard),
+            typeof(Storyboard),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(null)
+        );
+
+    /// <summary>
+    /// CLR property for ReloadStoryboardProperty, a dependency property for specifying the Storyboard to run when the page is refresh
+    /// </summary>
+    public Storyboard? ReloadStoryboard
+    {
+        get => GetValue(ReloadStoryboardProperty) as Storyboard;
+        set => SetValue(ReloadStoryboardProperty, value);
+    }
+    #endregion
+
+    #region Dependency property for specifying the type of effect to be executed when the screen is refreshed
+    /// <summary>
+    /// Dependency property for specifying the type of effect to be executed when the screen is refreshed
+    /// </summary>
+    public static readonly DependencyProperty TransitionEffectProperty
+        = DependencyProperty.Register(
+            nameof(TransitionEffect),
+            typeof(TransitionEffects),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(TransitionEffects.None)
+        );
+
+    /// <summary>
+    /// CLR property for TransitionEffectProperty, a dependency property for specifying the type of effect to be performed during screen updates
+    /// </summary>
+    public TransitionEffects TransitionEffect
+    {
+        get => (TransitionEffects)GetValue(TransitionEffectProperty);
+        set => SetValue(TransitionEffectProperty, value);
+    }
+    #endregion
+
+    #region Dependency property that is True if the effect is being executed
+    /// <summary>
+    /// Dependency property that is True if the effect is being executed
+    /// </summary>
+    public static readonly DependencyProperty IsCompletedEffectProperty
+        = DependencyProperty.Register(
+            nameof(IsCompletedEffect),
+            typeof(bool),
+            typeof(AnimatedFrame),
+            new PropertyMetadata(true)
+        );
+
+    /// <summary>
+    /// CLR property for IsCompletedProperty, a dependency property that is True if the effect is running
+    /// </summary>
+    public bool IsCompletedEffect
+    {
+        get => (bool)GetValue(IsCompletedEffectProperty);
+        set => SetValue(IsCompletedEffectProperty, value);
+    }
+    #endregion
+
+    /// <summary>
+    /// Constructor
     /// </summary>
     public AnimatedFrame()
     {
-        this.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-        this.Navigating += this.onNavigating;
-        this.LoadCompleted += this.onLoadCompleted;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+        NavigationUIVisibility = NavigationUIVisibility.Hidden;
     }
 
-    /// <summary>
-    /// 画面遷移時に古いウィンドウをビットマップに変換する時に使うのX方向のDPI
-    /// </summary>
-    public double DpiX { get; set; } = 96;
-
-    /// <summary>
-    /// 画面遷移時に古いウィンドウをビットマップに変換する時に使うのY方向のDPI
-    /// </summary>
-    public double DpiY { get; set; } = 96;
-
-    /// <summary>
-    /// GoForwardメソッドかNavigateメソッド実行時に再生するStoryboardを指定するためのプロパティ
-    /// </summary>
-    /// <remarks>
-    /// BuiltinAnimTypeプロパティがnull出ないと本プロパティは無視されます。
-    /// </remarks>
-    public Storyboard? ForwardAnim { get; set; }
-
-    /// <summary>
-    /// GoBackメソッド実行時に再生するStoryboardを指定するためのプロパティ
-    /// </summary>
-    /// <remarks>
-    /// BuiltinAnimTypeプロパティがnull出ないと本プロパティは無視されます。
-    /// </remarks>
-    public Storyboard? BackwardAnim { get; set; }
-
-    /// <summary>
-    /// 本ライブラリに標準搭載されているアニメーションを使用する際に再生するアニメーションの種類を指定するためのプロパティ
-    /// </summary>
-    /// <remarks>
-    /// nullを指定するとBackwardAnimプロパティとForwardAnimプロパティで指定したアニメーションが再生されます。
-    /// 本プロパティがnullでBackwardAnimプロパティとForwardAnimプロパティがともにnullの場合アニメーションは実行されません。
-    /// </remarks>
-    public BuiltinAnimTypes? BuiltinAnimType { get; set; }
-
-    private void onNavigating(object sender, NavigatingCancelEventArgs e)
+    private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        if (!this.IsLoaded) return;
-
-        this._currentNavigationMode = e.NavigationMode;
-
-        var oldImage = this.OldImageFromTemplate;
-        var oldBitmap = new RenderTargetBitmap((int)this.ActualWidth,
-                                               (int)this.ActualHeight,
-                                               this.DpiX, this.DpiY, PixelFormats.Pbgra32);
-
-        oldBitmap.Render(this);
-        oldImage.Source = oldBitmap;
+        Navigated -= OnNavigated;
+        Navigating -= OnNavigating;
     }
 
-    private void onLoadCompleted(object sender, NavigationEventArgs e)
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        if (this._currentNavigationMode is null) return;
-
-        var oldImage = this.OldImageFromTemplate;
-        var rootPanel = this.RootPanelFromTemplate;
-
-        Storyboard? nextAnim = null;
-        if (this.BuiltinAnimType is null)
-        {
-            nextAnim = this._currentNavigationMode == NavigationMode.Back ? this.BackwardAnim :
-                       this._currentNavigationMode == NavigationMode.Forward ? this.ForwardAnim :
-                       this._currentNavigationMode == NavigationMode.New ? this.ForwardAnim :
-                       null;
-        }
-        else if(this.BuiltinAnimType == BuiltinAnimTypes.Slidein)
-        {
-            nextAnim = this._currentNavigationMode == NavigationMode.Back ? (Storyboard)rootPanel.TryFindResource("SlideinToLeft") :
-                       this._currentNavigationMode == NavigationMode.Forward ? (Storyboard)rootPanel.TryFindResource("SlideinToRight") :
-                       this._currentNavigationMode == NavigationMode.New ? (Storyboard)rootPanel.TryFindResource("SlideinToRight") :
-                       null;
-        }
-        else if(this.BuiltinAnimType == BuiltinAnimTypes.ModernSlidein)
-        {
-            nextAnim = this._currentNavigationMode == NavigationMode.Back ? (Storyboard)rootPanel.TryFindResource("ModernSlideinToLeft") :
-                       this._currentNavigationMode == NavigationMode.Forward ? (Storyboard)rootPanel.TryFindResource("ModernSlideinToRight") :
-                       this._currentNavigationMode == NavigationMode.New ? (Storyboard)rootPanel.TryFindResource("ModernSlideinToRight") :
-                       null;
-        }
-
-        if (nextAnim is null) return;
-
-        EventHandler? completedEvent = null;
-        completedEvent = (sender, e) =>
-        {
-            oldImage.Visibility = Visibility.Hidden;
-            this.IsHitTestVisible = true;
-            nextAnim.Completed -= completedEvent;
-        };
-        nextAnim.Completed += completedEvent;
-        oldImage.Visibility = Visibility.Visible;
-        this.IsHitTestVisible = false;
-        nextAnim.Begin(rootPanel);
-
-        this._currentNavigationMode = null;
+        Navigated += OnNavigated;
+        Navigating += OnNavigating;
     }
 
-    private Image OldImageFromTemplate => (Image)this.Template.FindName("OldImage", this);
-    private Grid RootPanelFromTemplate => (Grid)this.Template.FindName("RootPanel", this);
+    private NavigationMode _navigationMode;
 
-    private NavigationMode? _currentNavigationMode;
+    private void OnNavigating(object sender, NavigatingCancelEventArgs e)
+    {
+        _transitionEffectContentControl.Snapshot();
+        _navigationMode = e.NavigationMode;
+    }
+
+    private void OnNavigated(object sender, NavigationEventArgs e)
+    {
+        if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
+            _transitionEffectContentControl.RunForwardEffect();
+        else if (_navigationMode == NavigationMode.Back)
+            _transitionEffectContentControl.RunBackwardEffect();
+        else if (_navigationMode == NavigationMode.Refresh)
+            _transitionEffectContentControl.RunReloadEffect();
+    }
+
+    private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
 
     static AnimatedFrame()
     {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(AnimatedFrame), new FrameworkPropertyMetadata(typeof(AnimatedFrame)));
+        DefaultStyleKeyProperty.OverrideMetadata(
+            typeof(AnimatedFrame),
+            new FrameworkPropertyMetadata(typeof(AnimatedFrame))
+        );
     }
 }

@@ -1,36 +1,16 @@
 ﻿namespace Sandbox;
-
-using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
-using EnkuToolkit.Wpf.Services;
-using EnkuToolkit.UiIndependent.Services;
-using EnkuToolkit.Wpf.MarkupExtensions;
-using Sandbox.ViewModels;
 
-public partial class App : Application, IServicesOwner
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    public App()
-    {
-        this.Services = ConfigureServices();
-        this.InitializeComponent();
-    }
 
-    public new static App Current => (App)Application.Current;
-
-    public IServiceProvider Services { get; }
-
-    // DIコンテナへの登録用メソッド
-    private static IServiceProvider ConfigureServices()
-    {
-        var services = new ServiceCollection();
-
-        services.AddSingleton<Page1ViewModel>();
-        services.AddSingleton<Page2ViewModel>();
-        services.AddTransient<INavigationService, MainNavigationWindowNavigationService>();
-        services.AddTransient<IMessageBoxService, MessageBoxService>();
-        services.AddTransient<IApplicationPropertyiesService, ApplicationPropertyiesService>();
-
-        return services.BuildServiceProvider();
-    }
 }

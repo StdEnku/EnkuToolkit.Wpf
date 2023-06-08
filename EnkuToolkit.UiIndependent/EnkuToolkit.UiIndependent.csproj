@@ -1,26 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>EnkuToolkit.UiIndependent</Title>
-    <Version>1.0.13</Version>
-    <Authors>StdEnku</Authors>
-    <Company>individual</Company>
-    <Description>Package containing the assembly-independent portions of WPF used in EnkuToolkit.Wpf.</Description>
-    <Copyright>© 2023 StdEnku</Copyright>
-    <PackageProjectUrl>https://github.com/StdEnku/EnkuToolkit</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/StdEnku/EnkuToolkit</RepositoryUrl>
-    <PackageTags>wpf;custom controls;</PackageTags>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <Authors>StdEnku</Authors>
+    <Copyright>© 2023 StdEnku</Copyright>
+    <Description>Package containing the assembly-independent portions of WPF used in EnkuToolkit.Wpf.</Description>
+    <RepositoryUrl>https://github.com/StdEnku/EnkuToolkit.Wpf</RepositoryUrl>
+    <PackageTags>wpf;custom;controls;</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\imgs\icon.png">
+    <Compile Remove="images\**" />
+    <EmbeddedResource Remove="images\**" />
+    <None Remove="images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\images\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

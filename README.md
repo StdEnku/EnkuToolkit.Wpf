@@ -1,76 +1,41 @@
-![logo](./imgs/logo.png)
+![logo](./images/logo.png)
 
-[CHANGELOG.md](./CHANGELOG.md)
+![Bower](https://img.shields.io/bower/l/mi) ![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) ![.Net: 7 (shields.io)](https://img.shields.io/badge/.Net-7-blueviolet)
 
-# インストール
+[Documentation](https://stdenku.github.io/EnkuToolkit.Wpf/articles/intro.html)
 
-本ライブラリはNuget.orgにてパッケージが公開されているので<br />
-VisualStudioのNugetパッケージマネージャー等を使用してインストールしてください。
+[Api reference](https://stdenku.github.io/EnkuToolkit.Wpf/api/index.html)
 
+# Summary
 
+This library is an MIT-licensed OSS library that includes features that <br/>the author felt were missing from the standard WPF functionality.
 
-## 二つのアセンブリの解説
+Specifically, it includes the following features
 
-| ダウンロード数                                                           | アセンブリ                                              | 備考                                                      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf/) | WPFに依存するカスタムコントロールなどが記されたアセンブリ。  |
-| <img src="https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?color=indigo&logo=Nuget&style=plastic" alt="Nuget" style="zoom:200%;" /> | [EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent/) | ViewModel層で呼び出すことを想定したWPFに依存しない部分が記されたアセンブリ。 |
+- Custom controls
+- Unique animation effect mechanism
+- Attached behaviors to extend existing controls
+- Value converters
+- MarkupExtensions
+- ViewServices
 
-本ライブラリは上記二つのアセンブリから構成されており、<br />
-EnkuToolkit.Wpfは内部でEnkuToolkit.UiIndependentに依存しているので、<br />
-ViewとViewModelを一つのプロジェクトで管理する場合は<br />
-EnkuToolkit.Wpfのみをインストールしてください。<br />
-ViewとViewModelが別のプロジェクトの場合はView側のプロジェクトに<br />
-EnkuToolkit.Wpfをインストールして、<br />
-ViewModel側のプロジェクトにEnkuToolkit.UiIndependentをインストールしてください。<br />
+# Explanation of the two assemblies
 
-# 機能一覧
+![Nuget](https://img.shields.io/nuget/dt/EnkuToolkit.Wpf?label=EnkuToolkit.Wpf&logo=Nuget&style=social) : [NuGet Gallery | EnkuToolkit.Wpf](https://www.nuget.org/packages/EnkuToolkit.Wpf)<br/>
+![Nuget](https://img.shields.io/nuget/dt/EnkuToolkit.UiIndependent?label=EnkuToolkit.UiIndependent&logo=Nuget&style=social) : [NuGet Gallery | EnkuToolkit.UiIndependent](https://www.nuget.org/packages/EnkuToolkit.UiIndependent)<br/>
 
-xaml上から本ライブラリのすべてのクラスにアクセスするには下記のxml名前空間からアクセスしてください。
+This library consists of two assemblies:<br/>EnkuToolkit.Wpf, which depends on the WPF assembly, and EnkuToolkit.UiIndependent, <br/>which can be called from ViewModel and does not depend on the WPF assembly.
 
-```xaml
-xmlns:et="https://github.com/StdEnku/EnkuToolkit"
-```
+When installing from Nuget, please note the following
 
-## カスタムコントロール
+If you want to manage View and ViewModel in the same project, <br/>install only EnkuToolkit.Wpf from Nuget because EnkuToolkit.Wpf <br/>depends on EnkuToolkit.UiIndependent.
 
-| コントロール名                                               | 備考                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AnimatedFrame](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/00.AnimatedFrame) | 画面遷移時にアニメーションが可能なFrameクラス                |
-| [AnimatedNavigationWindow](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/01.AnimatedNavigationWindow) | 画面遷移時にアニメーションが可能なNavigationWindowクラス     |
-| [CustomTitlebarWindow](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/02.CustomTitlebarWindow) | タイトルバーをカスタマイズ可能なWindowクラス                 |
-| [CustomTitlebarAnimatedNavigationWindow](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/03.CustomTitlebarAnimatedNavigationWindow) | タイトルバーをカスタマイズ可能なAnimatedNavigationWindowクラス |
-| [TransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/04.TransformContentControl) | 移動、変形、拡大、等の変形操作が簡単に行えるContentControl   |
-| [NormalizedTransformContentControl](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/05.NormalizedTransformContentControl) | 変形用プロパティを0~1までの値で操作可能にしたTransformContentControl |
+If you want to manage View and ViewModel in different projects, <br/>install EnkuToolkit.Wpf in the project for View and EnkuToolkit.UiIndependent <br/>in the project for ViewModel.
 
-## 添付ビヘイビア
+# To call classes in this library from xaml
 
-| ビヘイビア名                                                 | 備考                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [WindowStateSaveBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/06.WindowStateSaveBehavior) | Windowに添付すると終了時に現在の位置、サイズ、WidnowStateプロパティを保存して、次回起動時に以前の状態を復元させるためのビヘイビア |
-| [NavigatedParamSendBehavior](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/11.NavigatedParamSendBehavior) | FrameやNavigationWindowにて画面遷移を行う際に前の画面から渡されたパラメータをViewModelで取得するためのビヘイビア |
-| [ListBoxExpansionsBehavior](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/13.ListBoxExpansionsBehavior) | ListBoxを拡張するためのビヘイビア<br>現在複数選択されているソースをバインディングで取得可能にするための機能のみが実装されています。 |
+To access the classes of this library from xaml, use the following xml namespace.
 
-
-## View Service
-
-| View Service名                                               | 備考                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [MessageBoxService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/07.MessageBoxService) | メッセージボックスの操作をViewModelから行えるようにするためのViewServce |
-| [AbstractNavigationService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/08.AbstractNavigationService) | MainWindow内のFrameなどをViewModelから画面遷移させるためのViewService |
-| [MainNavigationWindowNavigationService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/09.MainNavigationWindowNavigationService) | App.Current.MainWindowがNavigationWindowの場合使用可能なViewModelから画面遷移させるためのViewService |
-| [ApplicationPropertyiesService](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/10.ApplicationPropertyiesService) | ViewModelからApplication.Propertyisプロパティを操作可能にするためのViewService |
-
-## マークアップ拡張
-
-| マークアップ拡張名                                           | 備考                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [ViewModelProviderExtension](https://github.com/StdEnku/EnkuToolkitExamples/tree/main/12.ViewModelProviderExtension) | DIコンテナからViewModelのオブジェクトを生成するためのマークアップ拡張 |
-| [GetApplicationResourceExtension](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/14.GetApplicationResourceExtension) | Application内で定義されたリソースのオブジェクトを取得するためのマークアップ拡張 |
-
-## コンバーター
-
-| コンバーター名                                               | 備考                                 |
-| ------------------------------------------------------------ | ------------------------------------ |
-| [MathConverter](https://github.com/StdEnku/EnkuToolkitExamples.Wpf/tree/main/15.MathConverter) | 四則演算を行えるコンバーター |
-
+> ```xaml
+> xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+> ```
