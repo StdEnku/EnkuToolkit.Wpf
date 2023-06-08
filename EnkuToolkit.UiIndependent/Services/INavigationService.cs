@@ -1,64 +1,86 @@
-﻿namespace EnkuToolkit.UiIndependent.Services;
+﻿/*
+ * MIT License
+ * 
+ * Copyright (c) 2023 StdEnku
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+namespace EnkuToolkit.UiIndependent.Services;
 
 /// <summary>
-/// Application.Current.MainWindowがNavigationWindowの場合使用可能な、
-/// ViewModelから画面遷移を行うためのViewService用インターフェース
+/// Interface for ViewService for screen transition from ViewModel that can be used when Application.Current.MainWindow is NavigationWindow
 /// </summary>
 public interface INavigationService
 {
     /// <summary>
-    /// プロジェクトのルートフォルダをベースURIとして遷移先のURIを指定できる画面遷移用メソッド
+    /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
     /// </summary>
-    /// <param name="uriStr">遷移先ページへの相対URI</param>
-    /// <param name="extraData">遷移先に渡したいデータ</param>
-    /// <returns>画面遷移がキャンセルされたらfalse、キャンセルされなければtrueを返す</returns>
+    /// <param name="uriStr">Relative URI to the destination page</param>
+    /// <param name="extraData">Data to be passed to the destination</param>
+    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
     bool NavigateRootBase(string uriStr, object? extraData = null);
 
     /// <summary>
-    /// 遷移先のURIを指定して画面遷移を行うためのメソッド
+    /// Methods to perform screen transitions by specifying the destination URI
     /// </summary>
-    /// <param name="uri">遷移先ページへURI</param>
-    /// <param name="extraData">遷移先に渡したいデータ</param>
-    /// <returns>画面遷移がキャンセルされたらfalse、キャンセルされなければtrueを返す</returns>
+    /// <param name="uri">URI to the destination page</param>
+    /// <param name="extraData">Data to be passed to the destination</param>
+    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
     bool Navigate(Uri uri, object? extraData = null);
 
     /// <summary>
-    /// 履歴を元に表示されているページを進めるためのメソッド
+    /// Method to advance the displayed page based on history
     /// </summary>
     void GoForward();
 
     /// <summary>
-    /// 履歴を元に表示されているページを戻すためのメソッド
+    /// Method to return the page displayed based on the history
     /// </summary>
     void GoBack();
 
     /// <summary>
-    /// 表示されているページの再読み込みを行うためのメソッド
+    /// Methods for reloading the displayed page
     /// </summary>
     void Refresh();
 
     /// <summary>
-    /// 履歴から前回表示されていたページを削除するためのメソッド
+    /// Method to delete the previously viewed page from the history
     /// </summary>
     void RemoveBackEntry();
 
     /// <summary>
-    /// 画面遷移を中断するためのメソッド
+    /// Methods for interrupting screen transitions
     /// </summary>
     void StopLoading();
 
     /// <summary>
-    /// 履歴から前回表示されていたページの履歴をすべて削除するためのメソッド
+    /// Method to delete all the history of the last viewed page from the history
     /// </summary>
     void RemoveAllBackEntry();
 
     /// <summary>
-    /// 画面遷移対象のFrameやNavigationWindowでGoBackメソッドが実行可能かを表すプロパティ
+    /// Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     /// </summary>
     bool CanGoBack { get; }
 
     /// <summary>
-    /// 画面遷移対象のFrameやNavigationWindowでGoForwardメソッドが実行可能かを表すプロパティ
+    /// Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     /// </summary>
     bool CanGoForward { get; }
 }

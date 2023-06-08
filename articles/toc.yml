@@ -1,0 +1,35 @@
+- name: Introduction
+  href: intro.md
+
+- name: Execute animation effects during screen transitions
+  href: 1.Execute animation effects during screen transitions.md
+
+- name: Customizing the Title Bar
+  href: 2.Customizing the Title Bar.md
+
+- name: Rotateexpandmove operation is simple with bindings
+  href: 3.Rotateexpandmove operation is simple with bindings.md
+
+- name: Execute effects when the display state changes
+  href: 4.Execute effects when the display state changes.md
+
+- name: Save Window position and size to restore previous state at next startup
+  href: 5.Save Window position and size to restore previous state at next startup.md
+
+- name: How to receive parameters on the ViewModel during screen transitions
+  href: 6.How to receive parameters on the ViewModel during screen transitions.md
+
+- name: Using Math Converter
+  href: 7.Using Math Converter.md
+
+- name: Retrieving ViewModel objects from a DI container on xaml
+  href: 8.Retrieving ViewModel objects from a DI container on xaml.md
+
+- name: Perform screen transitions from the ViewModel
+  href: 9.Perform screen transitions from the ViewModel.md
+
+- name: Displaying a Dialog from a ViewModel
+  href: 10.Displaying a Dialog from a ViewModel.md
+
+- name: Binding multiple selected items in the ListBox to ViewModel properties
+  href: 11.Binding multiple selected items in the ListBox to ViewModel properties.md

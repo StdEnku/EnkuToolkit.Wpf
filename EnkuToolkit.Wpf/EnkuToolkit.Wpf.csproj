@@ -4,45 +4,26 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>EnkuToolkit.Wpf</Title>
-    <Authors>StdEnku</Authors>
-    <Description>Library containing various custom controls for WPF.</Description>
-    <Company>individual</Company>
-    <Copyright>© 2023 StdEnku</Copyright>
-    <PackageProjectUrl>https://github.com/StdEnku/EnkuToolkit</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/StdEnku/EnkuToolkit</RepositoryUrl>
-    <PackageTags>wpf;custom controls;</PackageTags>
-    <Version>1.0.13</Version>
-    <RepositoryType></RepositoryType>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <Authors>StdEnku</Authors>
+    <Copyright>© 2023 StdEnku</Copyright>
+    <Description>Library containing various custom controls for WPF.</Description>
+    <RepositoryUrl>https://github.com/StdEnku/EnkuToolkit.Wpf</RepositoryUrl>
+    <PackageTags>wpf;custom;controls;</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\imgs\icon.png">
+    <None Include="..\images\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
