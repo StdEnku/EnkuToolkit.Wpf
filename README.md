@@ -2,6 +2,10 @@
 
 ![Bower](https://img.shields.io/bower/l/mi) ![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) ![.Net: 7 (shields.io)](https://img.shields.io/badge/.Net-7-blueviolet)
 
+[Documentation](https://stdenku.github.io/EnkuToolkit.Wpf/articles/intro.html)
+
+[Api reference](https://stdenku.github.io/EnkuToolkit.Wpf/api/index.html)
+
 # Summary
 
 This library is an MIT-licensed OSS library that includes features that <br/>the author felt were missing from the standard WPF functionality.
