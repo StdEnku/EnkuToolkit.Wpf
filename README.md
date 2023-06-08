@@ -6,6 +6,8 @@
 
 [Api reference](https://stdenku.github.io/EnkuToolkit.Wpf/api/index.html)
 
+[Examples](https://github.com/StdEnku/EnkuToolkit.Wpf/tree/main/Examples)
+
 # Summary
 
 This library is an MIT-licensed OSS library that includes features that <br/>the author felt were missing from the standard WPF functionality.
