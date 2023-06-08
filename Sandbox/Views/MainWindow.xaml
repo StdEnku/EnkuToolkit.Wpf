@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandbox.Views"
         xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+        et:WindowExtensionBehavior.StateSavePath="./save.json"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <et:CustomizableTitlebarWindow.Titlebar>
