@@ -14,6 +14,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "THIRD-PARTY-NOTICES.md",
+      "output": {
+        ".html": {
+          "relative_path": "THIRD-PARTY-NOTICES.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "ManagedReference",
       "source_relative_path": "api/EnkuToolkit.UiIndependent.Navigation.INavigationAware.yml",
       "output": {
