@@ -37,6 +37,14 @@ public interface INavigationService
     bool NavigateRootBase(string uriStr, object? extraData = null);
 
     /// <summary>
+    /// Methods to perform screen transitions to pages specified by type name including namespace
+    /// </summary>
+    /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
+    /// <param name="extraData">Data to be passed to the destination</param>
+    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
+    bool NavigateFullName(string nextPageFullName, object? extraData = null);
+
+    /// <summary>
     /// Methods to perform screen transitions by specifying the destination URI
     /// </summary>
     /// <param name="uri">URI to the destination page</param>
