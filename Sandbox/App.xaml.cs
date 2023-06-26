@@ -1,16 +1,54 @@
 ﻿namespace Sandbox;
+
+using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.Wpf.Services;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using EnkuToolkit.Wpf.MarkupExtensions;
+using System.Linq;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+public partial class App : Application, IServicesOwner
 {
+    public App()
+    {
+        var serviceCollection = new ServiceCollection();
+        RegisterDiRegisterAttachedTypes(ref serviceCollection);
+        RegisterServices(ref serviceCollection);
+        Services = serviceCollection.BuildServiceProvider();
+        InitializeComponent();
+    }
 
+    public IServiceProvider Services { get; }
+
+    private static void RegisterServices(ref ServiceCollection serviceCollection)
+    {
+        serviceCollection.AddSingleton<INavigationService, MainNavigationWindowNavigationService>();
+        serviceCollection.AddSingleton<IMessageBoxService, MessageBoxService>();
+    }
+
+    private static void RegisterDiRegisterAttachedTypes(ref ServiceCollection serviceCollection)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        var viewModelTypeWithIsSingletonFlags
+            = from type in Assembly.GetExecutingAssembly().GetTypes()
+              where type.GetCustomAttributes(typeof(DiRegister)).Count() == 1
+              select new { ViewModelType = type, IsSingleton = ((DiRegister)type.GetCustomAttributes(typeof(DiRegister)).First()).IsSingleton };
+
+        foreach (var viewModelTypeWithIsSingletonFlag in viewModelTypeWithIsSingletonFlags)
+        {
+            if (viewModelTypeWithIsSingletonFlag.IsSingleton)
+                serviceCollection.AddSingleton(viewModelTypeWithIsSingletonFlag.ViewModelType);
+            else
+                serviceCollection.AddTransient(viewModelTypeWithIsSingletonFlag.ViewModelType);
+        }
+    }
+}
+
+public class DiRegister : Attribute
+{
+    public bool IsSingleton { get; }
+
+    public DiRegister(bool isSingleton = false) => IsSingleton = isSingleton;
 }
