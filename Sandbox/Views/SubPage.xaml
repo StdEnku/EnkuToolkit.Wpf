@@ -12,11 +12,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SubPage">
 
-    <DockPanel LastChildFill="True">
-        <Button Command="{Binding ClickedCommand}" Content="Navigate" DockPanel.Dock="Bottom" Margin="10" />
-
-        <Viewbox DockPanel.Dock="Top">
-            <Label Content="SubPage" />
-        </Viewbox>
-    </DockPanel>
+    <Viewbox DockPanel.Dock="Top">
+        <Label Content="SubPage" />
+    </Viewbox>
 </Page>

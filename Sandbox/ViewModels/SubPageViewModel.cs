@@ -13,10 +13,4 @@ public partial class SubPageViewModel : ObservableObject
     {
         _navigationService = navigationService;
     }
-
-    [RelayCommand]
-    public void Clicked()
-    {
-        _navigationService.GoBack();
-    }
 }
