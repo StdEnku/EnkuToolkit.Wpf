@@ -169,6 +169,21 @@ references:
   commentId: Overload:EnkuToolkit.UiIndependent.Services.INavigationService.Navigate
   fullName: EnkuToolkit.UiIndependent.Services.INavigationService.Navigate
   nameWithType: INavigationService.Navigate
+- uid: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName(System.String,System.Object)
+  name: NavigateFullName(string, object?)
+  href: api/EnkuToolkit.UiIndependent.Services.INavigationService.html#EnkuToolkit_UiIndependent_Services_INavigationService_NavigateFullName_System_String_System_Object_
+  commentId: M:EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName(System.String,System.Object)
+  name.vb: NavigateFullName(String, Object)
+  fullName: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName(string, object?)
+  fullName.vb: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName(String, Object)
+  nameWithType: INavigationService.NavigateFullName(string, object?)
+  nameWithType.vb: INavigationService.NavigateFullName(String, Object)
+- uid: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName*
+  name: NavigateFullName
+  href: api/EnkuToolkit.UiIndependent.Services.INavigationService.html#EnkuToolkit_UiIndependent_Services_INavigationService_NavigateFullName_
+  commentId: Overload:EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName
+  fullName: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateFullName
+  nameWithType: INavigationService.NavigateFullName
 - uid: EnkuToolkit.UiIndependent.Services.INavigationService.NavigateRootBase(System.String,System.Object)
   name: NavigateRootBase(string, object?)
   href: api/EnkuToolkit.UiIndependent.Services.INavigationService.html#EnkuToolkit_UiIndependent_Services_INavigationService_NavigateRootBase_System_String_System_Object_
@@ -1561,6 +1576,21 @@ references:
   commentId: Overload:EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.Navigate
   fullName: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.Navigate
   nameWithType: AbstractFrameNavigationService.Navigate
+- uid: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName(System.String,System.Object)
+  name: NavigateFullName(string, object?)
+  href: api/EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.html#EnkuToolkit_Wpf_Services_AbstractFrameNavigationService_NavigateFullName_System_String_System_Object_
+  commentId: M:EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName(System.String,System.Object)
+  name.vb: NavigateFullName(String, Object)
+  fullName: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName(string, object?)
+  fullName.vb: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName(String, Object)
+  nameWithType: AbstractFrameNavigationService.NavigateFullName(string, object?)
+  nameWithType.vb: AbstractFrameNavigationService.NavigateFullName(String, Object)
+- uid: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName*
+  name: NavigateFullName
+  href: api/EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.html#EnkuToolkit_Wpf_Services_AbstractFrameNavigationService_NavigateFullName_
+  commentId: Overload:EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName
+  fullName: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateFullName
+  nameWithType: AbstractFrameNavigationService.NavigateFullName
 - uid: EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.NavigateRootBase(System.String,System.Object)
   name: NavigateRootBase(string, object?)
   href: api/EnkuToolkit.Wpf.Services.AbstractFrameNavigationService.html#EnkuToolkit_Wpf_Services_AbstractFrameNavigationService_NavigateRootBase_System_String_System_Object_
@@ -1723,6 +1753,21 @@ references:
   commentId: Overload:EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Navigate
   fullName: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.Navigate
   nameWithType: MainNavigationWindowNavigationService.Navigate
+- uid: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName(System.String,System.Object)
+  name: NavigateFullName(string, object?)
+  href: api/EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.html#EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_NavigateFullName_System_String_System_Object_
+  commentId: M:EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName(System.String,System.Object)
+  name.vb: NavigateFullName(String, Object)
+  fullName: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName(string, object?)
+  fullName.vb: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName(String, Object)
+  nameWithType: MainNavigationWindowNavigationService.NavigateFullName(string, object?)
+  nameWithType.vb: MainNavigationWindowNavigationService.NavigateFullName(String, Object)
+- uid: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName*
+  name: NavigateFullName
+  href: api/EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.html#EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_NavigateFullName_
+  commentId: Overload:EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName
+  fullName: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateFullName
+  nameWithType: MainNavigationWindowNavigationService.NavigateFullName
 - uid: EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.NavigateRootBase(System.String,System.Object)
   name: NavigateRootBase(string, object?)
   href: api/EnkuToolkit.Wpf.Services.MainNavigationWindowNavigationService.html#EnkuToolkit_Wpf_Services_MainNavigationWindowNavigationService_NavigateRootBase_System_String_System_Object_
