@@ -8,6 +8,7 @@ using System;
 using System.Windows;
 using EnkuToolkit.Wpf.MarkupExtensions;
 using System.Linq;
+using Sandbox.Services;
 
 public partial class App : Application, IServicesOwner
 {
@@ -24,7 +25,7 @@ public partial class App : Application, IServicesOwner
 
     private static void RegisterServices(ref ServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<INavigationService, MainNavigationWindowNavigationService>();
+        serviceCollection.AddSingleton<INavigationService, MainFrameNavigationService>();
         serviceCollection.AddSingleton<IMessageBoxService, MessageBoxService>();
     }
 

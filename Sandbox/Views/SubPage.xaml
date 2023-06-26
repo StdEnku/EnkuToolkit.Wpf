@@ -13,7 +13,7 @@
       Title="SubPage">
 
     <DockPanel LastChildFill="True">
-        <Button Content="Navigate" DockPanel.Dock="Bottom" Margin="10" />
+        <Button Command="{Binding ClickedCommand}" Content="Navigate" DockPanel.Dock="Bottom" Margin="10" />
 
         <Viewbox DockPanel.Dock="Top">
             <Label Content="SubPage" />
