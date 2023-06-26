@@ -27,6 +27,7 @@ using System;
 using System.Windows;
 using System.Windows.Navigation;
 using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.Wpf._internal;
 
 /// <summary>
 /// NavigationService available only when Application.Current.MainWindow is NavigationWindow
@@ -53,15 +54,22 @@ public class MainNavigationWindowNavigationService : INavigationService
     {
         var baseUri = new Uri("pack://application:,,,/");
         var uri = new Uri(baseUri, uriStr);
+        return _targetNavigationWindow.Navigate(uri, extraData);
+    }
 
-        if (extraData is null)
-        {
-            return _targetNavigationWindow.Navigate(uri);
-        }
-        else
-        {
-            return _targetNavigationWindow.Navigate(uri, extraData);
-        }
+    /// <summary>
+    /// Methods to perform screen transitions to pages specified by type name including namespace
+    /// </summary>
+    /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
+    /// <param name="extraData">Data to be passed to the destination</param>
+    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
+    /// <exception cref="ArgumentException">Thrown if the type of the name specified in nextPageFullName does not exist.</exception>
+    public bool NavigateFullName(string nextPageFullName, object? extraData = null)
+    {
+        var nextPageType = AssemblyUtils.SearchAllClientDefinedTypes(nextPageFullName);
+        if (nextPageType is null) throw new ArgumentException("Could not find the type of the full name specified in the MainNavigationWindowNavigationService.NavigateFullName method.", nameof(nextPageFullName));
+        var nextPageInstance = Activator.CreateInstance(nextPageType);
+        return _targetNavigationWindow.Navigate(nextPageInstance, extraData);
     }
 
     /// <summary>
@@ -72,14 +80,7 @@ public class MainNavigationWindowNavigationService : INavigationService
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
     public bool Navigate(Uri uri, object? extraData = null)
     {
-        if (extraData is null)
-        {
-            return _targetNavigationWindow.Navigate(uri);
-        }
-        else
-        {
-            return _targetNavigationWindow.Navigate(uri, extraData);
-        }
+        return _targetNavigationWindow.Navigate(uri, extraData);
     }
 
     /// <summary>

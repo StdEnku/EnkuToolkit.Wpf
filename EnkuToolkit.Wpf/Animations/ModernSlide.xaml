@@ -34,8 +34,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.1" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0.1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0.1" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -49,12 +49,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-0.1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-0.1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="-0.1" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="-0.1" />
         </DoubleAnimationUsingKeyFrames>
 
         <DoubleAnimationUsingKeyFrames 
@@ -64,8 +64,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -79,12 +79,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
@@ -96,8 +96,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-0.1" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="-0.1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="-0.1" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -111,12 +111,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0.1" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0.1" />
         </DoubleAnimationUsingKeyFrames>
 
         <DoubleAnimationUsingKeyFrames 
@@ -126,8 +126,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -141,12 +141,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
@@ -158,8 +158,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.1" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0.1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0.1" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -173,12 +173,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-0.1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-0.1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="-0.1" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="-0.1" />
         </DoubleAnimationUsingKeyFrames>
 
         <DoubleAnimationUsingKeyFrames 
@@ -188,8 +188,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -203,12 +203,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 
@@ -220,8 +220,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-0.1" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="-0.1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="-0.1" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -235,12 +235,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0.1" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0.1" />
         </DoubleAnimationUsingKeyFrames>
 
         <DoubleAnimationUsingKeyFrames 
@@ -250,8 +250,8 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -265,12 +265,12 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <QuadraticEase EasingMode="EaseIn" />
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
-            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="0" />
+            <DiscreteDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
 </ResourceDictionary>

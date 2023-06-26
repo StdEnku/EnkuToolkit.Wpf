@@ -24,6 +24,7 @@
 namespace EnkuToolkit.Wpf.Services;
 
 using EnkuToolkit.UiIndependent.Services;
+using EnkuToolkit.Wpf._internal;
 using System;
 using System.Windows.Controls;
 
@@ -47,15 +48,22 @@ public abstract class AbstractFrameNavigationService : INavigationService
     {
         var baseUri = new Uri("pack://application:,,,/");
         var uri = new Uri(baseUri, uriStr);
+        return TargetFrame.Navigate(uri, extraData);
+    }
 
-        if (extraData is null)
-        {
-            return TargetFrame.Navigate(uri);
-        }
-        else
-        {
-            return TargetFrame.Navigate(uri, extraData);
-        }
+    /// <summary>
+    /// Methods to perform screen transitions to pages specified by type name including namespace
+    /// </summary>
+    /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
+    /// <param name="extraData">Data to be passed to the destination</param>
+    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
+    /// <exception cref="ArgumentException">Thrown if the type of the name specified in nextPageFullName does not exist.</exception>
+    public bool NavigateFullName(string nextPageFullName, object? extraData = null)
+    {
+        var nextPageType = AssemblyUtils.SearchAllClientDefinedTypes(nextPageFullName);
+        if (nextPageType is null) throw new ArgumentException("Could not find the type of the full name specified in the AbstractFrameNavigationService.NavigateFullName method.", nameof(nextPageFullName));
+        var nextPageInstance = Activator.CreateInstance(nextPageType);
+        return TargetFrame.Navigate(nextPageInstance, extraData);
     }
 
     /// <summary>
@@ -66,14 +74,7 @@ public abstract class AbstractFrameNavigationService : INavigationService
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
     public bool Navigate(Uri uri, object? extraData = null)
     {
-        if (extraData is null)
-        {
-            return TargetFrame.Navigate(uri);
-        }
-        else
-        {
-            return TargetFrame.Navigate(uri, extraData);
-        }
+        return TargetFrame.Navigate(uri, extraData);
     }
 
     /// <summary>
