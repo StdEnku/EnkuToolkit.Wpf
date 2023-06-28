@@ -1423,6 +1423,150 @@ references:
   commentId: F:EnkuToolkit.Wpf.Converters.MathOperations.Sub
   fullName: EnkuToolkit.Wpf.Converters.MathOperations.Sub
   nameWithType: MathOperations.Sub
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter
+  name: NullCoalescingOperatorConverter
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html
+  commentId: T:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter
+  nameWithType: NullCoalescingOperatorConverter
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.#ctor
+  name: NullCoalescingOperatorConverter()
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter__ctor
+  commentId: M:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.#ctor
+  name.vb: New()
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.NullCoalescingOperatorConverter()
+  fullName.vb: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.New()
+  nameWithType: NullCoalescingOperatorConverter.NullCoalescingOperatorConverter()
+  nameWithType.vb: NullCoalescingOperatorConverter.New()
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.#ctor*
+  name: NullCoalescingOperatorConverter
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter__ctor_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.#ctor
+  name.vb: New
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.NullCoalescingOperatorConverter
+  fullName.vb: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.New
+  nameWithType: NullCoalescingOperatorConverter.NullCoalescingOperatorConverter
+  nameWithType.vb: NullCoalescingOperatorConverter.New
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name: Convert(object, Type, object, CultureInfo)
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_Convert_System_Object_System_Type_System_Object_System_Globalization_CultureInfo_
+  commentId: M:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name.vb: Convert(Object, Type, Object, CultureInfo)
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert(object, System.Type, object, System.Globalization.CultureInfo)
+  fullName.vb: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert(Object, System.Type, Object, System.Globalization.CultureInfo)
+  nameWithType: NullCoalescingOperatorConverter.Convert(object, Type, object, CultureInfo)
+  nameWithType.vb: NullCoalescingOperatorConverter.Convert(Object, Type, Object, CultureInfo)
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert*
+  name: Convert
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_Convert_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.Convert
+  nameWithType: NullCoalescingOperatorConverter.Convert
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name: ConvertBack(object, Type, object, CultureInfo)
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_ConvertBack_System_Object_System_Type_System_Object_System_Globalization_CultureInfo_
+  commentId: M:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name.vb: ConvertBack(Object, Type, Object, CultureInfo)
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack(object, System.Type, object, System.Globalization.CultureInfo)
+  fullName.vb: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack(Object, System.Type, Object, System.Globalization.CultureInfo)
+  nameWithType: NullCoalescingOperatorConverter.ConvertBack(object, Type, object, CultureInfo)
+  nameWithType.vb: NullCoalescingOperatorConverter.ConvertBack(Object, Type, Object, CultureInfo)
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack*
+  name: ConvertBack
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_ConvertBack_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ConvertBack
+  nameWithType: NullCoalescingOperatorConverter.ConvertBack
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull
+  name: ResultValueIfNull
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_ResultValueIfNull
+  commentId: P:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull
+  nameWithType: NullCoalescingOperatorConverter.ResultValueIfNull
+- uid: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull*
+  name: ResultValueIfNull
+  href: api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html#EnkuToolkit_Wpf_Converters_NullCoalescingOperatorConverter_ResultValueIfNull_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull
+  fullName: EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.ResultValueIfNull
+  nameWithType: NullCoalescingOperatorConverter.ResultValueIfNull
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter
+  name: TernaryOperatorConverter
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html
+  commentId: T:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter
+  nameWithType: TernaryOperatorConverter
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.#ctor
+  name: TernaryOperatorConverter()
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter__ctor
+  commentId: M:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.#ctor
+  name.vb: New()
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.TernaryOperatorConverter()
+  fullName.vb: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.New()
+  nameWithType: TernaryOperatorConverter.TernaryOperatorConverter()
+  nameWithType.vb: TernaryOperatorConverter.New()
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.#ctor*
+  name: TernaryOperatorConverter
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter__ctor_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.#ctor
+  name.vb: New
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.TernaryOperatorConverter
+  fullName.vb: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.New
+  nameWithType: TernaryOperatorConverter.TernaryOperatorConverter
+  nameWithType.vb: TernaryOperatorConverter.New
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name: Convert(object, Type, object, CultureInfo)
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_Convert_System_Object_System_Type_System_Object_System_Globalization_CultureInfo_
+  commentId: M:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name.vb: Convert(Object, Type, Object, CultureInfo)
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert(object, System.Type, object, System.Globalization.CultureInfo)
+  fullName.vb: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert(Object, System.Type, Object, System.Globalization.CultureInfo)
+  nameWithType: TernaryOperatorConverter.Convert(object, Type, object, CultureInfo)
+  nameWithType.vb: TernaryOperatorConverter.Convert(Object, Type, Object, CultureInfo)
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert*
+  name: Convert
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_Convert_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.Convert
+  nameWithType: TernaryOperatorConverter.Convert
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name: ConvertBack(object, Type, object, CultureInfo)
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ConvertBack_System_Object_System_Type_System_Object_System_Globalization_CultureInfo_
+  commentId: M:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)
+  name.vb: ConvertBack(Object, Type, Object, CultureInfo)
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack(object, System.Type, object, System.Globalization.CultureInfo)
+  fullName.vb: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack(Object, System.Type, Object, System.Globalization.CultureInfo)
+  nameWithType: TernaryOperatorConverter.ConvertBack(object, Type, object, CultureInfo)
+  nameWithType.vb: TernaryOperatorConverter.ConvertBack(Object, Type, Object, CultureInfo)
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack*
+  name: ConvertBack
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ConvertBack_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ConvertBack
+  nameWithType: TernaryOperatorConverter.ConvertBack
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse
+  name: ResultValueIfFalse
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ResultValueIfFalse
+  commentId: P:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse
+  nameWithType: TernaryOperatorConverter.ResultValueIfFalse
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse*
+  name: ResultValueIfFalse
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ResultValueIfFalse_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfFalse
+  nameWithType: TernaryOperatorConverter.ResultValueIfFalse
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue
+  name: ResultValueIfTrue
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ResultValueIfTrue
+  commentId: P:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue
+  nameWithType: TernaryOperatorConverter.ResultValueIfTrue
+- uid: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue*
+  name: ResultValueIfTrue
+  href: api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html#EnkuToolkit_Wpf_Converters_TernaryOperatorConverter_ResultValueIfTrue_
+  commentId: Overload:EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue
+  fullName: EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.ResultValueIfTrue
+  nameWithType: TernaryOperatorConverter.ResultValueIfTrue
 - uid: EnkuToolkit.Wpf.MarkupExtensions
   name: EnkuToolkit.Wpf.MarkupExtensions
   href: api/EnkuToolkit.Wpf.MarkupExtensions.html

@@ -235,6 +235,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.NullCoalescingOperatorConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/EnkuToolkit.Wpf.Converters.TernaryOperatorConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/EnkuToolkit.Wpf.Converters.yml",
       "output": {
         ".html": {
