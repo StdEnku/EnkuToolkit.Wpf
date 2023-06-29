@@ -35,12 +35,12 @@ public class TernaryOperatorConverter : IValueConverter
     /// <summary>
     /// Value returned if binding source is true
     /// </summary>
-    public object? ResultValueIfTrue { get; set; }
+    public object? ResultValueIfTrue { get; init; }
 
     /// <summary>
     /// Value returned if binding source is false
     /// </summary>
-    public object? ResultValueIfFalse { get; set; }
+    public object? ResultValueIfFalse { get; init; }
 
     /// <summary>
     /// Methods for forward conversion processing
