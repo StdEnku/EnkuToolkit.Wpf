@@ -229,20 +229,12 @@ public class AnimatedNavigationWindow : NavigationWindow
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
-        var page = (Page)e.Content;
-
-        RoutedEventHandler? loaded = null;
-        loaded = (d, e) =>
-        {
-            if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
-                _transitionEffectContentControl.RunForwardEffect();
-            else if (_navigationMode == NavigationMode.Back)
-                _transitionEffectContentControl.RunBackwardEffect();
-            else if (_navigationMode == NavigationMode.Refresh)
-                _transitionEffectContentControl.RunReloadEffect();
-            page.Loaded -= loaded;
-        };
-        page.Loaded += loaded;
+        if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
+            _transitionEffectContentControl.RunForwardEffect();
+        else if (_navigationMode == NavigationMode.Back)
+            _transitionEffectContentControl.RunBackwardEffect();
+        else if (_navigationMode == NavigationMode.Refresh)
+            _transitionEffectContentControl.RunReloadEffect();
     }
 
     private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");

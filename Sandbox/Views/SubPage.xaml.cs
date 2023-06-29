@@ -8,4 +8,10 @@ public partial class SubPage : Page
     {
         InitializeComponent();
     }
+
+    public override void OnApplyTemplate()
+    {
+        System.Threading.Tasks.Task.Delay(200).Wait();
+        base.OnApplyTemplate();
+    }
 }
