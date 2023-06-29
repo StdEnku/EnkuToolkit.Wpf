@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/main/articles/9.Perform screen transitions from the ViewModel.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/72/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1">
   </head>
 
   <script type="module">
@@ -126,97 +126,46 @@ As shown below, INavigationService and MainNavigationWindowNavigationService onl
 </code></pre>
 <p>The INavigationService object injected with the constructor above has the following methods.
 By using them, screen transitions can be performed from the ViewModel.</p>
-<pre><code class="lang-c#">/*
- * MIT License
- * 
- * Copyright (c) 2023 StdEnku
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the &quot;Software&quot;), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-namespace EnkuToolkit.UiIndependent.Services;
-
-/// &lt;summary&gt;
-/// Interface for ViewService for screen transition from ViewModel that can be used when Application.Current.MainWindow is NavigationWindow
-/// &lt;/summary&gt;
-public interface INavigationService
+<pre><code class="lang-c#">public interface INavigationService
 {
-    /// &lt;summary&gt;
-    /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;uriStr&quot;&gt;Relative URI to the destination page&lt;/param&gt;
-    /// &lt;param name=&quot;extraData&quot;&gt;Data to be passed to the destination&lt;/param&gt;
-    /// &lt;returns&gt;Returns false if the screen transition is canceled, true if not canceled&lt;/returns&gt;
+    // A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
     bool NavigateRootBase(string uriStr, object? extraData = null);
+    
+    // Methods to perform screen transitions to pages specified by type name including namespace
+    bool NavigateFullName(string nextPageFullName, object? extraData = null);
 
-    /// &lt;summary&gt;
-    /// Methods to perform screen transitions by specifying the destination URI
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;uri&quot;&gt;URI to the destination page&lt;/param&gt;
-    /// &lt;param name=&quot;extraData&quot;&gt;Data to be passed to the destination&lt;/param&gt;
-    /// &lt;returns&gt;Returns false if the screen transition is canceled, true if not canceled&lt;/returns&gt;
+    // Methods to perform screen transitions by specifying the destination URI
     bool Navigate(Uri uri, object? extraData = null);
 
-    /// &lt;summary&gt;
-    /// Method to advance the displayed page based on history
-    /// &lt;/summary&gt;
+    // Method to advance the displayed page based on history
     void GoForward();
 
-    /// &lt;summary&gt;
-    /// Method to return the page displayed based on the history
-    /// &lt;/summary&gt;
+    // Method to return the page displayed based on the history
     void GoBack();
 
-    /// &lt;summary&gt;
-    /// Methods for reloading the displayed page
-    /// &lt;/summary&gt;
+    // Methods for reloading the displayed page
     void Refresh();
 
-    /// &lt;summary&gt;
-    /// Method to delete the previously viewed page from the history
-    /// &lt;/summary&gt;
+    // Method to delete the previously viewed page from the history
     void RemoveBackEntry();
 
-    /// &lt;summary&gt;
-    /// Methods for interrupting screen transitions
-    /// &lt;/summary&gt;
+    // Methods for interrupting screen transitions
     void StopLoading();
 
-    /// &lt;summary&gt;
-    /// Method to delete all the history of the last viewed page from the history
-    /// &lt;/summary&gt;
+    // Method to delete all the history of the last viewed page from the history
     void RemoveAllBackEntry();
 
-    /// &lt;summary&gt;
-    /// Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
-    /// &lt;/summary&gt;
+    // Property indicating whether the GoBack method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     bool CanGoBack { get; }
 
-    /// &lt;summary&gt;
-    /// Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
-    /// &lt;/summary&gt;
+    // Property indicating whether the GoForward method can be executed in the Frame or NavigationWindow to which the screen transition is targeted.
     bool CanGoForward { get; }
 }
 </code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/main/articles/9.Perform screen transitions from the ViewModel.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/72/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
