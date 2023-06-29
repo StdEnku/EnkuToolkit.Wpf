@@ -13,10 +13,14 @@
       Title="MainPage">
 
     <DockPanel LastChildFill="True">
+        <DockPanel.Resources>
+            <et:TernaryOperatorConverter x:Key="labelBackGroundConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Transparent" />
+        </DockPanel.Resources>
+        
         <Button Command="{Binding ClickedCommand}" Content="Navigate" DockPanel.Dock="Bottom" Margin="10" />
 
         <Viewbox DockPanel.Dock="Top">
-            <Label Content="MainPage" />
+            <Label Content="MainPage" Background="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsMouseOver, Converter={StaticResource labelBackGroundConverter}}" />
         </Viewbox>
     </DockPanel>
 </Page>

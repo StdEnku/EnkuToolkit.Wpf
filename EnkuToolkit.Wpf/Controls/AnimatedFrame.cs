@@ -229,12 +229,20 @@ public class AnimatedFrame : Frame
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
-        if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
-            _transitionEffectContentControl.RunForwardEffect();
-        else if (_navigationMode == NavigationMode.Back)
-            _transitionEffectContentControl.RunBackwardEffect();
-        else if (_navigationMode == NavigationMode.Refresh)
-            _transitionEffectContentControl.RunReloadEffect();
+        var page = (Page)e.Content;
+
+        RoutedEventHandler? loaded = null;
+        loaded = (d, e) =>
+        {
+            if (_navigationMode == NavigationMode.New || _navigationMode == NavigationMode.Forward)
+                _transitionEffectContentControl.RunForwardEffect();
+            else if (_navigationMode == NavigationMode.Back)
+                _transitionEffectContentControl.RunBackwardEffect();
+            else if (_navigationMode == NavigationMode.Refresh)
+                _transitionEffectContentControl.RunReloadEffect();
+            page.Loaded -= loaded;
+        };
+        page.Loaded += loaded;
     }
 
     private TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
