@@ -34,7 +34,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -48,7 +48,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -64,7 +64,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -78,7 +78,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -94,7 +94,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -108,7 +108,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -124,7 +124,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-1" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
@@ -138,7 +138,7 @@
             FillBehavior="Stop">
 
             <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
                 <EasingDoubleKeyFrame.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </EasingDoubleKeyFrame.EasingFunction>
