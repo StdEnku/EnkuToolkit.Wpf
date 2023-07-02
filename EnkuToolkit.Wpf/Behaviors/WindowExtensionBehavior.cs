@@ -134,23 +134,21 @@ public class WindowExtensionBehavior
 
         var path = GetStateSavePath(window);
         WindowSaveData? windowSaveData = null;
-        if (File.Exists(path))
+
+        try
         {
-            try
-            {
-                var jsonString = File.ReadAllText(path);
-                windowSaveData = JsonSerializer.Deserialize<WindowSaveData>(jsonString);
-            }
-            catch (Exception) { }
-        
-            if (windowSaveData is not null)
-            {
-                window.Height = windowSaveData.Height;
-                window.Width = windowSaveData.Width;
-                window.Top = windowSaveData.Top;
-                window.Left = windowSaveData.Left;
-                window.WindowState = windowSaveData.IsMaximized ? WindowState.Maximized : WindowState.Normal;
-            }
+            var jsonString = File.ReadAllText(path);
+            windowSaveData = JsonSerializer.Deserialize<WindowSaveData>(jsonString);
+        }
+        catch (Exception) { }
+
+        if (windowSaveData is not null)
+        {
+            window.Height = windowSaveData.Height;
+            window.Width = windowSaveData.Width;
+            window.Top = windowSaveData.Top;
+            window.Left = windowSaveData.Left;
+            window.WindowState = windowSaveData.IsMaximized ? WindowState.Maximized : WindowState.Normal;
         }
 
         if (windowSaveData is not null)
