@@ -61,11 +61,51 @@ public class WindowExtensionBehavior
     public static void SetStateSavePath(Window target, string value)
         => target.SetValue(StateSavePathProperty, value);
 
+    private static DependencyProperty WindowSaveDataProperty
+        = DependencyProperty.RegisterAttached(
+            "WindowSaveData",
+            typeof(WindowSaveData),
+            typeof(WindowExtensionBehavior)
+        );
+
+    private static WindowSaveData? GetWindowSaveData(Window target)
+        => target.GetValue(WindowSaveDataProperty) as WindowSaveData;
+
+    private static void SetWindowSaveData(Window target, WindowSaveData value)
+        => target.SetValue(WindowSaveDataProperty, value);
+
     private static void OnStateSavePathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var window = (Window)d;
         window.Initialized += OnWindowInitialized;
         window.Closing += OnWindowClosing;
+        window.LocationChanged += OnWindowLocationChanged;
+        window.SizeChanged += OnWindowSizeChanged;
+    }
+
+    private static void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        var window = (Window)sender;
+
+        if (window.WindowState == WindowState.Maximized) return;
+
+        var windowSaveData = GetWindowSaveData(window);
+        Debug.Assert(windowSaveData is not null);
+        windowSaveData.Height = window.Height;
+        windowSaveData.Width = window.Width;
+    }
+
+    private static void OnWindowLocationChanged(object? sender, EventArgs e)
+    {
+        var window = sender as Window;
+        Debug.Assert(window is not null);
+
+        if (window.WindowState == WindowState.Maximized) return;
+
+        var windowSaveData = GetWindowSaveData(window);
+        Debug.Assert(windowSaveData is not null);
+        windowSaveData.Top = window.Top;
+        windowSaveData.Left = window.Left;
     }
 
     private static void OnWindowClosing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -74,20 +114,17 @@ public class WindowExtensionBehavior
         Debug.Assert(window is not null);
         var path = GetStateSavePath(window);
 
-        var saveData = new WindowSaveData()
-        {
-            Height = window.Height,
-            Width = window.Width,
-            Top = window.Top,
-            Left = window.Left,
-            IsMaximized = window.WindowState == WindowState.Maximized,
-        };
+        var saveData = GetWindowSaveData(window);
+        Debug.Assert(saveData is not null);
+        saveData.IsMaximized = window.WindowState == WindowState.Maximized;
 
         var jsonString = JsonSerializer.Serialize(saveData);
         File.WriteAllText(path, jsonString);
 
         window.Initialized -= OnWindowInitialized;
         window.Closing -= OnWindowClosing;
+        window.LocationChanged -= OnWindowLocationChanged;
+        window.SizeChanged -= OnWindowSizeChanged;
     }
 
     private static void OnWindowInitialized(object? sender, EventArgs e)
@@ -96,31 +133,37 @@ public class WindowExtensionBehavior
         Debug.Assert(window is not null);
 
         var path = GetStateSavePath(window);
-        if (File.Exists(path))
-        {
-            WindowSaveData? windowSaveData;
-            try
-            {
-                var jsonString = File.ReadAllText(path);
-                windowSaveData = JsonSerializer.Deserialize<WindowSaveData>(jsonString);
-            }
-            catch (Exception)
-            {
-                File.Delete(path);
-                return;
-            }
-        
-            if (windowSaveData is null)
-            {
-                File.Delete(path);
-                return;
-            }
+        WindowSaveData? windowSaveData = null;
 
+        try
+        {
+            var jsonString = File.ReadAllText(path);
+            windowSaveData = JsonSerializer.Deserialize<WindowSaveData>(jsonString);
+        }
+        catch (Exception) { }
+
+        if (windowSaveData is not null)
+        {
             window.Height = windowSaveData.Height;
             window.Width = windowSaveData.Width;
             window.Top = windowSaveData.Top;
             window.Left = windowSaveData.Left;
             window.WindowState = windowSaveData.IsMaximized ? WindowState.Maximized : WindowState.Normal;
+        }
+
+        if (windowSaveData is not null)
+        {
+            SetWindowSaveData(window, windowSaveData);
+        }
+        else
+        {
+            windowSaveData = new WindowSaveData();
+            windowSaveData.Height = window.Height;
+            windowSaveData.Width = window.Width;
+            windowSaveData.Top = window.Top;
+            windowSaveData.Left = window.Left;
+            windowSaveData.IsMaximized = window.WindowState == WindowState.Maximized;
+            SetWindowSaveData(window, windowSaveData);
         }
     }
 
