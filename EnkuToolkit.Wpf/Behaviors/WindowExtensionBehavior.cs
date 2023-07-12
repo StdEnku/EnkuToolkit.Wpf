@@ -157,6 +157,11 @@ public class WindowExtensionBehavior
         }
         else
         {
+            if (double.IsNaN(window.Height)) window.Height = 300;
+            if (double.IsNaN(window.Width)) window.Width = 400;
+            if (double.IsNaN(window.Left)) window.Left = 100;
+            if (double.IsNaN(window.Top)) window.Top = 100;
+
             windowSaveData = new WindowSaveData();
             windowSaveData.Height = window.Height;
             windowSaveData.Width = window.Width;
