@@ -1,6 +1,6 @@
 ![logo](./images/logo.png)
 
-![Bower](https://img.shields.io/bower/l/mi) ![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) ![.Net: 7 (shields.io)](https://img.shields.io/badge/.Net-7-blueviolet)
+![Bower](https://img.shields.io/bower/l/mi) ![Nuget](https://img.shields.io/nuget/v/EnkuToolkit.Wpf) 
 
 [Documentation](https://stdenku.github.io/EnkuToolkit.Wpf/articles/intro.html)
 
