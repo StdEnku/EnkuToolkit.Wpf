@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.1.7</Version>
+    <Version>1.1.8</Version>
     <Authors>StdEnku</Authors>
     <Copyright>© 2023 StdEnku</Copyright>
     <Description>Package containing the assembly-independent portions of WPF used in EnkuToolkit.Wpf.</Description>
