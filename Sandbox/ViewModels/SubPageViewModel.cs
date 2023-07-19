@@ -1,6 +1,7 @@
 ﻿namespace Sandbox.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnkuToolkit.UiIndependent.Attributes;
 using EnkuToolkit.UiIndependent.Services;
 
 [DiRegister]

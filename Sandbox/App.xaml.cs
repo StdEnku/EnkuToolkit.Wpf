@@ -3,12 +3,12 @@
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.Wpf.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using System;
 using System.Windows;
 using EnkuToolkit.Wpf.MarkupExtensions;
-using System.Linq;
+using EnkuToolkit.UiIndependent.Attributes;
 using Sandbox.Services;
+using EnkuToolkit.Wpf.Utils;
 
 public partial class App : Application, IServicesOwner
 {
@@ -31,25 +31,15 @@ public partial class App : Application, IServicesOwner
 
     private static void RegisterDiRegisterAttachedTypes(ref ServiceCollection serviceCollection)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        var viewModelTypeWithIsSingletonFlags
-            = from type in Assembly.GetExecutingAssembly().GetTypes()
-              where type.GetCustomAttributes(typeof(DiRegister)).Count() == 1
-              select new { ViewModelType = type, IsSingleton = ((DiRegister)type.GetCustomAttributes(typeof(DiRegister)).First()).IsSingleton };
+        var diRegisterAttribAttachedTypes = DiRegisterUtil.AllDiRegisterAttributeAttachedTypes();
 
-        foreach (var viewModelTypeWithIsSingletonFlag in viewModelTypeWithIsSingletonFlags)
+        foreach (var AttachedTypeInfo in diRegisterAttribAttachedTypes)
         {
-            if (viewModelTypeWithIsSingletonFlag.IsSingleton)
-                serviceCollection.AddSingleton(viewModelTypeWithIsSingletonFlag.ViewModelType);
-            else
-                serviceCollection.AddTransient(viewModelTypeWithIsSingletonFlag.ViewModelType);
+            var mode = AttachedTypeInfo.Mode;
+            var type = AttachedTypeInfo.Type;
+            if (mode == DiRegisterMode.Transient) serviceCollection.AddTransient(type);
+            else if (mode == DiRegisterMode.Scoped) serviceCollection.AddTransient(type);
+            else if (mode == DiRegisterMode.Singleton) serviceCollection.AddSingleton(type);
         }
     }
-}
-
-public class DiRegister : Attribute
-{
-    public bool IsSingleton { get; }
-
-    public DiRegister(bool isSingleton = false) => IsSingleton = isSingleton;
 }

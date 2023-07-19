@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnkuToolkit.UiIndependent.Attributes;
 using EnkuToolkit.UiIndependent.Services;
 
 [DiRegister]
@@ -17,6 +18,6 @@ public partial class MainPageViewModel : ObservableObject
     [RelayCommand]
     public void Clicked()
     {
-        _navigationService.Navigate("Sandbox.Views.SubPage");
+        _navigationService.NavigateDi("Sandbox.Views.SubPage");
     }
 }
