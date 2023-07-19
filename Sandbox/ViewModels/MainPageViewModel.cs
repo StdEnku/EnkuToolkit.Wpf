@@ -17,6 +17,6 @@ public partial class MainPageViewModel : ObservableObject
     [RelayCommand]
     public void Clicked()
     {
-        _navigationService.NavigateFullName("Sandbox.Views.SubPage");
+        _navigationService.Navigate("Sandbox.Views.SubPage");
     }
 }
