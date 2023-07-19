@@ -43,7 +43,7 @@ public interface IServicesOwner
 /// Markup extension to retrieve ViewModel from DI container, available only when the App class generated when creating a WPF project implements IServicesOwner
 /// </summary>
 [MarkupExtensionReturnType(typeof(object))]
-public class ViewModelProviderExtension : MarkupExtension
+public class DiProviderExtension : MarkupExtension
 {
     private Type _type;
 
@@ -51,7 +51,7 @@ public class ViewModelProviderExtension : MarkupExtension
     /// Constructor
     /// </summary>
     /// <param name="type">Type object indicating the ViewModel type</param>
-    public ViewModelProviderExtension(Type type)
+    public DiProviderExtension(Type type)
     {
         _type = type;
     }

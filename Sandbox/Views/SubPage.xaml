@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Sandbox.Views"
       xmlns:et="https://github.com/StdEnku/EnkuToolkit"
       xmlns:vm="clr-namespace:Sandbox.ViewModels"
-      DataContext="{et:ViewModelProvider vm:SubPageViewModel}"
+      DataContext="{et:DiProvider vm:SubPageViewModel}"
       d:DataContext="{d:DesignInstance vm:SubPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
