@@ -74,8 +74,7 @@ public interface INavigationAware
     /// <param name="param">Parameters passed from previous screens</param>
     /// <param name="navigationMode">Mode of Navigation</param>
     /// <returns>
-    /// trueを返した場合画面遷移は中止されます。
-    /// falseを返した場合は画面遷移は続行されます。
+    /// If true, the screen transition is aborted; if false, the screen transition continues.
     /// </returns>
     bool OnNavigatingFrom(object? param, NavigationMode navigationMode);
 }
