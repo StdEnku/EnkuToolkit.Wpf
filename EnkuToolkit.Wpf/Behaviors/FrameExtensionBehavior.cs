@@ -29,6 +29,7 @@ using System.Windows.Navigation;
 using SystemNavigationMode = System.Windows.Navigation.NavigationMode;
 using EnkuNavigationMode = UiIndependent.Navigation.NavigationMode;
 using EnkuToolkit.UiIndependent.Navigation;
+using EnkuToolkit.Wpf._internal;
 
 /// <summary>
 /// Attached behaviors to extend Frame
@@ -88,28 +89,27 @@ public class FrameExtensionBehavior
     {
         var frame = (Frame)sender;
         var isSendNavigationParam = GetIsSendNavigationParam(frame);
-        var navigationMode = e.NavigationMode;
-
         if (!isSendNavigationParam) return;
 
-        NavigatedEventHandler? handler = null;
-        handler = (sender, e) => 
-        {
-            var frame = (Frame)sender;
-            var extraData = e.ExtraData;
-            var nextPage = (Page)e.Content;
+        var navigationMode = NavigationModeUtils.EnkuNaviMode2WpfNaviMode(e.NavigationMode);
+        var extraData = e.ExtraData;
+        var oldPage = frame.Content as FrameworkElement;
+        var oldNavigationAware = oldPage?.DataContext as INavigationAware;
 
-            if (nextPage.DataContext is INavigationAware navigationAware)
-            {
-                var nm = navigationMode == SystemNavigationMode.New ? EnkuNavigationMode.New :
-                         navigationMode == SystemNavigationMode.Forward ? EnkuNavigationMode.Forward :
-                         navigationMode == SystemNavigationMode.Back ? EnkuNavigationMode.Back :
-                         EnkuNavigationMode.Refresh;
-                navigationAware.OnNavigated(extraData, nm);
-            }
+        if (oldNavigationAware is not null)
+            e.Cancel = oldNavigationAware.OnNavigatingFrom(extraData, navigationMode);
+
+        if (e.Cancel) return;
+        NavigatedEventHandler? handler = null;
+        handler = (sender, e) =>
+        {
+            var nextPage = e.Content as FrameworkElement;
+            var nextNavigationAware = nextPage?.DataContext as INavigationAware;
+
+            oldNavigationAware?.OnNavigatedFrom(extraData, navigationMode);
+            nextNavigationAware?.OnNavigatedTo(extraData, navigationMode);
             frame.Navigated -= handler;
         };
-
         frame.Navigated += handler;
     }
 }

@@ -55,9 +55,27 @@ public enum NavigationMode
 public interface INavigationAware
 {
     /// <summary>
-    /// Methods executed after screen transitions
+    /// Method executed immediately after a screen transition from another page to the target page
     /// </summary>
     /// <param name="param">Parameters passed from previous screens</param>
     /// <param name="navigationMode">Mode of Navigation</param>
-    void OnNavigated(object? param, NavigationMode navigationMode);
+    void OnNavigatedTo(object? param, NavigationMode navigationMode);
+
+    /// <summary>
+    /// Method executed immediately after a screen transition from the target page to another page
+    /// </summary>
+    /// <param name="param">Parameters passed from previous screens</param>
+    /// <param name="navigationMode">Mode of Navigation</param>
+    void OnNavigatedFrom(object? param, NavigationMode navigationMode);
+
+    /// <summary>
+    /// Method executed just before a screen transition from the target page to another page
+    /// </summary>
+    /// <param name="param">Parameters passed from previous screens</param>
+    /// <param name="navigationMode">Mode of Navigation</param>
+    /// <returns>
+    /// trueを返した場合画面遷移は中止されます。
+    /// falseを返した場合は画面遷移は続行されます。
+    /// </returns>
+    bool OnNavigatingFrom(object? param, NavigationMode navigationMode);
 }
