@@ -57,6 +57,8 @@ public class CustomizableTitlebarAnimatedNavigationWindow : AnimatedNavigationWi
                          new Thickness(0);
 
         _titlebar.Margin = nextMargin;
+        if (Content is FrameworkElement content)
+            content.Margin = nextMargin;
     }
 
     /// <summary>
