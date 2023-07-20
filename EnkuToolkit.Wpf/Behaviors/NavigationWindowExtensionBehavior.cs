@@ -29,6 +29,7 @@ using System.Windows.Navigation;
 using SystemNavigationMode = System.Windows.Navigation.NavigationMode;
 using EnkuNavigationMode = UiIndependent.Navigation.NavigationMode;
 using EnkuToolkit.UiIndependent.Navigation;
+using EnkuToolkit.Wpf._internal;
 
 /// <summary>
 /// Attached behaviors to extend NavigationWindow
@@ -49,7 +50,7 @@ public class NavigationWindowExtensionBehavior
     /// <summary>
     /// Setter for IsSendNavigationParamProperty, an attached property to specify whether or not to pass parameters for screen transition by executing its OnNavigated method when the destination ViewModel is castable to INavigationAware after screen transition.
     /// </summary>
-    /// <param name="target">Target Frame</param>
+    /// <param name="target">Target NavigationWindow</param>
     /// <param name="value">
     /// If true, the OnNavigated method is executed.
     /// If false, the OnNavigated method is not executed.
@@ -60,7 +61,7 @@ public class NavigationWindowExtensionBehavior
     /// <summary>
     /// Getter for IsSendNavigationParamProperty, an attached property to specify whether or not to pass parameters for screen transition by executing its OnNavigated method when the destination ViewModel is castable to INavigationAware after screen transition.
     /// </summary>
-    /// <param name="target">Target Frame</param>
+    /// <param name="target">Target NavigationWindow</param>
     /// <returns>
     /// If true, the OnNavigated method is executed.
     /// If false, the OnNavigated method is not executed.
@@ -88,28 +89,27 @@ public class NavigationWindowExtensionBehavior
     {
         var navigationWindow = (NavigationWindow)sender;
         var isSendNavigationParam = GetIsSendNavigationParam(navigationWindow);
-        var navigationMode = e.NavigationMode;
-
         if (!isSendNavigationParam) return;
 
+        var navigationMode = NavigationModeUtils.EnkuNaviMode2WpfNaviMode(e.NavigationMode);
+        var extraData = e.ExtraData;
+        var oldPage = navigationWindow.Content as FrameworkElement;
+        var oldNavigationAware = oldPage?.DataContext as INavigationAware;
+
+        if (oldNavigationAware is not null)
+            e.Cancel = oldNavigationAware.OnNavigatingFrom(extraData, navigationMode);
+
+        if (e.Cancel) return;
         NavigatedEventHandler? handler = null;
         handler = (sender, e) =>
         {
-            var navigationWindow = (NavigationWindow)sender;
-            var extraData = e.ExtraData;
-            var nextPage = (Page)e.Content;
+            var nextPage = e.Content as FrameworkElement;
+            var nextNavigationAware = nextPage?.DataContext as INavigationAware;
 
-            if (nextPage.DataContext is INavigationAware navigationAware)
-            {
-                var nm = navigationMode == SystemNavigationMode.New ? EnkuNavigationMode.New :
-                         navigationMode == SystemNavigationMode.Forward ? EnkuNavigationMode.Forward :
-                         navigationMode == SystemNavigationMode.Back ? EnkuNavigationMode.Back :
-                         EnkuNavigationMode.Refresh;
-                navigationAware.OnNavigated(extraData, nm);
-            }
+            oldNavigationAware?.OnNavigatedFrom(extraData, navigationMode);
+            nextNavigationAware?.OnNavigatedTo(extraData, navigationMode);
             navigationWindow.Navigated -= handler;
         };
-
         navigationWindow.Navigated += handler;
     }
 }

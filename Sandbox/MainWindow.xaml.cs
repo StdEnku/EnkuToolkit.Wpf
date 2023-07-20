@@ -35,4 +35,9 @@ public partial class MainWindow : CustomizableTitlebarWindow
     {
         mainFrame.GoForward();
     }
+
+    private void RefleshButtonClicked(object sender, RoutedEventArgs e)
+    {
+        mainFrame.Refresh();
+    }
 }

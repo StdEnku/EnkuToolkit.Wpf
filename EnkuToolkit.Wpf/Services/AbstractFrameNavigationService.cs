@@ -25,7 +25,9 @@ namespace EnkuToolkit.Wpf.Services;
 
 using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.Wpf._internal;
+using EnkuToolkit.Wpf.MarkupExtensions;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 /// <summary>
@@ -39,26 +41,13 @@ public abstract class AbstractFrameNavigationService : INavigationService
     protected abstract Frame TargetFrame { get; }
 
     /// <summary>
-    /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
-    /// </summary>
-    /// <param name="uriStr">Relative URI to the destination page</param>
-    /// <param name="extraData">Data to be passed to the destination</param>
-    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
-    public bool NavigateRootBase(string uriStr, object? extraData = null)
-    {
-        var baseUri = new Uri("pack://application:,,,/");
-        var uri = new Uri(baseUri, uriStr);
-        return TargetFrame.Navigate(uri, extraData);
-    }
-
-    /// <summary>
     /// Methods to perform screen transitions to pages specified by type name including namespace
     /// </summary>
     /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
     /// <param name="extraData">Data to be passed to the destination</param>
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
     /// <exception cref="ArgumentException">Thrown if the type of the name specified in nextPageFullName does not exist.</exception>
-    public bool NavigateFullName(string nextPageFullName, object? extraData = null)
+    public bool Navigate(string nextPageFullName, object? extraData = null)
     {
         var nextPageType = AssemblyUtils.SearchAllClientDefinedTypes(nextPageFullName);
         if (nextPageType is null) throw new ArgumentException("Could not find the type of the full name specified in the AbstractFrameNavigationService.NavigateFullName method.", nameof(nextPageFullName));
@@ -67,14 +56,33 @@ public abstract class AbstractFrameNavigationService : INavigationService
     }
 
     /// <summary>
-    /// Methods to perform screen transitions by specifying the destination URI
+    /// A method that transitions the screen to the page specified by the type name including the namespace; unlike the Navigate method, the object of the destination page is generated from the DI container
     /// </summary>
-    /// <param name="uri">URI to the destination page</param>
+    /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
     /// <param name="extraData">Data to be passed to the destination</param>
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
-    public bool Navigate(Uri uri, object? extraData = null)
+    /// <exception cref="ArgumentException">Thrown if the type of the name specified in nextPageFullName does not exist.</exception>
+    /// <exception cref="InvalidOperationException">
+    /// Exception thrown when Application.Current cannot be cast to IServicesOwner
+    /// or
+    /// Exception thrown when the specified instance cannot be obtained from the DI container
+    /// </exception>
+    public bool NavigateDi(string nextPageFullName, object? extraData = null)
     {
-        return TargetFrame.Navigate(uri, extraData);
+        var nextPageType = AssemblyUtils.SearchAllClientDefinedTypes(nextPageFullName);
+        if (nextPageType is null) 
+            throw new ArgumentException("Could not find the type of the full name specified in the AbstractFrameNavigationService.NavigateFullName method.", nameof(nextPageFullName));
+
+        var servicesOwner = Application.Current as IServicesOwner;
+        if (servicesOwner is null)
+            throw new InvalidOperationException("Cannot cast Application.Current to IServicesOwner.");
+
+        var services = servicesOwner.Services;
+        var nextPageInstance = services.GetService(nextPageType);
+        if (nextPageInstance is null)
+            throw new InvalidOperationException("Could not get the specified instance from the DI container.");
+
+        return TargetFrame.Navigate(nextPageInstance, extraData);
     }
 
     /// <summary>

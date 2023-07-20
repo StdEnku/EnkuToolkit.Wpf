@@ -29,28 +29,20 @@ namespace EnkuToolkit.UiIndependent.Services;
 public interface INavigationService
 {
     /// <summary>
-    /// A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
-    /// </summary>
-    /// <param name="uriStr">Relative URI to the destination page</param>
-    /// <param name="extraData">Data to be passed to the destination</param>
-    /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
-    bool NavigateRootBase(string uriStr, object? extraData = null);
-
-    /// <summary>
     /// Methods to perform screen transitions to pages specified by type name including namespace
     /// </summary>
     /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
     /// <param name="extraData">Data to be passed to the destination</param>
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
-    bool NavigateFullName(string nextPageFullName, object? extraData = null);
+    bool Navigate(string nextPageFullName, object? extraData = null);
 
     /// <summary>
-    /// Methods to perform screen transitions by specifying the destination URI
+    /// A method that transitions the screen to the page specified by the type name including the namespace; unlike the Navigate method, the object of the destination page is generated from the DI container
     /// </summary>
-    /// <param name="uri">URI to the destination page</param>
+    /// <param name="nextPageFullName">The page to which the screen transition is to be made, specified by a type name that includes a namespace</param>
     /// <param name="extraData">Data to be passed to the destination</param>
     /// <returns>Returns false if the screen transition is canceled, true if not canceled</returns>
-    bool Navigate(Uri uri, object? extraData = null);
+    bool NavigateDi(string nextPageFullName, object? extraData = null);
 
     /// <summary>
     /// Method to advance the displayed page based on history
