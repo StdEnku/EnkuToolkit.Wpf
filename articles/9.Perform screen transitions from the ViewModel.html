@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/main/articles/9.Perform screen transitions from the ViewModel.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/84/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1">
   </head>
 
   <script type="module">
@@ -128,14 +128,11 @@ As shown below, INavigationService and MainNavigationWindowNavigationService onl
 By using them, screen transitions can be performed from the ViewModel.</p>
 <pre><code class="lang-c#">public interface INavigationService
 {
-    // A method for screen transitions that allows specifying the destination URI using the project root folder as the base URI
-    bool NavigateRootBase(string uriStr, object? extraData = null);
-    
     // Methods to perform screen transitions to pages specified by type name including namespace
-    bool NavigateFullName(string nextPageFullName, object? extraData = null);
-
-    // Methods to perform screen transitions by specifying the destination URI
-    bool Navigate(Uri uri, object? extraData = null);
+    bool Navigate(string nextPageFullName, object? extraData = null);
+    
+    // A method that transitions the screen to the page specified by the type name including the namespace; unlike the Navigate method, the object of the destination page is generated from the DI container
+    bool NavigateDi(string nextPageFullName, object? extraData = null);
 
     // Method to advance the displayed page based on history
     void GoForward();
@@ -165,7 +162,7 @@ By using them, screen transitions can be performed from the ViewModel.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/main/articles/9.Perform screen transitions from the ViewModel.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/StdEnku/EnkuToolkit.Wpf/blob/84/merge/articles/9.Perform screen transitions from the ViewModel.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

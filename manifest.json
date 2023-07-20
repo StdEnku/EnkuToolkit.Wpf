@@ -5,6 +5,16 @@
   "files": [
     {
       "type": "Conceptual",
+      "source_relative_path": "Notice.md",
+      "output": {
+        ".html": {
+          "relative_path": "Notice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
