@@ -5,7 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon>TemplateIcon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TemplateIcon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
@@ -17,6 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EnkuToolkit.Wpf\EnkuToolkit.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\icon.png" />
   </ItemGroup>
 
   <ItemGroup>
