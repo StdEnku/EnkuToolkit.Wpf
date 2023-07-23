@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:et="https://github.com/StdEnku/EnkuToolkit"
-    xmlns:local="clr-namespace:Sandbox"
+    xmlns:local="clr-namespace:Sandbox.Views"
     xmlns:vm="clr-namespace:Sandbox.ViewModels"
     et:WindowExtensionBehavior.StateSavePath="./WindowStateSaveData.json"
     CornerRadius="15"
@@ -24,29 +24,97 @@
 
     <!--#region Titlebar-->
     <et:CustomizableTitlebarWindow.Titlebar>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <StackPanel.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
-                    <Setter Property="Width" Value="40" />
-                    <Setter Property="Padding" Value="0" />
-                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-                </Style>
+        <UniformGrid Columns="2">
+            <ToggleButton x:Name="menuToggleButton" Width="40" Height="30"
+                          HorizontalAlignment="Left"
+                          WindowChrome.IsHitTestVisibleInChrome="True"
+                          AutomationProperties.Name="HamburgerToggleButton"
+                          Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
-                <Style TargetType="md:PackIcon" BasedOn="{StaticResource {x:Type md:PackIcon}}">
-                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                    <Setter Property="Height" Value="20" />
-                    <Setter Property="Width" Value="20" />
-                </Style>
-            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                        <Setter Property="Width" Value="40" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                    </Style>
 
-            <Button Content="{md:PackIcon WindowMinimize}" Click="MinimizeButtonClicked" />
-            <Button Name="normalizeOrMaximizeButton" Click="normalizeOrMaximizeButtonClicked" />
-            <Button Content="{md:PackIcon Power}" Click="ShutdownButtonClicked" />
-        </StackPanel>
+                    <Style TargetType="md:PackIcon" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        <Setter Property="Height" Value="20" />
+                        <Setter Property="Width" Value="20" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="{md:PackIcon WindowMinimize}" Click="MinimizeButtonClicked" />
+                <Button Name="normalizeOrMaximizeButton" Click="normalizeOrMaximizeButtonClicked" />
+                <Button Content="{md:PackIcon Power}" Click="ShutdownButtonClicked" />
+            </StackPanel>
+        </UniformGrid>
     </et:CustomizableTitlebarWindow.Titlebar>
     <!--#endregion-->
 
-    <Viewbox>
-        <Label Content="{Binding Text}" />
-    </Viewbox>
+    <et:CustomizableTitlebarWindow.Resources>
+        <Style TargetType="md:TransitionerSlide">
+            <Setter Property="BackwardWipe">
+                <Setter.Value>
+                    <md:CircleWipe />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
+            <Setter Property="Command" Value="{Binding SelectedCommand}" />
+        </Style>
+    </et:CustomizableTitlebarWindow.Resources>
+
+    <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=menuToggleButton, Path=IsChecked}">
+        <md:Transitioner SelectedIndex="{Binding SelectedIndex}">
+            <md:TransitionerSlide>
+                <ContentControl Content="{et:DiProvider local:HomeView}" />
+            </md:TransitionerSlide>
+            <md:TransitionerSlide>
+                <ContentControl Content="{et:DiProvider local:AboutView}" />
+            </md:TransitionerSlide>
+            <md:TransitionerSlide>
+                <ContentControl Content="{et:DiProvider local:SettingView}" />
+            </md:TransitionerSlide>
+        </md:Transitioner>
+
+        <md:DrawerHost.LeftDrawerContent>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Rectangle Fill="Red" Height="150" Width="150" Grid.Row="0" />
+
+                <RadioButton IsChecked="{Binding IsHomeSelected, Mode=TwoWay}" Grid.Row="2">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Home" VerticalAlignment="Center" Height="25" Width="25" />
+                        <Label Content="Home" FontSize="20" VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton IsChecked="{Binding IsAboutSelected, Mode=TwoWay}" Grid.Row="4">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Info" VerticalAlignment="Center" Height="25" Width="25" />
+                        <Label Content="About" FontSize="20" VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton IsChecked="{Binding IsSettingSelected, Mode=TwoWay}" Grid.Row="5">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Settings" VerticalAlignment="Center" Height="25" Width="25" />
+                        <Label Content="Settings" FontSize="20" VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+            </Grid>
+        </md:DrawerHost.LeftDrawerContent>
+    </md:DrawerHost>
 </et:CustomizableTitlebarWindow>

@@ -1,11 +1,30 @@
 ﻿namespace Sandbox.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using EnkuToolkit.UiIndependent.Attributes;
 
-[DiRegister]
+[DiRegister(DiRegisterMode.Singleton)]
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string _text = "Hello World!";
+    private bool _isHomeSelected = true;
+
+    [ObservableProperty]
+    private bool _isAboutSelected = false;
+
+    [ObservableProperty]
+    private bool _isSettingSelected = false;
+
+    [ObservableProperty]
+    private int _selectedIndex = 0;
+
+    [RelayCommand]
+    private void Selected()
+    {
+        var nextIndex = IsHomeSelected ? 0 :
+                        IsAboutSelected ? 1 : 2;
+
+        SelectedIndex = nextIndex;
+    }
 }
