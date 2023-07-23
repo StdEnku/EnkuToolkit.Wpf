@@ -1,0 +1,50 @@
+﻿<et:CustomizableTitlebarWindow
+    x:Class="Sandbox.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+    xmlns:local="clr-namespace:Sandbox"
+    xmlns:vm="clr-namespace:Sandbox.ViewModels"
+    et:WindowExtensionBehavior.StateSavePath="./WindowStateSaveData.json"
+    CornerRadius="15"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Background="{DynamicResource MaterialDesignPaper}"
+    TextElement.FontWeight="Medium"
+    TextElement.FontSize="14"
+    FontFamily="{md:MaterialDesignFont}"
+    mc:Ignorable="d"
+    DataContext="{et:DiProvider vm:MainWindowViewModel}"
+    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+    StateChanged="OnStateChanged"
+    Loaded="OnLoaded"
+    Title="MainWindow" Height="450" Width="800">
+
+    <et:CustomizableTitlebarWindow.Titlebar>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Width" Value="40" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                </Style>
+
+                <Style TargetType="md:PackIcon" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                    <Setter Property="Height" Value="20" />
+                    <Setter Property="Width" Value="20" />
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Content="{md:PackIcon WindowMinimize}" Click="MinimizeButtonClicked" />
+            <Button Name="normalizeOrMaximizeButton" Click="normalizeOrMaximizeButtonClicked" />
+            <Button Content="{md:PackIcon Power}" Click="ShutdownButtonClicked" />
+        </StackPanel>
+    </et:CustomizableTitlebarWindow.Titlebar>
+
+    <Viewbox>
+        <Label Content="{Binding Text}" />
+    </Viewbox>
+</et:CustomizableTitlebarWindow>
