@@ -22,6 +22,7 @@
     Loaded="OnLoaded"
     Title="MainWindow" Height="450" Width="800">
 
+    <!--#region Titlebar-->
     <et:CustomizableTitlebarWindow.Titlebar>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel.Resources>
@@ -43,6 +44,7 @@
             <Button Content="{md:PackIcon Power}" Click="ShutdownButtonClicked" />
         </StackPanel>
     </et:CustomizableTitlebarWindow.Titlebar>
+    <!--#endregion-->
 
     <Viewbox>
         <Label Content="{Binding Text}" />
