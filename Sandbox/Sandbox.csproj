@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
     <NoWin32Manifest>true</NoWin32Manifest>
     <ApplicationIcon>TemplateIcon.ico</ApplicationIcon>
+    <Version>0.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
