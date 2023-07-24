@@ -83,39 +83,42 @@
         </md:Transitioner>
 
         <md:DrawerHost.LeftDrawerContent>
-            <Grid Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <Image Source="/Sandbox;component/Resources/icon.png" Height="150" Width="150" Grid.Row="0" />
+                    <Image Source="/Sandbox;component/Resources/icon.png" Height="150" Width="150" Grid.Row="0" />
 
-                <RadioButton IsChecked="{Binding IsHomeSelected, Mode=TwoWay}" Grid.Row="2">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Home" VerticalAlignment="Center" Height="25" Width="25" />
-                        <Label Content="Home" FontSize="20" VerticalAlignment="Center" />
-                    </StackPanel>
-                </RadioButton>
+                    <RadioButton IsChecked="{Binding IsHomeSelected, Mode=TwoWay}" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Home" VerticalAlignment="Center" Height="25" Width="25" />
+                            <Label Content="Home" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
 
-                <RadioButton IsChecked="{Binding IsAboutSelected, Mode=TwoWay}" Grid.Row="4">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Info" VerticalAlignment="Center" Height="25" Width="25" />
-                        <Label Content="About" FontSize="20" VerticalAlignment="Center" />
-                    </StackPanel>
-                </RadioButton>
+                    <RadioButton IsChecked="{Binding IsAboutSelected, Mode=TwoWay}" Grid.Row="4">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Info" VerticalAlignment="Center" Height="25" Width="25" />
+                            <Label Content="About" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
 
-                <RadioButton IsChecked="{Binding IsSettingSelected, Mode=TwoWay}" Grid.Row="5">
-                    <StackPanel Orientation="Horizontal">
-                        <md:PackIcon Kind="Settings" VerticalAlignment="Center" Height="25" Width="25" />
-                        <Label Content="Settings" FontSize="20" VerticalAlignment="Center" />
-                    </StackPanel>
-                </RadioButton>
-            </Grid>
+                    <RadioButton IsChecked="{Binding IsSettingSelected, Mode=TwoWay}" Grid.Row="5">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Settings" VerticalAlignment="Center" Height="25" Width="25" />
+                            <Label Content="Settings" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+                </Grid>
+            </ScrollViewer>
         </md:DrawerHost.LeftDrawerContent>
     </md:DrawerHost>
 </et:CustomizableTitlebarWindow>
