@@ -288,6 +288,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/TemplateIcon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/TemplateIcon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/icon.png",
       "output": {
         "resource": {
