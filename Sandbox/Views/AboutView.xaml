@@ -19,6 +19,9 @@
                 <StackPanel Orientation="Horizontal">
                     <md:PackIcon Kind="License" Height="25" Width="25" VerticalAlignment="Stretch" />
                     <Label Content="License" FontSize="20" HorizontalAlignment="Center" />
+                    <Label Content="-" FontSize="20" HorizontalAlignment="Center" />
+                    <Label Content="{et:AssemblyName}" FontSize="20" HorizontalAlignment="Center" />
+                    <Label Content="{et:AssemblyVersion}" FontSize="20" HorizontalAlignment="Center" />
                 </StackPanel>
             </GroupBox.Header>
             
