@@ -55,30 +55,23 @@
     </et:CustomizableTitlebarWindow.Titlebar>
     <!--#endregion-->
 
-    <et:CustomizableTitlebarWindow.Resources>
-        <Style TargetType="md:TransitionerSlide">
-            <Setter Property="BackwardWipe">
-                <Setter.Value>
-                    <md:CircleWipe />
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
-            <Setter Property="Command" Value="{Binding SelectedCommand}" />
-        </Style>
-    </et:CustomizableTitlebarWindow.Resources>
-
     <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=menuToggleButton, Path=IsChecked}">
         <md:Transitioner SelectedIndex="{Binding SelectedIndex}">
+            <md:Transitioner.Resources>
+                <Style TargetType="md:TransitionerSlide">
+                    <Setter Property="BackwardWipe">
+                        <Setter.Value>
+                            <md:CircleWipe />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </md:Transitioner.Resources>
+            
             <md:TransitionerSlide>
                 <ContentControl Content="{et:DiProvider local:HomeView}" />
             </md:TransitionerSlide>
             <md:TransitionerSlide>
                 <ContentControl Content="{et:DiProvider local:AboutView}" />
-            </md:TransitionerSlide>
-            <md:TransitionerSlide>
-                <ContentControl Content="{et:DiProvider local:SettingView}" />
             </md:TransitionerSlide>
         </md:Transitioner>
 
@@ -95,6 +88,12 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
+                    <Grid.Resources>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
+                            <Setter Property="Command" Value="{Binding SelectedCommand}" />
+                        </Style>
+                    </Grid.Resources>
+
                     <Image Source="/Sandbox;component/Resources/icon.png" Height="150" Width="150" Grid.Row="0" />
 
                     <RadioButton IsChecked="{Binding IsHomeSelected, Mode=TwoWay}" Grid.Row="2" Margin="5">
@@ -108,13 +107,6 @@
                         <StackPanel Orientation="Horizontal">
                             <md:PackIcon Kind="Info" VerticalAlignment="Center" Height="25" Width="25" />
                             <Label Content="About" FontSize="20" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton IsChecked="{Binding IsSettingSelected, Mode=TwoWay}" Grid.Row="5" Margin="5">
-                        <StackPanel Orientation="Horizontal">
-                            <md:PackIcon Kind="Settings" VerticalAlignment="Center" Height="25" Width="25" />
-                            <Label Content="Settings" FontSize="20" VerticalAlignment="Center" />
                         </StackPanel>
                     </RadioButton>
                 </Grid>

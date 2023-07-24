@@ -14,16 +14,12 @@ public partial class MainWindowViewModel : ObservableObject
     private bool _isAboutSelected = false;
 
     [ObservableProperty]
-    private bool _isSettingSelected = false;
-
-    [ObservableProperty]
     private int _selectedIndex = 0;
 
     [RelayCommand]
     private void Selected()
     {
-        var nextIndex = IsHomeSelected ? 0 :
-                        IsAboutSelected ? 1 : 2;
+        var nextIndex = IsHomeSelected ? 0 : 1;
 
         SelectedIndex = nextIndex;
     }
