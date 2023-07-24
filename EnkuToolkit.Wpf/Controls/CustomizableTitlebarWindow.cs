@@ -68,19 +68,23 @@ public class CustomizableTitlebarWindow : Window
     /// <summary>
     /// Gets or sets a value indicating the width of the border used to resize the window
     /// </summary>
-    public Thickness ResizeBorderThickness { get; init; } = new Thickness(15, 0, 15, 15);
+    public Thickness ResizeBorderThickness { get; init; } = new Thickness(8, 0, 8, 8);
 
     private ContentControl _titlebar => (ContentControl)GetTemplateChild("titlebar");
 
     private void MarginSetting()
     {
-        var nextMargin = WindowState == WindowState.Maximized ?
-                         new Thickness(8, 8, 8, 0) :
-                         new Thickness(0);
+        var nextTitlebarMargin = WindowState == WindowState.Maximized ?
+                                 new Thickness(8, 8, 8, 0) :
+                                 new Thickness(0);
 
-        _titlebar.Margin = nextMargin;
+        var nextContentMargin = WindowState == WindowState.Maximized ?
+                                 new Thickness(8, 0, 8, 8) :
+                                 new Thickness(0);
+
+        _titlebar.Margin = nextTitlebarMargin;
         if (Content is FrameworkElement content)
-            content.Margin = nextMargin;
+            content.Margin = nextContentMargin;
     }
 
     /// <summary>

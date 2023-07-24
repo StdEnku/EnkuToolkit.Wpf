@@ -3,10 +3,10 @@
 using EnkuToolkit.UiIndependent.Attributes;
 using System.Windows.Controls;
 
-[DiRegister(DiRegisterMode.Scoped)]
-public partial class SubPage : Page
+[DiRegister(DiRegisterMode.Singleton)]
+public partial class AboutView : UserControl
 {
-    public SubPage()
+    public AboutView()
     {
         InitializeComponent();
     }
