@@ -28,7 +28,7 @@ using System.Reflection;
 using System.Windows.Markup;
 
 /// <summary>
-/// Markup extension to get the name of the assembly that called this markup extension
+/// Markup extension to retrieve the assembly name of the client project
 /// </summary>
 [MarkupExtensionReturnType(typeof(string))]
 public class AssemblyNameExtension : MarkupExtension
@@ -37,12 +37,12 @@ public class AssemblyNameExtension : MarkupExtension
     /// Methods to create return values for this markup extension
     /// </summary>
     /// <param name="serviceProvider">Not used in this markup extension.</param>
-    /// <returns>Name of the assembly that invoked this markup extension</returns>
-    /// <exception cref="NullReferenceException">Exception thrown when assembly name cannot be obtained</exception>
+    /// <returns>Assembly name of the client project</returns>
+    /// <exception cref="NullReferenceException">Exception thrown when assembly information for a client project cannot be obtained</exception>
     public override object? ProvideValue(IServiceProvider serviceProvider)
     {
         var asm = Assembly.GetEntryAssembly();
-        if (asm is null) throw new NullReferenceException("Could not get assembly name using AssemblyNameExtension");
+        if (asm is null) throw new NullReferenceException("Failed to obtain assembly information for client project in AssemblyNameExtension");
         return asm.GetName().Name;
     }
 }
