@@ -1,0 +1,116 @@
+﻿<et:CustomizableTitlebarWindow
+    x:Class="Sandbox.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:et="https://github.com/StdEnku/EnkuToolkit"
+    xmlns:local="clr-namespace:Sandbox.Views"
+    xmlns:vm="clr-namespace:Sandbox.ViewModels"
+    et:WindowExtensionBehavior.StateSavePath="./WindowStateSaveData.json"
+    CornerRadius="15"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Background="{DynamicResource MaterialDesignPaper}"
+    TextElement.FontWeight="Medium"
+    TextElement.FontSize="14"
+    FontFamily="{md:MaterialDesignFont}"
+    mc:Ignorable="d"
+    DataContext="{et:DiProvider vm:MainWindowViewModel}"
+    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+    StateChanged="OnStateChanged"
+    Loaded="OnLoaded"
+    Icon="/Sandbox;component/Resources/icon.png"
+    Title="MainWindow" Height="450" Width="800">
+
+    <!--#region Titlebar-->
+    <et:CustomizableTitlebarWindow.Titlebar>
+        <UniformGrid Columns="2">
+            <ToggleButton x:Name="menuToggleButton" Width="40" Height="30"
+                          HorizontalAlignment="Left"
+                          WindowChrome.IsHitTestVisibleInChrome="True"
+                          AutomationProperties.Name="HamburgerToggleButton"
+                          Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                        <Setter Property="Width" Value="40" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                    </Style>
+
+                    <Style TargetType="md:PackIcon" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        <Setter Property="Height" Value="20" />
+                        <Setter Property="Width" Value="20" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="{md:PackIcon WindowMinimize}" Click="MinimizeButtonClicked" />
+                <Button Name="normalizeOrMaximizeButton" Click="normalizeOrMaximizeButtonClicked" />
+                <Button Content="{md:PackIcon Power}" Click="ShutdownButtonClicked" />
+            </StackPanel>
+        </UniformGrid>
+    </et:CustomizableTitlebarWindow.Titlebar>
+    <!--#endregion-->
+
+    <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=menuToggleButton, Path=IsChecked}">
+        <md:Transitioner SelectedIndex="{Binding SelectedIndex}">
+            <md:Transitioner.Resources>
+                <Style TargetType="md:TransitionerSlide">
+                    <Setter Property="BackwardWipe">
+                        <Setter.Value>
+                            <md:CircleWipe />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </md:Transitioner.Resources>
+            
+            <md:TransitionerSlide>
+                <ContentControl Content="{et:DiProvider local:HomeView}" />
+            </md:TransitionerSlide>
+            <md:TransitionerSlide>
+                <ContentControl Content="{et:DiProvider local:AboutView}" />
+            </md:TransitionerSlide>
+        </md:Transitioner>
+
+        <md:DrawerHost.LeftDrawerContent>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
+                            <Setter Property="Command" Value="{Binding SelectedCommand}" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Image Source="/Sandbox;component/Resources/icon.png" Height="150" Width="150" Grid.Row="0" />
+
+                    <RadioButton IsChecked="{Binding IsHomeSelected, Mode=TwoWay}" Grid.Row="2" Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Home" VerticalAlignment="Center" Height="25" Width="25" />
+                            <Label Content="Home" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton IsChecked="{Binding IsAboutSelected, Mode=TwoWay}" Grid.Row="4" Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Info" VerticalAlignment="Center" Height="25" Width="25" />
+                            <Label Content="About" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+                </Grid>
+            </ScrollViewer>
+        </md:DrawerHost.LeftDrawerContent>
+    </md:DrawerHost>
+</et:CustomizableTitlebarWindow>

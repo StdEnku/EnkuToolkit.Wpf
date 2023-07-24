@@ -60,6 +60,7 @@ public class DiProviderExtension : MarkupExtension
     /// Methods to create return values for this markup extension
     /// </summary>
     /// <returns>ViewModel object generated from a DI container</returns>
+    /// <param name="serviceProvider">Not used in this markup extension.</param>
     /// <exception cref="InvalidOperationException">
     /// Exception thrown when DI container cannot create ViewModel or cast Application.Current to IServicesOwner
     /// </exception>

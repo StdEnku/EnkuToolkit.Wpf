@@ -4,9 +4,9 @@ using EnkuToolkit.UiIndependent.Attributes;
 using System.Windows.Controls;
 
 [DiRegister(DiRegisterMode.Singleton)]
-public partial class MainPage : Page
+public partial class HomeView : UserControl
 {
-    public MainPage()
+    public HomeView()
     {
         InitializeComponent();
     }

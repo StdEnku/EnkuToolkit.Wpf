@@ -1,45 +1,49 @@
 ﻿namespace Sandbox;
 
-using EnkuToolkit.UiIndependent.Services;
-using EnkuToolkit.Wpf.Services;
+using EnkuToolkit.UiIndependent.Attributes;
+using EnkuToolkit.Wpf.MarkupExtensions;
+using EnkuToolkit.Wpf.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Sandbox.Services;
 using System;
 using System.Windows;
-using EnkuToolkit.Wpf.MarkupExtensions;
-using EnkuToolkit.UiIndependent.Attributes;
-using Sandbox.Services;
-using EnkuToolkit.Wpf.Utils;
 
 public partial class App : Application, IServicesOwner
 {
-    public App()
-    {
-        var serviceCollection = new ServiceCollection();
-        RegisterDiRegisterAttachedTypes(ref serviceCollection);
-        RegisterServices(ref serviceCollection);
-        Services = serviceCollection.BuildServiceProvider();
-        InitializeComponent();
-    }
+    private static readonly IHost _host = Host
+        .CreateDefaultBuilder()
+        .ConfigureServices(ConfigureServices)
+        .Build();
 
-    public IServiceProvider Services { get; }
-
-    private static void RegisterServices(ref ServiceCollection serviceCollection)
+    private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        serviceCollection.AddSingleton<INavigationService, MainFrameNavigationService>();
-        serviceCollection.AddSingleton<IMessageBoxService, MessageBoxService>();
-    }
+        // Register AppHostedService
+        services.AddHostedService<AppHostedService>();
 
-    private static void RegisterDiRegisterAttachedTypes(ref ServiceCollection serviceCollection)
-    {
+        // Register the attached type of DiRegisterAttribute to the DI container
         var diRegisterAttribAttachedTypes = DiRegisterUtil.AllDiRegisterAttributeAttachedTypes();
 
         foreach (var AttachedTypeInfo in diRegisterAttribAttachedTypes)
         {
             var mode = AttachedTypeInfo.Mode;
             var type = AttachedTypeInfo.Type;
-            if (mode == DiRegisterMode.Transient) serviceCollection.AddTransient(type);
-            else if (mode == DiRegisterMode.Scoped) serviceCollection.AddTransient(type);
-            else if (mode == DiRegisterMode.Singleton) serviceCollection.AddSingleton(type);
+            if (mode == DiRegisterMode.Transient) services.AddTransient(type);
+            else if (mode == DiRegisterMode.Scoped) services.AddTransient(type);
+            else if (mode == DiRegisterMode.Singleton) services.AddSingleton(type);
         }
+    }
+
+    public IServiceProvider Services => _host.Services;
+
+    private async void OnStartup(object sender, StartupEventArgs e)
+    {
+        await _host.StartAsync();
+    }
+
+    private async void OnExit(object sender, ExitEventArgs e)
+    {
+        await _host.StopAsync();
+        _host.Dispose();
     }
 }
