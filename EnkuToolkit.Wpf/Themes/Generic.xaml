@@ -32,5 +32,6 @@
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableTitlebarWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableTitlebarAnimatedNavigationWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/CustomizableCalendar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/EnkuToolkit.Wpf;component/Themes/AnimatedCustomizableCalendar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
