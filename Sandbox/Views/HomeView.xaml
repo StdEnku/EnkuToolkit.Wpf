@@ -22,16 +22,29 @@
             <et:TernaryOperatorConverter x:Key="BoolToCellBackgroundConverter" ResultValueIfTrue="LightSeaGreen" ResultValueIfFalse="Transparent" />
         </DockPanel.Resources>
         
-        <CheckBox Name="cb1" DockPanel.Dock="Top" Content="IsStartMonday" />
+        <CheckBox Name="cb1" IsChecked="True" DockPanel.Dock="Top" Content="IsStartMonday" />
 
-        <UniformGrid Columns="2" DockPanel.Dock="Bottom" >
+        <UniformGrid Columns="3" DockPanel.Dock="Top" IsEnabled="{Binding ElementName=customizableCalendar, Path=IsCompletedEffect}">
+            <Button Content="{md:PackIcon Kind=ArrowLeft}" Command="{Binding LeftArrowClickedCommand}" Margin="10" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="{Binding Source.Year}" FontSize="20" Padding="0" />
+                <Label Content="/" FontSize="20" Padding="0" />
+                <Label Content="{Binding Source.Month}" FontSize="20" Padding="0" />
+            </StackPanel>
+
+            <Button Content="{md:PackIcon Kind=ArrowRight}" Command="{Binding RightArrowClickedCommand}" Margin="10" />
+        </UniformGrid>
+
+        <UniformGrid Columns="3" DockPanel.Dock="Bottom">
             <Button Content="selected dates show" Command="{Binding ShowSelectedDatesCommand}" Margin="5" />
             <Button Content="selected clear" Command="{Binding SelectedDatesClearCommand}" Margin="5" />
+            <Button Content="add menus" Command="{Binding AddMenusCommand}" Margin="5" />
         </UniformGrid>
 
         <et:AnimatedCustomizableCalendar
             Name="customizableCalendar"
-            TransitionEffect="VerticalModernSlide"
+            TransitionEffect="VerticalSlide"
             Source="{Binding Source}"
             SelectionMode="Extended"
             SelectedDates="{Binding SelectedDates}"

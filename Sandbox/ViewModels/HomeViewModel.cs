@@ -20,12 +20,7 @@ public partial class HomeViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private DayDataCollection _source = new(DateTime.Now.Year, DateTime.Now.Month) 
-    { 
-        new DayData(1 , "鮭", "カレー", "ハンバーグ"),
-        new DayData(2 , "鮭", "カレー", "ハンバーグ"),
-        new DayData(3 , "鮭", "カレー", "ハンバーグ"),
-    };
+    private DayDataCollection _source = new(DateTime.Now.Year, DateTime.Now.Month);
 
     [ObservableProperty]
     private IEnumerable<DateTime> _selectedDates = new List<DateTime>();
@@ -51,5 +46,29 @@ public partial class HomeViewModel : ObservableObject
     private void SelectedDatesClear()
     {
         SelectedDates = new List<DateTime>();
+    }
+
+    [RelayCommand]
+    private void LeftArrowClicked()
+    {
+        Source = Source.CreateNextMonth();
+    }
+
+    [RelayCommand]
+    private void RightArrowClicked()
+    {
+        Source = Source.CreateLastMonth();
+    }
+
+    [RelayCommand]
+    private void AddMenus()
+    {
+        var nextSource = Source.CreateSameMonth();
+        nextSource.Add(new DayData(1, "bread", "fish", "beef"));
+        nextSource.Add(new DayData(3, "bread", "fish", "beef"));
+        nextSource.Add(new DayData(5, "bread", "fish", "beef"));
+        nextSource.Add(new DayData(7, "bread", "fish", "beef"));
+        nextSource.Add(new DayData(9, "bread", "fish", "beef"));
+        Source = nextSource;
     }
 }
