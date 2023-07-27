@@ -1,7 +1,9 @@
 ﻿namespace Sandbox;
 
 using EnkuToolkit.UiIndependent.Attributes;
+using EnkuToolkit.UiIndependent.Services;
 using EnkuToolkit.Wpf.MarkupExtensions;
+using EnkuToolkit.Wpf.Services;
 using EnkuToolkit.Wpf.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +22,9 @@ public partial class App : Application, IServicesOwner
     {
         // Register AppHostedService
         services.AddHostedService<AppHostedService>();
+
+        // Register ViewServices
+        services.AddSingleton<IMessageBoxService, MessageBoxService>();
 
         // Register the attached type of DiRegisterAttribute to the DI container
         var diRegisterAttribAttachedTypes = DiRegisterUtil.AllDiRegisterAttributeAttachedTypes();

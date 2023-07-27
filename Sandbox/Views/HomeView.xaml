@@ -8,10 +8,133 @@
              xmlns:et="https://github.com/StdEnku/EnkuToolkit"
              xmlns:vm="clr-namespace:Sandbox.ViewModels"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:do="clr-namespace:Sandbox.DataObjects"
              DataContext="{et:DiProvider vm:HomeViewModel}"
              d:DataContext="{d:DesignInstance vm:HomeViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <et:AnimatedCustomizableCalendar />
+    <DockPanel LastChildFill="True">
+        <DockPanel.Resources>
+            <et:TernaryOperatorConverter x:Key="BoolToHolidayColorConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Transparent" />
+            <et:TernaryOperatorConverter x:Key="BoolToHolidayTextColorConverter" ResultValueIfTrue="Red" ResultValueIfFalse="Gray" />
+            <et:TernaryOperatorConverter x:Key="IsMultiSelectionConverter" ResultValueIfTrue="{x:Static SelectionMode.Extended}" ResultValueIfFalse="{x:Static SelectionMode.Single}" />
+            <et:TernaryOperatorConverter x:Key="BoolToCellBackgroundConverter" ResultValueIfTrue="LightSeaGreen" ResultValueIfFalse="Transparent" />
+        </DockPanel.Resources>
+        
+        <CheckBox Name="cb1" DockPanel.Dock="Top" Content="IsStartMonday" />
+
+        <UniformGrid Columns="2" DockPanel.Dock="Bottom" >
+            <Button Content="selected dates show" Command="{Binding ShowSelectedDatesCommand}" Margin="5" />
+            <Button Content="selected clear" Command="{Binding SelectedDatesClearCommand}" Margin="5" />
+        </UniformGrid>
+
+        <et:AnimatedCustomizableCalendar
+            Name="customizableCalendar"
+            TransitionEffect="VerticalModernSlide"
+            Source="{Binding Source}"
+            SelectionMode="Extended"
+            SelectedDates="{Binding SelectedDates}"
+            DockPanel.Dock="Bottom" 
+            CellBorderBrush="Gray"
+            CellBorderThickness="1"
+            CellMargin="2"
+            CellPadding="2"
+            DayOfWeeksCulture="en-US"
+            CellDoubleClickedCommand="{Binding DoubleClickedCommand}"
+            IsStartMonday="{Binding ElementName=cb1, Path=IsChecked}">
+
+            <!--#region DayOfWeekLineTemplate-->
+            <et:CustomizableCalendar.DayOfWeekLineTemplate>
+                <DataTemplate DataType="{x:Type et:DayOfWeekData}">
+                    <Border Background="{Binding IsHoliday, Converter={StaticResource BoolToHolidayColorConverter}}">
+                        <Label Content="{Binding DayOfWeekName}" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" />
+                    </Border>
+                </DataTemplate>
+            </et:CustomizableCalendar.DayOfWeekLineTemplate>
+            <!--#endregion-->
+
+            <!--#region AutoGenCellTemplate-->
+            <et:CustomizableCalendar.AutoGenCellTemplate>
+                <DataTemplate DataType="{x:Type et:AutoGenDayData}">
+                    <StackPanel>
+                        <Border HorizontalAlignment="Left" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+                            <Label Content="{Binding Day}" 
+                                   FontSize="15"
+                                   Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                        </Border>
+                        <Separator BorderBrush="Gray" BorderThickness="1" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="- 朝食 :" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="- 昼食 :" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="- 夕食 :" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="指定なし" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="指定なし" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="指定なし" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </et:CustomizableCalendar.AutoGenCellTemplate>
+            <!--#endregion-->
+
+            <!--#region OtherMonthCellTemplate-->
+            <et:CustomizableCalendar.OtherMonthCellTemplate>
+                <DataTemplate DataType="{x:Type et:AutoGenDayData}">
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <Label Content="{Binding Month}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                            <Label Content="/" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                            <Label Content="{Binding Day}" FontSize="35" Padding="0" Margin="0" Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </et:CustomizableCalendar.OtherMonthCellTemplate>
+            <!--#endregion-->
+
+            <!--#region HasDataCellTemplate-->
+            <et:CustomizableCalendar.HasDataCellTemplate>
+                <DataTemplate DataType="{x:Type do:DayData}">
+                    <StackPanel>
+                        <Border HorizontalAlignment="Left" BorderThickness="2" BorderBrush="{Binding IsToday, Converter={StaticResource BoolToCellBackgroundConverter}}"  CornerRadius="50" Margin="2">
+                            <Label Content="{Binding Day}" 
+                                   FontSize="15" 
+                                   Foreground="{Binding IsHoliday, Converter={StaticResource BoolToHolidayTextColorConverter}}"/>
+                        </Border>
+                        <Separator BorderBrush="Gray" BorderThickness="1" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Content="- 朝食 :" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="- 昼食 :" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="- 夕食 :" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="{Binding BreakfastName}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="{Binding LunchName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                            <Label Content="{Binding DinnerName}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </et:CustomizableCalendar.HasDataCellTemplate>
+            <!--#endregion-->
+        </et:AnimatedCustomizableCalendar>
+    </DockPanel>
 </UserControl>
