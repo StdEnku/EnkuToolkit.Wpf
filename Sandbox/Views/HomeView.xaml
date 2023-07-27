@@ -44,7 +44,7 @@
 
         <et:AnimatedCustomizableCalendar
             Name="customizableCalendar"
-            TransitionEffect="VerticalSlide"
+            TransitionEffect="HorizontalSlide"
             Source="{Binding Source}"
             SelectionMode="Extended"
             SelectedDates="{Binding SelectedDates}"

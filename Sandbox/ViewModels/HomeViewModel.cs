@@ -51,13 +51,13 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void LeftArrowClicked()
     {
-        Source = Source.CreateNextMonth();
+        Source = Source.CreateLastMonth();
     }
 
     [RelayCommand]
     private void RightArrowClicked()
     {
-        Source = Source.CreateLastMonth();
+        Source = Source.CreateNextMonth();
     }
 
     [RelayCommand]
