@@ -118,4 +118,13 @@ public class DayDataCollection : ObservableCollection<BaseDayData>
         var nextMonth = dateTime.AddMonths(-1);
         return new DayDataCollection(nextMonth.Year, nextMonth.Month);
     }
+
+    /// <summary>
+    /// Method to retrieve a new DayDataCollection object equal to the current year and month.
+    /// </summary>
+    /// <returns>New DayDataCollection object equal to the current year and month</returns>
+    public DayDataCollection CreateSameMonth()
+    {
+        return new DayDataCollection(Year, Month);
+    }
 }
