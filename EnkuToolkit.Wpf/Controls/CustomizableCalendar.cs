@@ -245,23 +245,28 @@ public class CustomizableCalendar : Control
 
             dayData ??= new AutoGenDayData(itr.DateTime, isTargetYearAndMonth);
 
-            /*======================================================================================
-            // The following will give very good performance without any binding errors, 
-            // but perhaps it is a defect on the WPF side, so we will not adopt this method, 
-            // but leave it as a comment.
-            currentCell = itr.Cell;
-            currentCell.ContentTemplate = template;
-            currentCell.Content = dayData;
-            currentCell.IsEnabled = isTargetYearAndMonth;
-            currentCell.IsSelected = false;
-            ======================================================================================*/
-
+#if False
+            //-------------------------------------------
+            // jpn:仕組みはわかるが遅い
+            // en:I know how it works, but it's slow.
+            //-------------------------------------------
             currentCell = itr.Cell;
             currentCell.ContentTemplate = AutoGenCellTemplate; // Description to avoid binding errors in the template
             currentCell.Content = dayData;
             currentCell.ContentTemplate = template;
             currentCell.IsEnabled = isTargetYearAndMonth;
             currentCell.IsSelected = false;
+#else
+            //-----------------------------------------------
+            // jpn:仕組みはわからないが早い
+            // en:I don't know how it works, but it's fast.
+            //-----------------------------------------------
+            currentCell = itr.Cell;
+            currentCell.ContentTemplate = template;
+            currentCell.Content = dayData;
+            currentCell.IsEnabled = isTargetYearAndMonth;
+            currentCell.IsSelected = false;
+#endif
         }
 
         OnCellsUpdated(updateMode);
@@ -276,7 +281,7 @@ public class CustomizableCalendar : Control
     {
 
     }
-    #endregion
+#endregion
 
     #region Properties for accessing controls on the template
     private ListBox _dayOfCells => (ListBox)GetTemplateChild("dayOfCells");
