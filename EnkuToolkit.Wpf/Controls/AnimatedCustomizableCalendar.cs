@@ -206,46 +206,25 @@ public class AnimatedCustomizableCalendar : CustomizableCalendar
 
     TransitionEffectContentControl _transitionEffectContentControl => (TransitionEffectContentControl)GetTemplateChild("transitionEffectContentControl");
 
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public AnimatedCustomizableCalendar()
+    internal override void OnCellsUpdating(UpdateMode updateMode)
     {
-        Loaded += OnLoaded;
-        Unloaded += OnUnloaded;
+        _transitionEffectContentControl.Snapshot();
     }
 
-    private void OnUnloaded(object sender, RoutedEventArgs e)
+    internal override void OnCellsUpdated(UpdateMode updateMode)
     {
-        CellsUpdating -= OnCellsUpdating;
-        CellsUpdated -= OnCellsUpdated;
-    }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        CellsUpdating += OnCellsUpdating;
-        CellsUpdated += OnCellsUpdated;
-    }
-
-    private void OnCellsUpdated(object sender, CellsUpdateEventArgs e)
-    {
-        if (e.UpdateMode == UpdateMode.Forward)
+        if (updateMode == UpdateMode.Forward)
         {
             _transitionEffectContentControl.RunForwardEffect();
         }
-        else if (e.UpdateMode == UpdateMode.Backward)
+        else if (updateMode == UpdateMode.Backward)
         {
             _transitionEffectContentControl.RunBackwardEffect();
         }
-        else if (e.UpdateMode == UpdateMode.Reflesh)
+        else if (updateMode == UpdateMode.Reflesh)
         {
             _transitionEffectContentControl.RunReloadEffect();
         }
-    }
-
-    private void OnCellsUpdating(object sender, CellsUpdateEventArgs e)
-    {
-        _transitionEffectContentControl.Snapshot();
     }
 
     static AnimatedCustomizableCalendar()

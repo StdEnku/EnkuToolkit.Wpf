@@ -220,7 +220,7 @@ public class CustomizableCalendar : Control
 
     private void UpdateDayOfCell(UpdateMode updateMode)
     {
-        RaiseCellsUpdatingEvent(updateMode);
+        OnCellsUpdating(updateMode);
         var targetYear = Source.Year;
         var targetMonth = Source.Month;
         var startWeek = IsStartMonday ? DayOfWeek.Monday : DayOfWeek.Sunday;
@@ -230,6 +230,7 @@ public class CustomizableCalendar : Control
         object? dayData;
         DataTemplate template;
         ListBoxItem currentCell;
+
         foreach (var itr in datesOnAPage.Zip(_calendarCellItems, (dateTime, cell) => new { DateTime = dateTime, Cell = cell }))
         {
             isTargetYearAndMonth = itr.DateTime.Year == targetYear && itr.DateTime.Month == targetMonth;
@@ -263,7 +264,17 @@ public class CustomizableCalendar : Control
             currentCell.IsSelected = false;
         }
 
-        RaiseCellsUpdatedEvent(updateMode);
+        OnCellsUpdated(updateMode);
+    }
+
+    internal virtual void OnCellsUpdating(UpdateMode updateMode)
+    {
+        
+    }
+
+    internal virtual void OnCellsUpdated(UpdateMode updateMode)
+    {
+
     }
     #endregion
 
@@ -552,94 +563,6 @@ public class CustomizableCalendar : Control
     {
         get => (Thickness)GetValue(CellPaddingProperty);
         set => SetValue(CellPaddingProperty, value);
-    }
-    #endregion
-
-    #region routed event fired when a screen cells update is performed
-    /// <summary>
-    /// Argument for routed event to be fired when a cells update is performed
-    /// </summary>
-    public class CellsUpdateEventArgs : RoutedEventArgs
-    {
-        /// <summary>
-        /// Type of update
-        /// </summary>
-        public UpdateMode UpdateMode { get; }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="routedEvent">The routed event identifier for this instance of the RoutedEventArgs class</param>
-        /// <param name="updateMode">Type of update</param>
-        public CellsUpdateEventArgs(RoutedEvent routedEvent, UpdateMode updateMode) : base(routedEvent)
-        {
-            UpdateMode = updateMode;
-        }
-    }
-
-    /// <summary>
-    /// Handler for routed events fired at cells update
-    /// </summary>
-    /// <param name="sender">Object on which the event occurred</param>
-    /// <param name="e">event parameter</param>
-    public delegate void CellsUpdateEventHandler(object sender, CellsUpdateEventArgs e);
-
-    /// <summary>
-    /// Routed event fired just before cells  refresh
-    /// </summary>
-    public static readonly RoutedEvent CellsUpdatingEvent
-       = EventManager.RegisterRoutedEvent(
-           nameof(CellsUpdating),
-           RoutingStrategy.Bubble,
-           typeof(CellsUpdateEventHandler),
-           typeof(CustomizableCalendar)
-       );
-
-    /// <summary>
-    /// CLR event for CellsUpdatingEvent, a routed event that fires just before a cells  update
-    /// </summary>
-    public event CellsUpdateEventHandler CellsUpdating
-    {
-        add { AddHandler(CellsUpdatingEvent, value); }
-        remove { RemoveHandler(CellsUpdatingEvent, value); }
-    }
-
-    /// <summary>
-    /// Methods for firing CellsUpdatingEvent
-    /// </summary>
-    private void RaiseCellsUpdatingEvent(UpdateMode updateMode)
-    {
-        var args = new CellsUpdateEventArgs(CellsUpdatingEvent, updateMode);
-        RaiseEvent(args);
-    }
-
-    /// <summary>
-    /// routed event fired after cells update
-    /// </summary>
-    public static readonly RoutedEvent CellsUpdatedEvent
-       = EventManager.RegisterRoutedEvent(
-           nameof(CellsUpdated),
-           RoutingStrategy.Bubble,
-           typeof(CellsUpdateEventHandler),
-           typeof(CustomizableCalendar)
-       );
-
-    /// <summary>
-    /// CLR event for CellsUpdatedEvent, a routed event that fires after a cells update
-    /// </summary>
-    public event CellsUpdateEventHandler CellsUpdated
-    {
-        add { AddHandler(CellsUpdatedEvent, value); }
-        remove { RemoveHandler(CellsUpdatedEvent, value); }
-    }
-
-    /// <summary>
-    /// Method for firing CellsUpdatedEvent
-    /// </summary>
-    private void RaiseCellsUpdatedEvent(UpdateMode updateMode)
-    {
-        var args = new CellsUpdateEventArgs(CellsUpdatedEvent, updateMode);
-        RaiseEvent(args);
     }
     #endregion
 
