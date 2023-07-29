@@ -66,22 +66,12 @@ public class DayDataCollection : ObservableCollection<BaseDayData>
     /// </summary>
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
-        if (e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Replace)
+        if (e.Action == NotifyCollectionChangedAction.Add || 
+            e.Action == NotifyCollectionChangedAction.Replace)
         {
             var newItem = e.NewItems?.Cast<BaseDayData>().FirstOrDefault();
             Debug.Assert(newItem is not null);
-
-            if (!DateTime.TryParse($"{Year}/{Month}/{newItem.Day}", out var _))
-                throw new InvalidOperationException($"Added {Year}/{Month}/{newItem.Day} is an invalid date");
-
-            var isDupplicated = (from i in this
-                                 group i by i.Day into g
-                                 where g.Count() > 1
-                                 select g).FirstOrDefault() is not null;
-
-            if (isDupplicated)
-                throw new InvalidOperationException("Duplicate dates are about to be registered");
-
+            ValidItem(newItem);
             newItem.ParentWeakReference = new WeakReference<DayDataCollection>(this);
         }
         base.OnCollectionChanged(e);
@@ -126,5 +116,35 @@ public class DayDataCollection : ObservableCollection<BaseDayData>
     public DayDataCollection CreateSameMonth()
     {
         return new DayDataCollection(Year, Month);
+    }
+
+    /// <summary>
+    /// Method for adding multiple items at once
+    /// </summary>
+    /// <param name="addItems">Items to be added</param>
+    public void AddRange(IEnumerable<BaseDayData> addItems)
+    {
+        foreach (var item in addItems)
+        {
+            Items.Add(item);
+            ValidItem(item);
+            item.ParentWeakReference = new WeakReference<DayDataCollection>(this);
+        }
+
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    }
+
+    private void ValidItem(BaseDayData newItem)
+    {
+        if (!DateTime.TryParse($"{Year}/{Month}/{newItem.Day}", out var _))
+            throw new InvalidOperationException($"Added {Year}/{Month}/{newItem.Day} is an invalid date");
+
+        var isDupplicated = (from i in this
+                             group i by i.Day into g
+                             where g.Count() > 1
+                             select g).FirstOrDefault() is not null;
+
+        if (isDupplicated)
+            throw new InvalidOperationException("Duplicate dates are about to be registered");
     }
 }
